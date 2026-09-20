@@ -1,0 +1,40 @@
+{
+  "dates": [
+    {
+      "date": "20220505",
+      "source_las": "C:\\Users\\81902\\Documents\\Codex\\2026-09-20\\depth-anything-v2-python-uav-rgb\\data\\airmeasurer\\small_field\\AirMeasurer_testdata_small_field\\3D_Point_cloud\\20220505.las",
+      "source_orthomosaic": "C:\\Users\\81902\\Documents\\Codex\\2026-09-20\\depth-anything-v2-python-uav-rgb\\data\\airmeasurer\\small_field\\AirMeasurer_testdata_small_field\\2D_Orthomosaic_image\\20220505.tif",
+      "source_point_count": 1190990,
+      "sor_point_count": 1131782,
+      "csf_ground_point_count": 832975,
+      "sor": {
+        "enabled": true,
+        "nb_neighbors": 20,
+        "std_ratio": 2.0
+      },
+      "csf": {
+        "cloth_resolution_m": 0.1,
+        "rigidness": 2,
+        "class_threshold_m": 0.5,
+        "iterations": 500,
+        "bSloopSmooth": false
+      },
+      "rasterization": {
+        "source_resolution_m": 0.02,
+        "statistic_dsm": "max all SOR-filtered points",
+        "statistic_dem": "min CSF ground points",
+        "empty_cell_fill": "nearest observed cell",
+        "chm": "max(DSM-DEM,0)"
+      },
+      "orthomosaic_grid": {
+        "width": 3676,
+        "height": 3749,
+        "gsd_x_m": 0.0025700000000000002,
+        "gsd_y_m": 0.0025700000000000002,
+        "resampling": "bilinear from georeferenced CHM grid; not a simple resize"
+      },
+      "crs": "EPSG:32650",
+      "official_difference": "AirMeasurer uses SOR, CSF, GCP terrain correction, WhiteboxTools LidarTinGridding, ROI/plot masks, and perspective transform. This implementation uses the official SOR/CSF concepts but custom NumPy rasterization and nearest-cell fill; exact Whitebox output is not claimed."
+    }
+  ]
+}

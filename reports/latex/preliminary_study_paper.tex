@@ -1,0 +1,259 @@
+\documentclass[a4paper,11pt]{ltjsarticle}
+\usepackage{luatexja}
+\usepackage{luatexja-fontspec}
+\setmainjfont{ipaexm}
+\setsansjfont{ipaexg}
+\usepackage[top=25mm,bottom=25mm,left=25mm,right=25mm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{float}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{url}
+\hypersetup{colorlinks=true,linkcolor=blue!50!black,urlcolor=blue!50!black}
+\setlength{\parindent}{1em}
+\setlength{\parskip}{0.35em}
+\setlist{nosep,leftmargin=2em}
+\captionsetup{font=small,labelfont=bf}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Depth Anything V2を用いたUAV稲画像の予備評価}
+\rhead{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\newcommand{\fig}[4]{\begin{figure}[tb]\centering\includegraphics[width=#1\linewidth]{#2}\caption{#3}\label{#4}\end{figure}}
+\newcommand{\code}[1]{\texttt{\detokenize{#1}}}
+\title{\bfseries Depth Anything V2を用いたUAV稲画像からの高さ推定に向けた予備的検討}
+\author{卒業研究予備実験報告}
+\date{2026年9月}
+\begin{document}
+\maketitle
+\begin{abstract}
+本研究の最終目的は、UAVで撮影した稲のRGB画像から地面と稲冠の幾何を推定し、稲の高さ推定および3次元復元へ接続することである。本予備実験ではDepth Anything V2のrelative depthおよびmetric depthを用い、一般画像、KITTI、ETH3D、公開稲UAV画像、UAV3DCrop、AirMeasurerを段階的に評価した。KITTI 50画像ではpooled MAE 2.5921 m、RMSE 5.4692 m、AbsRel 0.1282であった。ETH3D 1画像ではMAE 1.4367 m、RMSE 1.8926 m、AbsRel 0.2105であった。LUMS稲RGB 9画像では推論と植生・地面候補分離を実行できたが、frame-level ground truthがなく、depth差はproxyに限定された。UAV3DCrop 52画像ではraw metric depthにMAE 13.5787 m、Bias -13.5787 mの大きな誤差があった。32 px local differenceではGT中央値0.015625 m、zero baseline MAE 0.040656 m、metric raw MAE 0.053259 m、relative scale+shift MAE 0.040874 mであった。AirMeasurer rice orthomosaic 1時期ではCHMとのPearson 0.2579、Spearman 0.2098であり、aligned MAE 0.0791 mはconstant baselineの0.0563 mを下回らなかった。以上から、Depth Anything V2はUAV作物・稲画像へ適用可能であるが、出力をそのままmetricな稲高と解釈することは困難である。
+\end{abstract}
+\noindent\textbf{キーワード:} Depth Anything V2，monocular depth estimation，UAV，稲，canopy height，relative depth，metric depth，CHM，3D point cloud
+\tableofcontents
+\clearpage
+\section{はじめに}
+稲の草丈・群落高は、生育状態、収量形成、倒伏リスク、施肥・水管理を把握する重要な形質である。圃場での手作業測定は正確な地点測定が可能である一方、広域・反復計測には人的・時間的コストがかかる。UAVは作物群落を上空から繰り返し撮影でき、RGB画像を用いて圃場全体を記録できる。
+
+従来のphotogrammetryでは、Structure-from-Motion（SfM）でカメラ姿勢と疎な3D構造を推定し、Multi-View Stereo（MVS）で密な表面を復元する。地表面と作物表面を分けることでDSM、DEM、CHMを作成できる。しかし、重なり画像、カメラ姿勢、地上基準点、風や遮蔽の影響を必要とする。
+
+monocular depth estimationは1枚のRGB画像から画素ごとの深度を推定する方法であり、単一UAV frameへの適用が可能である。本研究はDepth Anything V2を用いて、UAV RGB画像から稲の高さ推定や3D復元が可能かを公開データで基礎的に検討するものである。研究は、一般画像、KITTI、ETH3D、LUMS、UAV3DCrop、AirMeasurerへ段階的に進めた。
+\section{Depth Anything V2}
+\subsection{relative depthとmetric depth}
+RGB画像を $I$、出力を $\hat{D}$ とすれば、単眼モデルは
+\begin{equation}
+\hat{D}=f_{\theta}(I)
+\end{equation}
+で表せる。relative depthは「AはBより近い」という順序や局所形状を表すが、値はメートルとは限らない。metric depthはメートル等の物理単位を持つ距離を意図するが、学習domainと評価domainが異なる場合にはglobal offsetやscale biasが生じる。
+
+relativeモデルには \code{depth-anything/Depth-Anything-V2-Small-hf}、屋外metricモデルには \code{depth-anything/Depth-Anything-V2-Metric-Outdoor-Small-hf} を用いた。後者はVirtual KITTI 2でfine-tuningされたmax depth 80 mの屋外モデルである。ETH3Dでは \code{depth-anything/Depth-Anything-V2-Metric-Indoor-Small-hf}（max depth 20 m）を用いた。公式実装との比較ではKITTI smoke frameのMAE 0.1712 m、ETH3DのMAE 0.1004 mであり、Transformers実装との大きな不整合は確認されなかった。
+\section{使用データセット}
+\subsection{KITTI}
+KITTIは車載カメラとレーザースキャナによる屋外走行データセットである。GTはuint16 depthであり、$d_{\mathrm{GT}}[\mathrm{m}]=d_{\mathrm{raw}}/256$ と変換した。0値をinvalidとして除外し、GT 80 m以下を評価した。屋外metric checkpointの一般環境での挙動を確認するため、50画像を用いた。
+\subsection{ETH3D}
+ETH3Dはstereo・multi-view stereo評価用データセットであり、calibration、disparity、3D GTを提供する。\code{delivery_area_1l/im0.png} について $f_x=541.764$ pixel、$B=59.9101$ mm、$d_{\mathrm{offs}}=0$ を用い、$Z[\mathrm{m}]=\frac{f_x[\mathrm{pixel}]B[\mathrm{mm}]}{d[\mathrm{pixel}]+d_{\mathrm{offs}}}\frac{1}{1000}$ によりZ-depthを復元した。depthからcolored point cloudを生成し、1画像のdepthおよびgeometryを比較した。
+\subsection{LUMS rice UAV}
+LUMS-WITの公開稲UAV RGB frameからearly（2025-08-22）、middle（2025-09-12）、late（2025-10-03）各3画像、計9画像を使用した。metric medianは約5.258--6.822 mで、約6 mの撮影高度と同程度のオーダーであった。ただしraw RGB frameとcamera pose、intrinsics、DEM、手計測値の画素対応が不足していたため、直接精度は評価していない。
+
+ExG、VARI、HSVを比較し、VARIをvegetation maskに採用した。ground candidateは保守的に抽出し、$d_{\mathrm{ground}}-d_{\mathrm{canopy}}$ をcanopy--ground depth difference proxyとした。earlyは -0.0641--0.0955 m、middleは -0.4297--1.6496 m、lateはground referenceなしである。これは稲高ではない。
+\subsection{UAV3DCrop}
+UAV3DCropはframe対応dense photogrammetry depth、intrinsics、extrinsicsを含むUAV作物benchmarkである。\code{2025/Day001_Wheat} 20画像、\code{2025/Day001_Oat} 16画像、\code{2025/Day007_Corn} 16画像の計52画像を使用し、nadir 26画像、oblique 26画像であった。GTはcamera-frame Z-depthであり、稲の地面からの高さではない。
+\subsection{AirMeasurer}
+AirMeasurerはriceのmulti-season aerial phenotyping用ソフトウェア・データである。全量を取得せず、同日データの \code{20220505.tif} と \code{20220505.las} を使用した。orthomosaicは3676\,$times$3749、4 band、EPSG:32650、GSD 0.00257 m、LASは1,190,990点である。RTK PointZは4点で、plot polygonやheight tableとの対応は確認できなかった。
+
+点群にSORとCSFを適用し、DSMとDEMから $\mathrm{CHM}=\mathrm{DSM}-\mathrm{DEM}$ を作成した。orthomosaicは単一pinhole camera imageではないため、metric DA2をcamera-frame depthとして評価せず、relative outputとCHMのgeometry関係を比較した。
+\section{評価方法}
+\subsection{Absolute depth}
+有効pixel集合を $V$、予測を $\hat{d}_i$、GTを $d_i$ とすると、
+\begin{align}
+\mathrm{MAE}&=\frac{1}{|V|}\sum_{i\in V}|\hat{d}_i-d_i|,\\
+\mathrm{RMSE}&=\sqrt{\frac{1}{|V|}\sum_{i\in V}(\hat{d}_i-d_i)^2},\\
+\mathrm{AbsRel}&=\frac{1}{|V|}\sum_{i\in V}\frac{|\hat{d}_i-d_i|}{d_i},\\
+\mathrm{Bias}&=\frac{1}{|V|}\sum_{i\in V}(\hat{d}_i-d_i).
+\end{align}
+MAEは平均絶対誤差、RMSEは大きな誤差を強調し、AbsRelはGTに対する相対誤差、Biasは系統的な近すぎ・遠すぎを表す。
+
+\subsection{Local geometry}
+pixel pair $(p_1,p_2)$について、
+\begin{align}
+\Delta d_{\mathrm{GT}}&=d_{\mathrm{GT}}(p_1)-d_{\mathrm{GT}}(p_2),\\
+\Delta d_{\mathrm{pred}}&=d_{\mathrm{pred}}(p_1)-d_{\mathrm{pred}}(p_2)
+\end{align}
+とし、
+\begin{equation}
+\mathrm{LD\-MAE}=\frac{1}{N}\sum_{j=1}^{N}|\Delta d_{\mathrm{pred},j}-\Delta d_{\mathrm{GT},j}|
+\end{equation}
+を計算した。Pearsonは線形な増減、Spearmanは順位の一致、sign agreementは $\mathrm{sign}(\Delta d_{\mathrm{pred}})=\mathrm{sign}(\Delta d_{\mathrm{GT}})$ の割合、regression slopeは差分振幅の再現率を表す。
+
+UAV3DCropでは8、16、32、64、128 pxの固定pairを用い、invalid GTを除外した。zero baselineは全pairで $\Delta d_{\mathrm{pred}}=0$ とする比較対象である。scale+shift alignmentは
+\begin{equation}
+\hat{d}_{\mathrm{aligned}}=a\hat{d}+b
+\end{equation}
+によりGTを用いて $a,b$ を推定する診断評価であり、uncalibrated single-image inferenceの精度ではない。
+
+\section{KITTI実験}
+50画像の全valid pixelをpoolした結果を表\ref{tab:kitti}に示す。
+\begin{table}[H]\centering
+\caption{KITTI 50画像のmetric depth評価。主要値はpixel-pooledである。}
+\label{tab:kitti}
+\begin{tabular}{lrrr}\toprule
+指標 & pooled & 画像平均 & 画像中央値\\\midrule
+MAE [m] & 2.5921 & 2.6643 & 2.5104\\
+RMSE [m] & 5.4692 & 5.2404 & 5.0440\\
+AbsRel & 0.1282 & 0.1305 & 0.1233\\
+SqRel & 0.8571 & 0.9000 & 0.7663\\
+RMSE log & 0.2172 & 0.2064 & 0.1885\\
+$\delta<1.25$ & 0.8058 & 0.8039 & 0.8336\\\bottomrule
+\end{tabular}\end{table}
+
+\begin{table}[H]\centering
+\caption{KITTIのGT距離帯別評価。}
+\label{tab:kitti-depth}
+\begin{tabular}{lrrrr}\toprule
+GT距離 & valid pixels & MAE [m] & RMSE [m] & AbsRel\\\midrule
+0--10 m & 1,463,249 & 0.7002 & 1.2224 & 0.0904\\
+10--20 m & 1,388,449 & 1.7930 & 2.7908 & 0.1273\\
+20--40 m & 598,059 & 4.7977 & 6.5368 & 0.1707\\
+40--60 m & 150,994 & 13.7114 & 16.5754 & 0.2780\\
+60--80 m & 50,104 & 20.1499 & 24.1263 & 0.2982\\\bottomrule
+\end{tabular}\end{table}
+遠距離ほどMAE、RMSE、AbsRelが増加し、0--10 mのMAE 0.7002 mに対して60--80 mでは20.1499 mであった。
+\fig{0.82}{../../outputs/kitti/plots/gt_vs_pred_scatter.png}{KITTIのGT depthと予測depth。}{fig:kitti-scatter}
+\fig{0.82}{../../outputs/kitti/plots/error_by_depth.png}{KITTI距離帯別誤差。}{fig:kitti-distance}
+
+\section{ETH3D実験}
+ETH3Dの結果を表\ref{tab:eth3d}に示す。
+\begin{table}[H]\centering
+\caption{ETH3D \code{delivery_area_1l/im0.png} のdepth評価。}
+\label{tab:eth3d}
+\begin{tabular}{lr}\toprule
+指標 & 値\\\midrule
+valid pixels & 343,531\\
+MAE [m] & 1.4367\\
+RMSE [m] & 1.8926\\
+AbsRel & 0.2105\\
+SqRel & 0.3769\\
+RMSE log & 0.2595\\
+$\delta<1.25$ & 0.5700\\\bottomrule
+\end{tabular}\end{table}
+point cloudはrectified camera座標で比較し、ICP、rigid transformation、scale alignmentは適用しなかった。predicted$\rightarrow$GT平均距離0.6751 m、GT$\rightarrow$predicted平均1.1517 m、対称平均0.9134 m、nearest-neighbor 95 percentile 3.5264 mであった。1画像中心の予備評価であり、ETH3D全体へ一般化しない。
+\fig{0.82}{../../outputs/eth3d_gt/im0_depth_comparison.png}{ETH3DのRGB、GT depth、予測depth。}{fig:eth3d}
+
+\section{LUMS rice UAV実験}
+LUMSの9画像でrelative、metric、vegetation mask、ground candidateを作成した。metric medianは約5.3--6.8 mで、撮影高度約6 mと同じオーダーであったが、精度確認ではない。VARIをmaskに採用したが、水面、影、黄化・褐変葉、細い葉に誤分類があった。late 3画像はground referenceなしである。
+
+earlyのproxyは -0.0641--0.0955 m、middleは -0.4297--1.6496 mであった。raw frameとDEMの画素対応、camera pose、frame-level GTがないため、これらを稲高とは呼ばない。
+\fig{0.84}{../../outputs/rice_uav/report_figures/figure_2_rgb_relative_metric.png}{LUMS稲UAVのRGB、relative、metric depth。}{fig:lums}
+\fig{0.70}{../../outputs/rice_uav/report_figures/figure_3_vegetation_mask.png}{LUMS vegetation mask。}{fig:lums-mask}
+
+\section{UAV3DCrop absolute depth実験}
+UAV3DCrop 52画像のraw metricはMAE 13.5787 m、RMSE 14.7136 m、AbsRel 0.6570、Bias -13.5787 mであった。UAV crop domainで大きなdomain biasが存在したと解釈できるが、Depth Anything V2全体がUAVで使えないと一般化しない。
+\begin{table}[H]\centering
+\caption{UAV3DCrop 52画像のraw metric評価。}
+\label{tab:uav-raw}
+\begin{tabular}{lr}\toprule
+画像数 & 52\\
+MAE [m] & 13.5787\\
+RMSE [m] & 14.7136\\
+AbsRel & 0.6570\\
+Bias [m] & -13.5787\\\bottomrule
+\end{tabular}\end{table}
+\fig{0.82}{../../outputs/uav3dcrop/report_figures/figure_2_rgb_gt_pred.png}{UAV3DCropのRGB、GT、DA2 metric depth。}{fig:uav}
+\fig{0.82}{../../outputs/uav3dcrop/report_figures/figure_4_raw_bias_corrected.png}{rawとbias-corrected prediction。}{fig:uav-bias}
+
+\section{UAV3DCrop local geometry実験}
+32 px pairのGT差分は平均0.040656 m、中央値0.015625 m、標準偏差0.131434 m、95 percentile 0.15625 mであった。
+\begin{table}[H]\centering
+\caption{UAV3DCrop 32 px local difference。}
+\label{tab:local}
+\begin{tabular}{lrrrr}\toprule
+モデル・baseline & MAE [m] & RMSE [m] & Pearson & sign agreement\\\midrule
+zero baseline & 0.040656 & 0.137579 & 0 & --\\
+metric raw & 0.053259 & 0.150960 & 0.1023 & 0.5256\\
+relative aligned & 0.040874 & 0.135551 & 0.2894 & 0.5621\\\bottomrule
+\end{tabular}\end{table}
+relative alignedのMAE 4.1 cmはzero baseline 4.07 cmを明確に下回らない。したがって、local MAEだけで4--5 cm精度の高さ推定を主張できない。GT差分0.1、0.2、0.5、1.0 m帯のrelative alignedは、それぞれPearson 0.2234、0.3546、0.5458、0.5811、sign agreement 0.6520、0.7357、0.8369、0.8829、slope 0.1779、0.2110、0.3064、0.2491であった。差分が大きいほど順序は改善するが、振幅は強く圧縮された。
+\begin{table}[H]\centering
+\caption{UAV3DCropのGT difference magnitude別relative aligned結果。}
+\label{tab:local-mag}
+\begin{tabular}{lrrrr}\toprule
+GT差分 & MAE [m] & Pearson & sign agreement & slope\\\midrule
+0.1 m & 0.0922 & 0.2234 & 0.6520 & 0.1779\\
+0.2 m & 0.1755 & 0.3546 & 0.7357 & 0.2110\\
+0.5 m & 0.3720 & 0.5458 & 0.8369 & 0.3064\\
+1.0 m & 0.7516 & 0.5811 & 0.8829 & 0.2491\\\bottomrule
+\end{tabular}\end{table}
+\fig{0.82}{../../outputs/uav3dcrop/all_local_analysis/report_figures/figure_4_zero_baseline_comparison.png}{zero baselineとDA2 local difference。}{fig:zero}
+\fig{0.82}{../../outputs/uav3dcrop/all_local_analysis/report_figures/figure_3_gt_vs_pred_difference_scatter.png}{GTと予測local differenceのscatter。}{fig:scatter}
+
+\section{AirMeasurer rice実験}
+20220505.tifと20220505.lasからCHMを作成した。入力1,190,990点、SOR後1,131,782点、CSF ground 832,975点で、CHM範囲は約0--1.285 m、sample median 0.0065 m、平均0.0586 m、95 percentile 0.4028 mであった。公式pipelineの完全再現ではなく、公開点群に対する簡易処理である。
+
+pixel-levelのPearsonは0.2579、Spearmanは0.2098、GTを用いたscale+shift後のMAEは0.0791 m、RMSE 0.1450 m、$R^2=0.0665$であった。CHM中央値constant baselineはMAE 0.0563 m、RMSE 0.1588 m、$R^2=-0.1206$であった。DA2はRMSEでは改善したが、MAEではbaselineを上回らなかった。
+\begin{table}[H]\centering
+\caption{AirMeasurer 20220505のpixel-level比較。}
+\label{tab:air}
+\begin{tabular}{lrr}\toprule
+指標 & DA2 aligned & constant baseline\\\midrule
+Pearson & 0.2579 & --\\
+Spearman & 0.2098 & --\\
+MAE [m] & 0.0791 & 0.0563\\
+RMSE [m] & 0.1450 & 0.1588\\
+$R^2$ & 0.0665 & -0.1206\\\bottomrule
+\end{tabular}\end{table}
+\fig{0.82}{../../outputs/airmeasurer/report_figures/figure_2_rgb_chm_relative.png}{AirMeasurerのRGB、CHM、DA2 relative。}{fig:air}
+
+32 px local height differenceはMAE 0.0508 m、Pearson 0.4448、sign agreement 0.5542、slope 0.0474であった。GT差分0.1、0.2、0.5、1.0 m帯のMAEは0.0890、0.1827、0.4637、0.8301 m、Pearsonは0.3852、0.4826、0.6956、0.8241、sign agreementは0.6834、0.7411、0.8881、0.9615、slopeは0.0985、0.0698、0.0554、0.0536であった。大差分で順序は改善するが、振幅は圧縮された。
+\begin{table}[H]\centering
+\caption{AirMeasurerのGT height difference magnitude別結果。}
+\label{tab:air-local}
+\begin{tabular}{lrrrr}\toprule
+GT差分 & MAE [m] & Pearson & sign agreement & slope\\\midrule
+0.1 m & 0.0890 & 0.3852 & 0.6834 & 0.0985\\
+0.2 m & 0.1827 & 0.4826 & 0.7411 & 0.0698\\
+0.5 m & 0.4637 & 0.6956 & 0.8881 & 0.0554\\
+1.0 m & 0.8301 & 0.8241 & 0.9615 & 0.0536\\\bottomrule
+\end{tabular}\end{table}
+\fig{0.82}{../../outputs/airmeasurer/report_figures/figure_7_local_height_difference.png}{AirMeasurerのlocal height difference。}{fig:air-local}
+
+\section{総合考察}
+KITTIでは屋外metric modelが一般道路画像で機能し、0--10 mのMAEは0.7002 mであった。一方、UAV3DCropでは大きなabsolute biasが生じた。これはdomain shift、視点、距離分布、canopyの反復構造などが関係する可能性がある。
+
+UAV3DCropではrelative alignedのlocal correlationとsign agreementがmetric rawより良い傾向を示したが、zero baselineとの差は小さく、slopeは1を大きく下回った。AirMeasurerでもpixel-level相関は弱く、aligned DA2はMAEでconstant baselineを上回らなかった。これらは順序の部分的保存と絶対高さ精度を分けて考える必要を示す。
+
+現時点ではDA2出力をそのままmetric rice heightとして使用することは困難である。今後はcamera intrinsics、camera pose、AGL、ground plane、DEM、plot-level aggregation、known-height calibration、temporal calibration、photogrammetryとの融合を検討する必要がある。
+
+\section{本予備実験の限界}
+\begin{itemize}
+\item KITTI 50画像、ETH3D 1画像、AirMeasurer 1時期であり、scene数・時期数が限られる。
+\item LUMSではframe-level GT、camera pose、DEMとの画素対応、manual rice heightが不足している。
+\item AirMeasurerではplot polygonとheight tableの対応を確認できず、held-out plot評価を行っていない。
+\item UAV3DCropとAirMeasurerのGTはphotogrammetry、MVS、点群処理の誤差を含む可能性がある。
+\item orthomosaicとraw frameは異なる幾何表現である。
+\item Smallモデルのみで、metric outdoor modelの学習domainはUAV cropと一致しない。
+\item scale+shift alignmentはGT依存の診断値であり、uncalibrated inferenceの精度ではない。
+\item 統計的有意差と一般化性能は検証していない。
+\end{itemize}
+
+\section{結論}
+Depth Anything V2はUAV cropおよびrice画像へ適用可能である。しかしraw metric depthはUAV作物domainで大きなbiasを示し、AirMeasurer rice CHMとのpixel-level相関も弱かった。UAV3DCropではrelative modelが局所的orderingを部分的に保持する可能性を示したが、zero baselineとの差は小さく、difference amplitudeは強く圧縮された。AirMeasurerでも大きなheight differenceほどsign agreementが向上したが、slopeは低かった。
+
+以上から、現時点でDepth Anything V2により稲高を高精度に推定できたとは結論できない。raw UAV frame、camera geometry、ground reference、独立した実測heightを揃え、relative depthと外部scaleまたはDEMを組み合わせた検証が必要である。
+
+\section*{参考文献}
+\begin{thebibliography}{99}
+\bibitem{da2} Depth Anything V2公式実装，\url{https://github.com/DepthAnything/Depth-Anything-V2}，Yang et al., Depth Anything V2, arXiv:2406.09414.
+\bibitem{kitti} A. Geiger, P. Lenz, and R. Urtasun, Are We Ready for Autonomous Driving? The KITTI Vision Benchmark Suite, CVPR 2012. \url{https://www.cvlibs.net/datasets/kitti/}.
+\bibitem{eth3d} C. Schöps et al., A Multi-View Stereo Benchmark with High-Resolution Images and Multi-Camera Videos, CVPR 2017. \url{https://eth3d.ethz.ch/data/schoeps2017cvpr.pdf}.
+\bibitem{lums} LUMS-WIT, infrastructure-free-uav-phenotyping, \url{https://github.com/LUMS-WIT/infrastructure-free-uav-phenotyping}.
+\bibitem{uav3dcrop} UAV3DCrop公式ページ，\url{https://link-dev.github.io/UAV3DCrop/}.
+\bibitem{air} Sun et al., AirMeasurer: open-source software to quantify static and dynamic traits derived from multiseason aerial phenotyping to empower genetic mapping studies in rice, New Phytologist, 2022, DOI: \url{https://doi.org/10.1111/nph.18314}.
+\end{thebibliography}
+\end{document}

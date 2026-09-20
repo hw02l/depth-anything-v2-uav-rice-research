@@ -1,0 +1,16 @@
+{
+  "separations_px": [
+    8,
+    16,
+    32,
+    64,
+    128
+  ],
+  "pair_samples_per_image_variant_separation": 20000,
+  "sampling": "horizontal and vertical candidate pairs sampled without replacement; one shared valid pair set is reused for all variants for each image and separation",
+  "valid_mask": "finite GT, metric, relative; GT>0 and metric>0",
+  "difference_definition": "Delta d = d(pixel 1) - d(pixel 2); positive means pixel 1 has larger camera-frame z-depth and is farther",
+  "sign_agreement": "computed over nonzero GT differences; predicted zero counts as disagreement",
+  "relative_convention": "official relative output treated as affine-invariant inverse depth; negated before scale-shift alignment to GT z-depth",
+  "aligned_results": "diagnostic geometry scores only, not raw metric accuracy"
+}

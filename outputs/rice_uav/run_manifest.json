@@ -1,0 +1,205 @@
+{
+  "selection_csv": "results\\rice_uav\\selected_images.csv",
+  "relative_model_id": "depth-anything/Depth-Anything-V2-Small-hf",
+  "metric_model_id": "depth-anything/Depth-Anything-V2-Metric-Outdoor-Small-hf",
+  "images": [
+    {
+      "date": "2025-08-22",
+      "filename": "frame1123.png",
+      "growth_stage": "early",
+      "rgb": "outputs\\rice_uav\\early\\2025-08-22\\frame1123\\frame1123.png",
+      "relative_model_id": "depth-anything/Depth-Anything-V2-Small-hf",
+      "metric_model_id": "depth-anything/Depth-Anything-V2-Metric-Outdoor-Small-hf",
+      "relative_outputs": {
+        "raw": "outputs\\rice_uav\\early\\2025-08-22\\frame1123\\frame1123_relative_depth.npy",
+        "visualization": "outputs\\rice_uav\\early\\2025-08-22\\frame1123\\frame1123_relative_depth.png"
+      },
+      "metric_outputs": {
+        "raw": "outputs\\rice_uav\\early\\2025-08-22\\frame1123\\frame1123_metric_depth_m.npy",
+        "visualization": "outputs\\rice_uav\\early\\2025-08-22\\frame1123\\frame1123_metric_depth_m.png"
+      },
+      "comparison": "outputs\\rice_uav\\early\\2025-08-22\\frame1123\\frame1123_rgb_relative_metric.png",
+      "shape": [
+        2160,
+        3840
+      ],
+      "metric_depth_unit": "meter"
+    },
+    {
+      "date": "2025-08-22",
+      "filename": "frame1464.png",
+      "growth_stage": "early",
+      "rgb": "outputs\\rice_uav\\early\\2025-08-22\\frame1464\\frame1464.png",
+      "relative_model_id": "depth-anything/Depth-Anything-V2-Small-hf",
+      "metric_model_id": "depth-anything/Depth-Anything-V2-Metric-Outdoor-Small-hf",
+      "relative_outputs": {
+        "raw": "outputs\\rice_uav\\early\\2025-08-22\\frame1464\\frame1464_relative_depth.npy",
+        "visualization": "outputs\\rice_uav\\early\\2025-08-22\\frame1464\\frame1464_relative_depth.png"
+      },
+      "metric_outputs": {
+        "raw": "outputs\\rice_uav\\early\\2025-08-22\\frame1464\\frame1464_metric_depth_m.npy",
+        "visualization": "outputs\\rice_uav\\early\\2025-08-22\\frame1464\\frame1464_metric_depth_m.png"
+      },
+      "comparison": "outputs\\rice_uav\\early\\2025-08-22\\frame1464\\frame1464_rgb_relative_metric.png",
+      "shape": [
+        2160,
+        3840
+      ],
+      "metric_depth_unit": "meter"
+    },
+    {
+      "date": "2025-08-22",
+      "filename": "frame515.png",
+      "growth_stage": "early",
+      "rgb": "outputs\\rice_uav\\early\\2025-08-22\\frame515\\frame515.png",
+      "relative_model_id": "depth-anything/Depth-Anything-V2-Small-hf",
+      "metric_model_id": "depth-anything/Depth-Anything-V2-Metric-Outdoor-Small-hf",
+      "relative_outputs": {
+        "raw": "outputs\\rice_uav\\early\\2025-08-22\\frame515\\frame515_relative_depth.npy",
+        "visualization": "outputs\\rice_uav\\early\\2025-08-22\\frame515\\frame515_relative_depth.png"
+      },
+      "metric_outputs": {
+        "raw": "outputs\\rice_uav\\early\\2025-08-22\\frame515\\frame515_metric_depth_m.npy",
+        "visualization": "outputs\\rice_uav\\early\\2025-08-22\\frame515\\frame515_metric_depth_m.png"
+      },
+      "comparison": "outputs\\rice_uav\\early\\2025-08-22\\frame515\\frame515_rgb_relative_metric.png",
+      "shape": [
+        2160,
+        3840
+      ],
+      "metric_depth_unit": "meter"
+    },
+    {
+      "date": "2025-09-12",
+      "filename": "frame0271.png",
+      "growth_stage": "middle",
+      "rgb": "outputs\\rice_uav\\middle\\2025-09-12\\frame0271\\frame0271.png",
+      "relative_model_id": "depth-anything/Depth-Anything-V2-Small-hf",
+      "metric_model_id": "depth-anything/Depth-Anything-V2-Metric-Outdoor-Small-hf",
+      "relative_outputs": {
+        "raw": "outputs\\rice_uav\\middle\\2025-09-12\\frame0271\\frame0271_relative_depth.npy",
+        "visualization": "outputs\\rice_uav\\middle\\2025-09-12\\frame0271\\frame0271_relative_depth.png"
+      },
+      "metric_outputs": {
+        "raw": "outputs\\rice_uav\\middle\\2025-09-12\\frame0271\\frame0271_metric_depth_m.npy",
+        "visualization": "outputs\\rice_uav\\middle\\2025-09-12\\frame0271\\frame0271_metric_depth_m.png"
+      },
+      "comparison": "outputs\\rice_uav\\middle\\2025-09-12\\frame0271\\frame0271_rgb_relative_metric.png",
+      "shape": [
+        2160,
+        3840
+      ],
+      "metric_depth_unit": "meter"
+    },
+    {
+      "date": "2025-09-12",
+      "filename": "frame1108.png",
+      "growth_stage": "middle",
+      "rgb": "outputs\\rice_uav\\middle\\2025-09-12\\frame1108\\frame1108.png",
+      "relative_model_id": "depth-anything/Depth-Anything-V2-Small-hf",
+      "metric_model_id": "depth-anything/Depth-Anything-V2-Metric-Outdoor-Small-hf",
+      "relative_outputs": {
+        "raw": "outputs\\rice_uav\\middle\\2025-09-12\\frame1108\\frame1108_relative_depth.npy",
+        "visualization": "outputs\\rice_uav\\middle\\2025-09-12\\frame1108\\frame1108_relative_depth.png"
+      },
+      "metric_outputs": {
+        "raw": "outputs\\rice_uav\\middle\\2025-09-12\\frame1108\\frame1108_metric_depth_m.npy",
+        "visualization": "outputs\\rice_uav\\middle\\2025-09-12\\frame1108\\frame1108_metric_depth_m.png"
+      },
+      "comparison": "outputs\\rice_uav\\middle\\2025-09-12\\frame1108\\frame1108_rgb_relative_metric.png",
+      "shape": [
+        2160,
+        3840
+      ],
+      "metric_depth_unit": "meter"
+    },
+    {
+      "date": "2025-09-12",
+      "filename": "frame1184.png",
+      "growth_stage": "middle",
+      "rgb": "outputs\\rice_uav\\middle\\2025-09-12\\frame1184\\frame1184.png",
+      "relative_model_id": "depth-anything/Depth-Anything-V2-Small-hf",
+      "metric_model_id": "depth-anything/Depth-Anything-V2-Metric-Outdoor-Small-hf",
+      "relative_outputs": {
+        "raw": "outputs\\rice_uav\\middle\\2025-09-12\\frame1184\\frame1184_relative_depth.npy",
+        "visualization": "outputs\\rice_uav\\middle\\2025-09-12\\frame1184\\frame1184_relative_depth.png"
+      },
+      "metric_outputs": {
+        "raw": "outputs\\rice_uav\\middle\\2025-09-12\\frame1184\\frame1184_metric_depth_m.npy",
+        "visualization": "outputs\\rice_uav\\middle\\2025-09-12\\frame1184\\frame1184_metric_depth_m.png"
+      },
+      "comparison": "outputs\\rice_uav\\middle\\2025-09-12\\frame1184\\frame1184_rgb_relative_metric.png",
+      "shape": [
+        2160,
+        3840
+      ],
+      "metric_depth_unit": "meter"
+    },
+    {
+      "date": "2025-10-03",
+      "filename": "frame132.png",
+      "growth_stage": "late",
+      "rgb": "outputs\\rice_uav\\late\\2025-10-03\\frame132\\frame132.png",
+      "relative_model_id": "depth-anything/Depth-Anything-V2-Small-hf",
+      "metric_model_id": "depth-anything/Depth-Anything-V2-Metric-Outdoor-Small-hf",
+      "relative_outputs": {
+        "raw": "outputs\\rice_uav\\late\\2025-10-03\\frame132\\frame132_relative_depth.npy",
+        "visualization": "outputs\\rice_uav\\late\\2025-10-03\\frame132\\frame132_relative_depth.png"
+      },
+      "metric_outputs": {
+        "raw": "outputs\\rice_uav\\late\\2025-10-03\\frame132\\frame132_metric_depth_m.npy",
+        "visualization": "outputs\\rice_uav\\late\\2025-10-03\\frame132\\frame132_metric_depth_m.png"
+      },
+      "comparison": "outputs\\rice_uav\\late\\2025-10-03\\frame132\\frame132_rgb_relative_metric.png",
+      "shape": [
+        2160,
+        3840
+      ],
+      "metric_depth_unit": "meter"
+    },
+    {
+      "date": "2025-10-03",
+      "filename": "frame266.png",
+      "growth_stage": "late",
+      "rgb": "outputs\\rice_uav\\late\\2025-10-03\\frame266\\frame266.png",
+      "relative_model_id": "depth-anything/Depth-Anything-V2-Small-hf",
+      "metric_model_id": "depth-anything/Depth-Anything-V2-Metric-Outdoor-Small-hf",
+      "relative_outputs": {
+        "raw": "outputs\\rice_uav\\late\\2025-10-03\\frame266\\frame266_relative_depth.npy",
+        "visualization": "outputs\\rice_uav\\late\\2025-10-03\\frame266\\frame266_relative_depth.png"
+      },
+      "metric_outputs": {
+        "raw": "outputs\\rice_uav\\late\\2025-10-03\\frame266\\frame266_metric_depth_m.npy",
+        "visualization": "outputs\\rice_uav\\late\\2025-10-03\\frame266\\frame266_metric_depth_m.png"
+      },
+      "comparison": "outputs\\rice_uav\\late\\2025-10-03\\frame266\\frame266_rgb_relative_metric.png",
+      "shape": [
+        2160,
+        3840
+      ],
+      "metric_depth_unit": "meter"
+    },
+    {
+      "date": "2025-10-03",
+      "filename": "frame73.png",
+      "growth_stage": "late",
+      "rgb": "outputs\\rice_uav\\late\\2025-10-03\\frame73\\frame73.png",
+      "relative_model_id": "depth-anything/Depth-Anything-V2-Small-hf",
+      "metric_model_id": "depth-anything/Depth-Anything-V2-Metric-Outdoor-Small-hf",
+      "relative_outputs": {
+        "raw": "outputs\\rice_uav\\late\\2025-10-03\\frame73\\frame73_relative_depth.npy",
+        "visualization": "outputs\\rice_uav\\late\\2025-10-03\\frame73\\frame73_relative_depth.png"
+      },
+      "metric_outputs": {
+        "raw": "outputs\\rice_uav\\late\\2025-10-03\\frame73\\frame73_metric_depth_m.npy",
+        "visualization": "outputs\\rice_uav\\late\\2025-10-03\\frame73\\frame73_metric_depth_m.png"
+      },
+      "comparison": "outputs\\rice_uav\\late\\2025-10-03\\frame73\\frame73_rgb_relative_metric.png",
+      "shape": [
+        2160,
+        3840
+      ],
+      "metric_depth_unit": "meter"
+    }
+  ]
+}

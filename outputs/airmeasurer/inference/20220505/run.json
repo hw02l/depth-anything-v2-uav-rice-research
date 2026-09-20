@@ -1,0 +1,18 @@
+{
+  "date": "20220505",
+  "model_id": "depth-anything/Depth-Anything-V2-Small-hf",
+  "device": "cpu",
+  "input_shape": [
+    3749,
+    3676,
+    3
+  ],
+  "output_shape": [
+    3749,
+    3676
+  ],
+  "tile_size": 1024,
+  "overlap": 128,
+  "orientation": "Depth Anything V2 relative output is inverse-depth-like; near is large. No sign inversion was applied when comparing with top-down CHM highness proxy.",
+  "orthomosaic_warning": "The input is an orthomosaic, not a single pinhole camera frame; relative geometry is exploratory and not camera-frame metric depth."
+}

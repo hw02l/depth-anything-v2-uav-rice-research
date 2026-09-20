@@ -1,0 +1,2 @@
+image,valid_pixels,mae_m,rmse_m,absrel
+2011_09_26_drive_0036_sync_groundtruth_depth_0000000791_image_02.png,81168,1.7558400835977745,3.7947732042047377,0.09956641281426602

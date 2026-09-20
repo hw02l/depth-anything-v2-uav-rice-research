@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "depth-anything-v2-python-uav-rgb"
+version = "0.1.0"
+description = "Depth Anything V2 preliminary experiments for UAV RGB depth estimation"
+requires-python = ">=3.10"
+dependencies = [
+  "numpy>=2.0",
+  "Pillow>=10.0",
+  "opencv-python-headless>=4.10",
+  "torch>=2.3",
+  "torchvision>=0.18",
+  "transformers>=4.45",
+  "safetensors>=0.4",
+  "matplotlib>=3.8",
+  "open3d>=0.18",
+  "requests>=2.31",
+  "tifffile>=2024.8",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]

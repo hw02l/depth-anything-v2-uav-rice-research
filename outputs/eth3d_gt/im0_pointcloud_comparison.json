@@ -1,0 +1,15 @@
+{
+  "coordinate_frame": "same ETH3D im0 rectified camera coordinates",
+  "alignment": "none; same intrinsics and per-pixel depth coordinates",
+  "pred_ply": "outputs\\eth3d_gt\\im0_pred.ply",
+  "gt_ply": "outputs\\eth3d_gt\\im0_gt.ply",
+  "pred_points": 115395,
+  "gt_points": 86105,
+  "sampled_pred_points": 50000,
+  "sampled_gt_points": 50000,
+  "pred_to_gt_mean_m": 0.6750762327602227,
+  "gt_to_pred_mean_m": 1.1517110810382354,
+  "symmetric_chamfer_distance_m": 0.9133936568992289,
+  "nearest_neighbor_median_m": 0.3604487821619141,
+  "nearest_neighbor_p95_m": 3.526376198985821
+}

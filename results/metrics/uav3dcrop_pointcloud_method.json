@@ -1,0 +1,15 @@
+{
+  "depth_convention": "UAV3DCrop GT and DA2 are compared as camera-frame z-depth along the optical axis in meters",
+  "intrinsics": "transforms.json fl_x, fl_y, cx, cy",
+  "distortion": "OPENCV k1,k2,p1,p2,k3 applied with cv2.undistortPoints; no depth raster interpolation",
+  "world_transform": "T_c2w @ [x_cv, -y_cv, -z_cv, 1] because transforms.json uses Nerfstudio/OpenGL camera axes",
+  "alignment": "none; raw metric prediction and GT only",
+  "point_error": "same-pixel corresponding 3D Euclidean error, not nearest-neighbor or ICP",
+  "ply_stride": 32,
+  "images_with_ply": [
+    "1.JPG",
+    "182.JPG",
+    "240.JPG",
+    "43.JPG"
+  ]
+}

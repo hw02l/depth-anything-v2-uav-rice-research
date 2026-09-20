@@ -1,0 +1,2 @@
+status,reason
+NOT_AVAILABLE,"The downloaded small-field shapefile contains four PointZ RTK control points, not plot boundaries or plot IDs; no plot-level CHM/height table was publicly matched to this testing imagery."

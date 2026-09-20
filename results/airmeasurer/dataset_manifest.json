@@ -1,0 +1,63 @@
+{
+  "data_root": "C:\\Users\\81902\\Documents\\Codex\\2026-09-20\\depth-anything-v2-python-uav-rgb\\data\\airmeasurer\\small_field",
+  "available_pairs": [
+    {
+      "date": "20220505",
+      "orthomosaic_filename": "20220505.tif",
+      "point_cloud_filename": "20220505.las",
+      "orthomosaic_path": "data/airmeasurer/small_field/AirMeasurer_testdata_small_field/2D_Orthomosaic_image/20220505.tif",
+      "point_cloud_path": "data/airmeasurer/small_field/AirMeasurer_testdata_small_field/3D_Point_cloud/20220505.las",
+      "point_count": 1190990,
+      "raster_width": 3676,
+      "raster_height": 3749,
+      "raster_bands": 4,
+      "crs": "EPSG:32650",
+      "las_crs": "EPSG:32650",
+      "gsd_x_m": 0.0025700000000000002,
+      "gsd_y_m": 0.0025700000000000002,
+      "available_plot_information": "none; accompanying small_mtps shapefile contains 4 PointZ RTK control points",
+      "source": "The-Zhou-Lab/UAV-AirMeasurer V2.0.2 AirMeasurer_testdata_small_field.zip",
+      "raster": {
+        "width": 3676,
+        "height": 3749,
+        "bands": 4,
+        "dtypes": [
+          "uint8",
+          "uint8",
+          "uint8",
+          "uint8"
+        ],
+        "crs": "EPSG:32650",
+        "gsd_x_m": 0.0025700000000000002,
+        "gsd_y_m": 0.0025700000000000002,
+        "bounds": [
+          706245.2314800001,
+          3500191.70572,
+          706254.6788000001,
+          3500201.34065
+        ],
+        "transform": [
+          0.0025700000000000002,
+          0.0,
+          706245.2314800001,
+          0.0,
+          -0.0025700000000000002,
+          3500201.34065,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "software": "pix4dmapper"
+      },
+      "las_bounds": [
+        706239.6091451645,
+        3500185.831176758,
+        45.83152389526367,
+        706258.7848434448,
+        3500207.661872864,
+        48.40242004394531
+      ]
+    }
+  ],
+  "plot_information": "not found; RTK shapefile is point control information"
+}

@@ -1,0 +1,46 @@
+{
+  "records": [
+    {
+      "date": "20220505",
+      "valid_pixels": 4958593,
+      "pixel_sample_count": 300000,
+      "scale": 0.07897868786917894,
+      "shift_m": -0.0592605549414224,
+      "orientation": "raw DA2 inverse-depth-like output used without sign inversion; high canopy is treated as near/highness proxy for this exploratory top-down comparison",
+      "metric_warning": "orthomosaic input; no camera-frame metric depth evaluation"
+    }
+  ],
+  "chm_height_bins_m": [
+    [
+      0,
+      0.1
+    ],
+    [
+      0.1,
+      0.2
+    ],
+    [
+      0.2,
+      0.4
+    ],
+    [
+      0.4,
+      0.6
+    ],
+    [
+      0.6,
+      0.8
+    ],
+    [
+      0.8,
+      1.0
+    ],
+    [
+      1.0,
+      null
+    ]
+  ],
+  "raw_relative_not_meter_mae": true,
+  "alignment": "per-date least-squares scale+shift from sampled CHM-valid pixels; diagnostic only",
+  "plot_evaluation": "not performed"
+}

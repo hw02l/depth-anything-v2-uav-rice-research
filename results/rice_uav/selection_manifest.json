@@ -1,0 +1,32 @@
+{
+  "repository": "https://github.com/LUMS-WIT/infrastructure-free-uav-phenotyping",
+  "dates": {
+    "2025-08-22": {
+      "growth_stage": "early",
+      "available_files": 10,
+      "selected": [
+        "frame1123.png",
+        "frame1464.png",
+        "frame515.png"
+      ]
+    },
+    "2025-09-12": {
+      "growth_stage": "middle",
+      "available_files": 10,
+      "selected": [
+        "frame0271.png",
+        "frame1108.png",
+        "frame1184.png"
+      ]
+    },
+    "2025-10-03": {
+      "growth_stage": "late",
+      "available_files": 10,
+      "selected": [
+        "frame132.png",
+        "frame266.png",
+        "frame73.png"
+      ]
+    }
+  }
+}

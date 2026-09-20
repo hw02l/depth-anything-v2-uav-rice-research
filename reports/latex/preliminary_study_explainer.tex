@@ -1,0 +1,225 @@
+\documentclass[a4paper,11pt]{ltjsarticle}
+\usepackage{luatexja}
+\usepackage{luatexja-fontspec}
+\setmainjfont{ipaexm}
+\setsansjfont{ipaexg}
+\usepackage[top=23mm,bottom=23mm,left=23mm,right=23mm]{geometry}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{caption}
+\usepackage{url}
+\hypersetup{colorlinks=true,linkcolor=blue!50!black,urlcolor=blue!50!black}
+\setlength{\parindent}{1em}
+\setlength{\parskip}{0.45em}
+\setlist{nosep,leftmargin=2em}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Depth Anything V2予備実験・理解用解説}
+\rhead{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\newtcolorbox{important}{colback=red!4!white,colframe=red!55!black,title=重要,breakable}
+\newtcolorbox{note}{colback=blue!4!white,colframe=blue!55!black,title=注意,breakable}
+\newtcolorbox{finding}{colback=green!4!white,colframe=green!50!black,title=今回分かったこと,breakable}
+\newcommand{\fig}[4]{\begin{figure}[tb]\centering\includegraphics[width=#1\linewidth]{#2}\caption{#3}\label{#4}\end{figure}}
+\newcommand{\code}[1]{\texttt{\detokenize{#1}}}
+\title{\bfseries Depth Anything V2予備実験を理解するための解説}
+\author{卒業研究用講義ノート}
+\date{2026年9月}
+\begin{document}
+\maketitle
+\begin{important}
+この冊子は、既存の予備実験を自分で説明できるようにするための解説である。見た目がきれいなdepth mapと、物理的に正しい高さは別物である。今回の中心的な結論は、Depth Anything V2を稲画像へ適用できたことと、稲高を高精度に測れたことを混同しないことである。
+\end{important}
+\tableofcontents
+\clearpage
+
+\section{この研究で最終的にやりたいこと}
+最終的には、次の流れを実現したい。
+\begin{center}
+UAV RGB画像 $\rightarrow$ Depth Anything V2 $\rightarrow$ 深度情報 $\rightarrow$ 地面と稲冠の分離 $\rightarrow$ 稲の高さ推定 $\rightarrow$ 3D復元
+\end{center}
+ここでいう稲の高さは、カメラからの距離ではなく、地面から稲冠までの高さである。カメラが斜めを向いていたり、地面が傾いていたり、地面が見えなかったりすると、単純なdepth差は高さにならない。
+
+\section{そもそもdepthとは何か}
+depthは、画像中の各pixelがカメラからどの程度離れているかを表す値である。例えば机の上に手前のコップと奥の本があるとき、手前のコップの方がカメラに近く、奥の本の方が遠い。この距離を画像全体についてpixelごとに並べたものがdepth mapである。
+
+ただし、depth mapの色は見やすくするための表示にすぎない。赤いpixelが本当に5 m、青いpixelが本当に2 mという意味とは限らない。元の数値とGTを比較して初めて正しさを評価できる。
+
+\section{Relative depthとMetric depth}
+relative depthは、AとBのどちらが近いか、どこが前後しているかを表す。「AはBより近い」は分かるが、「Aはカメラから5.2 m」とは限らない。
+
+metric depthは「Aは5.2 m」のように物理単位で距離を出すことを目指す。しかし、metricモデルも学習した画像の種類に依存する。道路で学習したモデルを稲の俯瞰画像に使えば、数値の全体がずれるdomain shiftが起きることがある。
+
+\begin{note}
+今回のrelative modelは \code{depth-anything/Depth-Anything-V2-Small-hf}、屋外metric modelは \code{depth-anything/Depth-Anything-V2-Metric-Outdoor-Small-hf} である。metricという名前だけで、どの画像でも正しいメートル値になるわけではない。
+\end{note}
+
+\section{なぜいきなり稲で評価しなかったのか}
+稲画像にモデルをかけるだけなら、出力画像を作ることはできる。しかし、その出力が正しいかを言うには、同じpixelの正解depthまたは高さが必要である。そこで、まずGTが整備されたデータセットで段階的に確認した。
+
+\begin{center}
+一般画像 \rightarrow KITTI \rightarrow ETH3D \rightarrow LUMS \rightarrow UAV3DCrop \rightarrow AirMeasurer
+\end{center}
+この順番は、動作確認、一般metric評価、3D化、実稲への適用、UAV作物GT評価、rice canopy height比較という意味を持つ。
+
+\section{KITTIで何を確認したか}
+KITTIは道路を走る車から撮ったRGB画像とレーザー由来のdepthを持つ。GTのuint16値を256で割るとメートルになる。50画像を評価し、pooled結果はMAE 2.5921 m、RMSE 5.4692 m、AbsRel 0.1282であった。
+
+距離帯を見ると、0--10 mではMAE 0.7002 m、60--80 mでは20.1499 mであった。つまり、遠い対象ほど誤差が大きくなることを確認できた。これは「一般道路画像では動作する」という基準であり、稲画像の精度を保証するものではない。
+\fig{0.78}{../../outputs/kitti/plots/gt_vs_pred_scatter.png}{KITTIのGTと予測の関係。}{fig:kitti}
+
+\section{ETH3Dで何を確認したか}
+ETH3Dはstereo画像とcalibrationを持つ。stereoでは、左右画像の同じ点がどれだけずれたかというdisparityを使う。おおまかには
+\begin{equation}
+depth \approx \frac{焦点距離 \times stereo\ baseline}{disparity}
+\end{equation}
+であり、正確にはcalibration補正と単位変換を行う。
+
+今回は1画像を使い、MAE 1.4367 m、RMSE 1.8926 m、AbsRel 0.2105であった。さらにintrinsicsとdepthから、各pixelを3D点へ変換した。これがpoint cloudである。カメラ座標でのpredictedとGTの対称平均距離は0.9134 mであった。
+\fig{0.78}{../../outputs/eth3d_gt/im0_depth_comparison.png}{ETH3DのRGB、GT depth、予測depth。}{fig:eth}
+
+\section{LUMS稲UAVで何が分かったか}
+LUMSでは、実際の稲圃場を撮影したRGB画像9枚にDA2を適用した。early、middle、lateを各3画像使い、relative depth、metric depth、vegetation maskを作成した。metric medianは約5.3--6.8 mで、READMEの撮影高度約6 mと同じオーダーであった。
+
+しかし、公開されたraw RGB frameとDEMのpixel対応、frameごとのcamera pose、正解depthが不足していた。したがって、depth mapがもっともらしく見えても、正しいとは言えなかった。ground候補を使った差はcanopy--ground depth difference proxyと呼び、稲高とは呼ばなかった。
+\fig{0.82}{../../outputs/rice_uav/report_figures/figure_2_rgb_relative_metric.png}{LUMS稲画像への適用例。}{fig:lums}
+
+\section{UAV3DCropが重要だった理由}
+UAV3DCropでは、UAV crop RGB画像と、同じframeに対応するGT depth、camera intrinsics、camera extrinsicsがある。初めて同じpixel同士を直接比較できた。
+
+使用画像はWheat 20、Oat 16、Corn 16の52画像で、nadir 26、oblique 26である。GTはphotogrammetryから得られたcamera-frame Z-depthであり、地面からの作物高ではない。それでも、UAV作物画像に対する絶対depthと局所差分を定量評価できた点が重要である。
+
+\section{Metric depthの大きな失敗}
+UAV3DCropのraw metric結果はMAE約13.6 m、Bias約-13.6 mであった。これは、予測がGTより全体に大幅に小さいことを意味する。例えばGTが15 mなのに予測が1--2 mなら、誤差は約-13 mになる。
+
+\begin{finding}
+metricモデルは、UAV作物画像に適用できるが、UAV作物domainで正しい絶対距離を出すとは確認できなかった。道路画像で動くことと、作物俯瞰画像でメートル精度が出ることは別である。
+\end{finding}
+
+\section{「でもlocal MAEは5 cmだった」の罠}
+local differenceでは2画素の差を比べる。UAV3DCropの32 px pairでは、GT差分の中央値が約1.56 cmだった。多くのpairがほぼ同じ深度なら、何も変化しないと予測しても誤差は小さくなる。
+
+zero baselineとは、すべてのpairについて「差は0」と答えるモデルである。今回の値は次の通りであった。
+\begin{table}[H]\centering
+\caption{32 px local differenceの比較。}
+\begin{tabular}{lrr}\toprule
+予測方法 & MAE [m] & RMSE [m]\\\midrule
+zero baseline & 0.040656 & 0.137579\\
+metric raw & 0.053259 & 0.150960\\
+relative aligned & 0.040874 & 0.135551\\\bottomrule
+\end{tabular}\end{table}
+
+relative alignedの4.1 cmは、zero baselineの4.07 cmより明確に良くない。したがって、「local MAEが4 cmだから、高さを4 cm精度で測れる」とは言えない。
+
+\section{相関とslope}
+Pearson correlationは、GTが増えると予測も増えるか、という一緒に増減する度合いである。Spearman correlationは数値そのものより順位の一致を見る。
+
+regression slopeは、本当の変化量をどの程度の大きさで再現したかを表す。GTで50 cmの差があるのに、DA2で3 cmしか変化しなければ、slopeは約0.06である。順番は合っていても、変化量を強く圧縮している。
+
+UAV3DCropのrelative alignedでは、GT差分0.5 m帯のPearsonは0.5458、sign agreementは0.8369であったが、slopeは0.3064だった。これは「順序を部分的に捉える可能性」と「高さ差を正しい振幅で再現すること」が別であることを示す。
+
+\section{Sign agreement}
+sign agreementは「どちらが近いか、どちらが高いか」の順序だけを見る。GTで $A-B>0$ ならA側が近い、予測でも $A-B>0$ なら一致である。
+
+この指標は順序の確認には便利だが、差が何cmあるかは分からない。AirMeasurerの1.0 m差分帯ではsign agreement 0.9615だったが、slopeは0.0536であった。順番は合っていても、差の大きさは約5％程度しか再現していない。
+
+\section{実際の稲で調べたAirMeasurer}
+AirMeasurerではriceのorthomosaicとpoint cloudを使った。orthomosaicは、複数の写真を地図のようにつなげた画像である。point cloudは、空間中の大量の3D点である。
+
+点群から、上側の作物表面をDSM、地面の表面をDEMとして求める。DSMからDEMを引いたものがCHMである。
+\begin{center}
+作物上面: DSM\\
+　　↓　CHM = DSM - DEM\\
+地面: DEM
+\end{center}
+今回はLASにSORとCSFを適用して簡易的にDSM、DEM、CHMを作成した。CHMの範囲は約0--1.285 mであった。
+
+\begin{note}
+orthomosaicは通常の1枚のカメラ画像ではない。そのため、orthomosaicにDA2 metric modelをかけても、出力を「カメラからの距離」と解釈してはいけない。AirMeasurerではrelative outputとCHMの形状関係を比較した。
+\end{note}
+
+\section{AirMeasurerの結果}
+DA2 relativeとCHMのpixel-level比較では、Pearson 0.2579、Spearman 0.2098であった。これは強い対応とは言いにくい。CHMを使ってscale+shiftした診断値はMAE 0.0791 m、RMSE 0.1450 m、$R^2=0.0665$であった。
+
+一方、全pixelをCHMの中央値とするconstant baselineはMAE 0.0563 m、RMSE 0.1588 mであった。DA2はRMSEでは改善したが、MAEではbaselineに負けた。したがって、pixel-levelのcanopy height prediction性能が確認されたとは言えない。
+
+local height differenceでは、GT差分が0.1、0.2、0.5、1.0 mと大きくなるほどPearsonとsign agreementは高くなった。しかしslopeは0.0985、0.0698、0.0554、0.0536であり、差分の振幅は強く圧縮された。
+\fig{0.82}{../../outputs/airmeasurer/report_figures/figure_2_rgb_chm_relative.png}{AirMeasurerのRGB、CHM、DA2 relative。}{fig:air}
+\fig{0.82}{../../outputs/airmeasurer/report_figures/figure_7_local_height_difference.png}{AirMeasurerのlocal height difference。}{fig:air-local}
+
+\section{今回の結果を一言で言うと}
+\begin{finding}
+Depth Anything V2は、稲の高低関係を部分的に捉えている可能性はある。しかし、その出力値をそのまま稲高として使える段階ではない。
+\end{finding}
+
+\section{何が問題なのか}
+\begin{itemize}
+\item \textbf{domain shift}: 学習画像と実際の稲・UAV画像の種類が違う。
+\item \textbf{canopy}: 葉が重なり、内部の地面が見えない。
+\item \textbf{thin leaves}: 細い葉や葉先は画像上の手がかりが弱い。
+\item \textbf{ground visibility}: 地面が見えないと、稲高の基準を置けない。
+\item \textbf{orthomosaic}: 複数カメラ画像を地図化した画像で、単一カメラの透視画像ではない。
+\item \textbf{MVS error}: photogrammetryのGTにも風、遮蔽、反復模様による誤差がある。
+\item \textbf{camera geometry}: intrinsicsとposeがないとpixelを正しい3D rayへ変換しにくい。
+\item \textbf{scale}: relative depthには物理単位のscaleがない。
+\end{itemize}
+
+\section{卒業研究では何をすればよいか}
+今後はraw UAV frame、camera intrinsics、camera pose、AGLまたは地面基準、ground planeまたはDEM、canopy ROI、実測rice heightを揃える必要がある。まずcamera rayとground surfaceからground depthを求め、稲冠側の代表値との差を計算する。
+
+relative depthを既知高さでcalibrationする場合は、calibrationに使ったplotと評価用のheld-out plotを分ける必要がある。同じplotでscaleを決めて同じplotで評価すると、未知plotへ使える性能を過大評価する可能性がある。photogrammetry CHMとDA2を競争させるだけでなく、relative depthに外部scaleを与える方法も研究課題になる。
+
+\section{よくある誤解}
+\subsection{誤解1: Depth mapが綺麗だから正しい}
+色付けは表示である。GTとの数値比較が必要である。
+\subsection{誤解2: MAEが5 cmだから高さを5 cm精度で測れる}
+GT差分の中央値が1.56 cmで、zero baselineでもMAEが4 cmになった。MAEだけで高さ精度は言えない。
+\subsection{誤解3: Relative depthはmeter単位である}
+relative outputは順序や形状を表す値であり、メートル単位とは限らない。
+\subsection{誤解4: Metric depthならどんな画像でもmeter単位で正しい}
+metric checkpointにも学習domainがある。UAV3DCropでは大きなbiasが観測された。
+\subsection{誤解5: Correlationが高ければ絶対値も正しい}
+相関は一緒に増減するかを見る。全体に1 mずれていても相関は高くなり得る。
+\subsection{誤解6: Scale+shift後のMAEが良ければRGBだけでその精度が出る}
+scaleとshiftをGTから求めた診断値であり、未校正の推論精度ではない。
+\subsection{誤解7: Orthomosaicを通常のcamera imageと同じように扱える}
+orthomosaicは地理的に再構成された地図画像であり、単一camera-frame depthの入力とは異なる。
+
+\section{用語集}
+\begin{description}[style=nextline,leftmargin=3.7cm]
+\item[monocular depth estimation] 1枚のRGB画像から深度を推定する方法。
+\item[relative depth] 画像内の前後関係や順位を表す深度。
+\item[metric depth] メートルなど物理単位を意図した深度。
+\item[depth map] pixelごとのdepth値を並べた画像。
+\item[point cloud] 3D座標を持つ点の集合。
+\item[SfM] 複数画像からカメラ姿勢と3D構造を推定する方法。
+\item[MVS] 複数画像から密な3D表面を復元する方法。
+\item[DEM] 地面表面の高さモデル。
+\item[DSM] 作物や建物を含む上面表面の高さモデル。
+\item[CHM] DSMからDEMを引いたcanopy height model。
+\item[orthomosaic] 複数画像を地図のようにつないだ画像。
+\item[camera intrinsics] 焦点距離、主点、歪みなどカメラ内部の値。
+\item[camera extrinsics] カメラの位置と姿勢。
+\item[MAE] 誤差の絶対値の平均。
+\item[RMSE] 二乗誤差平均の平方根。大きな誤差に敏感。
+\item[AbsRel] GTに対する相対的な絶対誤差。
+\item[Bias] signed errorの平均。系統的なずれ。
+\item[Pearson correlation] 2つの値が線形に一緒に増減する度合い。
+\item[Spearman correlation] 値の順位が一致する度合い。
+\item[regression slope] 予測された変化量の大きさを表す傾き。
+\item[baseline] 比較の基準となる単純な予測。
+\item[domain shift] 学習画像と評価画像の種類が違うこと。
+\item[calibration] 既知の基準を用いて出力scaleを合わせること。
+\end{description}
+
+\section{まとめ}
+今回確認できたのは、DA2を稲・作物UAV画像へ適用できること、raw metric depthにdomain biasがあること、relative depthが局所順序を部分的に表す可能性があること、そしてその差分振幅が圧縮されることである。次の段階では、raw frame、camera geometry、ground reference、実測稲高を揃え、calibrationを含む検証を独立plot・独立時期で行うべきである。
+
+\end{document}

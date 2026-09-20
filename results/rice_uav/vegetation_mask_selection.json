@@ -1,0 +1,9 @@
+{
+  "selected_method": "vari",
+  "thresholds": {
+    "exg": "2G-R-B > 20",
+    "vari": "(G-R)/(G+R-B) > 0.05",
+    "hsv": "H 20-100, S >= 45, V >= 30 in OpenCV HSV"
+  },
+  "reason": "VARI is used as the default because it is dimensionless and less directly dependent on overall brightness; method fractions and visual comparisons are retained for failure analysis."
+}

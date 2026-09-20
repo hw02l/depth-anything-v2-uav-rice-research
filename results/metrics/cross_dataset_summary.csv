@@ -1,0 +1,4 @@
+dataset,domain,camera_viewpoint,number_of_images,mae_m,rmse_m,absrel,note
+KITTI,driving,forward road camera,50,2.592083219237286,5.469192984642442,0.1282202233621484,50-image validation subset; GT depth selection crop
+ETH3D,indoor multi-view,rectified stereo image,1,1.436712212643984,1.8926326391255834,0.21049182505537262,one low-res two-view image; disparity-derived metric depth
+UAV3DCrop,field crop UAV,26 nadir + 26 oblique,52,13.578654875290443,14.713559442651087,0.6570202615991848,2025 wheat/oat/corn scenes; photogrammetry-referenced z-depth; raw metric prediction; domain-specific comparison only
