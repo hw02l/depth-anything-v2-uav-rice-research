@@ -1,0 +1,3 @@
+﻿model,mean_bias_m,median_predicted_to_gt_ratio
+outdoor,-0.437861829996109,0.9604249000549316
+indoor,-6.087642192840576,0.44567474722862244

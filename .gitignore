@@ -65,6 +65,13 @@ outputs/*
 !outputs/kitti/plots/*.png
 !outputs/kitti/representatives/
 !outputs/kitti/representatives/*.png
+!outputs/kitti_20m/
+outputs/kitti_20m/*
+!outputs/kitti_20m/comparison/
+outputs/kitti_20m/comparison/*
+!outputs/kitti_20m/comparison/comparison.json
+!outputs/kitti_20m/comparison/metrics_by_depth.png
+!outputs/kitti_20m/comparison/mae_by_depth_band.png
 !outputs/eth3d_gt/
 !outputs/eth3d_gt/*_comparison.png
 !outputs/rice_uav/

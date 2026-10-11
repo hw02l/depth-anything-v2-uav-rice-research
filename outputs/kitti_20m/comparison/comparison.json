@@ -1,0 +1,113 @@
+{
+  "condition": "same 50 KITTI images; valid GT and prediction pixels; GT depth <= 20 m",
+  "models": {
+    "outdoor": {
+      "images": 50,
+      "valid_pixels": 2851979,
+      "mae_m": 1.2324139074481901,
+      "absrel": 0.10839710471918686,
+      "sqrel": 0.35552129299778235,
+      "delta_1_25": 0.8574936912228316,
+      "delta_1_25_2": 0.96372238365009,
+      "delta_1_25_3": 0.9944179112118287,
+      "rmse_m": 2.1353691399858077,
+      "rmse_log": 0.17151028303374125,
+      "model_id": "depth-anything/Depth-Anything-V2-Metric-Outdoor-Small-hf",
+      "prediction_mode": "inferred_or_cached",
+      "max_depth_m": 20.0
+    },
+    "indoor": {
+      "images": 50,
+      "valid_pixels": 2851979,
+      "mae_m": 6.091391063847139,
+      "absrel": 0.5632595989283471,
+      "sqrel": 3.5494258696568615,
+      "delta_1_25": 0.0033625773541810793,
+      "delta_1_25_2": 0.015965405074862053,
+      "delta_1_25_3": 0.1210405125703941,
+      "rmse_m": 6.575563486362053,
+      "rmse_log": 0.8805029795236935,
+      "model_id": "depth-anything/Depth-Anything-V2-Metric-Indoor-Small-hf",
+      "prediction_mode": "inferred_or_cached",
+      "max_depth_m": 20.0
+    }
+  },
+  "summary_comparison": [
+    {
+      "metric": "mae_m",
+      "outdoor": 1.2324139074481901,
+      "indoor": 6.091391063847139,
+      "indoor_minus_outdoor": 4.858977156398948,
+      "indoor_over_outdoor": 4.942650376657825
+    },
+    {
+      "metric": "rmse_m",
+      "outdoor": 2.1353691399858077,
+      "indoor": 6.575563486362053,
+      "indoor_minus_outdoor": 4.440194346376245,
+      "indoor_over_outdoor": 3.079356802171336
+    },
+    {
+      "metric": "absrel",
+      "outdoor": 0.10839710471918686,
+      "indoor": 0.5632595989283471,
+      "indoor_minus_outdoor": 0.45486249420916025,
+      "indoor_over_outdoor": 5.196260549463248
+    },
+    {
+      "metric": "delta_1_25",
+      "outdoor": 0.8574936912228316,
+      "indoor": 0.0033625773541810793,
+      "indoor_minus_outdoor": -0.8541311138686505,
+      "indoor_over_outdoor": 0.00392140185822926
+    }
+  ],
+  "by_depth": [
+    {
+      "depth_range_m": "0-10",
+      "valid_pixels": 1463249,
+      "outdoor_mae_m": 0.7002249617946237,
+      "indoor_mae_m": 4.288402507973971,
+      "indoor_minus_outdoor_mae_m": 3.588177546179347,
+      "outdoor_rmse_m": 1.2223632227393533,
+      "indoor_rmse_m": 4.408756845216642,
+      "indoor_minus_outdoor_rmse_m": 3.1863936224772886,
+      "outdoor_absrel": 0.09042893272852572,
+      "indoor_absrel": 0.5491257872340348,
+      "indoor_minus_outdoor_absrel": 0.4586968545055091,
+      "outdoor_delta_1_25": 0.9052280233917809,
+      "indoor_delta_1_25": 0.004994365278910152,
+      "indoor_minus_outdoor_delta_1_25": -0.9002336581128707
+    },
+    {
+      "depth_range_m": "10-20",
+      "valid_pixels": 1388730,
+      "outdoor_mae_m": 1.7931600154307608,
+      "indoor_mae_m": 7.991127658716449,
+      "indoor_minus_outdoor_mae_m": 6.197967643285688,
+      "outdoor_rmse_m": 2.791044966256208,
+      "indoor_rmse_m": 8.265354516917323,
+      "indoor_minus_outdoor_rmse_m": 5.474309550661116,
+      "outdoor_absrel": 0.12732944556093648,
+      "indoor_absrel": 0.5781518283954794,
+      "indoor_minus_outdoor_absrel": 0.4508223828345429,
+      "outdoor_delta_1_25": 0.8071979434447301,
+      "indoor_delta_1_25": 0.0016432279852815162,
+      "indoor_minus_outdoor_delta_1_25": -0.8055547154594486
+    }
+  ],
+  "same_images": true,
+  "same_valid_pixels_per_image": true,
+  "scale_diagnostics": [
+    {
+      "model": "outdoor",
+      "mean_bias_m": -0.437861829996109,
+      "median_predicted_to_gt_ratio": 0.9604249000549316
+    },
+    {
+      "model": "indoor",
+      "mean_bias_m": -6.087642192840576,
+      "median_predicted_to_gt_ratio": 0.44567474722862244
+    }
+  ]
+}

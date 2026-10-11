@@ -1,0 +1,66 @@
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+[kitti] inferred 4/50 images
+[kitti] inferred 8/50 images
+[kitti] inferred 12/50 images
+[kitti] inferred 16/50 images
+[kitti] inferred 20/50 images
+[kitti] inferred 24/50 images
+[kitti] inferred 28/50 images
+[kitti] inferred 32/50 images
+[kitti] inferred 36/50 images
+[kitti] inferred 40/50 images
+[kitti] inferred 44/50 images
+[kitti] inferred 48/50 images
+[kitti] inferred 50/50 images
+[kitti] 2011_09_26_drive_0002_sync_image_0000000005_image_02.png: MAE=6.8097 RMSE=7.1688 AbsRel=0.6122
+[kitti] 2011_09_26_drive_0002_sync_image_0000000065_image_02.png: MAE=6.4745 RMSE=6.8431 AbsRel=0.6276
+[kitti] 2011_09_26_drive_0005_sync_image_0000000059_image_03.png: MAE=5.6123 RMSE=6.1885 AbsRel=0.4993
+[kitti] 2011_09_26_drive_0005_sync_image_0000000119_image_03.png: MAE=7.1018 RMSE=7.5752 AbsRel=0.5637
+[kitti] 2011_09_26_drive_0013_sync_image_0000000038_image_02.png: MAE=5.2276 RMSE=5.7015 AbsRel=0.4810
+[kitti] 2011_09_26_drive_0013_sync_image_0000000098_image_02.png: MAE=5.7973 RMSE=6.2117 AbsRel=0.5086
+[kitti] 2011_09_26_drive_0020_sync_image_0000000023_image_02.png: MAE=8.2601 RMSE=8.7447 AbsRel=0.6600
+[kitti] 2011_09_26_drive_0023_sync_image_0000000035_image_03.png: MAE=6.7357 RMSE=7.0757 AbsRel=0.5795
+[kitti] 2011_09_26_drive_0023_sync_image_0000000095_image_03.png: MAE=5.1298 RMSE=5.5962 AbsRel=0.5338
+[kitti] 2011_09_26_drive_0023_sync_image_0000000155_image_03.png: MAE=5.9645 RMSE=6.5080 AbsRel=0.5603
+[kitti] 2011_09_26_drive_0023_sync_image_0000000218_image_02.png: MAE=5.8239 RMSE=6.3465 AbsRel=0.5296
+[kitti] 2011_09_26_drive_0023_sync_image_0000000278_image_02.png: MAE=5.7495 RMSE=6.0895 AbsRel=0.5060
+[kitti] 2011_09_26_drive_0023_sync_image_0000000341_image_03.png: MAE=5.5812 RMSE=5.8203 AbsRel=0.5533
+[kitti] 2011_09_26_drive_0023_sync_image_0000000401_image_03.png: MAE=6.4261 RMSE=6.8270 AbsRel=0.5877
+[kitti] 2011_09_26_drive_0023_sync_image_0000000461_image_03.png: MAE=5.1011 RMSE=5.6433 AbsRel=0.5032
+[kitti] 2011_09_26_drive_0036_sync_image_0000000059_image_02.png: MAE=5.6909 RMSE=6.0645 AbsRel=0.5394
+[kitti] 2011_09_26_drive_0036_sync_image_0000000119_image_02.png: MAE=5.5542 RMSE=6.0311 AbsRel=0.5119
+[kitti] 2011_09_26_drive_0036_sync_image_0000000182_image_03.png: MAE=4.9130 RMSE=5.2720 AbsRel=0.5094
+[kitti] 2011_09_26_drive_0036_sync_image_0000000242_image_03.png: MAE=6.2063 RMSE=6.7569 AbsRel=0.6209
+[kitti] 2011_09_26_drive_0036_sync_image_0000000302_image_03.png: MAE=7.3290 RMSE=7.6005 AbsRel=0.7183
+[kitti] 2011_09_26_drive_0036_sync_image_0000000365_image_02.png: MAE=5.3517 RMSE=5.8494 AbsRel=0.5221
+[kitti] 2011_09_26_drive_0036_sync_image_0000000470_image_02.png: MAE=6.3285 RMSE=6.8020 AbsRel=0.5985
+[kitti] 2011_09_26_drive_0036_sync_image_0000000596_image_03.png: MAE=6.2347 RMSE=6.6758 AbsRel=0.5710
+[kitti] 2011_09_26_drive_0036_sync_image_0000000716_image_03.png: MAE=5.7107 RMSE=6.1406 AbsRel=0.5321
+[kitti] 2011_09_26_drive_0036_sync_image_0000000791_image_03.png: MAE=5.5893 RMSE=6.0088 AbsRel=0.5390
+[kitti] 2011_09_26_drive_0079_sync_image_0000000062_image_02.png: MAE=5.3799 RMSE=5.9278 AbsRel=0.4993
+[kitti] 2011_09_26_drive_0095_sync_image_0000000044_image_02.png: MAE=4.8934 RMSE=5.3039 AbsRel=0.5190
+[kitti] 2011_09_26_drive_0095_sync_image_0000000104_image_02.png: MAE=5.9778 RMSE=6.5246 AbsRel=0.5373
+[kitti] 2011_09_26_drive_0095_sync_image_0000000167_image_03.png: MAE=6.9349 RMSE=7.2514 AbsRel=0.5871
+[kitti] 2011_09_26_drive_0095_sync_image_0000000227_image_03.png: MAE=5.5983 RMSE=5.8011 AbsRel=0.4998
+[kitti] 2011_09_26_drive_0113_sync_image_0000000032_image_02.png: MAE=5.2173 RMSE=5.5692 AbsRel=0.5874
+[kitti] 2011_09_28_drive_0037_sync_image_0000000023_image_02.png: MAE=4.8872 RMSE=5.2392 AbsRel=0.5004
+[kitti] 2011_09_29_drive_0026_sync_image_0000000014_image_02.png: MAE=6.1866 RMSE=6.5742 AbsRel=0.5737
+[kitti] 2011_09_30_drive_0016_sync_image_0000000017_image_03.png: MAE=6.0088 RMSE=6.4047 AbsRel=0.5366
+[kitti] 2011_09_30_drive_0016_sync_image_0000000104_image_03.png: MAE=5.6892 RMSE=5.9982 AbsRel=0.5308
+[kitti] 2011_09_30_drive_0016_sync_image_0000000170_image_02.png: MAE=6.0336 RMSE=6.3963 AbsRel=0.5686
+[kitti] 2011_09_30_drive_0016_sync_image_0000000230_image_02.png: MAE=6.3318 RMSE=6.7662 AbsRel=0.5547
+[kitti] 2011_10_03_drive_0047_sync_image_0000000035_image_02.png: MAE=6.3728 RMSE=6.7903 AbsRel=0.5639
+[kitti] 2011_10_03_drive_0047_sync_image_0000000116_image_03.png: MAE=6.6035 RMSE=7.0562 AbsRel=0.5651
+[kitti] 2011_10_03_drive_0047_sync_image_0000000176_image_03.png: MAE=6.0398 RMSE=6.4597 AbsRel=0.5309
+[kitti] 2011_10_03_drive_0047_sync_image_0000000239_image_02.png: MAE=6.8738 RMSE=7.3035 AbsRel=0.6721
+[kitti] 2011_10_03_drive_0047_sync_image_0000000299_image_02.png: MAE=5.4554 RMSE=5.8606 AbsRel=0.5617
+[kitti] 2011_10_03_drive_0047_sync_image_0000000359_image_02.png: MAE=6.4665 RMSE=7.1402 AbsRel=0.6400
+[kitti] 2011_10_03_drive_0047_sync_image_0000000422_image_03.png: MAE=6.9270 RMSE=7.5596 AbsRel=0.6238
+[kitti] 2011_10_03_drive_0047_sync_image_0000000482_image_03.png: MAE=6.8338 RMSE=7.4737 AbsRel=0.6077
+[kitti] 2011_10_03_drive_0047_sync_image_0000000542_image_03.png: MAE=6.4926 RMSE=6.9163 AbsRel=0.6000
+[kitti] 2011_10_03_drive_0047_sync_image_0000000605_image_02.png: MAE=6.2555 RMSE=6.7487 AbsRel=0.5831
+[kitti] 2011_10_03_drive_0047_sync_image_0000000665_image_02.png: MAE=7.3472 RMSE=7.8328 AbsRel=0.6208
+[kitti] 2011_10_03_drive_0047_sync_image_0000000728_image_03.png: MAE=5.5710 RMSE=6.2685 AbsRel=0.4881
+[kitti] 2011_10_03_drive_0047_sync_image_0000000791_image_03.png: MAE=5.4358 RMSE=6.2780 AbsRel=0.4743
+[kitti] evaluated 50 images
+[kitti] pooled summary: {'images': 50, 'valid_pixels': 2851979, 'mae_m': 6.091391063847139, 'absrel': 0.5632595989283471, 'sqrel': 3.5494258696568615, 'delta_1_25': 0.0033625773541810793, 'delta_1_25_2': 0.015965405074862053, 'delta_1_25_3': 0.1210405125703941, 'rmse_m': 6.575563486362053, 'rmse_log': 0.8805029795236935}

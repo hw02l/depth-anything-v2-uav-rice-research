@@ -76,16 +76,18 @@ def colorize(values: np.ndarray, cmap_name: str, vmin: float | None = None, vmax
     return rgb
 
 
-def save_representative(record: dict, name: str, output_dir: Path) -> None:
+def save_representative(record: dict, name: str, output_dir: Path, max_depth: float) -> None:
     rgb = np.asarray(read_rgb(record["image_path"]))
     gt = record["gt"]
     pred = record["pred"]
-    valid = np.isfinite(gt) & np.isfinite(pred) & (gt > 0) & (pred > 0) & (gt <= 80.0)
-    common_max = float(np.percentile(gt[valid], 99)) if np.any(valid) else 80.0
+    valid = np.isfinite(gt) & np.isfinite(pred) & (gt > 0) & (pred > 0) & (gt <= max_depth)
+    common_max = float(np.percentile(gt[valid], 99)) if np.any(valid) else max_depth
     error = np.abs(pred - gt)
     error[~valid] = np.nan
+    gt_view = np.where(valid, gt, np.nan)
+    pred_view = np.where(valid, pred, np.nan)
     error_max = float(np.percentile(error[np.isfinite(error)], 99)) if np.any(np.isfinite(error)) else 1.0
-    images = [rgb, colorize(gt, "turbo", 0.0, common_max), colorize(pred, "turbo", 0.0, common_max), colorize(error, "magma", 0.0, error_max)]
+    images = [rgb, colorize(gt_view, "turbo", 0.0, common_max), colorize(pred_view, "turbo", 0.0, common_max), colorize(error, "magma", 0.0, error_max)]
     titles = ["RGB", "GT depth (m)", "Predicted depth (m)", "Absolute error (m)"]
     figure, axes = plt.subplots(1, 4, figsize=(18, 4.5), constrained_layout=True)
     for axis, image, title in zip(axes, images, titles):
@@ -99,14 +101,14 @@ def save_representative(record: dict, name: str, output_dir: Path) -> None:
     plt.close(figure)
 
 
-def make_plots(records: list[dict], rows: list[dict], bin_rows: list[dict], plot_dir: Path) -> None:
+def make_plots(records: list[dict], rows: list[dict], bin_rows: list[dict], plot_dir: Path, max_depth: float) -> None:
     plot_dir.mkdir(parents=True, exist_ok=True)
     rng = np.random.default_rng(20260920)
     scatter_gt, scatter_pred, error_gt, error_values, histogram_values = [], [], [], [], []
     for record in records:
         gt = record["gt"]
         pred = record["pred"]
-        valid = np.isfinite(gt) & np.isfinite(pred) & (gt > 0) & (pred > 0) & (gt <= 80.0)
+        valid = np.isfinite(gt) & np.isfinite(pred) & (gt > 0) & (pred > 0) & (gt <= max_depth)
         gt_values, pred_values = gt[valid], pred[valid]
         if len(gt_values) > 5000:
             selected = rng.choice(len(gt_values), 5000, replace=False)
@@ -124,14 +126,14 @@ def make_plots(records: list[dict], rows: list[dict], bin_rows: list[dict], plot
 
     fig, axis = plt.subplots(figsize=(7, 6))
     axis.scatter(gt_values, pred_values, s=2, alpha=0.12, rasterized=True)
-    axis.plot([0, 80], [0, 80], "k--", linewidth=1, label="y=x")
+    axis.plot([0, max_depth], [0, max_depth], "k--", linewidth=1, label="y=x")
     axis.set(title="KITTI GT depth vs predicted depth", xlabel="GT depth (m)", ylabel="Predicted depth (m)")
-    axis.set_xlim(0, 80); axis.set_ylim(0, 80); axis.legend(); fig.tight_layout(); fig.savefig(plot_dir / "gt_vs_pred_scatter.png", dpi=180); plt.close(fig)
+    axis.set_xlim(0, max_depth); axis.set_ylim(0, max_depth); axis.legend(); fig.tight_layout(); fig.savefig(plot_dir / "gt_vs_pred_scatter.png", dpi=180); plt.close(fig)
 
     fig, axis = plt.subplots(figsize=(8, 5))
     axis.scatter(depth_values, abs_errors, s=2, alpha=0.12, rasterized=True)
     axis.set(title="Absolute error as a function of GT depth", xlabel="GT depth (m)", ylabel="Absolute error (m)")
-    axis.set_xlim(0, 80); fig.tight_layout(); fig.savefig(plot_dir / "absolute_error_vs_gt_depth.png", dpi=180); plt.close(fig)
+    axis.set_xlim(0, max_depth); fig.tight_layout(); fig.savefig(plot_dir / "absolute_error_vs_gt_depth.png", dpi=180); plt.close(fig)
 
     labels = [str(index + 1) for index in range(len(rows))]
     fig, axis = plt.subplots(figsize=(max(8, len(rows) * 0.22), 5))
@@ -150,15 +152,16 @@ def make_plots(records: list[dict], rows: list[dict], bin_rows: list[dict], plot
     axis.set(title="KITTI absolute error histogram", xlabel="Absolute error (m; clipped at 99.5th percentile)", ylabel="Pixel count")
     fig.tight_layout(); fig.savefig(plot_dir / "absolute_error_histogram.png", dpi=180); plt.close(fig)
 
+    visible_bin_rows = [row for row in bin_rows if float(row["depth_min_m"]) < max_depth]
     fig, axes = plt.subplots(1, 3, figsize=(15, 4.5), constrained_layout=True)
-    x = np.arange(len(bin_rows))
-    labels = [str(row["depth_range_m"]) for row in bin_rows]
-    axes[0].plot(x, [row["mae_m"] for row in bin_rows], "o-", label="MAE")
-    axes[0].plot(x, [row["rmse_m"] for row in bin_rows], "o-", label="RMSE")
+    x = np.arange(len(visible_bin_rows))
+    labels = [str(row["depth_range_m"]) for row in visible_bin_rows]
+    axes[0].plot(x, [row["mae_m"] for row in visible_bin_rows], "o-", label="MAE")
+    axes[0].plot(x, [row["rmse_m"] for row in visible_bin_rows], "o-", label="RMSE")
     axes[0].set(title="Error by GT depth band", xlabel="GT depth band (m)", ylabel="Error (m)"); axes[0].set_xticks(x, labels); axes[0].legend()
-    axes[1].plot(x, [row["absrel"] for row in bin_rows], "o-", color="#ed7d31")
+    axes[1].plot(x, [row["absrel"] for row in visible_bin_rows], "o-", color="#ed7d31")
     axes[1].set(title="Relative error by GT depth band", xlabel="GT depth band (m)", ylabel="AbsRel (dimensionless)"); axes[1].set_xticks(x, labels)
-    axes[2].bar(x, [row["valid_pixels"] for row in bin_rows], color="#a5a5a5")
+    axes[2].bar(x, [row["valid_pixels"] for row in visible_bin_rows], color="#a5a5a5")
     axes[2].set(title="Valid pixels by GT depth band", xlabel="GT depth band (m)", ylabel="Valid pixel count"); axes[2].set_xticks(x, labels)
     fig.savefig(plot_dir / "error_by_depth.png", dpi=180); plt.close(fig)
 
@@ -184,6 +187,7 @@ def main() -> None:
         images = images[: args.limit]
     if not images:
         raise FileNotFoundError(f"No KITTI images found under {image_dir}")
+    evaluation_bins = [(lower, min(upper, args.max_depth)) for lower, upper in BINS if lower < args.max_depth]
     batch_size = max(1, args.batch_size)
     pred_dir = Path(args.pred_dir) if args.pred_dir else None
     predictions: list[np.ndarray | None] = [None] * len(images)
@@ -221,7 +225,7 @@ def main() -> None:
         metrics = depth_metrics(prediction, gt, max_depth=args.max_depth)
         row = {"image": image_path.name, **metrics}
         rows.append(row)
-        per_image_bin_rows.append(depth_bin_metrics(prediction, gt, BINS, max_depth=args.max_depth))
+        per_image_bin_rows.append(depth_bin_metrics(prediction, gt, evaluation_bins, max_depth=args.max_depth))
         records.append({"image": image_path.name, "image_path": image_path, "gt": gt, "pred": prediction})
         print(f"[kitti] {image_path.name}: MAE={metrics['mae_m']:.4f} RMSE={metrics['rmse_m']:.4f} AbsRel={metrics['absrel']:.4f}")
 
@@ -232,18 +236,18 @@ def main() -> None:
     write_csv(Path(args.results_dir) / "kitti_summary.csv", summary_rows, SUMMARY_FIELDS)
 
     bin_rows = []
-    for bin_index, bounds in enumerate(BINS):
+    for bin_index, bounds in enumerate(evaluation_bins):
         bin_records = [rows_for_image[bin_index] for rows_for_image in per_image_bin_rows]
         aggregate = aggregate_depth_metrics(bin_records)
         bin_rows.append({"depth_min_m": bounds[0], "depth_max_m": bounds[1], "depth_range_m": f"{bounds[0]:g}-{bounds[1]:g}", **aggregate})
     write_csv(Path(args.results_dir) / "kitti_by_depth.csv", bin_rows, BIN_FIELDS)
 
-    make_plots(records, rows, bin_rows, outdir / "plots")
+    make_plots(records, rows, bin_rows, outdir / "plots", args.max_depth)
     order = np.argsort([float(row["rmse_m"]) for row in rows])
     selected = {"best": int(order[0]), "median": int(order[len(order) // 2]), "worst": int(order[-1])}
     representative_dir = outdir / "representatives"
     for name, index in selected.items():
-        save_representative(records[index], name, representative_dir)
+        save_representative(records[index], name, representative_dir, args.max_depth)
     write_json(representative_dir / "selection.json", {name: rows[index] for name, index in selected.items()})
 
     write_json(outdir / "metrics.json", {
