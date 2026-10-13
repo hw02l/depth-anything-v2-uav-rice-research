@@ -303,3 +303,40 @@ UAV3DCropはRGB、camera intrinsics/extrinsics、dense MVS z-depthがframe単位
 ## Next steps
 
 次は、(i) plot境界と対応height表を持つAirMeasurer full testing dataの必要最小限subset、または(ii) raw rice UAV frameとcamera pose/ground referenceが対応する公開データを取得する。そこでplot-level held-out calibration、early→late transfer、CHM confidence別評価、raw frameでのcamera-ground-canopy height変換を行う。研究室データを使う段階では、実測稲高を明示的に分離して評価する。
+
+
+# UAV3DCrop Metric fine-tuning 第2回実験（2026-10-13）
+
+## 実施範囲
+
+Driveに保存済みだったUAV3DCropのtrain 384組・validation 128組（計1024ファイル、7,850,330,776 bytes）を再利用した。新たなデータ取得は行っていない。独立test 319組と旧52組は学習・モデル選択に使っていない。無料Colab Tesla T4でMetric Outdoor Smallを1 epoch追加学習し、追加課金はない。
+
+学習条件はDepth Anything V2 Small、518×518、batch 1、gradient accumulation 4、AMP、AdamW、SiLog、seed 42。Cは95 optimizer updates完了、AMP update skip 1回、train SiLog 0.1002045、学習＋validation 725.09秒。model output cap 80 mとGT valid upper bound 65 mを分離した。
+
+## 同一validation 128組での比較
+
+| 指標 | A: Relative由来 | B: 未学習Metric Outdoor | C: Metric Outdoor追加学習 |
+|---|---:|---:|---:|
+| MAE (m) | 2.4897 | 13.2730 | **1.1324** |
+| RMSE (m) | 3.9063 | 14.5340 | **1.7490** |
+| AbsRel | 0.12120 | 0.65896 | **0.05208** |
+| 深度Pearson r | 0.8712 | 0.7848 | **0.9773** |
+| 局所差MAE (m), 14 px | 0.10545 | **0.06561** | 0.06800 |
+
+絶対指標は共通の2,668,757,375有効画素、局所MAEは5,320,891,492有効ペア。符号・相関等は別途、共通の重複なしサンプルペアで集計した。Aの出力上限は65 m、B/Cは80 mのため、A–C差を初期化方式のみの効果とは解釈しない。
+
+局所差分相関はA 0.0353、B 0.1802、C 0.3244。ゼロ差分baselineは全有効ペアで0.064212 mであり、Bの低い局所MAEを単独で形状復元の優位性としない。GT差分0–5 cmがサンプルの72.96%、A–B MAE悪化の95.29%を占めた。GT差分20 cm以上ではCのMAE 0.35423 m、符号一致77.95%で最良だが、予測振幅はGTの0.327倍、86.72%で過小推定だった。
+
+## 画像端分析
+
+両端点からの最短距離で分類した14 pxサンプルでは、端128 px以内は10.90%である一方、A–B局所MAE悪化の82.52%を占めた。端領域の局所MAEはA 0.38929 m、B 0.08717 m、C 0.09189 m。端から512 px以上内側ではA 0.05814 m、B 0.05945 m、C 0.06220 mで、Aがわずかに低い。Aは端の偽勾配が主な課題である可能性があり、paddingやtrain/eval画角差などの原因は今後切り分ける。
+
+入力短辺は3956から518 pxへ縮小され、元14 pxは入力約1.8 pxに相当する。GT縮小・復元対照の14 px局所MAEは0.03117 mだった。これは理論的な誤差限界ではない。
+
+## 解釈と次段階
+
+次の基準候補はMetric Outdoor Small、model cap 80 m、GT上限65 m、SiLog、518 px。複数epochを新runで検討し、RMSEと局所形状を同時に追う。全画面評価と境界別評価を併記し、高解像度/tileおよび局所差損失は別比較にする。
+
+UAV3DCropのGTはcamera-frame z-depthで、垂直な稲高ではない。今回稲画像と高さGTは未評価。モデル・設定を固定後にindependent test 319組で最終評価し、稲高は植物/地面ROI、カメラ幾何と対応高さGTを用いて別途検証する。
+
+詳細な定義・限界は [第2回実験レポート](metric_finetuning_trial2_20261013.md) を参照。

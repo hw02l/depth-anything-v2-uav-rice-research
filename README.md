@@ -13,6 +13,12 @@ UAV RGB画像からのmetric depth、局所的な深度差、3D点群利用可�
 - UAV3DCropのWheat/Oat/Corn 3 scene、合計52画像によるGT差分magnitude別評価、zero baseline、scene/crop/view比較
 - AirMeasurer公式small-field rice orthomosaic/LAS 1時期によるCHM再生成とrelative geometry探索
 
+## 2026-10-13: UAV3DCrop fine-tuning 第2回実験
+
+Metric Outdoor Smallを無料Tesla T4で1 epoch追加学習したvalidation結果と、局所深度差・画像端の分析をまとめた。Cはvalidation MAE 1.1324 m、RMSE 1.7490 m、局所差MAE 0.06800 m（14 px）。ゼロ差分基準は0.06421 mであり、局所MAE単独で形状精度を判断しない。端128 px以内のペアは10.90%だが、Relative由来AのA–B局所MAE悪化の82.52%を占めた。独立test 319組と稲高GTは未使用である。
+
+条件、A/B/Cの比較、統計定義、解釈上の限界は [第2回実験レポート](docs/metric_finetuning_trial2_20261013.md) を参照。モデル重み、予測cache、UAV3DCropのデータは公開リポジトリに含めていない。
+
 ## セットアップ
 
 ```powershell
