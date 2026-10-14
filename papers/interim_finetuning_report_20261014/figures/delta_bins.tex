@@ -1,0 +1,12 @@
+\begin{figure}[H]\centering\begin{tikzpicture}
+\begin{axis}[width=.82\textwidth,height=6cm,ybar,bar width=12pt,
+symbolic x coords={small,mid1,mid2,large},xtick=data,xticklabels={0--5 cm,5--10 cm,10--20 cm,$\geq$20 cm},
+ylabel={Local delta MAE (m)},ymin=0,ymax=.48,
+legend style={at={(.5,1.06)},anchor=south,legend columns=2,font=\scriptsize},grid=major,grid style={gray!20}]
+\addplot[fill=gray!60] coordinates{(small,.01617)(mid1,.07304)(mid2,.14112)(large,.44370)};
+\addplot[fill=blue!70] coordinates{(small,.07480)(mid1,.09063)(mid2,.12255)(large,.41357)};
+\addplot[fill=orange!80] coordinates{(small,.02266)(mid1,.06963)(mid2,.12858)(large,.41684)};
+\addplot[fill=green!65!black] coordinates{(small,.03451)(mid1,.07031)(mid2,.10600)(large,.35423)};
+\legend{Zero baseline,A Relative由来,B 未学習,C 1 epoch}
+\end{axis}\end{tikzpicture}
+\caption{第2回のGT差分階級ごとの局所深度差MAE。各値は報告済み固定標本。小差分の多数ペアと20 cm以上のペアでモデル順位が異なる。}\label{fig:bins}\end{figure}

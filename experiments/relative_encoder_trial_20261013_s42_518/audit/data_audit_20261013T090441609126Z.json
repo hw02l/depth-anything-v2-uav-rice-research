@@ -1,0 +1,4354 @@
+{
+  "status": "pass",
+  "manifest_pairs": {
+    "train": 384,
+    "validation": 128,
+    "independent_test": 319
+  },
+  "manifest_sha256": {
+    "train": "13ee3432515250eff50eeb5238dfc178c8853239074eb8cbbea2b510272b0602",
+    "validation": "96c4eab0eb0075ac141ff9b17c22a45734f242f7cc895f8eaf064a4f14cc871e",
+    "independent_test": "9932fd511dcee66ecb6194260e2d595089d9735f477b95ff4d3b12346b384a0b"
+  },
+  "physical_splits_audited": [
+    "train",
+    "validation"
+  ],
+  "distributions": {
+    "train": {
+      "crop_counts": {
+        "corn": 96,
+        "oat": 96,
+        "wheat": 96,
+        "soybean": 96
+      },
+      "view_counts": {
+        "nadir": 192,
+        "oblique": 192
+      },
+      "day_counts": {
+        "2025/Day019": 128,
+        "2025/Day028": 128,
+        "2025/Day040": 128
+      },
+      "scene_counts": {
+        "2025/Day019_Corn": 32,
+        "2025/Day019_Oat": 32,
+        "2025/Day019_Wheat": 32,
+        "2025/Day019_soybean": 32,
+        "2025/Day028_Corn": 32,
+        "2025/Day028_Oat": 32,
+        "2025/Day028_Wheat": 32,
+        "2025/Day028_soybean": 32,
+        "2025/Day040_Corn": 32,
+        "2025/Day040_Oat": 32,
+        "2025/Day040_Wheat": 32,
+        "2025/Day040_soybean": 32
+      }
+    },
+    "validation": {
+      "crop_counts": {
+        "corn": 32,
+        "oat": 32,
+        "wheat": 32,
+        "soybean": 32
+      },
+      "view_counts": {
+        "nadir": 64,
+        "oblique": 64
+      },
+      "day_counts": {
+        "2025/Day047": 128
+      },
+      "scene_counts": {
+        "2025/Day047_Corn": 32,
+        "2025/Day047_Oat": 32,
+        "2025/Day047_Wheat": 32,
+        "2025/Day047_soybean": 32
+      }
+    },
+    "independent_test": {
+      "crop_counts": {
+        "corn": 128,
+        "oat": 32,
+        "wheat": 31,
+        "soybean": 128
+      },
+      "view_counts": {
+        "nadir": 160,
+        "oblique": 159
+      },
+      "day_counts": {
+        "2025/Day052": 127,
+        "2025/Day069": 64,
+        "2025/Day077": 64,
+        "2025/Day083": 64
+      },
+      "scene_counts": {
+        "2025/Day052_Corn": 32,
+        "2025/Day052_Oat": 32,
+        "2025/Day052_Wheat": 31,
+        "2025/Day052_soybean": 32,
+        "2025/Day069_Corn": 32,
+        "2025/Day069_soybean": 32,
+        "2025/Day077_Corn": 32,
+        "2025/Day077_soybean": 32,
+        "2025/Day083_Corn": 32,
+        "2025/Day083_soybean": 32
+      }
+    }
+  },
+  "split_leakage": "none",
+  "prior_evaluation_scenes_checked": 0,
+  "prior_evaluation_overlap": "none",
+  "metadata_plan_missing_candidates": [
+    {
+      "scene": "2025/Day052_Wheat",
+      "split": "independent_test",
+      "missing_rgb": 0,
+      "missing_depth": 1,
+      "missing_pairs": 1,
+      "selected_candidates_by_view": {
+        "nadir": 16,
+        "oblique": 16
+      },
+      "verified_pairs_by_view": {
+        "nadir": 16,
+        "oblique": 15
+      }
+    }
+  ],
+  "source_plan_revisions": {
+    "rgb": "90226a6f9c0d7afea9e2bb863f385c2a2010a3d1",
+    "depth": "3d3afe42f84bafc36c80633bbe39c059b455c895"
+  },
+  "local_file_presence": {
+    "train": {
+      "expected_pairs": 384,
+      "physical_audit": "enabled",
+      "missing_rgb_files": 0,
+      "missing_depth_files": 0,
+      "incomplete_pairs": 0,
+      "first_missing_rgb_paths": [],
+      "first_missing_depth_paths": []
+    },
+    "validation": {
+      "expected_pairs": 128,
+      "physical_audit": "enabled",
+      "missing_rgb_files": 0,
+      "missing_depth_files": 0,
+      "incomplete_pairs": 0,
+      "first_missing_rgb_paths": [],
+      "first_missing_depth_paths": []
+    },
+    "independent_test": {
+      "expected_pairs": 319,
+      "physical_audit": "not_requested",
+      "missing_rgb_files": null,
+      "missing_depth_files": null,
+      "incomplete_pairs": null,
+      "first_missing_rgb_paths": [],
+      "first_missing_depth_paths": []
+    }
+  },
+  "pixel_audit_by_split": {
+    "train": {
+      "pairs_checked": 384,
+      "rgb_shapes": {
+        "(3956, 5280, 3)": 384
+      },
+      "depth_shapes": {
+        "(3956, 5280)": 384
+      },
+      "depth_dtypes": {
+        "float16": 384
+      },
+      "depth_pixels": 8020869120,
+      "valid_positive_finite_pixels": 8002756993,
+      "invalid_nonfinite_pixels": 0,
+      "zero_pixels": 18112127,
+      "negative_pixels": 0,
+      "non_single_channel_tiffs": 0
+    },
+    "validation": {
+      "pairs_checked": 128,
+      "rgb_shapes": {
+        "(3956, 5280, 3)": 128
+      },
+      "depth_shapes": {
+        "(3956, 5280)": 128
+      },
+      "depth_dtypes": {
+        "float16": 128
+      },
+      "depth_pixels": 2673623040,
+      "valid_positive_finite_pixels": 2668757375,
+      "invalid_nonfinite_pixels": 0,
+      "zero_pixels": 4865665,
+      "negative_pixels": 0,
+      "non_single_channel_tiffs": 0
+    },
+    "independent_test": {
+      "pairs_checked": 0,
+      "rgb_shapes": {},
+      "depth_shapes": {},
+      "depth_dtypes": {},
+      "depth_pixels": 0,
+      "valid_positive_finite_pixels": 0,
+      "invalid_nonfinite_pixels": 0,
+      "zero_pixels": 0,
+      "negative_pixels": 0,
+      "non_single_channel_tiffs": 0
+    }
+  },
+  "pixel_audit": {
+    "status": "pass",
+    "pairs_checked": 512,
+    "rgb_shapes": {
+      "(3956, 5280, 3)": 512
+    },
+    "depth_shapes": {
+      "(3956, 5280)": 512
+    },
+    "depth_dtypes": {
+      "float16": 512
+    },
+    "depth_pixels": 10694492160,
+    "valid_positive_finite_pixels": 10671514368,
+    "valid_depth_min_m": 9.671875,
+    "valid_depth_max_m": 62.15625,
+    "invalid_nonfinite_pixels": 0,
+    "zero_pixels": 22977792,
+    "negative_pixels": 0
+  },
+  "reuse_context": {
+    "schema": 1,
+    "kind": "audit",
+    "manifest_sha256": {
+      "train": "13ee3432515250eff50eeb5238dfc178c8853239074eb8cbbea2b510272b0602",
+      "validation": "96c4eab0eb0075ac141ff9b17c22a45734f242f7cc895f8eaf064a4f14cc871e",
+      "independent_test": "9932fd511dcee66ecb6194260e2d595089d9735f477b95ff4d3b12346b384a0b"
+    },
+    "rgb_root": "/content/drive/MyDrive/DepthAnythingV2-UAV/data/uav3dcrop_rgb",
+    "depth_root": "/content/drive/MyDrive/DepthAnythingV2-UAV/data/uav3dcrop_depth",
+    "physical_splits": [
+      "train",
+      "validation"
+    ],
+    "parameters": {},
+    "code_sha256": {
+      "runtime_state.py": "a034c7ba745152c31939352931da6c90980ac4ee25fdb7a3b4c02638b460951a",
+      "data.py": "c8f94a49a3353ef907db516b5f9f90c9cca953690372be63fef4b951c59e5fa2",
+      "audit_data.py": "4933b3265a18c060bfd0d92f69fd6af27e66d458eafd7e3e0f398270ab927b5d"
+    },
+    "extra_sha256": {
+      "plan_summary": "62a71266b48ed66d849dc22f6ebc6ed1f493c988da070ad5c9a2cf99e6e5091b",
+      "existing_eval": null
+    },
+    "packages": {
+      "numpy": "2.1.3",
+      "tifffile": "2026.9.20",
+      "opencv-python-headless": "4.14.0.94",
+      "opencv-python": "5.0.0.93"
+    },
+    "files": {
+      "train:depth_relpath:2025/Day019_Corn_depth/8_depth.tif": {
+        "bytes": 1825938,
+        "mtime_ns": 1791882287000000000
+      },
+      "train:image_relpath:2025/Day019_Corn/images/8.JPG": {
+        "bytes": 11293601,
+        "mtime_ns": 1791882285000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/22_depth.tif": {
+        "bytes": 1705524,
+        "mtime_ns": 1791882291000000000
+      },
+      "train:image_relpath:2025/Day019_Corn/images/22.JPG": {
+        "bytes": 9799103,
+        "mtime_ns": 1791882289000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/37_depth.tif": {
+        "bytes": 663113,
+        "mtime_ns": 1791882295000000000
+      },
+      "train:image_relpath:2025/Day019_Corn/images/37.JPG": {
+        "bytes": 9406092,
+        "mtime_ns": 1791882293000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/51_depth.tif": {
+        "bytes": 1577915,
+        "mtime_ns": 1791882299000000000
+      },
+      "train:image_relpath:2025/Day019_Corn/images/51.JPG": {
+        "bytes": 9453110,
+        "mtime_ns": 1791882297000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/66_depth.tif": {
+        "bytes": 1928075,
+        "mtime_ns": 1791882303000000000
+      },
+      "train:image_relpath:2025/Day019_Corn/images/66.JPG": {
+        "bytes": 9730115,
+        "mtime_ns": 1791882301000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/81_depth.tif": {
+        "bytes": 1418959,
+        "mtime_ns": 1791882307000000000
+      },
+      "train:image_relpath:2025/Day019_Corn/images/81.JPG": {
+        "bytes": 8906417,
+        "mtime_ns": 1791882305000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/95_depth.tif": {
+        "bytes": 1346947,
+        "mtime_ns": 1791882312000000000
+      },
+      "train:image_relpath:2025/Day019_Corn/images/95.JPG": {
+        "bytes": 9349869,
+        "mtime_ns": 1791882309000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/573_depth.tif": {
+        "bytes": 1216532,
+        "mtime_ns": 1791882315000000000
+      },
+      "train:image_relpath:2025/Day019_Corn/images/573.JPG": {
+        "bytes": 8599457,
+        "mtime_ns": 1791882313000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/587_depth.tif": {
+        "bytes": 1143552,
+        "mtime_ns": 1791882318000000000
+      },
+      "train:image_relpath:2025/Day019_Corn/images/587.JPG": {
+        "bytes": 9150360,
+        "mtime_ns": 1791882317000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/602_depth.tif": {
+        "bytes": 750413,
+        "mtime_ns": 1791882322000000000
+      },
+      "train:image_relpath:2025/Day019_Corn/images/602.JPG": {
+        "bytes": 9048784,
+        "mtime_ns": 1791882320000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/616_depth.tif": {
+        "bytes": 1510304,
+        "mtime_ns": 1791882326000000000
+      },
+      "train:image_relpath:2025/Day019_Corn/images/616.JPG": {
+        "bytes": 9774177,
+        "mtime_ns": 1791882324000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/631_depth.tif": {
+        "bytes": 1018466,
+        "mtime_ns": 1791882329000000000
+      },
+      "train:image_relpath:2025/Day019_Corn/images/631.JPG": {
+        "bytes": 9073189,
+        "mtime_ns": 1791882328000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/646_depth.tif": {
+        "bytes": 1312402,
+        "mtime_ns": 1791882333000000000
+      },
+      "train:image_relpath:2025/Day019_Corn/images/646.JPG": {
+        "bytes": 8862558,
+        "mtime_ns": 1791882331000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/660_depth.tif": {
+        "bytes": 1226251,
+        "mtime_ns": 1791882336000000000
+      },
+      "train:image_relpath:2025/Day019_Corn/images/660.JPG": {
+        "bytes": 8833761,
+        "mtime_ns": 1791882334000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/675_depth.tif": {
+        "bytes": 1112015,
+        "mtime_ns": 1791882340000000000
+      },
+      "train:image_relpath:2025/Day019_Corn/images/675.JPG": {
+        "bytes": 9340710,
+        "mtime_ns": 1791882338000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/689_depth.tif": {
+        "bytes": 2145528,
+        "mtime_ns": 1791882345000000000
+      },
+      "train:image_relpath:2025/Day019_Corn/images/689.JPG": {
+        "bytes": 11155184,
+        "mtime_ns": 1791882343000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/140_depth.tif": {
+        "bytes": 2485817,
+        "mtime_ns": 1791882349000000000
+      },
+      "train:image_relpath:2025/Day019_Corn/images/140.JPG": {
+        "bytes": 8989630,
+        "mtime_ns": 1791882347000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/200_depth.tif": {
+        "bytes": 2915166,
+        "mtime_ns": 1791882353000000000
+      },
+      "train:image_relpath:2025/Day019_Corn/images/200.JPG": {
+        "bytes": 9870992,
+        "mtime_ns": 1791882351000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/261_depth.tif": {
+        "bytes": 1889864,
+        "mtime_ns": 1791882358000000000
+      },
+      "train:image_relpath:2025/Day019_Corn/images/261.JPG": {
+        "bytes": 9408709,
+        "mtime_ns": 1791882355000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/321_depth.tif": {
+        "bytes": 2332142,
+        "mtime_ns": 1791882362000000000
+      },
+      "train:image_relpath:2025/Day019_Corn/images/321.JPG": {
+        "bytes": 11242895,
+        "mtime_ns": 1791882360000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/381_depth.tif": {
+        "bytes": 2919105,
+        "mtime_ns": 1791882365000000000
+      },
+      "train:image_relpath:2025/Day019_Corn/images/381.JPG": {
+        "bytes": 10125203,
+        "mtime_ns": 1791882364000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/442_depth.tif": {
+        "bytes": 2681045,
+        "mtime_ns": 1791882369000000000
+      },
+      "train:image_relpath:2025/Day019_Corn/images/442.JPG": {
+        "bytes": 10396512,
+        "mtime_ns": 1791882367000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/502_depth.tif": {
+        "bytes": 2158967,
+        "mtime_ns": 1791882374000000000
+      },
+      "train:image_relpath:2025/Day019_Corn/images/502.JPG": {
+        "bytes": 9410753,
+        "mtime_ns": 1791882371000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/563_depth.tif": {
+        "bytes": 2241010,
+        "mtime_ns": 1791882378000000000
+      },
+      "train:image_relpath:2025/Day019_Corn/images/563.JPG": {
+        "bytes": 9434069,
+        "mtime_ns": 1791882376000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/747_depth.tif": {
+        "bytes": 2499487,
+        "mtime_ns": 1791882382000000000
+      },
+      "train:image_relpath:2025/Day019_Corn/images/747.JPG": {
+        "bytes": 8764855,
+        "mtime_ns": 1791882380000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/808_depth.tif": {
+        "bytes": 2199315,
+        "mtime_ns": 1791882386000000000
+      },
+      "train:image_relpath:2025/Day019_Corn/images/808.JPG": {
+        "bytes": 8828334,
+        "mtime_ns": 1791882384000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/868_depth.tif": {
+        "bytes": 2698505,
+        "mtime_ns": 1791882389000000000
+      },
+      "train:image_relpath:2025/Day019_Corn/images/868.JPG": {
+        "bytes": 10215016,
+        "mtime_ns": 1791882388000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/929_depth.tif": {
+        "bytes": 2266148,
+        "mtime_ns": 1791882393000000000
+      },
+      "train:image_relpath:2025/Day019_Corn/images/929.JPG": {
+        "bytes": 9028674,
+        "mtime_ns": 1791882391000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/989_depth.tif": {
+        "bytes": 2908479,
+        "mtime_ns": 1791882397000000000
+      },
+      "train:image_relpath:2025/Day019_Corn/images/989.JPG": {
+        "bytes": 8689661,
+        "mtime_ns": 1791882395000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/1049_depth.tif": {
+        "bytes": 2228684,
+        "mtime_ns": 1791882401000000000
+      },
+      "train:image_relpath:2025/Day019_Corn/images/1049.JPG": {
+        "bytes": 7341752,
+        "mtime_ns": 1791882399000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/1110_depth.tif": {
+        "bytes": 2512724,
+        "mtime_ns": 1791882404000000000
+      },
+      "train:image_relpath:2025/Day019_Corn/images/1110.JPG": {
+        "bytes": 8641157,
+        "mtime_ns": 1791882402000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/1170_depth.tif": {
+        "bytes": 2771405,
+        "mtime_ns": 1791882407000000000
+      },
+      "train:image_relpath:2025/Day019_Corn/images/1170.JPG": {
+        "bytes": 10113458,
+        "mtime_ns": 1791882406000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/7_depth.tif": {
+        "bytes": 3678748,
+        "mtime_ns": 1791882412000000000
+      },
+      "train:image_relpath:2025/Day019_Oat/images/7.JPG": {
+        "bytes": 13543954,
+        "mtime_ns": 1791882410000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/19_depth.tif": {
+        "bytes": 2845403,
+        "mtime_ns": 1791882416000000000
+      },
+      "train:image_relpath:2025/Day019_Oat/images/19.JPG": {
+        "bytes": 13528709,
+        "mtime_ns": 1791882414000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/32_depth.tif": {
+        "bytes": 3331265,
+        "mtime_ns": 1791882419000000000
+      },
+      "train:image_relpath:2025/Day019_Oat/images/32.JPG": {
+        "bytes": 12319003,
+        "mtime_ns": 1791882417000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/44_depth.tif": {
+        "bytes": 2651970,
+        "mtime_ns": 1791882424000000000
+      },
+      "train:image_relpath:2025/Day019_Oat/images/44.JPG": {
+        "bytes": 12402855,
+        "mtime_ns": 1791882421000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/57_depth.tif": {
+        "bytes": 2227091,
+        "mtime_ns": 1791882427000000000
+      },
+      "train:image_relpath:2025/Day019_Oat/images/57.JPG": {
+        "bytes": 11622205,
+        "mtime_ns": 1791882425000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/69_depth.tif": {
+        "bytes": 2825648,
+        "mtime_ns": 1791882430000000000
+      },
+      "train:image_relpath:2025/Day019_Oat/images/69.JPG": {
+        "bytes": 10860301,
+        "mtime_ns": 1791882429000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/82_depth.tif": {
+        "bytes": 1886229,
+        "mtime_ns": 1791882437000000000
+      },
+      "train:image_relpath:2025/Day019_Oat/images/82.JPG": {
+        "bytes": 11150279,
+        "mtime_ns": 1791882435000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/94_depth.tif": {
+        "bytes": 1958479,
+        "mtime_ns": 1791882440000000000
+      },
+      "train:image_relpath:2025/Day019_Oat/images/94.JPG": {
+        "bytes": 10763795,
+        "mtime_ns": 1791882438000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/338_depth.tif": {
+        "bytes": 3033908,
+        "mtime_ns": 1791882444000000000
+      },
+      "train:image_relpath:2025/Day019_Oat/images/338.JPG": {
+        "bytes": 11172875,
+        "mtime_ns": 1791882442000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/350_depth.tif": {
+        "bytes": 3564306,
+        "mtime_ns": 1791882447000000000
+      },
+      "train:image_relpath:2025/Day019_Oat/images/350.JPG": {
+        "bytes": 12012392,
+        "mtime_ns": 1791882445000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/363_depth.tif": {
+        "bytes": 2368702,
+        "mtime_ns": 1791882450000000000
+      },
+      "train:image_relpath:2025/Day019_Oat/images/363.JPG": {
+        "bytes": 10858057,
+        "mtime_ns": 1791882448000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/375_depth.tif": {
+        "bytes": 4350604,
+        "mtime_ns": 1791882453000000000
+      },
+      "train:image_relpath:2025/Day019_Oat/images/375.JPG": {
+        "bytes": 13078539,
+        "mtime_ns": 1791882451000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/388_depth.tif": {
+        "bytes": 2351116,
+        "mtime_ns": 1791882457000000000
+      },
+      "train:image_relpath:2025/Day019_Oat/images/388.JPG": {
+        "bytes": 11111809,
+        "mtime_ns": 1791882455000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/400_depth.tif": {
+        "bytes": 3968994,
+        "mtime_ns": 1791882460000000000
+      },
+      "train:image_relpath:2025/Day019_Oat/images/400.JPG": {
+        "bytes": 12518596,
+        "mtime_ns": 1791882459000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/413_depth.tif": {
+        "bytes": 2708348,
+        "mtime_ns": 1791882464000000000
+      },
+      "train:image_relpath:2025/Day019_Oat/images/413.JPG": {
+        "bytes": 11983912,
+        "mtime_ns": 1791882462000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/425_depth.tif": {
+        "bytes": 3263097,
+        "mtime_ns": 1791882468000000000
+      },
+      "train:image_relpath:2025/Day019_Oat/images/425.JPG": {
+        "bytes": 13374431,
+        "mtime_ns": 1791882466000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/110_depth.tif": {
+        "bytes": 3197366,
+        "mtime_ns": 1791882471000000000
+      },
+      "train:image_relpath:2025/Day019_Oat/images/110.JPG": {
+        "bytes": 10006906,
+        "mtime_ns": 1791882469000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/140_depth.tif": {
+        "bytes": 3889549,
+        "mtime_ns": 1791882475000000000
+      },
+      "train:image_relpath:2025/Day019_Oat/images/140.JPG": {
+        "bytes": 13338556,
+        "mtime_ns": 1791882473000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/171_depth.tif": {
+        "bytes": 4016805,
+        "mtime_ns": 1791882478000000000
+      },
+      "train:image_relpath:2025/Day019_Oat/images/171.JPG": {
+        "bytes": 10817042,
+        "mtime_ns": 1791882476000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/202_depth.tif": {
+        "bytes": 3521872,
+        "mtime_ns": 1791882481000000000
+      },
+      "train:image_relpath:2025/Day019_Oat/images/202.JPG": {
+        "bytes": 10546210,
+        "mtime_ns": 1791882480000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/232_depth.tif": {
+        "bytes": 3342734,
+        "mtime_ns": 1791882485000000000
+      },
+      "train:image_relpath:2025/Day019_Oat/images/232.JPG": {
+        "bytes": 10802017,
+        "mtime_ns": 1791882483000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/263_depth.tif": {
+        "bytes": 3213484,
+        "mtime_ns": 1791882489000000000
+      },
+      "train:image_relpath:2025/Day019_Oat/images/263.JPG": {
+        "bytes": 10487979,
+        "mtime_ns": 1791882487000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/294_depth.tif": {
+        "bytes": 2868286,
+        "mtime_ns": 1791882492000000000
+      },
+      "train:image_relpath:2025/Day019_Oat/images/294.JPG": {
+        "bytes": 11556246,
+        "mtime_ns": 1791882490000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/324_depth.tif": {
+        "bytes": 3580071,
+        "mtime_ns": 1791882495000000000
+      },
+      "train:image_relpath:2025/Day019_Oat/images/324.JPG": {
+        "bytes": 13151184,
+        "mtime_ns": 1791882494000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/461_depth.tif": {
+        "bytes": 4138149,
+        "mtime_ns": 1791882499000000000
+      },
+      "train:image_relpath:2025/Day019_Oat/images/461.JPG": {
+        "bytes": 12074278,
+        "mtime_ns": 1791882497000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/491_depth.tif": {
+        "bytes": 3198202,
+        "mtime_ns": 1791882503000000000
+      },
+      "train:image_relpath:2025/Day019_Oat/images/491.JPG": {
+        "bytes": 10447800,
+        "mtime_ns": 1791882501000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/522_depth.tif": {
+        "bytes": 4275081,
+        "mtime_ns": 1791882506000000000
+      },
+      "train:image_relpath:2025/Day019_Oat/images/522.JPG": {
+        "bytes": 13166782,
+        "mtime_ns": 1791882504000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/553_depth.tif": {
+        "bytes": 3253447,
+        "mtime_ns": 1791882509000000000
+      },
+      "train:image_relpath:2025/Day019_Oat/images/553.JPG": {
+        "bytes": 11709336,
+        "mtime_ns": 1791882508000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/583_depth.tif": {
+        "bytes": 3377413,
+        "mtime_ns": 1791882513000000000
+      },
+      "train:image_relpath:2025/Day019_Oat/images/583.JPG": {
+        "bytes": 10629711,
+        "mtime_ns": 1791882511000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/614_depth.tif": {
+        "bytes": 2894164,
+        "mtime_ns": 1791882516000000000
+      },
+      "train:image_relpath:2025/Day019_Oat/images/614.JPG": {
+        "bytes": 10224176,
+        "mtime_ns": 1791882514000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/645_depth.tif": {
+        "bytes": 3809817,
+        "mtime_ns": 1791882519000000000
+      },
+      "train:image_relpath:2025/Day019_Oat/images/645.JPG": {
+        "bytes": 11233164,
+        "mtime_ns": 1791882518000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/676_depth.tif": {
+        "bytes": 3193228,
+        "mtime_ns": 1791882523000000000
+      },
+      "train:image_relpath:2025/Day019_Oat/images/676.JPG": {
+        "bytes": 10113160,
+        "mtime_ns": 1791882521000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/12_depth.tif": {
+        "bytes": 2233641,
+        "mtime_ns": 1791882527000000000
+      },
+      "train:image_relpath:2025/Day019_Wheat/images/12.JPG": {
+        "bytes": 13765103,
+        "mtime_ns": 1791882525000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/35_depth.tif": {
+        "bytes": 2646627,
+        "mtime_ns": 1791882531000000000
+      },
+      "train:image_relpath:2025/Day019_Wheat/images/35.JPG": {
+        "bytes": 14744913,
+        "mtime_ns": 1791882529000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/58_depth.tif": {
+        "bytes": 3112799,
+        "mtime_ns": 1791882535000000000
+      },
+      "train:image_relpath:2025/Day019_Wheat/images/58.JPG": {
+        "bytes": 14306005,
+        "mtime_ns": 1791882533000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/81_depth.tif": {
+        "bytes": 3083869,
+        "mtime_ns": 1791882543000000000
+      },
+      "train:image_relpath:2025/Day019_Wheat/images/81.JPG": {
+        "bytes": 13586108,
+        "mtime_ns": 1791882537000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/104_depth.tif": {
+        "bytes": 2691523,
+        "mtime_ns": 1791882546000000000
+      },
+      "train:image_relpath:2025/Day019_Wheat/images/104.JPG": {
+        "bytes": 14169755,
+        "mtime_ns": 1791882544000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/127_depth.tif": {
+        "bytes": 3085370,
+        "mtime_ns": 1791882545000000000
+      },
+      "train:image_relpath:2025/Day019_Wheat/images/127.JPG": {
+        "bytes": 14325828,
+        "mtime_ns": 1791882544000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/150_depth.tif": {
+        "bytes": 2556327,
+        "mtime_ns": 1791882545000000000
+      },
+      "train:image_relpath:2025/Day019_Wheat/images/150.JPG": {
+        "bytes": 14078589,
+        "mtime_ns": 1791882544000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/173_depth.tif": {
+        "bytes": 2965080,
+        "mtime_ns": 1791882546000000000
+      },
+      "train:image_relpath:2025/Day019_Wheat/images/173.JPG": {
+        "bytes": 13709969,
+        "mtime_ns": 1791882544000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/667_depth.tif": {
+        "bytes": 2157420,
+        "mtime_ns": 1791882549000000000
+      },
+      "train:image_relpath:2025/Day019_Wheat/images/667.JPG": {
+        "bytes": 15094006,
+        "mtime_ns": 1791882546000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/693_depth.tif": {
+        "bytes": 2995277,
+        "mtime_ns": 1791882549000000000
+      },
+      "train:image_relpath:2025/Day019_Wheat/images/693.JPG": {
+        "bytes": 14568024,
+        "mtime_ns": 1791882547000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/716_depth.tif": {
+        "bytes": 3179099,
+        "mtime_ns": 1791882550000000000
+      },
+      "train:image_relpath:2025/Day019_Wheat/images/716.JPG": {
+        "bytes": 15224326,
+        "mtime_ns": 1791882548000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/739_depth.tif": {
+        "bytes": 2879237,
+        "mtime_ns": 1791882550000000000
+      },
+      "train:image_relpath:2025/Day019_Wheat/images/739.JPG": {
+        "bytes": 14566730,
+        "mtime_ns": 1791882548000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/762_depth.tif": {
+        "bytes": 2998839,
+        "mtime_ns": 1791882552000000000
+      },
+      "train:image_relpath:2025/Day019_Wheat/images/762.JPG": {
+        "bytes": 14603905,
+        "mtime_ns": 1791882551000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/785_depth.tif": {
+        "bytes": 2712017,
+        "mtime_ns": 1791882552000000000
+      },
+      "train:image_relpath:2025/Day019_Wheat/images/785.JPG": {
+        "bytes": 13812193,
+        "mtime_ns": 1791882551000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/808_depth.tif": {
+        "bytes": 2925582,
+        "mtime_ns": 1791882553000000000
+      },
+      "train:image_relpath:2025/Day019_Wheat/images/808.JPG": {
+        "bytes": 14804858,
+        "mtime_ns": 1791882552000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/831_depth.tif": {
+        "bytes": 2497257,
+        "mtime_ns": 1791882554000000000
+      },
+      "train:image_relpath:2025/Day019_Wheat/images/831.JPG": {
+        "bytes": 14349081,
+        "mtime_ns": 1791882552000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/210_depth.tif": {
+        "bytes": 3491989,
+        "mtime_ns": 1791882556000000000
+      },
+      "train:image_relpath:2025/Day019_Wheat/images/210.JPG": {
+        "bytes": 15692248,
+        "mtime_ns": 1791882555000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/274_depth.tif": {
+        "bytes": 4053526,
+        "mtime_ns": 1791882557000000000
+      },
+      "train:image_relpath:2025/Day019_Wheat/images/274.JPG": {
+        "bytes": 15342385,
+        "mtime_ns": 1791882555000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/338_depth.tif": {
+        "bytes": 3871577,
+        "mtime_ns": 1791882557000000000
+      },
+      "train:image_relpath:2025/Day019_Wheat/images/338.JPG": {
+        "bytes": 14779787,
+        "mtime_ns": 1791882555000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/402_depth.tif": {
+        "bytes": 3657472,
+        "mtime_ns": 1791882558000000000
+      },
+      "train:image_relpath:2025/Day019_Wheat/images/402.JPG": {
+        "bytes": 14962362,
+        "mtime_ns": 1791882557000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/466_depth.tif": {
+        "bytes": 3233532,
+        "mtime_ns": 1791882560000000000
+      },
+      "train:image_relpath:2025/Day019_Wheat/images/466.JPG": {
+        "bytes": 13149864,
+        "mtime_ns": 1791882558000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/531_depth.tif": {
+        "bytes": 2593519,
+        "mtime_ns": 1791882561000000000
+      },
+      "train:image_relpath:2025/Day019_Wheat/images/531.JPG": {
+        "bytes": 11718052,
+        "mtime_ns": 1791882558000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/595_depth.tif": {
+        "bytes": 3322772,
+        "mtime_ns": 1791882561000000000
+      },
+      "train:image_relpath:2025/Day019_Wheat/images/595.JPG": {
+        "bytes": 14087501,
+        "mtime_ns": 1791882559000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/853_depth.tif": {
+        "bytes": 3582601,
+        "mtime_ns": 1791882562000000000
+      },
+      "train:image_relpath:2025/Day019_Wheat/images/853.JPG": {
+        "bytes": 14499915,
+        "mtime_ns": 1791882560000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/917_depth.tif": {
+        "bytes": 4041326,
+        "mtime_ns": 1791882564000000000
+      },
+      "train:image_relpath:2025/Day019_Wheat/images/917.JPG": {
+        "bytes": 14284443,
+        "mtime_ns": 1791882562000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/981_depth.tif": {
+        "bytes": 2656585,
+        "mtime_ns": 1791882564000000000
+      },
+      "train:image_relpath:2025/Day019_Wheat/images/981.JPG": {
+        "bytes": 10973913,
+        "mtime_ns": 1791882562000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/1045_depth.tif": {
+        "bytes": 4034697,
+        "mtime_ns": 1791882565000000000
+      },
+      "train:image_relpath:2025/Day019_Wheat/images/1045.JPG": {
+        "bytes": 14240187,
+        "mtime_ns": 1791882563000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/1110_depth.tif": {
+        "bytes": 3629877,
+        "mtime_ns": 1791882566000000000
+      },
+      "train:image_relpath:2025/Day019_Wheat/images/1110.JPG": {
+        "bytes": 14680461,
+        "mtime_ns": 1791882564000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/1174_depth.tif": {
+        "bytes": 3124278,
+        "mtime_ns": 1791882568000000000
+      },
+      "train:image_relpath:2025/Day019_Wheat/images/1174.JPG": {
+        "bytes": 13720772,
+        "mtime_ns": 1791882566000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/1238_depth.tif": {
+        "bytes": 3436864,
+        "mtime_ns": 1791882569000000000
+      },
+      "train:image_relpath:2025/Day019_Wheat/images/1238.JPG": {
+        "bytes": 15001069,
+        "mtime_ns": 1791882567000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/1302_depth.tif": {
+        "bytes": 3588153,
+        "mtime_ns": 1791882568000000000
+      },
+      "train:image_relpath:2025/Day019_Wheat/images/1302.JPG": {
+        "bytes": 14908941,
+        "mtime_ns": 1791882567000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/1366_depth.tif": {
+        "bytes": 3642169,
+        "mtime_ns": 1791882569000000000
+      },
+      "train:image_relpath:2025/Day019_Wheat/images/1366.JPG": {
+        "bytes": 13501502,
+        "mtime_ns": 1791882568000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/9_depth.tif": {
+        "bytes": 1736111,
+        "mtime_ns": 1791882572000000000
+      },
+      "train:image_relpath:2025/Day019_soybean/images/9.JPG": {
+        "bytes": 8947559,
+        "mtime_ns": 1791882569000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/27_depth.tif": {
+        "bytes": 2077690,
+        "mtime_ns": 1791882573000000000
+      },
+      "train:image_relpath:2025/Day019_soybean/images/27.JPG": {
+        "bytes": 9427659,
+        "mtime_ns": 1791882571000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/45_depth.tif": {
+        "bytes": 2132790,
+        "mtime_ns": 1791882573000000000
+      },
+      "train:image_relpath:2025/Day019_soybean/images/45.JPG": {
+        "bytes": 9220089,
+        "mtime_ns": 1791882571000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/63_depth.tif": {
+        "bytes": 1952959,
+        "mtime_ns": 1791882573000000000
+      },
+      "train:image_relpath:2025/Day019_soybean/images/63.JPG": {
+        "bytes": 8940030,
+        "mtime_ns": 1791882571000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/81_depth.tif": {
+        "bytes": 2287834,
+        "mtime_ns": 1791882576000000000
+      },
+      "train:image_relpath:2025/Day019_soybean/images/81.JPG": {
+        "bytes": 9066286,
+        "mtime_ns": 1791882574000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/99_depth.tif": {
+        "bytes": 2285823,
+        "mtime_ns": 1791882576000000000
+      },
+      "train:image_relpath:2025/Day019_soybean/images/99.JPG": {
+        "bytes": 9692890,
+        "mtime_ns": 1791882575000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/117_depth.tif": {
+        "bytes": 2132503,
+        "mtime_ns": 1791882577000000000
+      },
+      "train:image_relpath:2025/Day019_soybean/images/117.JPG": {
+        "bytes": 9727419,
+        "mtime_ns": 1791882575000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/135_depth.tif": {
+        "bytes": 2248116,
+        "mtime_ns": 1791882578000000000
+      },
+      "train:image_relpath:2025/Day019_soybean/images/135.JPG": {
+        "bytes": 10538672,
+        "mtime_ns": 1791882575000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/522_depth.tif": {
+        "bytes": 2218290,
+        "mtime_ns": 1791882580000000000
+      },
+      "train:image_relpath:2025/Day019_soybean/images/522.JPG": {
+        "bytes": 9233112,
+        "mtime_ns": 1791882577000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/540_depth.tif": {
+        "bytes": 2077007,
+        "mtime_ns": 1791882580000000000
+      },
+      "train:image_relpath:2025/Day019_soybean/images/540.JPG": {
+        "bytes": 9233685,
+        "mtime_ns": 1791882578000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/558_depth.tif": {
+        "bytes": 2056753,
+        "mtime_ns": 1791882581000000000
+      },
+      "train:image_relpath:2025/Day019_soybean/images/558.JPG": {
+        "bytes": 8901512,
+        "mtime_ns": 1791882579000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/576_depth.tif": {
+        "bytes": 2196623,
+        "mtime_ns": 1791882582000000000
+      },
+      "train:image_relpath:2025/Day019_soybean/images/576.JPG": {
+        "bytes": 8502412,
+        "mtime_ns": 1791882579000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/594_depth.tif": {
+        "bytes": 1940719,
+        "mtime_ns": 1791882584000000000
+      },
+      "train:image_relpath:2025/Day019_soybean/images/594.JPG": {
+        "bytes": 7792042,
+        "mtime_ns": 1791882581000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/612_depth.tif": {
+        "bytes": 1996686,
+        "mtime_ns": 1791882584000000000
+      },
+      "train:image_relpath:2025/Day019_soybean/images/612.JPG": {
+        "bytes": 9852491,
+        "mtime_ns": 1791882582000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/630_depth.tif": {
+        "bytes": 453170,
+        "mtime_ns": 1791882584000000000
+      },
+      "train:image_relpath:2025/Day019_soybean/images/630.JPG": {
+        "bytes": 7941994,
+        "mtime_ns": 1791882582000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/648_depth.tif": {
+        "bytes": 2380218,
+        "mtime_ns": 1791882584000000000
+      },
+      "train:image_relpath:2025/Day019_soybean/images/648.JPG": {
+        "bytes": 8658266,
+        "mtime_ns": 1791882583000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/165_depth.tif": {
+        "bytes": 2894672,
+        "mtime_ns": 1791882587000000000
+      },
+      "train:image_relpath:2025/Day019_soybean/images/165.JPG": {
+        "bytes": 10371800,
+        "mtime_ns": 1791882585000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/214_depth.tif": {
+        "bytes": 2482301,
+        "mtime_ns": 1791882587000000000
+      },
+      "train:image_relpath:2025/Day019_soybean/images/214.JPG": {
+        "bytes": 10149223,
+        "mtime_ns": 1791882585000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/263_depth.tif": {
+        "bytes": 1988906,
+        "mtime_ns": 1791882588000000000
+      },
+      "train:image_relpath:2025/Day019_soybean/images/263.JPG": {
+        "bytes": 10326683,
+        "mtime_ns": 1791882586000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/312_depth.tif": {
+        "bytes": 2110403,
+        "mtime_ns": 1791882589000000000
+      },
+      "train:image_relpath:2025/Day019_soybean/images/312.JPG": {
+        "bytes": 11305522,
+        "mtime_ns": 1791882586000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/361_depth.tif": {
+        "bytes": 2632863,
+        "mtime_ns": 1791882590000000000
+      },
+      "train:image_relpath:2025/Day019_soybean/images/361.JPG": {
+        "bytes": 9736904,
+        "mtime_ns": 1791882589000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/410_depth.tif": {
+        "bytes": 2882509,
+        "mtime_ns": 1791882591000000000
+      },
+      "train:image_relpath:2025/Day019_soybean/images/410.JPG": {
+        "bytes": 8969334,
+        "mtime_ns": 1791882589000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/459_depth.tif": {
+        "bytes": 2087130,
+        "mtime_ns": 1791882591000000000
+      },
+      "train:image_relpath:2025/Day019_soybean/images/459.JPG": {
+        "bytes": 10185811,
+        "mtime_ns": 1791882590000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/508_depth.tif": {
+        "bytes": 2023002,
+        "mtime_ns": 1791882593000000000
+      },
+      "train:image_relpath:2025/Day019_soybean/images/508.JPG": {
+        "bytes": 7751171,
+        "mtime_ns": 1791882590000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/703_depth.tif": {
+        "bytes": 2345257,
+        "mtime_ns": 1791882594000000000
+      },
+      "train:image_relpath:2025/Day019_soybean/images/703.JPG": {
+        "bytes": 8999649,
+        "mtime_ns": 1791882592000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/752_depth.tif": {
+        "bytes": 2557347,
+        "mtime_ns": 1791882595000000000
+      },
+      "train:image_relpath:2025/Day019_soybean/images/752.JPG": {
+        "bytes": 9438998,
+        "mtime_ns": 1791882593000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/801_depth.tif": {
+        "bytes": 2194896,
+        "mtime_ns": 1791882595000000000
+      },
+      "train:image_relpath:2025/Day019_soybean/images/801.JPG": {
+        "bytes": 9634189,
+        "mtime_ns": 1791882593000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/850_depth.tif": {
+        "bytes": 2154123,
+        "mtime_ns": 1791882597000000000
+      },
+      "train:image_relpath:2025/Day019_soybean/images/850.JPG": {
+        "bytes": 11629197,
+        "mtime_ns": 1791882594000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/899_depth.tif": {
+        "bytes": 2828656,
+        "mtime_ns": 1791882598000000000
+      },
+      "train:image_relpath:2025/Day019_soybean/images/899.JPG": {
+        "bytes": 9498104,
+        "mtime_ns": 1791882596000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/948_depth.tif": {
+        "bytes": 2557098,
+        "mtime_ns": 1791882600000000000
+      },
+      "train:image_relpath:2025/Day019_soybean/images/948.JPG": {
+        "bytes": 10297392,
+        "mtime_ns": 1791882597000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/997_depth.tif": {
+        "bytes": 2563669,
+        "mtime_ns": 1791882598000000000
+      },
+      "train:image_relpath:2025/Day019_soybean/images/997.JPG": {
+        "bytes": 7901306,
+        "mtime_ns": 1791882597000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/1046_depth.tif": {
+        "bytes": 2265613,
+        "mtime_ns": 1791882600000000000
+      },
+      "train:image_relpath:2025/Day019_soybean/images/1046.JPG": {
+        "bytes": 7739465,
+        "mtime_ns": 1791882598000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/8_depth.tif": {
+        "bytes": 2032842,
+        "mtime_ns": 1791882602000000000
+      },
+      "train:image_relpath:2025/Day028_Corn/images/8.JPG": {
+        "bytes": 13492598,
+        "mtime_ns": 1791882600000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/23_depth.tif": {
+        "bytes": 1329839,
+        "mtime_ns": 1791882603000000000
+      },
+      "train:image_relpath:2025/Day028_Corn/images/23.JPG": {
+        "bytes": 13222581,
+        "mtime_ns": 1791882600000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/38_depth.tif": {
+        "bytes": 1959301,
+        "mtime_ns": 1791882604000000000
+      },
+      "train:image_relpath:2025/Day028_Corn/images/38.JPG": {
+        "bytes": 12669570,
+        "mtime_ns": 1791882602000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/52_depth.tif": {
+        "bytes": 1819103,
+        "mtime_ns": 1791882605000000000
+      },
+      "train:image_relpath:2025/Day028_Corn/images/52.JPG": {
+        "bytes": 12719025,
+        "mtime_ns": 1791882602000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/67_depth.tif": {
+        "bytes": 1661288,
+        "mtime_ns": 1791882607000000000
+      },
+      "train:image_relpath:2025/Day028_Corn/images/67.JPG": {
+        "bytes": 11775374,
+        "mtime_ns": 1791882604000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/82_depth.tif": {
+        "bytes": 1643846,
+        "mtime_ns": 1791882608000000000
+      },
+      "train:image_relpath:2025/Day028_Corn/images/82.JPG": {
+        "bytes": 11114825,
+        "mtime_ns": 1791882605000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/97_depth.tif": {
+        "bytes": 1350606,
+        "mtime_ns": 1791882609000000000
+      },
+      "train:image_relpath:2025/Day028_Corn/images/97.JPG": {
+        "bytes": 9906355,
+        "mtime_ns": 1791882607000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/112_depth.tif": {
+        "bytes": 1440508,
+        "mtime_ns": 1791882609000000000
+      },
+      "train:image_relpath:2025/Day028_Corn/images/112.JPG": {
+        "bytes": 11115778,
+        "mtime_ns": 1791882607000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/589_depth.tif": {
+        "bytes": 1189478,
+        "mtime_ns": 1791882611000000000
+      },
+      "train:image_relpath:2025/Day028_Corn/images/589.JPG": {
+        "bytes": 11335115,
+        "mtime_ns": 1791882609000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/604_depth.tif": {
+        "bytes": 1904389,
+        "mtime_ns": 1791882612000000000
+      },
+      "train:image_relpath:2025/Day028_Corn/images/604.JPG": {
+        "bytes": 12109584,
+        "mtime_ns": 1791882610000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/619_depth.tif": {
+        "bytes": 2330190,
+        "mtime_ns": 1791882613000000000
+      },
+      "train:image_relpath:2025/Day028_Corn/images/619.JPG": {
+        "bytes": 12646455,
+        "mtime_ns": 1791882611000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/634_depth.tif": {
+        "bytes": 1190392,
+        "mtime_ns": 1791882613000000000
+      },
+      "train:image_relpath:2025/Day028_Corn/images/634.JPG": {
+        "bytes": 12101216,
+        "mtime_ns": 1791882611000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/649_depth.tif": {
+        "bytes": 1817700,
+        "mtime_ns": 1791882615000000000
+      },
+      "train:image_relpath:2025/Day028_Corn/images/649.JPG": {
+        "bytes": 13549240,
+        "mtime_ns": 1791882613000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/663_depth.tif": {
+        "bytes": 1506995,
+        "mtime_ns": 1791882616000000000
+      },
+      "train:image_relpath:2025/Day028_Corn/images/663.JPG": {
+        "bytes": 11191797,
+        "mtime_ns": 1791882613000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/678_depth.tif": {
+        "bytes": 1981052,
+        "mtime_ns": 1791882617000000000
+      },
+      "train:image_relpath:2025/Day028_Corn/images/678.JPG": {
+        "bytes": 12714490,
+        "mtime_ns": 1791882615000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/693_depth.tif": {
+        "bytes": 1353477,
+        "mtime_ns": 1791882617000000000
+      },
+      "train:image_relpath:2025/Day028_Corn/images/693.JPG": {
+        "bytes": 12457093,
+        "mtime_ns": 1791882615000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/143_depth.tif": {
+        "bytes": 2999187,
+        "mtime_ns": 1791882618000000000
+      },
+      "train:image_relpath:2025/Day028_Corn/images/143.JPG": {
+        "bytes": 10725275,
+        "mtime_ns": 1791882617000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/203_depth.tif": {
+        "bytes": 3545669,
+        "mtime_ns": 1791882620000000000
+      },
+      "train:image_relpath:2025/Day028_Corn/images/203.JPG": {
+        "bytes": 11836261,
+        "mtime_ns": 1791882618000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/264_depth.tif": {
+        "bytes": 3448337,
+        "mtime_ns": 1791882620000000000
+      },
+      "train:image_relpath:2025/Day028_Corn/images/264.JPG": {
+        "bytes": 12913881,
+        "mtime_ns": 1791882619000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/324_depth.tif": {
+        "bytes": 2855874,
+        "mtime_ns": 1791882621000000000
+      },
+      "train:image_relpath:2025/Day028_Corn/images/324.JPG": {
+        "bytes": 12008919,
+        "mtime_ns": 1791882619000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/384_depth.tif": {
+        "bytes": 3990958,
+        "mtime_ns": 1791882622000000000
+      },
+      "train:image_relpath:2025/Day028_Corn/images/384.JPG": {
+        "bytes": 12674228,
+        "mtime_ns": 1791882620000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/445_depth.tif": {
+        "bytes": 3731976,
+        "mtime_ns": 1791882623000000000
+      },
+      "train:image_relpath:2025/Day028_Corn/images/445.JPG": {
+        "bytes": 11423558,
+        "mtime_ns": 1791882621000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/505_depth.tif": {
+        "bytes": 3752674,
+        "mtime_ns": 1791882624000000000
+      },
+      "train:image_relpath:2025/Day028_Corn/images/505.JPG": {
+        "bytes": 12989089,
+        "mtime_ns": 1791882623000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/566_depth.tif": {
+        "bytes": 2798821,
+        "mtime_ns": 1791882624000000000
+      },
+      "train:image_relpath:2025/Day028_Corn/images/566.JPG": {
+        "bytes": 11392783,
+        "mtime_ns": 1791882623000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/751_depth.tif": {
+        "bytes": 3449280,
+        "mtime_ns": 1791882627000000000
+      },
+      "train:image_relpath:2025/Day028_Corn/images/751.JPG": {
+        "bytes": 12309602,
+        "mtime_ns": 1791882625000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/812_depth.tif": {
+        "bytes": 3499860,
+        "mtime_ns": 1791882627000000000
+      },
+      "train:image_relpath:2025/Day028_Corn/images/812.JPG": {
+        "bytes": 12203056,
+        "mtime_ns": 1791882625000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/872_depth.tif": {
+        "bytes": 3798186,
+        "mtime_ns": 1791882628000000000
+      },
+      "train:image_relpath:2025/Day028_Corn/images/872.JPG": {
+        "bytes": 13050361,
+        "mtime_ns": 1791882627000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/933_depth.tif": {
+        "bytes": 3422537,
+        "mtime_ns": 1791882628000000000
+      },
+      "train:image_relpath:2025/Day028_Corn/images/933.JPG": {
+        "bytes": 12710308,
+        "mtime_ns": 1791882626000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/993_depth.tif": {
+        "bytes": 3485667,
+        "mtime_ns": 1791882631000000000
+      },
+      "train:image_relpath:2025/Day028_Corn/images/993.JPG": {
+        "bytes": 11924172,
+        "mtime_ns": 1791882629000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/1053_depth.tif": {
+        "bytes": 3143601,
+        "mtime_ns": 1791882630000000000
+      },
+      "train:image_relpath:2025/Day028_Corn/images/1053.JPG": {
+        "bytes": 10170683,
+        "mtime_ns": 1791882629000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/1114_depth.tif": {
+        "bytes": 3367647,
+        "mtime_ns": 1791882632000000000
+      },
+      "train:image_relpath:2025/Day028_Corn/images/1114.JPG": {
+        "bytes": 12094025,
+        "mtime_ns": 1791882630000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/1174_depth.tif": {
+        "bytes": 3824749,
+        "mtime_ns": 1791882634000000000
+      },
+      "train:image_relpath:2025/Day028_Corn/images/1174.JPG": {
+        "bytes": 12992156,
+        "mtime_ns": 1791882631000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/7_depth.tif": {
+        "bytes": 3818862,
+        "mtime_ns": 1791882634000000000
+      },
+      "train:image_relpath:2025/Day028_Oat/images/7.JPG": {
+        "bytes": 13435641,
+        "mtime_ns": 1791882632000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/19_depth.tif": {
+        "bytes": 3332721,
+        "mtime_ns": 1791882634000000000
+      },
+      "train:image_relpath:2025/Day028_Oat/images/19.JPG": {
+        "bytes": 14249406,
+        "mtime_ns": 1791882632000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/32_depth.tif": {
+        "bytes": 3595856,
+        "mtime_ns": 1791882636000000000
+      },
+      "train:image_relpath:2025/Day028_Oat/images/32.JPG": {
+        "bytes": 13360418,
+        "mtime_ns": 1791882634000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/44_depth.tif": {
+        "bytes": 3257100,
+        "mtime_ns": 1791882637000000000
+      },
+      "train:image_relpath:2025/Day028_Oat/images/44.JPG": {
+        "bytes": 13659516,
+        "mtime_ns": 1791882635000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/57_depth.tif": {
+        "bytes": 3260595,
+        "mtime_ns": 1791882638000000000
+      },
+      "train:image_relpath:2025/Day028_Oat/images/57.JPG": {
+        "bytes": 14011302,
+        "mtime_ns": 1791882636000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/70_depth.tif": {
+        "bytes": 3284813,
+        "mtime_ns": 1791882638000000000
+      },
+      "train:image_relpath:2025/Day028_Oat/images/70.JPG": {
+        "bytes": 13830378,
+        "mtime_ns": 1791882636000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/82_depth.tif": {
+        "bytes": 2941039,
+        "mtime_ns": 1791882639000000000
+      },
+      "train:image_relpath:2025/Day028_Oat/images/82.JPG": {
+        "bytes": 13840711,
+        "mtime_ns": 1791882637000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/315_depth.tif": {
+        "bytes": 3015353,
+        "mtime_ns": 1791882640000000000
+      },
+      "train:image_relpath:2025/Day028_Oat/images/315.JPG": {
+        "bytes": 13192851,
+        "mtime_ns": 1791882639000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/327_depth.tif": {
+        "bytes": 3508587,
+        "mtime_ns": 1791882641000000000
+      },
+      "train:image_relpath:2025/Day028_Oat/images/327.JPG": {
+        "bytes": 13871266,
+        "mtime_ns": 1791882639000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/340_depth.tif": {
+        "bytes": 4059986,
+        "mtime_ns": 1791882642000000000
+      },
+      "train:image_relpath:2025/Day028_Oat/images/340.JPG": {
+        "bytes": 13588674,
+        "mtime_ns": 1791882640000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/352_depth.tif": {
+        "bytes": 3328037,
+        "mtime_ns": 1791882643000000000
+      },
+      "train:image_relpath:2025/Day028_Oat/images/352.JPG": {
+        "bytes": 12556570,
+        "mtime_ns": 1791882641000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/365_depth.tif": {
+        "bytes": 4200538,
+        "mtime_ns": 1791882644000000000
+      },
+      "train:image_relpath:2025/Day028_Oat/images/365.JPG": {
+        "bytes": 13179891,
+        "mtime_ns": 1791882642000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/378_depth.tif": {
+        "bytes": 2964931,
+        "mtime_ns": 1791882645000000000
+      },
+      "train:image_relpath:2025/Day028_Oat/images/378.JPG": {
+        "bytes": 14108787,
+        "mtime_ns": 1791882643000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/390_depth.tif": {
+        "bytes": 4005997,
+        "mtime_ns": 1791882645000000000
+      },
+      "train:image_relpath:2025/Day028_Oat/images/390.JPG": {
+        "bytes": 13313322,
+        "mtime_ns": 1791882643000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/403_depth.tif": {
+        "bytes": 3187542,
+        "mtime_ns": 1791882646000000000
+      },
+      "train:image_relpath:2025/Day028_Oat/images/403.JPG": {
+        "bytes": 11275438,
+        "mtime_ns": 1791882645000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/415_depth.tif": {
+        "bytes": 3459118,
+        "mtime_ns": 1791882648000000000
+      },
+      "train:image_relpath:2025/Day028_Oat/images/415.JPG": {
+        "bytes": 12218224,
+        "mtime_ns": 1791882646000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/109_depth.tif": {
+        "bytes": 3879003,
+        "mtime_ns": 1791882649000000000
+      },
+      "train:image_relpath:2025/Day028_Oat/images/109.JPG": {
+        "bytes": 12707303,
+        "mtime_ns": 1791882647000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/139_depth.tif": {
+        "bytes": 3848702,
+        "mtime_ns": 1791882649000000000
+      },
+      "train:image_relpath:2025/Day028_Oat/images/139.JPG": {
+        "bytes": 12872089,
+        "mtime_ns": 1791882647000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/169_depth.tif": {
+        "bytes": 3440031,
+        "mtime_ns": 1791882651000000000
+      },
+      "train:image_relpath:2025/Day028_Oat/images/169.JPG": {
+        "bytes": 12305727,
+        "mtime_ns": 1791882649000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/199_depth.tif": {
+        "bytes": 4228571,
+        "mtime_ns": 1791882651000000000
+      },
+      "train:image_relpath:2025/Day028_Oat/images/199.JPG": {
+        "bytes": 12016441,
+        "mtime_ns": 1791882650000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/229_depth.tif": {
+        "bytes": 3961511,
+        "mtime_ns": 1791882653000000000
+      },
+      "train:image_relpath:2025/Day028_Oat/images/229.JPG": {
+        "bytes": 11451218,
+        "mtime_ns": 1791882651000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/259_depth.tif": {
+        "bytes": 4163424,
+        "mtime_ns": 1791882653000000000
+      },
+      "train:image_relpath:2025/Day028_Oat/images/259.JPG": {
+        "bytes": 12405660,
+        "mtime_ns": 1791882651000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/288_depth.tif": {
+        "bytes": 3826513,
+        "mtime_ns": 1791882655000000000
+      },
+      "train:image_relpath:2025/Day028_Oat/images/288.JPG": {
+        "bytes": 13564402,
+        "mtime_ns": 1791882653000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/425_depth.tif": {
+        "bytes": 3939839,
+        "mtime_ns": 1791882655000000000
+      },
+      "train:image_relpath:2025/Day028_Oat/images/425.JPG": {
+        "bytes": 12088747,
+        "mtime_ns": 1791882653000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/455_depth.tif": {
+        "bytes": 4369314,
+        "mtime_ns": 1791882656000000000
+      },
+      "train:image_relpath:2025/Day028_Oat/images/455.JPG": {
+        "bytes": 12071423,
+        "mtime_ns": 1791882654000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/485_depth.tif": {
+        "bytes": 3194817,
+        "mtime_ns": 1791882656000000000
+      },
+      "train:image_relpath:2025/Day028_Oat/images/485.JPG": {
+        "bytes": 10844210,
+        "mtime_ns": 1791882655000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/514_depth.tif": {
+        "bytes": 4144729,
+        "mtime_ns": 1791882659000000000
+      },
+      "train:image_relpath:2025/Day028_Oat/images/514.JPG": {
+        "bytes": 13541405,
+        "mtime_ns": 1791882657000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/544_depth.tif": {
+        "bytes": 3779940,
+        "mtime_ns": 1791882658000000000
+      },
+      "train:image_relpath:2025/Day028_Oat/images/544.JPG": {
+        "bytes": 13423438,
+        "mtime_ns": 1791882657000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/574_depth.tif": {
+        "bytes": 4369788,
+        "mtime_ns": 1791882658000000000
+      },
+      "train:image_relpath:2025/Day028_Oat/images/574.JPG": {
+        "bytes": 12797449,
+        "mtime_ns": 1791882657000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/604_depth.tif": {
+        "bytes": 3752192,
+        "mtime_ns": 1791882660000000000
+      },
+      "train:image_relpath:2025/Day028_Oat/images/604.JPG": {
+        "bytes": 12504720,
+        "mtime_ns": 1791882658000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/634_depth.tif": {
+        "bytes": 4463990,
+        "mtime_ns": 1791882663000000000
+      },
+      "train:image_relpath:2025/Day028_Oat/images/634.JPG": {
+        "bytes": 12992814,
+        "mtime_ns": 1791882660000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/665_depth.tif": {
+        "bytes": 3982841,
+        "mtime_ns": 1791882663000000000
+      },
+      "train:image_relpath:2025/Day028_Oat/images/665.JPG": {
+        "bytes": 12776581,
+        "mtime_ns": 1791882660000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/12_depth.tif": {
+        "bytes": 2385716,
+        "mtime_ns": 1791882664000000000
+      },
+      "train:image_relpath:2025/Day028_Wheat/images/12.JPG": {
+        "bytes": 14010281,
+        "mtime_ns": 1791882661000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/36_depth.tif": {
+        "bytes": 3354078,
+        "mtime_ns": 1791882664000000000
+      },
+      "train:image_relpath:2025/Day028_Wheat/images/36.JPG": {
+        "bytes": 14204046,
+        "mtime_ns": 1791882662000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/60_depth.tif": {
+        "bytes": 3670923,
+        "mtime_ns": 1791882667000000000
+      },
+      "train:image_relpath:2025/Day028_Wheat/images/60.JPG": {
+        "bytes": 14737398,
+        "mtime_ns": 1791882665000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/84_depth.tif": {
+        "bytes": 2827377,
+        "mtime_ns": 1791882668000000000
+      },
+      "train:image_relpath:2025/Day028_Wheat/images/84.JPG": {
+        "bytes": 14264756,
+        "mtime_ns": 1791882665000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/107_depth.tif": {
+        "bytes": 2923290,
+        "mtime_ns": 1791882668000000000
+      },
+      "train:image_relpath:2025/Day028_Wheat/images/107.JPG": {
+        "bytes": 13725505,
+        "mtime_ns": 1791882665000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/131_depth.tif": {
+        "bytes": 3034379,
+        "mtime_ns": 1791882668000000000
+      },
+      "train:image_relpath:2025/Day028_Wheat/images/131.JPG": {
+        "bytes": 15072592,
+        "mtime_ns": 1791882666000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/155_depth.tif": {
+        "bytes": 3018726,
+        "mtime_ns": 1791882671000000000
+      },
+      "train:image_relpath:2025/Day028_Wheat/images/155.JPG": {
+        "bytes": 13957190,
+        "mtime_ns": 1791882669000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/179_depth.tif": {
+        "bytes": 3151700,
+        "mtime_ns": 1791882671000000000
+      },
+      "train:image_relpath:2025/Day028_Wheat/images/179.JPG": {
+        "bytes": 14149060,
+        "mtime_ns": 1791882670000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/660_depth.tif": {
+        "bytes": 3675132,
+        "mtime_ns": 1791882671000000000
+      },
+      "train:image_relpath:2025/Day028_Wheat/images/660.JPG": {
+        "bytes": 14456833,
+        "mtime_ns": 1791882670000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/684_depth.tif": {
+        "bytes": 2969472,
+        "mtime_ns": 1791882672000000000
+      },
+      "train:image_relpath:2025/Day028_Wheat/images/684.JPG": {
+        "bytes": 14971179,
+        "mtime_ns": 1791882670000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/708_depth.tif": {
+        "bytes": 3264197,
+        "mtime_ns": 1791882674000000000
+      },
+      "train:image_relpath:2025/Day028_Wheat/images/708.JPG": {
+        "bytes": 14886079,
+        "mtime_ns": 1791882673000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/732_depth.tif": {
+        "bytes": 3415383,
+        "mtime_ns": 1791882675000000000
+      },
+      "train:image_relpath:2025/Day028_Wheat/images/732.JPG": {
+        "bytes": 15074675,
+        "mtime_ns": 1791882673000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/755_depth.tif": {
+        "bytes": 3385058,
+        "mtime_ns": 1791882675000000000
+      },
+      "train:image_relpath:2025/Day028_Wheat/images/755.JPG": {
+        "bytes": 14927861,
+        "mtime_ns": 1791882674000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/779_depth.tif": {
+        "bytes": 3397220,
+        "mtime_ns": 1791882677000000000
+      },
+      "train:image_relpath:2025/Day028_Wheat/images/779.JPG": {
+        "bytes": 15054856,
+        "mtime_ns": 1791882674000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/803_depth.tif": {
+        "bytes": 3117584,
+        "mtime_ns": 1791882679000000000
+      },
+      "train:image_relpath:2025/Day028_Wheat/images/803.JPG": {
+        "bytes": 15538038,
+        "mtime_ns": 1791882677000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/827_depth.tif": {
+        "bytes": 2834180,
+        "mtime_ns": 1791882678000000000
+      },
+      "train:image_relpath:2025/Day028_Wheat/images/827.JPG": {
+        "bytes": 14566549,
+        "mtime_ns": 1791882677000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/214_depth.tif": {
+        "bytes": 3804034,
+        "mtime_ns": 1791882679000000000
+      },
+      "train:image_relpath:2025/Day028_Wheat/images/214.JPG": {
+        "bytes": 14058122,
+        "mtime_ns": 1791882677000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/278_depth.tif": {
+        "bytes": 4255688,
+        "mtime_ns": 1791882680000000000
+      },
+      "train:image_relpath:2025/Day028_Wheat/images/278.JPG": {
+        "bytes": 12691533,
+        "mtime_ns": 1791882679000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/342_depth.tif": {
+        "bytes": 4409399,
+        "mtime_ns": 1791882682000000000
+      },
+      "train:image_relpath:2025/Day028_Wheat/images/342.JPG": {
+        "bytes": 13583219,
+        "mtime_ns": 1791882681000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/406_depth.tif": {
+        "bytes": 4237543,
+        "mtime_ns": 1791882682000000000
+      },
+      "train:image_relpath:2025/Day028_Wheat/images/406.JPG": {
+        "bytes": 13127090,
+        "mtime_ns": 1791882681000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/470_depth.tif": {
+        "bytes": 4359118,
+        "mtime_ns": 1791882683000000000
+      },
+      "train:image_relpath:2025/Day028_Wheat/images/470.JPG": {
+        "bytes": 12641006,
+        "mtime_ns": 1791882681000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/534_depth.tif": {
+        "bytes": 3441432,
+        "mtime_ns": 1791882684000000000
+      },
+      "train:image_relpath:2025/Day028_Wheat/images/534.JPG": {
+        "bytes": 12696028,
+        "mtime_ns": 1791882682000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/598_depth.tif": {
+        "bytes": 3651233,
+        "mtime_ns": 1791882685000000000
+      },
+      "train:image_relpath:2025/Day028_Wheat/images/598.JPG": {
+        "bytes": 12035379,
+        "mtime_ns": 1791882684000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/858_depth.tif": {
+        "bytes": 3730271,
+        "mtime_ns": 1791882686000000000
+      },
+      "train:image_relpath:2025/Day028_Wheat/images/858.JPG": {
+        "bytes": 13185990,
+        "mtime_ns": 1791882684000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/921_depth.tif": {
+        "bytes": 4348653,
+        "mtime_ns": 1791882686000000000
+      },
+      "train:image_relpath:2025/Day028_Wheat/images/921.JPG": {
+        "bytes": 14248465,
+        "mtime_ns": 1791882685000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/985_depth.tif": {
+        "bytes": 3548051,
+        "mtime_ns": 1791882687000000000
+      },
+      "train:image_relpath:2025/Day028_Wheat/images/985.JPG": {
+        "bytes": 14073847,
+        "mtime_ns": 1791882685000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/1049_depth.tif": {
+        "bytes": 3590744,
+        "mtime_ns": 1791882689000000000
+      },
+      "train:image_relpath:2025/Day028_Wheat/images/1049.JPG": {
+        "bytes": 11884717,
+        "mtime_ns": 1791882687000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/1113_depth.tif": {
+        "bytes": 3632933,
+        "mtime_ns": 1791882690000000000
+      },
+      "train:image_relpath:2025/Day028_Wheat/images/1113.JPG": {
+        "bytes": 12101454,
+        "mtime_ns": 1791882688000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/1177_depth.tif": {
+        "bytes": 4399228,
+        "mtime_ns": 1791882690000000000
+      },
+      "train:image_relpath:2025/Day028_Wheat/images/1177.JPG": {
+        "bytes": 13779386,
+        "mtime_ns": 1791882688000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/1241_depth.tif": {
+        "bytes": 3655366,
+        "mtime_ns": 1791882690000000000
+      },
+      "train:image_relpath:2025/Day028_Wheat/images/1241.JPG": {
+        "bytes": 14016143,
+        "mtime_ns": 1791882689000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/1305_depth.tif": {
+        "bytes": 3835970,
+        "mtime_ns": 1791882692000000000
+      },
+      "train:image_relpath:2025/Day028_Wheat/images/1305.JPG": {
+        "bytes": 13098712,
+        "mtime_ns": 1791882691000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/1369_depth.tif": {
+        "bytes": 3958071,
+        "mtime_ns": 1791882694000000000
+      },
+      "train:image_relpath:2025/Day028_Wheat/images/1369.JPG": {
+        "bytes": 13262399,
+        "mtime_ns": 1791882692000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/10_depth.tif": {
+        "bytes": 2988786,
+        "mtime_ns": 1791882694000000000
+      },
+      "train:image_relpath:2025/Day028_soybean/images/10.JPG": {
+        "bytes": 10297877,
+        "mtime_ns": 1791882692000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/28_depth.tif": {
+        "bytes": 2326683,
+        "mtime_ns": 1791882694000000000
+      },
+      "train:image_relpath:2025/Day028_soybean/images/28.JPG": {
+        "bytes": 10208238,
+        "mtime_ns": 1791882693000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/46_depth.tif": {
+        "bytes": 2731276,
+        "mtime_ns": 1791882696000000000
+      },
+      "train:image_relpath:2025/Day028_soybean/images/46.JPG": {
+        "bytes": 9479787,
+        "mtime_ns": 1791882694000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/65_depth.tif": {
+        "bytes": 2051100,
+        "mtime_ns": 1791882698000000000
+      },
+      "train:image_relpath:2025/Day028_soybean/images/65.JPG": {
+        "bytes": 10061844,
+        "mtime_ns": 1791882695000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/83_depth.tif": {
+        "bytes": 2249583,
+        "mtime_ns": 1791882698000000000
+      },
+      "train:image_relpath:2025/Day028_soybean/images/83.JPG": {
+        "bytes": 9174083,
+        "mtime_ns": 1791882695000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/101_depth.tif": {
+        "bytes": 2440701,
+        "mtime_ns": 1791882698000000000
+      },
+      "train:image_relpath:2025/Day028_soybean/images/101.JPG": {
+        "bytes": 10712508,
+        "mtime_ns": 1791882696000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/120_depth.tif": {
+        "bytes": 2511989,
+        "mtime_ns": 1791882699000000000
+      },
+      "train:image_relpath:2025/Day028_soybean/images/120.JPG": {
+        "bytes": 9203791,
+        "mtime_ns": 1791882698000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/138_depth.tif": {
+        "bytes": 2429813,
+        "mtime_ns": 1791882701000000000
+      },
+      "train:image_relpath:2025/Day028_soybean/images/138.JPG": {
+        "bytes": 10485624,
+        "mtime_ns": 1791882699000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/531_depth.tif": {
+        "bytes": 2359102,
+        "mtime_ns": 1791882702000000000
+      },
+      "train:image_relpath:2025/Day028_soybean/images/531.JPG": {
+        "bytes": 10362128,
+        "mtime_ns": 1791882700000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/549_depth.tif": {
+        "bytes": 1963446,
+        "mtime_ns": 1791882702000000000
+      },
+      "train:image_relpath:2025/Day028_soybean/images/549.JPG": {
+        "bytes": 9864645,
+        "mtime_ns": 1791882700000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/568_depth.tif": {
+        "bytes": 2447361,
+        "mtime_ns": 1791882703000000000
+      },
+      "train:image_relpath:2025/Day028_soybean/images/568.JPG": {
+        "bytes": 10968157,
+        "mtime_ns": 1791882701000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/586_depth.tif": {
+        "bytes": 2074375,
+        "mtime_ns": 1791882705000000000
+      },
+      "train:image_relpath:2025/Day028_soybean/images/586.JPG": {
+        "bytes": 10816257,
+        "mtime_ns": 1791882703000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/604_depth.tif": {
+        "bytes": 2421121,
+        "mtime_ns": 1791882705000000000
+      },
+      "train:image_relpath:2025/Day028_soybean/images/604.JPG": {
+        "bytes": 10670221,
+        "mtime_ns": 1791882703000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/623_depth.tif": {
+        "bytes": 2223074,
+        "mtime_ns": 1791882705000000000
+      },
+      "train:image_relpath:2025/Day028_soybean/images/623.JPG": {
+        "bytes": 11191093,
+        "mtime_ns": 1791882703000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/641_depth.tif": {
+        "bytes": 2397086,
+        "mtime_ns": 1791882707000000000
+      },
+      "train:image_relpath:2025/Day028_soybean/images/641.JPG": {
+        "bytes": 10454085,
+        "mtime_ns": 1791882704000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/659_depth.tif": {
+        "bytes": 2671725,
+        "mtime_ns": 1791882708000000000
+      },
+      "train:image_relpath:2025/Day028_soybean/images/659.JPG": {
+        "bytes": 10518709,
+        "mtime_ns": 1791882707000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/169_depth.tif": {
+        "bytes": 3616562,
+        "mtime_ns": 1791882709000000000
+      },
+      "train:image_relpath:2025/Day028_soybean/images/169.JPG": {
+        "bytes": 10020394,
+        "mtime_ns": 1791882707000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/219_depth.tif": {
+        "bytes": 2885023,
+        "mtime_ns": 1791882709000000000
+      },
+      "train:image_relpath:2025/Day028_soybean/images/219.JPG": {
+        "bytes": 9040150,
+        "mtime_ns": 1791882707000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/268_depth.tif": {
+        "bytes": 2627811,
+        "mtime_ns": 1791882710000000000
+      },
+      "train:image_relpath:2025/Day028_soybean/images/268.JPG": {
+        "bytes": 11041296,
+        "mtime_ns": 1791882708000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/318_depth.tif": {
+        "bytes": 2368862,
+        "mtime_ns": 1791882712000000000
+      },
+      "train:image_relpath:2025/Day028_soybean/images/318.JPG": {
+        "bytes": 11690890,
+        "mtime_ns": 1791882710000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/367_depth.tif": {
+        "bytes": 3067027,
+        "mtime_ns": 1791882713000000000
+      },
+      "train:image_relpath:2025/Day028_soybean/images/367.JPG": {
+        "bytes": 9618075,
+        "mtime_ns": 1791882710000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/417_depth.tif": {
+        "bytes": 3513316,
+        "mtime_ns": 1791882713000000000
+      },
+      "train:image_relpath:2025/Day028_soybean/images/417.JPG": {
+        "bytes": 10962555,
+        "mtime_ns": 1791882711000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/466_depth.tif": {
+        "bytes": 2415473,
+        "mtime_ns": 1791882714000000000
+      },
+      "train:image_relpath:2025/Day028_soybean/images/466.JPG": {
+        "bytes": 11590402,
+        "mtime_ns": 1791882712000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/516_depth.tif": {
+        "bytes": 2380115,
+        "mtime_ns": 1791882717000000000
+      },
+      "train:image_relpath:2025/Day028_soybean/images/516.JPG": {
+        "bytes": 10375003,
+        "mtime_ns": 1791882714000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/714_depth.tif": {
+        "bytes": 2809497,
+        "mtime_ns": 1791882716000000000
+      },
+      "train:image_relpath:2025/Day028_soybean/images/714.JPG": {
+        "bytes": 10775814,
+        "mtime_ns": 1791882714000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/764_depth.tif": {
+        "bytes": 3346953,
+        "mtime_ns": 1791882716000000000
+      },
+      "train:image_relpath:2025/Day028_soybean/images/764.JPG": {
+        "bytes": 11148341,
+        "mtime_ns": 1791882714000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/813_depth.tif": {
+        "bytes": 2873216,
+        "mtime_ns": 1791882718000000000
+      },
+      "train:image_relpath:2025/Day028_soybean/images/813.JPG": {
+        "bytes": 10872932,
+        "mtime_ns": 1791882716000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/863_depth.tif": {
+        "bytes": 2564684,
+        "mtime_ns": 1791882720000000000
+      },
+      "train:image_relpath:2025/Day028_soybean/images/863.JPG": {
+        "bytes": 12915644,
+        "mtime_ns": 1791882718000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/912_depth.tif": {
+        "bytes": 3478552,
+        "mtime_ns": 1791882720000000000
+      },
+      "train:image_relpath:2025/Day028_soybean/images/912.JPG": {
+        "bytes": 11857771,
+        "mtime_ns": 1791882718000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/962_depth.tif": {
+        "bytes": 3264568,
+        "mtime_ns": 1791882720000000000
+      },
+      "train:image_relpath:2025/Day028_soybean/images/962.JPG": {
+        "bytes": 11606933,
+        "mtime_ns": 1791882718000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/1011_depth.tif": {
+        "bytes": 2763376,
+        "mtime_ns": 1791882722000000000
+      },
+      "train:image_relpath:2025/Day028_soybean/images/1011.JPG": {
+        "bytes": 11402904,
+        "mtime_ns": 1791882719000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/1061_depth.tif": {
+        "bytes": 3062301,
+        "mtime_ns": 1791882724000000000
+      },
+      "train:image_relpath:2025/Day028_soybean/images/1061.JPG": {
+        "bytes": 10394136,
+        "mtime_ns": 1791882722000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/8_depth.tif": {
+        "bytes": 3237593,
+        "mtime_ns": 1791882724000000000
+      },
+      "train:image_relpath:2025/Day040_Corn/images/8.JPG": {
+        "bytes": 12721970,
+        "mtime_ns": 1791882722000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/22_depth.tif": {
+        "bytes": 3072445,
+        "mtime_ns": 1791882724000000000
+      },
+      "train:image_relpath:2025/Day040_Corn/images/22.JPG": {
+        "bytes": 12057022,
+        "mtime_ns": 1791882722000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/36_depth.tif": {
+        "bytes": 3004973,
+        "mtime_ns": 1791882726000000000
+      },
+      "train:image_relpath:2025/Day040_Corn/images/36.JPG": {
+        "bytes": 12572718,
+        "mtime_ns": 1791882724000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/50_depth.tif": {
+        "bytes": 2395880,
+        "mtime_ns": 1791882727000000000
+      },
+      "train:image_relpath:2025/Day040_Corn/images/50.JPG": {
+        "bytes": 11971425,
+        "mtime_ns": 1791882726000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/71_depth.tif": {
+        "bytes": 1437237,
+        "mtime_ns": 1791882728000000000
+      },
+      "train:image_relpath:2025/Day040_Corn/images/71.JPG": {
+        "bytes": 12607347,
+        "mtime_ns": 1791882725000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/85_depth.tif": {
+        "bytes": 2642715,
+        "mtime_ns": 1791882728000000000
+      },
+      "train:image_relpath:2025/Day040_Corn/images/85.JPG": {
+        "bytes": 12500883,
+        "mtime_ns": 1791882726000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/99_depth.tif": {
+        "bytes": 2669403,
+        "mtime_ns": 1791882730000000000
+      },
+      "train:image_relpath:2025/Day040_Corn/images/99.JPG": {
+        "bytes": 12127573,
+        "mtime_ns": 1791882728000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/579_depth.tif": {
+        "bytes": 1683616,
+        "mtime_ns": 1791882732000000000
+      },
+      "train:image_relpath:2025/Day040_Corn/images/579.JPG": {
+        "bytes": 10465793,
+        "mtime_ns": 1791882730000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/594_depth.tif": {
+        "bytes": 2035035,
+        "mtime_ns": 1791882732000000000
+      },
+      "train:image_relpath:2025/Day040_Corn/images/594.JPG": {
+        "bytes": 10583867,
+        "mtime_ns": 1791882730000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/608_depth.tif": {
+        "bytes": 2580816,
+        "mtime_ns": 1791882732000000000
+      },
+      "train:image_relpath:2025/Day040_Corn/images/608.JPG": {
+        "bytes": 12508549,
+        "mtime_ns": 1791882730000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/622_depth.tif": {
+        "bytes": 2915559,
+        "mtime_ns": 1791882733000000000
+      },
+      "train:image_relpath:2025/Day040_Corn/images/622.JPG": {
+        "bytes": 12046395,
+        "mtime_ns": 1791882732000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/636_depth.tif": {
+        "bytes": 2352953,
+        "mtime_ns": 1791882735000000000
+      },
+      "train:image_relpath:2025/Day040_Corn/images/636.JPG": {
+        "bytes": 12092365,
+        "mtime_ns": 1791882733000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/651_depth.tif": {
+        "bytes": 3076897,
+        "mtime_ns": 1791882735000000000
+      },
+      "train:image_relpath:2025/Day040_Corn/images/651.JPG": {
+        "bytes": 12362534,
+        "mtime_ns": 1791882734000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/667_depth.tif": {
+        "bytes": 2029017,
+        "mtime_ns": 1791882736000000000
+      },
+      "train:image_relpath:2025/Day040_Corn/images/667.JPG": {
+        "bytes": 11768394,
+        "mtime_ns": 1791882734000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/681_depth.tif": {
+        "bytes": 2442031,
+        "mtime_ns": 1791882736000000000
+      },
+      "train:image_relpath:2025/Day040_Corn/images/681.JPG": {
+        "bytes": 11869346,
+        "mtime_ns": 1791882735000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/695_depth.tif": {
+        "bytes": 2576655,
+        "mtime_ns": 1791882738000000000
+      },
+      "train:image_relpath:2025/Day040_Corn/images/695.JPG": {
+        "bytes": 12279137,
+        "mtime_ns": 1791882737000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/142_depth.tif": {
+        "bytes": 3537849,
+        "mtime_ns": 1791882740000000000
+      },
+      "train:image_relpath:2025/Day040_Corn/images/142.JPG": {
+        "bytes": 11933554,
+        "mtime_ns": 1791882738000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/203_depth.tif": {
+        "bytes": 3779952,
+        "mtime_ns": 1791882740000000000
+      },
+      "train:image_relpath:2025/Day040_Corn/images/203.JPG": {
+        "bytes": 12484701,
+        "mtime_ns": 1791882738000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/263_depth.tif": {
+        "bytes": 3898744,
+        "mtime_ns": 1791882740000000000
+      },
+      "train:image_relpath:2025/Day040_Corn/images/263.JPG": {
+        "bytes": 12941946,
+        "mtime_ns": 1791882738000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/324_depth.tif": {
+        "bytes": 3388593,
+        "mtime_ns": 1791882742000000000
+      },
+      "train:image_relpath:2025/Day040_Corn/images/324.JPG": {
+        "bytes": 13111285,
+        "mtime_ns": 1791882740000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/385_depth.tif": {
+        "bytes": 4259893,
+        "mtime_ns": 1791882743000000000
+      },
+      "train:image_relpath:2025/Day040_Corn/images/385.JPG": {
+        "bytes": 12655914,
+        "mtime_ns": 1791882741000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/445_depth.tif": {
+        "bytes": 3353060,
+        "mtime_ns": 1791882744000000000
+      },
+      "train:image_relpath:2025/Day040_Corn/images/445.JPG": {
+        "bytes": 13490988,
+        "mtime_ns": 1791882742000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/506_depth.tif": {
+        "bytes": 4127153,
+        "mtime_ns": 1791882744000000000
+      },
+      "train:image_relpath:2025/Day040_Corn/images/506.JPG": {
+        "bytes": 12520521,
+        "mtime_ns": 1791882742000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/567_depth.tif": {
+        "bytes": 3454976,
+        "mtime_ns": 1791882746000000000
+      },
+      "train:image_relpath:2025/Day040_Corn/images/567.JPG": {
+        "bytes": 11173798,
+        "mtime_ns": 1791882745000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/752_depth.tif": {
+        "bytes": 3993472,
+        "mtime_ns": 1791882746000000000
+      },
+      "train:image_relpath:2025/Day040_Corn/images/752.JPG": {
+        "bytes": 12468005,
+        "mtime_ns": 1791882744000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/813_depth.tif": {
+        "bytes": 3536770,
+        "mtime_ns": 1791882748000000000
+      },
+      "train:image_relpath:2025/Day040_Corn/images/813.JPG": {
+        "bytes": 12631180,
+        "mtime_ns": 1791882746000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/874_depth.tif": {
+        "bytes": 4091568,
+        "mtime_ns": 1791882748000000000
+      },
+      "train:image_relpath:2025/Day040_Corn/images/874.JPG": {
+        "bytes": 13240702,
+        "mtime_ns": 1791882746000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/934_depth.tif": {
+        "bytes": 3625845,
+        "mtime_ns": 1791882750000000000
+      },
+      "train:image_relpath:2025/Day040_Corn/images/934.JPG": {
+        "bytes": 13445324,
+        "mtime_ns": 1791882748000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/995_depth.tif": {
+        "bytes": 3776569,
+        "mtime_ns": 1791882750000000000
+      },
+      "train:image_relpath:2025/Day040_Corn/images/995.JPG": {
+        "bytes": 11532893,
+        "mtime_ns": 1791882748000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/1056_depth.tif": {
+        "bytes": 3375166,
+        "mtime_ns": 1791882751000000000
+      },
+      "train:image_relpath:2025/Day040_Corn/images/1056.JPG": {
+        "bytes": 10107668,
+        "mtime_ns": 1791882750000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/1116_depth.tif": {
+        "bytes": 4072212,
+        "mtime_ns": 1791882751000000000
+      },
+      "train:image_relpath:2025/Day040_Corn/images/1116.JPG": {
+        "bytes": 12009614,
+        "mtime_ns": 1791882750000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/1177_depth.tif": {
+        "bytes": 4146334,
+        "mtime_ns": 1791882754000000000
+      },
+      "train:image_relpath:2025/Day040_Corn/images/1177.JPG": {
+        "bytes": 12499034,
+        "mtime_ns": 1791882752000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/7_depth.tif": {
+        "bytes": 4280667,
+        "mtime_ns": 1791882754000000000
+      },
+      "train:image_relpath:2025/Day040_Oat/images/7.JPG": {
+        "bytes": 10027697,
+        "mtime_ns": 1791882752000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/19_depth.tif": {
+        "bytes": 3247708,
+        "mtime_ns": 1791882755000000000
+      },
+      "train:image_relpath:2025/Day040_Oat/images/19.JPG": {
+        "bytes": 10323475,
+        "mtime_ns": 1791882753000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/32_depth.tif": {
+        "bytes": 3352231,
+        "mtime_ns": 1791882755000000000
+      },
+      "train:image_relpath:2025/Day040_Oat/images/32.JPG": {
+        "bytes": 10015207,
+        "mtime_ns": 1791882753000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/45_depth.tif": {
+        "bytes": 3099704,
+        "mtime_ns": 1791882757000000000
+      },
+      "train:image_relpath:2025/Day040_Oat/images/45.JPG": {
+        "bytes": 10039374,
+        "mtime_ns": 1791882755000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/57_depth.tif": {
+        "bytes": 3359487,
+        "mtime_ns": 1791882757000000000
+      },
+      "train:image_relpath:2025/Day040_Oat/images/57.JPG": {
+        "bytes": 9918066,
+        "mtime_ns": 1791882756000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/70_depth.tif": {
+        "bytes": 3174641,
+        "mtime_ns": 1791882758000000000
+      },
+      "train:image_relpath:2025/Day040_Oat/images/70.JPG": {
+        "bytes": 9943322,
+        "mtime_ns": 1791882757000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/83_depth.tif": {
+        "bytes": 2546725,
+        "mtime_ns": 1791882760000000000
+      },
+      "train:image_relpath:2025/Day040_Oat/images/83.JPG": {
+        "bytes": 9747630,
+        "mtime_ns": 1791882757000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/286_depth.tif": {
+        "bytes": 2539692,
+        "mtime_ns": 1791882761000000000
+      },
+      "train:image_relpath:2025/Day040_Oat/images/286.JPG": {
+        "bytes": 9715520,
+        "mtime_ns": 1791882759000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/299_depth.tif": {
+        "bytes": 3224504,
+        "mtime_ns": 1791882761000000000
+      },
+      "train:image_relpath:2025/Day040_Oat/images/299.JPG": {
+        "bytes": 10007774,
+        "mtime_ns": 1791882760000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/311_depth.tif": {
+        "bytes": 3833837,
+        "mtime_ns": 1791882762000000000
+      },
+      "train:image_relpath:2025/Day040_Oat/images/311.JPG": {
+        "bytes": 9782858,
+        "mtime_ns": 1791882761000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/324_depth.tif": {
+        "bytes": 2913404,
+        "mtime_ns": 1791882763000000000
+      },
+      "train:image_relpath:2025/Day040_Oat/images/324.JPG": {
+        "bytes": 9718622,
+        "mtime_ns": 1791882762000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/337_depth.tif": {
+        "bytes": 4307734,
+        "mtime_ns": 1791882764000000000
+      },
+      "train:image_relpath:2025/Day040_Oat/images/337.JPG": {
+        "bytes": 9868260,
+        "mtime_ns": 1791882763000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/349_depth.tif": {
+        "bytes": 3089773,
+        "mtime_ns": 1791882764000000000
+      },
+      "train:image_relpath:2025/Day040_Oat/images/349.JPG": {
+        "bytes": 9498051,
+        "mtime_ns": 1791882763000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/362_depth.tif": {
+        "bytes": 4272420,
+        "mtime_ns": 1791882766000000000
+      },
+      "train:image_relpath:2025/Day040_Oat/images/362.JPG": {
+        "bytes": 10417637,
+        "mtime_ns": 1791882764000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/375_depth.tif": {
+        "bytes": 2993585,
+        "mtime_ns": 1791882767000000000
+      },
+      "train:image_relpath:2025/Day040_Oat/images/375.JPG": {
+        "bytes": 11421932,
+        "mtime_ns": 1791882765000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/387_depth.tif": {
+        "bytes": 3523758,
+        "mtime_ns": 1791882767000000000
+      },
+      "train:image_relpath:2025/Day040_Oat/images/387.JPG": {
+        "bytes": 9993822,
+        "mtime_ns": 1791882766000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/109_depth.tif": {
+        "bytes": 3737983,
+        "mtime_ns": 1791882768000000000
+      },
+      "train:image_relpath:2025/Day040_Oat/images/109.JPG": {
+        "bytes": 11455406,
+        "mtime_ns": 1791882766000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/137_depth.tif": {
+        "bytes": 3840801,
+        "mtime_ns": 1791882769000000000
+      },
+      "train:image_relpath:2025/Day040_Oat/images/137.JPG": {
+        "bytes": 9374951,
+        "mtime_ns": 1791882768000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/165_depth.tif": {
+        "bytes": 4139130,
+        "mtime_ns": 1791882771000000000
+      },
+      "train:image_relpath:2025/Day040_Oat/images/165.JPG": {
+        "bytes": 11628412,
+        "mtime_ns": 1791882769000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/193_depth.tif": {
+        "bytes": 3680720,
+        "mtime_ns": 1791882771000000000
+      },
+      "train:image_relpath:2025/Day040_Oat/images/193.JPG": {
+        "bytes": 11882859,
+        "mtime_ns": 1791882769000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/221_depth.tif": {
+        "bytes": 4333212,
+        "mtime_ns": 1791882771000000000
+      },
+      "train:image_relpath:2025/Day040_Oat/images/221.JPG": {
+        "bytes": 9813915,
+        "mtime_ns": 1791882770000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/249_depth.tif": {
+        "bytes": 4315210,
+        "mtime_ns": 1791882774000000000
+      },
+      "train:image_relpath:2025/Day040_Oat/images/249.JPG": {
+        "bytes": 12177245,
+        "mtime_ns": 1791882772000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/278_depth.tif": {
+        "bytes": 3206949,
+        "mtime_ns": 1791882774000000000
+      },
+      "train:image_relpath:2025/Day040_Oat/images/278.JPG": {
+        "bytes": 11993386,
+        "mtime_ns": 1791882772000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/414_depth.tif": {
+        "bytes": 3987594,
+        "mtime_ns": 1791882774000000000
+      },
+      "train:image_relpath:2025/Day040_Oat/images/414.JPG": {
+        "bytes": 9380168,
+        "mtime_ns": 1791882772000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/442_depth.tif": {
+        "bytes": 4255039,
+        "mtime_ns": 1791882775000000000
+      },
+      "train:image_relpath:2025/Day040_Oat/images/442.JPG": {
+        "bytes": 9403231,
+        "mtime_ns": 1791882773000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/470_depth.tif": {
+        "bytes": 4210344,
+        "mtime_ns": 1791882777000000000
+      },
+      "train:image_relpath:2025/Day040_Oat/images/470.JPG": {
+        "bytes": 11861583,
+        "mtime_ns": 1791882776000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/498_depth.tif": {
+        "bytes": 3485329,
+        "mtime_ns": 1791882777000000000
+      },
+      "train:image_relpath:2025/Day040_Oat/images/498.JPG": {
+        "bytes": 11831786,
+        "mtime_ns": 1791882776000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/526_depth.tif": {
+        "bytes": 4037904,
+        "mtime_ns": 1791882777000000000
+      },
+      "train:image_relpath:2025/Day040_Oat/images/526.JPG": {
+        "bytes": 11038571,
+        "mtime_ns": 1791882776000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/554_depth.tif": {
+        "bytes": 4103061,
+        "mtime_ns": 1791882778000000000
+      },
+      "train:image_relpath:2025/Day040_Oat/images/554.JPG": {
+        "bytes": 12227593,
+        "mtime_ns": 1791882776000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/582_depth.tif": {
+        "bytes": 3423045,
+        "mtime_ns": 1791882780000000000
+      },
+      "train:image_relpath:2025/Day040_Oat/images/582.JPG": {
+        "bytes": 9819651,
+        "mtime_ns": 1791882779000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/610_depth.tif": {
+        "bytes": 3539751,
+        "mtime_ns": 1791882781000000000
+      },
+      "train:image_relpath:2025/Day040_Oat/images/610.JPG": {
+        "bytes": 9501196,
+        "mtime_ns": 1791882779000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/638_depth.tif": {
+        "bytes": 3622132,
+        "mtime_ns": 1791882781000000000
+      },
+      "train:image_relpath:2025/Day040_Oat/images/638.JPG": {
+        "bytes": 11832251,
+        "mtime_ns": 1791882779000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/12_depth.tif": {
+        "bytes": 2580742,
+        "mtime_ns": 1791882783000000000
+      },
+      "train:image_relpath:2025/Day040_Wheat/images/12.JPG": {
+        "bytes": 13344446,
+        "mtime_ns": 1791882780000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/36_depth.tif": {
+        "bytes": 3300411,
+        "mtime_ns": 1791882784000000000
+      },
+      "train:image_relpath:2025/Day040_Wheat/images/36.JPG": {
+        "bytes": 13706560,
+        "mtime_ns": 1791882782000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/60_depth.tif": {
+        "bytes": 3160938,
+        "mtime_ns": 1791882785000000000
+      },
+      "train:image_relpath:2025/Day040_Wheat/images/60.JPG": {
+        "bytes": 14035691,
+        "mtime_ns": 1791882783000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/83_depth.tif": {
+        "bytes": 3420103,
+        "mtime_ns": 1791882784000000000
+      },
+      "train:image_relpath:2025/Day040_Wheat/images/83.JPG": {
+        "bytes": 13329066,
+        "mtime_ns": 1791882783000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/107_depth.tif": {
+        "bytes": 3193006,
+        "mtime_ns": 1791882787000000000
+      },
+      "train:image_relpath:2025/Day040_Wheat/images/107.JPG": {
+        "bytes": 13996034,
+        "mtime_ns": 1791882785000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/130_depth.tif": {
+        "bytes": 3593423,
+        "mtime_ns": 1791882788000000000
+      },
+      "train:image_relpath:2025/Day040_Wheat/images/130.JPG": {
+        "bytes": 13849102,
+        "mtime_ns": 1791882786000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/154_depth.tif": {
+        "bytes": 3021688,
+        "mtime_ns": 1791882789000000000
+      },
+      "train:image_relpath:2025/Day040_Wheat/images/154.JPG": {
+        "bytes": 13756197,
+        "mtime_ns": 1791882786000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/178_depth.tif": {
+        "bytes": 3096098,
+        "mtime_ns": 1791882789000000000
+      },
+      "train:image_relpath:2025/Day040_Wheat/images/178.JPG": {
+        "bytes": 13572663,
+        "mtime_ns": 1791882786000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/673_depth.tif": {
+        "bytes": 3798835,
+        "mtime_ns": 1791882791000000000
+      },
+      "train:image_relpath:2025/Day040_Wheat/images/673.JPG": {
+        "bytes": 13583951,
+        "mtime_ns": 1791882789000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/697_depth.tif": {
+        "bytes": 3328558,
+        "mtime_ns": 1791882792000000000
+      },
+      "train:image_relpath:2025/Day040_Wheat/images/697.JPG": {
+        "bytes": 13970837,
+        "mtime_ns": 1791882790000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/721_depth.tif": {
+        "bytes": 3275027,
+        "mtime_ns": 1791882792000000000
+      },
+      "train:image_relpath:2025/Day040_Wheat/images/721.JPG": {
+        "bytes": 14210450,
+        "mtime_ns": 1791882791000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/744_depth.tif": {
+        "bytes": 3126323,
+        "mtime_ns": 1791882793000000000
+      },
+      "train:image_relpath:2025/Day040_Wheat/images/744.JPG": {
+        "bytes": 14373777,
+        "mtime_ns": 1791882791000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/768_depth.tif": {
+        "bytes": 3173515,
+        "mtime_ns": 1791882795000000000
+      },
+      "train:image_relpath:2025/Day040_Wheat/images/768.JPG": {
+        "bytes": 13864072,
+        "mtime_ns": 1791882793000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/791_depth.tif": {
+        "bytes": 3155817,
+        "mtime_ns": 1791882796000000000
+      },
+      "train:image_relpath:2025/Day040_Wheat/images/791.JPG": {
+        "bytes": 14532469,
+        "mtime_ns": 1791882794000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/815_depth.tif": {
+        "bytes": 3444927,
+        "mtime_ns": 1791882796000000000
+      },
+      "train:image_relpath:2025/Day040_Wheat/images/815.JPG": {
+        "bytes": 14133952,
+        "mtime_ns": 1791882794000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/839_depth.tif": {
+        "bytes": 3442377,
+        "mtime_ns": 1791882797000000000
+      },
+      "train:image_relpath:2025/Day040_Wheat/images/839.JPG": {
+        "bytes": 14257878,
+        "mtime_ns": 1791882795000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/214_depth.tif": {
+        "bytes": 3930064,
+        "mtime_ns": 1791882799000000000
+      },
+      "train:image_relpath:2025/Day040_Wheat/images/214.JPG": {
+        "bytes": 13735918,
+        "mtime_ns": 1791882797000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/278_depth.tif": {
+        "bytes": 4351047,
+        "mtime_ns": 1791882800000000000
+      },
+      "train:image_relpath:2025/Day040_Wheat/images/278.JPG": {
+        "bytes": 13709997,
+        "mtime_ns": 1791882798000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/343_depth.tif": {
+        "bytes": 4415671,
+        "mtime_ns": 1791882801000000000
+      },
+      "train:image_relpath:2025/Day040_Wheat/images/343.JPG": {
+        "bytes": 13822710,
+        "mtime_ns": 1791882799000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/407_depth.tif": {
+        "bytes": 3997261,
+        "mtime_ns": 1791882800000000000
+      },
+      "train:image_relpath:2025/Day040_Wheat/images/407.JPG": {
+        "bytes": 13601752,
+        "mtime_ns": 1791882798000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/472_depth.tif": {
+        "bytes": 4094603,
+        "mtime_ns": 1791882803000000000
+      },
+      "train:image_relpath:2025/Day040_Wheat/images/472.JPG": {
+        "bytes": 13777368,
+        "mtime_ns": 1791882801000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/536_depth.tif": {
+        "bytes": 3598213,
+        "mtime_ns": 1791882803000000000
+      },
+      "train:image_relpath:2025/Day040_Wheat/images/536.JPG": {
+        "bytes": 12712718,
+        "mtime_ns": 1791882801000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/601_depth.tif": {
+        "bytes": 3547348,
+        "mtime_ns": 1791882804000000000
+      },
+      "train:image_relpath:2025/Day040_Wheat/images/601.JPG": {
+        "bytes": 14003728,
+        "mtime_ns": 1791882802000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/862_depth.tif": {
+        "bytes": 3947338,
+        "mtime_ns": 1791882804000000000
+      },
+      "train:image_relpath:2025/Day040_Wheat/images/862.JPG": {
+        "bytes": 13358629,
+        "mtime_ns": 1791882802000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/927_depth.tif": {
+        "bytes": 4389285,
+        "mtime_ns": 1791882807000000000
+      },
+      "train:image_relpath:2025/Day040_Wheat/images/927.JPG": {
+        "bytes": 13349404,
+        "mtime_ns": 1791882805000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/991_depth.tif": {
+        "bytes": 3276726,
+        "mtime_ns": 1791882807000000000
+      },
+      "train:image_relpath:2025/Day040_Wheat/images/991.JPG": {
+        "bytes": 13685687,
+        "mtime_ns": 1791882805000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/1056_depth.tif": {
+        "bytes": 4263929,
+        "mtime_ns": 1791882808000000000
+      },
+      "train:image_relpath:2025/Day040_Wheat/images/1056.JPG": {
+        "bytes": 13833722,
+        "mtime_ns": 1791882806000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/1120_depth.tif": {
+        "bytes": 3931210,
+        "mtime_ns": 1791882808000000000
+      },
+      "train:image_relpath:2025/Day040_Wheat/images/1120.JPG": {
+        "bytes": 13510616,
+        "mtime_ns": 1791882806000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/1185_depth.tif": {
+        "bytes": 3823019,
+        "mtime_ns": 1791882810000000000
+      },
+      "train:image_relpath:2025/Day040_Wheat/images/1185.JPG": {
+        "bytes": 14577545,
+        "mtime_ns": 1791882808000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/1249_depth.tif": {
+        "bytes": 3831651,
+        "mtime_ns": 1791882810000000000
+      },
+      "train:image_relpath:2025/Day040_Wheat/images/1249.JPG": {
+        "bytes": 14479625,
+        "mtime_ns": 1791882808000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/1314_depth.tif": {
+        "bytes": 4163235,
+        "mtime_ns": 1791882812000000000
+      },
+      "train:image_relpath:2025/Day040_Wheat/images/1314.JPG": {
+        "bytes": 13476878,
+        "mtime_ns": 1791882810000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/1378_depth.tif": {
+        "bytes": 4113446,
+        "mtime_ns": 1791882812000000000
+      },
+      "train:image_relpath:2025/Day040_Wheat/images/1378.JPG": {
+        "bytes": 13498648,
+        "mtime_ns": 1791882810000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/10_depth.tif": {
+        "bytes": 3776028,
+        "mtime_ns": 1791882814000000000
+      },
+      "train:image_relpath:2025/Day040_soybean/images/10.JPG": {
+        "bytes": 12182119,
+        "mtime_ns": 1791882812000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/28_depth.tif": {
+        "bytes": 3795758,
+        "mtime_ns": 1791882814000000000
+      },
+      "train:image_relpath:2025/Day040_soybean/images/28.JPG": {
+        "bytes": 12168057,
+        "mtime_ns": 1791882812000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/46_depth.tif": {
+        "bytes": 3348522,
+        "mtime_ns": 1791882815000000000
+      },
+      "train:image_relpath:2025/Day040_soybean/images/46.JPG": {
+        "bytes": 12055183,
+        "mtime_ns": 1791882813000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/65_depth.tif": {
+        "bytes": 2954066,
+        "mtime_ns": 1791882817000000000
+      },
+      "train:image_relpath:2025/Day040_soybean/images/65.JPG": {
+        "bytes": 12199745,
+        "mtime_ns": 1791882815000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/83_depth.tif": {
+        "bytes": 3080885,
+        "mtime_ns": 1791882817000000000
+      },
+      "train:image_relpath:2025/Day040_soybean/images/83.JPG": {
+        "bytes": 12348119,
+        "mtime_ns": 1791882816000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/101_depth.tif": {
+        "bytes": 2942250,
+        "mtime_ns": 1791882818000000000
+      },
+      "train:image_relpath:2025/Day040_soybean/images/101.JPG": {
+        "bytes": 12608451,
+        "mtime_ns": 1791882816000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/120_depth.tif": {
+        "bytes": 2950674,
+        "mtime_ns": 1791882820000000000
+      },
+      "train:image_relpath:2025/Day040_soybean/images/120.JPG": {
+        "bytes": 12234400,
+        "mtime_ns": 1791882817000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/138_depth.tif": {
+        "bytes": 2280307,
+        "mtime_ns": 1791882820000000000
+      },
+      "train:image_relpath:2025/Day040_soybean/images/138.JPG": {
+        "bytes": 12574764,
+        "mtime_ns": 1791882818000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/530_depth.tif": {
+        "bytes": 2383611,
+        "mtime_ns": 1791882821000000000
+      },
+      "train:image_relpath:2025/Day040_soybean/images/530.JPG": {
+        "bytes": 12251465,
+        "mtime_ns": 1791882819000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/548_depth.tif": {
+        "bytes": 2325443,
+        "mtime_ns": 1791882821000000000
+      },
+      "train:image_relpath:2025/Day040_soybean/images/548.JPG": {
+        "bytes": 10770998,
+        "mtime_ns": 1791882819000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/567_depth.tif": {
+        "bytes": 3123699,
+        "mtime_ns": 1791882824000000000
+      },
+      "train:image_relpath:2025/Day040_soybean/images/567.JPG": {
+        "bytes": 12478109,
+        "mtime_ns": 1791882822000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/585_depth.tif": {
+        "bytes": 2084081,
+        "mtime_ns": 1791882824000000000
+      },
+      "train:image_relpath:2025/Day040_soybean/images/585.JPG": {
+        "bytes": 12798853,
+        "mtime_ns": 1791882821000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/603_depth.tif": {
+        "bytes": 3020429,
+        "mtime_ns": 1791882825000000000
+      },
+      "train:image_relpath:2025/Day040_soybean/images/603.JPG": {
+        "bytes": 12227212,
+        "mtime_ns": 1791882823000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/622_depth.tif": {
+        "bytes": 2371767,
+        "mtime_ns": 1791882825000000000
+      },
+      "train:image_relpath:2025/Day040_soybean/images/622.JPG": {
+        "bytes": 12495970,
+        "mtime_ns": 1791882823000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/640_depth.tif": {
+        "bytes": 3707141,
+        "mtime_ns": 1791882827000000000
+      },
+      "train:image_relpath:2025/Day040_soybean/images/640.JPG": {
+        "bytes": 12287861,
+        "mtime_ns": 1791882826000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/658_depth.tif": {
+        "bytes": 400381,
+        "mtime_ns": 1791882827000000000
+      },
+      "train:image_relpath:2025/Day040_soybean/images/658.JPG": {
+        "bytes": 12115625,
+        "mtime_ns": 1791882826000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/169_depth.tif": {
+        "bytes": 4482201,
+        "mtime_ns": 1791882829000000000
+      },
+      "train:image_relpath:2025/Day040_soybean/images/169.JPG": {
+        "bytes": 13820441,
+        "mtime_ns": 1791882828000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/218_depth.tif": {
+        "bytes": 3184200,
+        "mtime_ns": 1791882829000000000
+      },
+      "train:image_relpath:2025/Day040_soybean/images/218.JPG": {
+        "bytes": 10964129,
+        "mtime_ns": 1791882827000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/268_depth.tif": {
+        "bytes": 3150114,
+        "mtime_ns": 1791882831000000000
+      },
+      "train:image_relpath:2025/Day040_soybean/images/268.JPG": {
+        "bytes": 13616215,
+        "mtime_ns": 1791882829000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/317_depth.tif": {
+        "bytes": 2413735,
+        "mtime_ns": 1791882832000000000
+      },
+      "train:image_relpath:2025/Day040_soybean/images/317.JPG": {
+        "bytes": 12788697,
+        "mtime_ns": 1791882829000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/366_depth.tif": {
+        "bytes": 3374403,
+        "mtime_ns": 1791882832000000000
+      },
+      "train:image_relpath:2025/Day040_soybean/images/366.JPG": {
+        "bytes": 10838031,
+        "mtime_ns": 1791882831000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/416_depth.tif": {
+        "bytes": 4199622,
+        "mtime_ns": 1791882833000000000
+      },
+      "train:image_relpath:2025/Day040_soybean/images/416.JPG": {
+        "bytes": 12851457,
+        "mtime_ns": 1791882831000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/465_depth.tif": {
+        "bytes": 3047363,
+        "mtime_ns": 1791882834000000000
+      },
+      "train:image_relpath:2025/Day040_soybean/images/465.JPG": {
+        "bytes": 14434771,
+        "mtime_ns": 1791882833000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/514_depth.tif": {
+        "bytes": 2776058,
+        "mtime_ns": 1791882835000000000
+      },
+      "train:image_relpath:2025/Day040_soybean/images/514.JPG": {
+        "bytes": 11726127,
+        "mtime_ns": 1791882833000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/713_depth.tif": {
+        "bytes": 3420739,
+        "mtime_ns": 1791882836000000000
+      },
+      "train:image_relpath:2025/Day040_soybean/images/713.JPG": {
+        "bytes": 12280681,
+        "mtime_ns": 1791882834000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/762_depth.tif": {
+        "bytes": 4022918,
+        "mtime_ns": 1791882837000000000
+      },
+      "train:image_relpath:2025/Day040_soybean/images/762.JPG": {
+        "bytes": 13093352,
+        "mtime_ns": 1791882835000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/811_depth.tif": {
+        "bytes": 3435738,
+        "mtime_ns": 1791882837000000000
+      },
+      "train:image_relpath:2025/Day040_soybean/images/811.JPG": {
+        "bytes": 12864312,
+        "mtime_ns": 1791882836000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/861_depth.tif": {
+        "bytes": 2627813,
+        "mtime_ns": 1791882839000000000
+      },
+      "train:image_relpath:2025/Day040_soybean/images/861.JPG": {
+        "bytes": 13495646,
+        "mtime_ns": 1791882837000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/910_depth.tif": {
+        "bytes": 4385360,
+        "mtime_ns": 1791882839000000000
+      },
+      "train:image_relpath:2025/Day040_soybean/images/910.JPG": {
+        "bytes": 13664955,
+        "mtime_ns": 1791882838000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/959_depth.tif": {
+        "bytes": 3700131,
+        "mtime_ns": 1791882841000000000
+      },
+      "train:image_relpath:2025/Day040_soybean/images/959.JPG": {
+        "bytes": 13043595,
+        "mtime_ns": 1791882839000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/1009_depth.tif": {
+        "bytes": 3616339,
+        "mtime_ns": 1791882840000000000
+      },
+      "train:image_relpath:2025/Day040_soybean/images/1009.JPG": {
+        "bytes": 11893177,
+        "mtime_ns": 1791882839000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/1058_depth.tif": {
+        "bytes": 3229777,
+        "mtime_ns": 1791882843000000000
+      },
+      "train:image_relpath:2025/Day040_soybean/images/1058.JPG": {
+        "bytes": 11552141,
+        "mtime_ns": 1791882841000000000
+      },
+      "validation:depth_relpath:2025/Day047_Corn_depth/7_depth.tif": {
+        "bytes": 3034504,
+        "mtime_ns": 1791882843000000000
+      },
+      "validation:image_relpath:2025/Day047_Corn/images/7.JPG": {
+        "bytes": 13271200,
+        "mtime_ns": 1791882841000000000
+      },
+      "validation:depth_relpath:2025/Day047_Corn_depth/20_depth.tif": {
+        "bytes": 3268215,
+        "mtime_ns": 1791882844000000000
+      },
+      "validation:image_relpath:2025/Day047_Corn/images/20.JPG": {
+        "bytes": 12191316,
+        "mtime_ns": 1791882842000000000
+      },
+      "validation:depth_relpath:2025/Day047_Corn_depth/34_depth.tif": {
+        "bytes": 2576304,
+        "mtime_ns": 1791882845000000000
+      },
+      "validation:image_relpath:2025/Day047_Corn/images/34.JPG": {
+        "bytes": 11542599,
+        "mtime_ns": 1791882843000000000
+      },
+      "validation:depth_relpath:2025/Day047_Corn_depth/55_depth.tif": {
+        "bytes": 1401923,
+        "mtime_ns": 1791882848000000000
+      },
+      "validation:image_relpath:2025/Day047_Corn/images/55.JPG": {
+        "bytes": 13340557,
+        "mtime_ns": 1791882845000000000
+      },
+      "validation:depth_relpath:2025/Day047_Corn_depth/73_depth.tif": {
+        "bytes": 2436764,
+        "mtime_ns": 1791882847000000000
+      },
+      "validation:image_relpath:2025/Day047_Corn/images/73.JPG": {
+        "bytes": 13143138,
+        "mtime_ns": 1791882845000000000
+      },
+      "validation:depth_relpath:2025/Day047_Corn_depth/86_depth.tif": {
+        "bytes": 2959639,
+        "mtime_ns": 1791882847000000000
+      },
+      "validation:image_relpath:2025/Day047_Corn/images/86.JPG": {
+        "bytes": 12458833,
+        "mtime_ns": 1791882846000000000
+      },
+      "validation:depth_relpath:2025/Day047_Corn_depth/100_depth.tif": {
+        "bytes": 2788181,
+        "mtime_ns": 1791882848000000000
+      },
+      "validation:image_relpath:2025/Day047_Corn/images/100.JPG": {
+        "bytes": 12397209,
+        "mtime_ns": 1791882846000000000
+      },
+      "validation:depth_relpath:2025/Day047_Corn_depth/576_depth.tif": {
+        "bytes": 2264850,
+        "mtime_ns": 1791882850000000000
+      },
+      "validation:image_relpath:2025/Day047_Corn/images/576.JPG": {
+        "bytes": 10824947,
+        "mtime_ns": 1791882848000000000
+      },
+      "validation:depth_relpath:2025/Day047_Corn_depth/589_depth.tif": {
+        "bytes": 2801079,
+        "mtime_ns": 1791882851000000000
+      },
+      "validation:image_relpath:2025/Day047_Corn/images/589.JPG": {
+        "bytes": 11593659,
+        "mtime_ns": 1791882849000000000
+      },
+      "validation:depth_relpath:2025/Day047_Corn_depth/602_depth.tif": {
+        "bytes": 2720156,
+        "mtime_ns": 1791882852000000000
+      },
+      "validation:image_relpath:2025/Day047_Corn/images/602.JPG": {
+        "bytes": 12536051,
+        "mtime_ns": 1791882850000000000
+      },
+      "validation:depth_relpath:2025/Day047_Corn_depth/616_depth.tif": {
+        "bytes": 1865823,
+        "mtime_ns": 1791882852000000000
+      },
+      "validation:image_relpath:2025/Day047_Corn/images/616.JPG": {
+        "bytes": 11795847,
+        "mtime_ns": 1791882850000000000
+      },
+      "validation:depth_relpath:2025/Day047_Corn_depth/631_depth.tif": {
+        "bytes": 2440646,
+        "mtime_ns": 1791882854000000000
+      },
+      "validation:image_relpath:2025/Day047_Corn/images/631.JPG": {
+        "bytes": 12043499,
+        "mtime_ns": 1791882852000000000
+      },
+      "validation:depth_relpath:2025/Day047_Corn_depth/648_depth.tif": {
+        "bytes": 3309685,
+        "mtime_ns": 1791882855000000000
+      },
+      "validation:image_relpath:2025/Day047_Corn/images/648.JPG": {
+        "bytes": 12749878,
+        "mtime_ns": 1791882853000000000
+      },
+      "validation:depth_relpath:2025/Day047_Corn_depth/665_depth.tif": {
+        "bytes": 3256985,
+        "mtime_ns": 1791882856000000000
+      },
+      "validation:image_relpath:2025/Day047_Corn/images/665.JPG": {
+        "bytes": 12625362,
+        "mtime_ns": 1791882854000000000
+      },
+      "validation:depth_relpath:2025/Day047_Corn_depth/680_depth.tif": {
+        "bytes": 3289892,
+        "mtime_ns": 1791882856000000000
+      },
+      "validation:image_relpath:2025/Day047_Corn/images/680.JPG": {
+        "bytes": 12266293,
+        "mtime_ns": 1791882854000000000
+      },
+      "validation:depth_relpath:2025/Day047_Corn_depth/693_depth.tif": {
+        "bytes": 2672122,
+        "mtime_ns": 1791882858000000000
+      },
+      "validation:image_relpath:2025/Day047_Corn/images/693.JPG": {
+        "bytes": 12634851,
+        "mtime_ns": 1791882856000000000
+      },
+      "validation:depth_relpath:2025/Day047_Corn_depth/143_depth.tif": {
+        "bytes": 3849184,
+        "mtime_ns": 1791882858000000000
+      },
+      "validation:image_relpath:2025/Day047_Corn/images/143.JPG": {
+        "bytes": 11891229,
+        "mtime_ns": 1791882857000000000
+      },
+      "validation:depth_relpath:2025/Day047_Corn_depth/203_depth.tif": {
+        "bytes": 4603020,
+        "mtime_ns": 1791882860000000000
+      },
+      "validation:image_relpath:2025/Day047_Corn/images/203.JPG": {
+        "bytes": 13134076,
+        "mtime_ns": 1791882858000000000
+      },
+      "validation:depth_relpath:2025/Day047_Corn_depth/264_depth.tif": {
+        "bytes": 4146093,
+        "mtime_ns": 1791882859000000000
+      },
+      "validation:image_relpath:2025/Day047_Corn/images/264.JPG": {
+        "bytes": 12984480,
+        "mtime_ns": 1791882858000000000
+      },
+      "validation:depth_relpath:2025/Day047_Corn_depth/324_depth.tif": {
+        "bytes": 3427116,
+        "mtime_ns": 1791882861000000000
+      },
+      "validation:image_relpath:2025/Day047_Corn/images/324.JPG": {
+        "bytes": 12902633,
+        "mtime_ns": 1791882860000000000
+      },
+      "validation:depth_relpath:2025/Day047_Corn_depth/385_depth.tif": {
+        "bytes": 4690370,
+        "mtime_ns": 1791882862000000000
+      },
+      "validation:image_relpath:2025/Day047_Corn/images/385.JPG": {
+        "bytes": 12430210,
+        "mtime_ns": 1791882860000000000
+      },
+      "validation:depth_relpath:2025/Day047_Corn_depth/445_depth.tif": {
+        "bytes": 3995565,
+        "mtime_ns": 1791882863000000000
+      },
+      "validation:image_relpath:2025/Day047_Corn/images/445.JPG": {
+        "bytes": 13359453,
+        "mtime_ns": 1791882862000000000
+      },
+      "validation:depth_relpath:2025/Day047_Corn_depth/506_depth.tif": {
+        "bytes": 4024320,
+        "mtime_ns": 1791882863000000000
+      },
+      "validation:image_relpath:2025/Day047_Corn/images/506.JPG": {
+        "bytes": 12698095,
+        "mtime_ns": 1791882862000000000
+      },
+      "validation:depth_relpath:2025/Day047_Corn_depth/566_depth.tif": {
+        "bytes": 3968228,
+        "mtime_ns": 1791882864000000000
+      },
+      "validation:image_relpath:2025/Day047_Corn/images/566.JPG": {
+        "bytes": 11888287,
+        "mtime_ns": 1791882863000000000
+      },
+      "validation:depth_relpath:2025/Day047_Corn_depth/751_depth.tif": {
+        "bytes": 4232297,
+        "mtime_ns": 1791882866000000000
+      },
+      "validation:image_relpath:2025/Day047_Corn/images/751.JPG": {
+        "bytes": 12212523,
+        "mtime_ns": 1791882864000000000
+      },
+      "validation:depth_relpath:2025/Day047_Corn_depth/811_depth.tif": {
+        "bytes": 4084904,
+        "mtime_ns": 1791882866000000000
+      },
+      "validation:image_relpath:2025/Day047_Corn/images/811.JPG": {
+        "bytes": 12260130,
+        "mtime_ns": 1791882865000000000
+      },
+      "validation:depth_relpath:2025/Day047_Corn_depth/872_depth.tif": {
+        "bytes": 4365208,
+        "mtime_ns": 1791882867000000000
+      },
+      "validation:image_relpath:2025/Day047_Corn/images/872.JPG": {
+        "bytes": 12959977,
+        "mtime_ns": 1791882865000000000
+      },
+      "validation:depth_relpath:2025/Day047_Corn_depth/932_depth.tif": {
+        "bytes": 4088518,
+        "mtime_ns": 1791882868000000000
+      },
+      "validation:image_relpath:2025/Day047_Corn/images/932.JPG": {
+        "bytes": 13480074,
+        "mtime_ns": 1791882866000000000
+      },
+      "validation:depth_relpath:2025/Day047_Corn_depth/993_depth.tif": {
+        "bytes": 4016685,
+        "mtime_ns": 1791882869000000000
+      },
+      "validation:image_relpath:2025/Day047_Corn/images/993.JPG": {
+        "bytes": 12156255,
+        "mtime_ns": 1791882868000000000
+      },
+      "validation:depth_relpath:2025/Day047_Corn_depth/1053_depth.tif": {
+        "bytes": 3094536,
+        "mtime_ns": 1791882870000000000
+      },
+      "validation:image_relpath:2025/Day047_Corn/images/1053.JPG": {
+        "bytes": 9795454,
+        "mtime_ns": 1791882868000000000
+      },
+      "validation:depth_relpath:2025/Day047_Corn_depth/1114_depth.tif": {
+        "bytes": 4346936,
+        "mtime_ns": 1791882872000000000
+      },
+      "validation:image_relpath:2025/Day047_Corn/images/1114.JPG": {
+        "bytes": 12687812,
+        "mtime_ns": 1791882870000000000
+      },
+      "validation:depth_relpath:2025/Day047_Corn_depth/1174_depth.tif": {
+        "bytes": 4482101,
+        "mtime_ns": 1791882872000000000
+      },
+      "validation:image_relpath:2025/Day047_Corn/images/1174.JPG": {
+        "bytes": 13243489,
+        "mtime_ns": 1791882870000000000
+      },
+      "validation:depth_relpath:2025/Day047_Oat_depth/7_depth.tif": {
+        "bytes": 3705941,
+        "mtime_ns": 1791882874000000000
+      },
+      "validation:image_relpath:2025/Day047_Oat/images/7.JPG": {
+        "bytes": 12640756,
+        "mtime_ns": 1791882872000000000
+      },
+      "validation:depth_relpath:2025/Day047_Oat_depth/19_depth.tif": {
+        "bytes": 3102502,
+        "mtime_ns": 1791882874000000000
+      },
+      "validation:image_relpath:2025/Day047_Oat/images/19.JPG": {
+        "bytes": 13140739,
+        "mtime_ns": 1791882872000000000
+      },
+      "validation:depth_relpath:2025/Day047_Oat_depth/32_depth.tif": {
+        "bytes": 3290108,
+        "mtime_ns": 1791882876000000000
+      },
+      "validation:image_relpath:2025/Day047_Oat/images/32.JPG": {
+        "bytes": 13221458,
+        "mtime_ns": 1791882874000000000
+      },
+      "validation:depth_relpath:2025/Day047_Oat_depth/44_depth.tif": {
+        "bytes": 3101625,
+        "mtime_ns": 1791882876000000000
+      },
+      "validation:image_relpath:2025/Day047_Oat/images/44.JPG": {
+        "bytes": 13345442,
+        "mtime_ns": 1791882874000000000
+      },
+      "validation:depth_relpath:2025/Day047_Oat_depth/57_depth.tif": {
+        "bytes": 3695929,
+        "mtime_ns": 1791882877000000000
+      },
+      "validation:image_relpath:2025/Day047_Oat/images/57.JPG": {
+        "bytes": 13891042,
+        "mtime_ns": 1791882876000000000
+      },
+      "validation:depth_relpath:2025/Day047_Oat_depth/70_depth.tif": {
+        "bytes": 3283418,
+        "mtime_ns": 1791882877000000000
+      },
+      "validation:image_relpath:2025/Day047_Oat/images/70.JPG": {
+        "bytes": 13781289,
+        "mtime_ns": 1791882875000000000
+      },
+      "validation:depth_relpath:2025/Day047_Oat_depth/82_depth.tif": {
+        "bytes": 2796940,
+        "mtime_ns": 1791882879000000000
+      },
+      "validation:image_relpath:2025/Day047_Oat/images/82.JPG": {
+        "bytes": 13833130,
+        "mtime_ns": 1791882877000000000
+      },
+      "validation:depth_relpath:2025/Day047_Oat_depth/317_depth.tif": {
+        "bytes": 2670975,
+        "mtime_ns": 1791882880000000000
+      },
+      "validation:image_relpath:2025/Day047_Oat/images/317.JPG": {
+        "bytes": 13561663,
+        "mtime_ns": 1791882878000000000
+      },
+      "validation:depth_relpath:2025/Day047_Oat_depth/329_depth.tif": {
+        "bytes": 3668110,
+        "mtime_ns": 1791882880000000000
+      },
+      "validation:image_relpath:2025/Day047_Oat/images/329.JPG": {
+        "bytes": 13819212,
+        "mtime_ns": 1791882878000000000
+      },
+      "validation:depth_relpath:2025/Day047_Oat_depth/342_depth.tif": {
+        "bytes": 3429512,
+        "mtime_ns": 1791882880000000000
+      },
+      "validation:image_relpath:2025/Day047_Oat/images/342.JPG": {
+        "bytes": 13260646,
+        "mtime_ns": 1791882879000000000
+      },
+      "validation:depth_relpath:2025/Day047_Oat_depth/354_depth.tif": {
+        "bytes": 2989893,
+        "mtime_ns": 1791882882000000000
+      },
+      "validation:image_relpath:2025/Day047_Oat/images/354.JPG": {
+        "bytes": 13883310,
+        "mtime_ns": 1791882881000000000
+      },
+      "validation:depth_relpath:2025/Day047_Oat_depth/367_depth.tif": {
+        "bytes": 3556164,
+        "mtime_ns": 1791882883000000000
+      },
+      "validation:image_relpath:2025/Day047_Oat/images/367.JPG": {
+        "bytes": 12581945,
+        "mtime_ns": 1791882882000000000
+      },
+      "validation:depth_relpath:2025/Day047_Oat_depth/380_depth.tif": {
+        "bytes": 2747244,
+        "mtime_ns": 1791882883000000000
+      },
+      "validation:image_relpath:2025/Day047_Oat/images/380.JPG": {
+        "bytes": 13697794,
+        "mtime_ns": 1791882882000000000
+      },
+      "validation:depth_relpath:2025/Day047_Oat_depth/392_depth.tif": {
+        "bytes": 3794111,
+        "mtime_ns": 1791882884000000000
+      },
+      "validation:image_relpath:2025/Day047_Oat/images/392.JPG": {
+        "bytes": 12480913,
+        "mtime_ns": 1791882882000000000
+      },
+      "validation:depth_relpath:2025/Day047_Oat_depth/405_depth.tif": {
+        "bytes": 3500132,
+        "mtime_ns": 1791882886000000000
+      },
+      "validation:image_relpath:2025/Day047_Oat/images/405.JPG": {
+        "bytes": 9790447,
+        "mtime_ns": 1791882884000000000
+      },
+      "validation:depth_relpath:2025/Day047_Oat_depth/417_depth.tif": {
+        "bytes": 3453740,
+        "mtime_ns": 1791882887000000000
+      },
+      "validation:image_relpath:2025/Day047_Oat/images/417.JPG": {
+        "bytes": 11508701,
+        "mtime_ns": 1791882886000000000
+      },
+      "validation:depth_relpath:2025/Day047_Oat_depth/110_depth.tif": {
+        "bytes": 3982337,
+        "mtime_ns": 1791882888000000000
+      },
+      "validation:image_relpath:2025/Day047_Oat/images/110.JPG": {
+        "bytes": 11714097,
+        "mtime_ns": 1791882886000000000
+      },
+      "validation:depth_relpath:2025/Day047_Oat_depth/140_depth.tif": {
+        "bytes": 3509098,
+        "mtime_ns": 1791882888000000000
+      },
+      "validation:image_relpath:2025/Day047_Oat/images/140.JPG": {
+        "bytes": 12334710,
+        "mtime_ns": 1791882886000000000
+      },
+      "validation:depth_relpath:2025/Day047_Oat_depth/170_depth.tif": {
+        "bytes": 3559562,
+        "mtime_ns": 1791882890000000000
+      },
+      "validation:image_relpath:2025/Day047_Oat/images/170.JPG": {
+        "bytes": 11541015,
+        "mtime_ns": 1791882888000000000
+      },
+      "validation:depth_relpath:2025/Day047_Oat_depth/200_depth.tif": {
+        "bytes": 4056818,
+        "mtime_ns": 1791882891000000000
+      },
+      "validation:image_relpath:2025/Day047_Oat/images/200.JPG": {
+        "bytes": 10612996,
+        "mtime_ns": 1791882889000000000
+      },
+      "validation:depth_relpath:2025/Day047_Oat_depth/230_depth.tif": {
+        "bytes": 3934797,
+        "mtime_ns": 1791882892000000000
+      },
+      "validation:image_relpath:2025/Day047_Oat/images/230.JPG": {
+        "bytes": 10996893,
+        "mtime_ns": 1791882890000000000
+      },
+      "validation:depth_relpath:2025/Day047_Oat_depth/260_depth.tif": {
+        "bytes": 3660421,
+        "mtime_ns": 1791882892000000000
+      },
+      "validation:image_relpath:2025/Day047_Oat/images/260.JPG": {
+        "bytes": 11177552,
+        "mtime_ns": 1791882890000000000
+      },
+      "validation:depth_relpath:2025/Day047_Oat_depth/290_depth.tif": {
+        "bytes": 3806002,
+        "mtime_ns": 1791882893000000000
+      },
+      "validation:image_relpath:2025/Day047_Oat/images/290.JPG": {
+        "bytes": 13020743,
+        "mtime_ns": 1791882892000000000
+      },
+      "validation:depth_relpath:2025/Day047_Oat_depth/427_depth.tif": {
+        "bytes": 3788053,
+        "mtime_ns": 1791882894000000000
+      },
+      "validation:image_relpath:2025/Day047_Oat/images/427.JPG": {
+        "bytes": 12158403,
+        "mtime_ns": 1791882892000000000
+      },
+      "validation:depth_relpath:2025/Day047_Oat_depth/458_depth.tif": {
+        "bytes": 4055882,
+        "mtime_ns": 1791882895000000000
+      },
+      "validation:image_relpath:2025/Day047_Oat/images/458.JPG": {
+        "bytes": 12230095,
+        "mtime_ns": 1791882894000000000
+      },
+      "validation:depth_relpath:2025/Day047_Oat_depth/488_depth.tif": {
+        "bytes": 3513484,
+        "mtime_ns": 1791882896000000000
+      },
+      "validation:image_relpath:2025/Day047_Oat/images/488.JPG": {
+        "bytes": 12268445,
+        "mtime_ns": 1791882894000000000
+      },
+      "validation:depth_relpath:2025/Day047_Oat_depth/518_depth.tif": {
+        "bytes": 4122334,
+        "mtime_ns": 1791882896000000000
+      },
+      "validation:image_relpath:2025/Day047_Oat/images/518.JPG": {
+        "bytes": 12601312,
+        "mtime_ns": 1791882895000000000
+      },
+      "validation:depth_relpath:2025/Day047_Oat_depth/548_depth.tif": {
+        "bytes": 3573310,
+        "mtime_ns": 1791882897000000000
+      },
+      "validation:image_relpath:2025/Day047_Oat/images/548.JPG": {
+        "bytes": 12660435,
+        "mtime_ns": 1791882895000000000
+      },
+      "validation:depth_relpath:2025/Day047_Oat_depth/578_depth.tif": {
+        "bytes": 4100149,
+        "mtime_ns": 1791882899000000000
+      },
+      "validation:image_relpath:2025/Day047_Oat/images/578.JPG": {
+        "bytes": 12115244,
+        "mtime_ns": 1791882897000000000
+      },
+      "validation:depth_relpath:2025/Day047_Oat_depth/608_depth.tif": {
+        "bytes": 3737693,
+        "mtime_ns": 1791882900000000000
+      },
+      "validation:image_relpath:2025/Day047_Oat/images/608.JPG": {
+        "bytes": 12987409,
+        "mtime_ns": 1791882898000000000
+      },
+      "validation:depth_relpath:2025/Day047_Oat_depth/638_depth.tif": {
+        "bytes": 4068896,
+        "mtime_ns": 1791882900000000000
+      },
+      "validation:image_relpath:2025/Day047_Oat/images/638.JPG": {
+        "bytes": 12354447,
+        "mtime_ns": 1791882898000000000
+      },
+      "validation:depth_relpath:2025/Day047_Oat_depth/668_depth.tif": {
+        "bytes": 4065849,
+        "mtime_ns": 1791882900000000000
+      },
+      "validation:image_relpath:2025/Day047_Oat/images/668.JPG": {
+        "bytes": 12256166,
+        "mtime_ns": 1791882899000000000
+      },
+      "validation:depth_relpath:2025/Day047_Wheat_depth/12_depth.tif": {
+        "bytes": 2840370,
+        "mtime_ns": 1791882903000000000
+      },
+      "validation:image_relpath:2025/Day047_Wheat/images/12.JPG": {
+        "bytes": 13386087,
+        "mtime_ns": 1791882902000000000
+      },
+      "validation:depth_relpath:2025/Day047_Wheat_depth/36_depth.tif": {
+        "bytes": 3838967,
+        "mtime_ns": 1791882904000000000
+      },
+      "validation:image_relpath:2025/Day047_Wheat/images/36.JPG": {
+        "bytes": 13732008,
+        "mtime_ns": 1791882902000000000
+      },
+      "validation:depth_relpath:2025/Day047_Wheat_depth/59_depth.tif": {
+        "bytes": 3719906,
+        "mtime_ns": 1791882904000000000
+      },
+      "validation:image_relpath:2025/Day047_Wheat/images/59.JPG": {
+        "bytes": 13437244,
+        "mtime_ns": 1791882902000000000
+      },
+      "validation:depth_relpath:2025/Day047_Wheat_depth/83_depth.tif": {
+        "bytes": 3625736,
+        "mtime_ns": 1791882904000000000
+      },
+      "validation:image_relpath:2025/Day047_Wheat/images/83.JPG": {
+        "bytes": 13732088,
+        "mtime_ns": 1791882902000000000
+      },
+      "validation:depth_relpath:2025/Day047_Wheat_depth/106_depth.tif": {
+        "bytes": 3564140,
+        "mtime_ns": 1791882907000000000
+      },
+      "validation:image_relpath:2025/Day047_Wheat/images/106.JPG": {
+        "bytes": 13181867,
+        "mtime_ns": 1791882905000000000
+      },
+      "validation:depth_relpath:2025/Day047_Wheat_depth/130_depth.tif": {
+        "bytes": 3375615,
+        "mtime_ns": 1791882907000000000
+      },
+      "validation:image_relpath:2025/Day047_Wheat/images/130.JPG": {
+        "bytes": 13868694,
+        "mtime_ns": 1791882905000000000
+      },
+      "validation:depth_relpath:2025/Day047_Wheat_depth/153_depth.tif": {
+        "bytes": 3052393,
+        "mtime_ns": 1791882907000000000
+      },
+      "validation:image_relpath:2025/Day047_Wheat/images/153.JPG": {
+        "bytes": 13172016,
+        "mtime_ns": 1791882906000000000
+      },
+      "validation:depth_relpath:2025/Day047_Wheat_depth/177_depth.tif": {
+        "bytes": 3279987,
+        "mtime_ns": 1791882908000000000
+      },
+      "validation:image_relpath:2025/Day047_Wheat/images/177.JPG": {
+        "bytes": 13631782,
+        "mtime_ns": 1791882906000000000
+      },
+      "validation:depth_relpath:2025/Day047_Wheat_depth/675_depth.tif": {
+        "bytes": 3644955,
+        "mtime_ns": 1791882911000000000
+      },
+      "validation:image_relpath:2025/Day047_Wheat/images/675.JPG": {
+        "bytes": 13506560,
+        "mtime_ns": 1791882909000000000
+      },
+      "validation:depth_relpath:2025/Day047_Wheat_depth/699_depth.tif": {
+        "bytes": 3918910,
+        "mtime_ns": 1791882911000000000
+      },
+      "validation:image_relpath:2025/Day047_Wheat/images/699.JPG": {
+        "bytes": 13722529,
+        "mtime_ns": 1791882909000000000
+      },
+      "validation:depth_relpath:2025/Day047_Wheat_depth/722_depth.tif": {
+        "bytes": 3527987,
+        "mtime_ns": 1791882911000000000
+      },
+      "validation:image_relpath:2025/Day047_Wheat/images/722.JPG": {
+        "bytes": 14045519,
+        "mtime_ns": 1791882910000000000
+      },
+      "validation:depth_relpath:2025/Day047_Wheat_depth/746_depth.tif": {
+        "bytes": 3719858,
+        "mtime_ns": 1791882911000000000
+      },
+      "validation:image_relpath:2025/Day047_Wheat/images/746.JPG": {
+        "bytes": 13900705,
+        "mtime_ns": 1791882910000000000
+      },
+      "validation:depth_relpath:2025/Day047_Wheat_depth/769_depth.tif": {
+        "bytes": 3796913,
+        "mtime_ns": 1791882915000000000
+      },
+      "validation:image_relpath:2025/Day047_Wheat/images/769.JPG": {
+        "bytes": 13747946,
+        "mtime_ns": 1791882913000000000
+      },
+      "validation:depth_relpath:2025/Day047_Wheat_depth/793_depth.tif": {
+        "bytes": 3713712,
+        "mtime_ns": 1791882916000000000
+      },
+      "validation:image_relpath:2025/Day047_Wheat/images/793.JPG": {
+        "bytes": 14420812,
+        "mtime_ns": 1791882914000000000
+      },
+      "validation:depth_relpath:2025/Day047_Wheat_depth/816_depth.tif": {
+        "bytes": 3341254,
+        "mtime_ns": 1791882916000000000
+      },
+      "validation:image_relpath:2025/Day047_Wheat/images/816.JPG": {
+        "bytes": 14025796,
+        "mtime_ns": 1791882914000000000
+      },
+      "validation:depth_relpath:2025/Day047_Wheat_depth/840_depth.tif": {
+        "bytes": 3832063,
+        "mtime_ns": 1791882916000000000
+      },
+      "validation:image_relpath:2025/Day047_Wheat/images/840.JPG": {
+        "bytes": 14427692,
+        "mtime_ns": 1791882914000000000
+      },
+      "validation:depth_relpath:2025/Day047_Wheat_depth/212_depth.tif": {
+        "bytes": 3941037,
+        "mtime_ns": 1791882919000000000
+      },
+      "validation:image_relpath:2025/Day047_Wheat/images/212.JPG": {
+        "bytes": 12923751,
+        "mtime_ns": 1791882917000000000
+      },
+      "validation:depth_relpath:2025/Day047_Wheat_depth/277_depth.tif": {
+        "bytes": 4367891,
+        "mtime_ns": 1791882919000000000
+      },
+      "validation:image_relpath:2025/Day047_Wheat/images/277.JPG": {
+        "bytes": 12938572,
+        "mtime_ns": 1791882918000000000
+      },
+      "validation:depth_relpath:2025/Day047_Wheat_depth/342_depth.tif": {
+        "bytes": 4503032,
+        "mtime_ns": 1791882920000000000
+      },
+      "validation:image_relpath:2025/Day047_Wheat/images/342.JPG": {
+        "bytes": 12984760,
+        "mtime_ns": 1791882918000000000
+      },
+      "validation:depth_relpath:2025/Day047_Wheat_depth/407_depth.tif": {
+        "bytes": 4237177,
+        "mtime_ns": 1791882920000000000
+      },
+      "validation:image_relpath:2025/Day047_Wheat/images/407.JPG": {
+        "bytes": 12867579,
+        "mtime_ns": 1791882918000000000
+      },
+      "validation:depth_relpath:2025/Day047_Wheat_depth/472_depth.tif": {
+        "bytes": 4120855,
+        "mtime_ns": 1791882922000000000
+      },
+      "validation:image_relpath:2025/Day047_Wheat/images/472.JPG": {
+        "bytes": 12878915,
+        "mtime_ns": 1791882921000000000
+      },
+      "validation:depth_relpath:2025/Day047_Wheat_depth/537_depth.tif": {
+        "bytes": 3285332,
+        "mtime_ns": 1791882923000000000
+      },
+      "validation:image_relpath:2025/Day047_Wheat/images/537.JPG": {
+        "bytes": 12085456,
+        "mtime_ns": 1791882921000000000
+      },
+      "validation:depth_relpath:2025/Day047_Wheat_depth/602_depth.tif": {
+        "bytes": 3675312,
+        "mtime_ns": 1791882923000000000
+      },
+      "validation:image_relpath:2025/Day047_Wheat/images/602.JPG": {
+        "bytes": 12238458,
+        "mtime_ns": 1791882922000000000
+      },
+      "validation:depth_relpath:2025/Day047_Wheat_depth/864_depth.tif": {
+        "bytes": 3927305,
+        "mtime_ns": 1791882923000000000
+      },
+      "validation:image_relpath:2025/Day047_Wheat/images/864.JPG": {
+        "bytes": 12656294,
+        "mtime_ns": 1791882921000000000
+      },
+      "validation:depth_relpath:2025/Day047_Wheat_depth/928_depth.tif": {
+        "bytes": 4355528,
+        "mtime_ns": 1791882926000000000
+      },
+      "validation:image_relpath:2025/Day047_Wheat/images/928.JPG": {
+        "bytes": 13227393,
+        "mtime_ns": 1791882924000000000
+      },
+      "validation:depth_relpath:2025/Day047_Wheat_depth/993_depth.tif": {
+        "bytes": 3448390,
+        "mtime_ns": 1791882927000000000
+      },
+      "validation:image_relpath:2025/Day047_Wheat/images/993.JPG": {
+        "bytes": 13082157,
+        "mtime_ns": 1791882925000000000
+      },
+      "validation:depth_relpath:2025/Day047_Wheat_depth/1058_depth.tif": {
+        "bytes": 4251063,
+        "mtime_ns": 1791882926000000000
+      },
+      "validation:image_relpath:2025/Day047_Wheat/images/1058.JPG": {
+        "bytes": 12976592,
+        "mtime_ns": 1791882924000000000
+      },
+      "validation:depth_relpath:2025/Day047_Wheat_depth/1123_depth.tif": {
+        "bytes": 3906250,
+        "mtime_ns": 1791882927000000000
+      },
+      "validation:image_relpath:2025/Day047_Wheat/images/1123.JPG": {
+        "bytes": 12832258,
+        "mtime_ns": 1791882925000000000
+      },
+      "validation:depth_relpath:2025/Day047_Wheat_depth/1188_depth.tif": {
+        "bytes": 3879208,
+        "mtime_ns": 1791882930000000000
+      },
+      "validation:image_relpath:2025/Day047_Wheat/images/1188.JPG": {
+        "bytes": 13617851,
+        "mtime_ns": 1791882928000000000
+      },
+      "validation:depth_relpath:2025/Day047_Wheat_depth/1253_depth.tif": {
+        "bytes": 3808169,
+        "mtime_ns": 1791882930000000000
+      },
+      "validation:image_relpath:2025/Day047_Wheat/images/1253.JPG": {
+        "bytes": 13579564,
+        "mtime_ns": 1791882928000000000
+      },
+      "validation:depth_relpath:2025/Day047_Wheat_depth/1318_depth.tif": {
+        "bytes": 4136628,
+        "mtime_ns": 1791882931000000000
+      },
+      "validation:image_relpath:2025/Day047_Wheat/images/1318.JPG": {
+        "bytes": 13179934,
+        "mtime_ns": 1791882929000000000
+      },
+      "validation:depth_relpath:2025/Day047_Wheat_depth/1383_depth.tif": {
+        "bytes": 4251611,
+        "mtime_ns": 1791882931000000000
+      },
+      "validation:image_relpath:2025/Day047_Wheat/images/1383.JPG": {
+        "bytes": 12841038,
+        "mtime_ns": 1791882929000000000
+      },
+      "validation:depth_relpath:2025/Day047_soybean_depth/10_depth.tif": {
+        "bytes": 3903146,
+        "mtime_ns": 1791882934000000000
+      },
+      "validation:image_relpath:2025/Day047_soybean/images/10.JPG": {
+        "bytes": 12186675,
+        "mtime_ns": 1791882932000000000
+      },
+      "validation:depth_relpath:2025/Day047_soybean_depth/28_depth.tif": {
+        "bytes": 4016613,
+        "mtime_ns": 1791882934000000000
+      },
+      "validation:image_relpath:2025/Day047_soybean/images/28.JPG": {
+        "bytes": 12569253,
+        "mtime_ns": 1791882932000000000
+      },
+      "validation:depth_relpath:2025/Day047_soybean_depth/46_depth.tif": {
+        "bytes": 3547495,
+        "mtime_ns": 1791882935000000000
+      },
+      "validation:image_relpath:2025/Day047_soybean/images/46.JPG": {
+        "bytes": 12717013,
+        "mtime_ns": 1791882933000000000
+      },
+      "validation:depth_relpath:2025/Day047_soybean_depth/64_depth.tif": {
+        "bytes": 3473680,
+        "mtime_ns": 1791882935000000000
+      },
+      "validation:image_relpath:2025/Day047_soybean/images/64.JPG": {
+        "bytes": 13514008,
+        "mtime_ns": 1791882933000000000
+      },
+      "validation:depth_relpath:2025/Day047_soybean_depth/83_depth.tif": {
+        "bytes": 3285371,
+        "mtime_ns": 1791882937000000000
+      },
+      "validation:image_relpath:2025/Day047_soybean/images/83.JPG": {
+        "bytes": 13248630,
+        "mtime_ns": 1791882935000000000
+      },
+      "validation:depth_relpath:2025/Day047_soybean_depth/101_depth.tif": {
+        "bytes": 1055118,
+        "mtime_ns": 1791882939000000000
+      },
+      "validation:image_relpath:2025/Day047_soybean/images/101.JPG": {
+        "bytes": 13828530,
+        "mtime_ns": 1791882937000000000
+      },
+      "validation:depth_relpath:2025/Day047_soybean_depth/119_depth.tif": {
+        "bytes": 3752690,
+        "mtime_ns": 1791882938000000000
+      },
+      "validation:image_relpath:2025/Day047_soybean/images/119.JPG": {
+        "bytes": 13248480,
+        "mtime_ns": 1791882937000000000
+      },
+      "validation:depth_relpath:2025/Day047_soybean_depth/137_depth.tif": {
+        "bytes": 2750286,
+        "mtime_ns": 1791882938000000000
+      },
+      "validation:image_relpath:2025/Day047_soybean/images/137.JPG": {
+        "bytes": 13923630,
+        "mtime_ns": 1791882937000000000
+      },
+      "validation:depth_relpath:2025/Day047_soybean_depth/530_depth.tif": {
+        "bytes": 3047302,
+        "mtime_ns": 1791882941000000000
+      },
+      "validation:image_relpath:2025/Day047_soybean/images/530.JPG": {
+        "bytes": 12775572,
+        "mtime_ns": 1791882939000000000
+      },
+      "validation:depth_relpath:2025/Day047_soybean_depth/548_depth.tif": {
+        "bytes": 3083381,
+        "mtime_ns": 1791882942000000000
+      },
+      "validation:image_relpath:2025/Day047_soybean/images/548.JPG": {
+        "bytes": 11619171,
+        "mtime_ns": 1791882940000000000
+      },
+      "validation:depth_relpath:2025/Day047_soybean_depth/566_depth.tif": {
+        "bytes": 6351177,
+        "mtime_ns": 1791882942000000000
+      },
+      "validation:image_relpath:2025/Day047_soybean/images/566.JPG": {
+        "bytes": 13431595,
+        "mtime_ns": 1791882940000000000
+      },
+      "validation:depth_relpath:2025/Day047_soybean_depth/584_depth.tif": {
+        "bytes": 1672439,
+        "mtime_ns": 1791882942000000000
+      },
+      "validation:image_relpath:2025/Day047_soybean/images/584.JPG": {
+        "bytes": 13549716,
+        "mtime_ns": 1791882940000000000
+      },
+      "validation:depth_relpath:2025/Day047_soybean_depth/603_depth.tif": {
+        "bytes": 3513129,
+        "mtime_ns": 1791882945000000000
+      },
+      "validation:image_relpath:2025/Day047_soybean/images/603.JPG": {
+        "bytes": 13276569,
+        "mtime_ns": 1791882943000000000
+      },
+      "validation:depth_relpath:2025/Day047_soybean_depth/621_depth.tif": {
+        "bytes": 3287397,
+        "mtime_ns": 1791882946000000000
+      },
+      "validation:image_relpath:2025/Day047_soybean/images/621.JPG": {
+        "bytes": 13061530,
+        "mtime_ns": 1791882944000000000
+      },
+      "validation:depth_relpath:2025/Day047_soybean_depth/639_depth.tif": {
+        "bytes": 3872021,
+        "mtime_ns": 1791882945000000000
+      },
+      "validation:image_relpath:2025/Day047_soybean/images/639.JPG": {
+        "bytes": 11913690,
+        "mtime_ns": 1791882944000000000
+      },
+      "validation:depth_relpath:2025/Day047_soybean_depth/657_depth.tif": {
+        "bytes": 3652277,
+        "mtime_ns": 1791882946000000000
+      },
+      "validation:image_relpath:2025/Day047_soybean/images/657.JPG": {
+        "bytes": 11833948,
+        "mtime_ns": 1791882945000000000
+      },
+      "validation:depth_relpath:2025/Day047_soybean_depth/169_depth.tif": {
+        "bytes": 4298207,
+        "mtime_ns": 1791882949000000000
+      },
+      "validation:image_relpath:2025/Day047_soybean/images/169.JPG": {
+        "bytes": 15069430,
+        "mtime_ns": 1791882947000000000
+      },
+      "validation:depth_relpath:2025/Day047_soybean_depth/219_depth.tif": {
+        "bytes": 3434064,
+        "mtime_ns": 1791882949000000000
+      },
+      "validation:image_relpath:2025/Day047_soybean/images/219.JPG": {
+        "bytes": 10829892,
+        "mtime_ns": 1791882947000000000
+      },
+      "validation:depth_relpath:2025/Day047_soybean_depth/268_depth.tif": {
+        "bytes": 3356693,
+        "mtime_ns": 1791882949000000000
+      },
+      "validation:image_relpath:2025/Day047_soybean/images/268.JPG": {
+        "bytes": 14636185,
+        "mtime_ns": 1791882948000000000
+      },
+      "validation:depth_relpath:2025/Day047_soybean_depth/318_depth.tif": {
+        "bytes": 3018775,
+        "mtime_ns": 1791882950000000000
+      },
+      "validation:image_relpath:2025/Day047_soybean/images/318.JPG": {
+        "bytes": 13699399,
+        "mtime_ns": 1791882948000000000
+      },
+      "validation:depth_relpath:2025/Day047_soybean_depth/367_depth.tif": {
+        "bytes": 3394253,
+        "mtime_ns": 1791882952000000000
+      },
+      "validation:image_relpath:2025/Day047_soybean/images/367.JPG": {
+        "bytes": 11093613,
+        "mtime_ns": 1791882951000000000
+      },
+      "validation:depth_relpath:2025/Day047_soybean_depth/417_depth.tif": {
+        "bytes": 4460338,
+        "mtime_ns": 1791882953000000000
+      },
+      "validation:image_relpath:2025/Day047_soybean/images/417.JPG": {
+        "bytes": 12967450,
+        "mtime_ns": 1791882951000000000
+      },
+      "validation:depth_relpath:2025/Day047_soybean_depth/466_depth.tif": {
+        "bytes": 3600052,
+        "mtime_ns": 1791882953000000000
+      },
+      "validation:image_relpath:2025/Day047_soybean/images/466.JPG": {
+        "bytes": 14373392,
+        "mtime_ns": 1791882951000000000
+      },
+      "validation:depth_relpath:2025/Day047_soybean_depth/516_depth.tif": {
+        "bytes": 3333926,
+        "mtime_ns": 1791882953000000000
+      },
+      "validation:image_relpath:2025/Day047_soybean/images/516.JPG": {
+        "bytes": 12677908,
+        "mtime_ns": 1791882952000000000
+      },
+      "validation:depth_relpath:2025/Day047_soybean_depth/713_depth.tif": {
+        "bytes": 3716292,
+        "mtime_ns": 1791882956000000000
+      },
+      "validation:image_relpath:2025/Day047_soybean/images/713.JPG": {
+        "bytes": 12943477,
+        "mtime_ns": 1791882954000000000
+      },
+      "validation:depth_relpath:2025/Day047_soybean_depth/763_depth.tif": {
+        "bytes": 4117166,
+        "mtime_ns": 1791882957000000000
+      },
+      "validation:image_relpath:2025/Day047_soybean/images/763.JPG": {
+        "bytes": 14070113,
+        "mtime_ns": 1791882955000000000
+      },
+      "validation:depth_relpath:2025/Day047_soybean_depth/812_depth.tif": {
+        "bytes": 3540946,
+        "mtime_ns": 1791882957000000000
+      },
+      "validation:image_relpath:2025/Day047_soybean/images/812.JPG": {
+        "bytes": 13243693,
+        "mtime_ns": 1791882955000000000
+      },
+      "validation:depth_relpath:2025/Day047_soybean_depth/862_depth.tif": {
+        "bytes": 2919353,
+        "mtime_ns": 1791882957000000000
+      },
+      "validation:image_relpath:2025/Day047_soybean/images/862.JPG": {
+        "bytes": 13492739,
+        "mtime_ns": 1791882955000000000
+      },
+      "validation:depth_relpath:2025/Day047_soybean_depth/911_depth.tif": {
+        "bytes": 4170439,
+        "mtime_ns": 1791882959000000000
+      },
+      "validation:image_relpath:2025/Day047_soybean/images/911.JPG": {
+        "bytes": 14564698,
+        "mtime_ns": 1791882958000000000
+      },
+      "validation:depth_relpath:2025/Day047_soybean_depth/961_depth.tif": {
+        "bytes": 3724925,
+        "mtime_ns": 1791882960000000000
+      },
+      "validation:image_relpath:2025/Day047_soybean/images/961.JPG": {
+        "bytes": 14256401,
+        "mtime_ns": 1791882958000000000
+      },
+      "validation:depth_relpath:2025/Day047_soybean_depth/1010_depth.tif": {
+        "bytes": 3635709,
+        "mtime_ns": 1791882960000000000
+      },
+      "validation:image_relpath:2025/Day047_soybean/images/1010.JPG": {
+        "bytes": 12081024,
+        "mtime_ns": 1791882959000000000
+      },
+      "validation:depth_relpath:2025/Day047_soybean_depth/1060_depth.tif": {
+        "bytes": 3744401,
+        "mtime_ns": 1791882960000000000
+      },
+      "validation:image_relpath:2025/Day047_soybean/images/1060.JPG": {
+        "bytes": 13087738,
+        "mtime_ns": 1791882959000000000
+      }
+    }
+  },
+  "physical_audit_coverage": "selected_splits_only"
+}

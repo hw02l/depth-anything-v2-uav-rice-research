@@ -1,0 +1,12 @@
+{
+  "image_relpath": "2025/Day047_Corn/images/7.JPG",
+  "max_abs_error_to_65_over_80": 9.5367431640625e-07,
+  "config_only_prediction_change_max_abs_m": 0.0,
+  "expected_scale": 0.8125,
+  "prediction_mean_80_m": 5.660223007202148,
+  "prediction_mean_65_m": 4.598931312561035,
+  "actual_median_ratio": 0.8125,
+  "forward_source": "DepthAnythingDepthEstimationHead.forward: activation2(predicted_depth) * self.max_depth",
+  "model_output_ceiling_m": 80,
+  "gt_valid_upper_bound_m": 65
+}

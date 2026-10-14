@@ -1,0 +1,61 @@
+{
+  "status": "pass",
+  "staged_files_before_this_audit_record": 311,
+  "added_or_modified_bytes_before_this_audit_record": 41503236,
+  "staged_deletions": 0,
+  "frozen_snapshot_git_blob_hashes_verified": 81,
+  "secret_pattern_findings": [],
+  "new_large_asset_files": [],
+  "largest_new_files": [
+    {
+      "path": "experiments/metric_shape_20261013T123006472484Z/analysis/figures/comparison_020_corn_oblique.png",
+      "bytes": 3499799
+    },
+    {
+      "path": "experiments/metric_shape_20261013T123006472484Z/analysis/figures/comparison_014_corn_nadir.png",
+      "bytes": 3474275
+    },
+    {
+      "path": "experiments/metric_shape_20261013T123006472484Z/analysis/figures/comparison_065_wheat_nadir.png",
+      "bytes": 3235036
+    },
+    {
+      "path": "experiments/metric_shape_20261013T123006472484Z/analysis/figures/comparison_044_oat_nadir.png",
+      "bytes": 3196817
+    },
+    {
+      "path": "experiments/metric_shape_20261013T123006472484Z/analysis/figures/comparison_007_corn_nadir.png",
+      "bytes": 3145665
+    },
+    {
+      "path": "experiments/metric_shape_20261013T123006472484Z/analysis/figures/comparison_103_soybean_nadir.png",
+      "bytes": 3132389
+    },
+    {
+      "path": "experiments/metric_shape_20261013T123006472484Z/analysis/figures/comparison_101_soybean_nadir.png",
+      "bytes": 2572901
+    },
+    {
+      "path": "experiments/metric_shape_20261013T123006472484Z/analysis/figures/signed_delta_roi_020.png",
+      "bytes": 1139474
+    }
+  ],
+  "checkpoint_config_hashes_verified": 10,
+  "checkpoint_heavy_hashes_recomputed": false,
+  "preexisting_hashed_files_changed": [
+    "README.md",
+    "docs/progress_report.md"
+  ],
+  "local_windows_paths_for_manual_review": [
+    "experiments/relative_encoder_trial_20261013_s42_518/source_snapshot/PACKAGE_MANIFEST.json",
+    "experiments/relative_encoder_trial_20261013_s42_518/source_snapshot/README_ja.md",
+    "uav_metric_finetuning/README_ja.md"
+  ],
+  "manual_path_review": "Only research-project and dependency-cache paths in original provenance/documentation; no credential or authentication files. Originals retained to preserve execution history.",
+  "cpu_tests": {
+    "new_migration_and_resume_tests": 6,
+    "existing_preparation_tests": 15,
+    "all_passed": true,
+    "gpu_used": false
+  }
+}

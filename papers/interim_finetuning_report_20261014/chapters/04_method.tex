@@ -1,0 +1,21 @@
+\chapter{学習手法}
+\section{比較モデル}
+全モデルはDepth Anything V2 Small系ViT-S/14 encoderとDPT型密予測headを基礎とする\cite{dav2,dpt2021}。
+\begin{description}[leftmargin=2.6em,style=nextline]
+\item[モデルA] Relative Small backboneを転用し、Metric neck/headを新規初期化して1 epoch学習。model output capは65 m。
+\item[モデルB] 追加学習前のMetric Outdoor Small。output cap 80 m。
+\item[モデルC] Metric Outdoor Small重みから1 epoch追加学習した第2回モデル。cap 80 m。
+\item[モデルD] 元の未追加学習Metric Outdoor Smallから独立runとして開始した第3回モデル。20 epoch計画でepoch 5まで実行。Cのcheckpointから継続していない。cap 80 m。
+\end{description}
+Aは初期化方式だけでなく出力上限もB--Dと異なるため、上限の寄与を単独で分離した比較ではない。全モデルのGT maskは$G=65$ mで共通とし、B--D予測を65 mに再スケールまたはclipしていない。
+\section{forwardと有効GT}
+head未正規化出力を$z_\theta(I)$とすると
+\[
+\hat d(I)=M\sigma(z_\theta(I)),\qquad
+\mathcal{V}=\{i:d_i^*>0,\ d_i^*\le G,\ d_i^*\text{ finite}\},\quad G=65\ {\rm m}.
+\]
+$M$はforward出力係数、$G$はloss・評価に使うGT上限である。これらを同じ設定値にすると、出力範囲を65 mに変えただけで同一weightの予測が80 m時の65/80倍へ変化する。第2回の実画像probeでこの現象を確認したため、コードで分離した。
+\section{学習条件とscheduler}
+基準runはSiLog、AdamW\cite{adamw}、seed 42、batch 1、gradient accumulation 4、AMPを用いた。encoder LR $5\times10^{-6}$、neck/head LR $5\times10^{-5}$である。384画像・batch 1は1 epoch 96 planned optimizer updates、20 epoch計画は1920 updateとなる。DのPolynomialLR総期間は1920 updateのまま維持された。AMP skip時はoptimizer update・schedulerを進めない。epoch 1にskipが1回あり、epoch 5時点schedulerは成功update 479回に対応する。Cの1 epoch runとDでは総scheduler期間と履歴が異なり、両者の差をepoch数だけの因果効果とみなさない。
+\section{checkpoint管理}
+各epoch境界でmodel、optimizer、scheduler、GradScaler、乱数状態を含むcheckpointとmetadataを保存した。第3回はepoch 0--5 complete checkpoint、run metadata、status、epoch metrics CSV/JSON、training log、sync receiptをDriveへ保存した。今回の論文作成中にcheckpointの再読み込みや再推論はしていない。Dは5/20 epochで安全停止中である。

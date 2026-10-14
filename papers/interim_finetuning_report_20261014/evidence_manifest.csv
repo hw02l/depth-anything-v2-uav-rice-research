@@ -1,0 +1,19 @@
+artifact,Drive ID or local path,source path,used for,local SHA256
+Trial 1 Japanese report,1VMxUVF_IU3AqAfkJxukfUXoSpQLg9AyK,DepthAnythingV2-UAV/runs/relative_encoder_trial_20261013_s42_518/,A/B metrics and trial conditions,not locally copied
+Trial 2 Japanese final report,1ful2HPTS2hxQaEfP2MKXYhXly_Au4QPE,DepthAnythingV2-UAV/experiments/metric_shape_20261013T123006472484Z/,C metrics and detailed analysis,not locally copied
+Trial 2 shape summary JSON,1i1OxW1rB6Y0ac33AvAWvTyqJLDBMjV0H,trial2/results/shape_summary.json,delta bins and sample counts,not locally copied
+Trial 2 shape group CSV,1NbkSH6HvjyaIC1NBStsDSjVM0ox0MQWr,trial2/results/shape_groups.csv,grouped local shape summary,not locally copied
+Trial 2 border JSON,1U25edQrjgpiTXOlKlBDwYr_1pOwahQIK,trial2/results/border_analysis.json,border/internal analysis,not locally copied
+Trial 2 figures folder,1RGQZpkQC0yzcuYoOJJ4ko0z6c4CWP2y3,trial2/analysis/figures/,29 original figures; originals linked in appendix,not locally copied
+Trial 2 comparison image,1ferTPKjV3D5lSlqZ4UORRwmfJH7NvbXH,trial2/analysis/figures/comparison_014_corn_nadir.png,representative sample link,not locally copied
+Trial 2 overview image,1Gx3Y3r_Rd8YzXlUoace2Z3x_ZqDBDVla,trial2/analysis/figures/overview_metrics.png,overview figure link,not locally copied
+Trial 3 experiment folder,1sRjrWY4hGMa6ExJR_87fW85i-aMmD26T,DepthAnythingV2-UAV/experiments/metric_outdoor_full_20261014_s42_518_cap80_gt65/,source of run materials,not locally copied
+Trial 3 run folder,1lPYUTGEI1DFZAb7jwtg4K-vy6FYn_vU5,DepthAnythingV2-UAV/runs/metric_outdoor_full_20261014_s42_518_cap80_gt65/,checkpoints and status,not locally copied
+Trial 3 epoch CSV,1ygYe-EXIaAFcvQBcQVbjoykwWEw-i2AI,trial3/results/epoch_metrics.csv,epoch table and curves,source CSV copy,9C19EC8C234015E451F9B7094DE4390C7DB31954A609007A831BFD9F22CF65AD
+Trial 3 epoch JSON,1VgRC6HboXjYBlQhm3wO8mJZpcVWFVX0q,trial3/results/epoch_metrics.json,epoch subgroup validation metrics,not locally copied
+Trial 3 run metadata,1chvwnVW9hMf7TdWpTdyK36pqmjC6t4ps,trial3/run_metadata.json,training configuration,not locally copied
+Trial 3 training log,1vnJer46u7bRmgL7XDUJoq3uhjG2E_91O,trial3/training log,execution evidence,not locally copied
+Trial 3 sync receipt,1wd0pB6A3iRpy5YRsqKIVQkEU053eg1xB,trial3/sync_receipt.json,Drive synchronization evidence,not locally copied
+Trial 3 code folder,1bXiGrNYgJ273D57jnXMLts9VFgYUn4TC,trial3/source_full_v1/,training and evaluation implementation,Drive folder link
+Trial 3 Colab notebook,10_y0J-ttoonRJKPcAC0ZU57saEbJytAm,trial3/notebook,run notebook,not locally copied
+Derived figure sources,figures/*.tex,outputs/interim_finetuning_report_20261014/,vector figures regenerated from existing results,see each TeX caption

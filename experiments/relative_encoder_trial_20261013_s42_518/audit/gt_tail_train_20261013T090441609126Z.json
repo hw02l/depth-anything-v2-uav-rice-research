@@ -1,0 +1,5582 @@
+{
+  "status": "pass",
+  "split": "train",
+  "frames": 384,
+  "manifest_sha256": "13ee3432515250eff50eeb5238dfc178c8853239074eb8cbbea2b510272b0602",
+  "gt_report": "/content/drive/MyDrive/DepthAnythingV2-UAV/work/uav_metric_finetuning/gt_distribution_train_20261013T090441609126Z.json",
+  "gt_report_sha256": "6e795758a397f6a8142ec50c1e69f4bcda74f1b82a8dfe761bcb946f0815f420",
+  "analysis_code_sha256": "10d2c1c06d0aed99ad35b588e65ffaf101321c289d44adcf648eb4289c3c3a43",
+  "valid_rule": "finite and >0; no range clipping",
+  "full_pixel_min_m": 9.671875,
+  "full_pixel_max_m": 62.15625,
+  "total_pixels": 8020869120,
+  "valid_pixels": 8002756993,
+  "nonfinite_pixels": 0,
+  "nonpositive_finite_pixels": 18112127,
+  "sample_quantiles_m": {
+    "p50": 17.078125,
+    "p90": 31.671875,
+    "p95": 37.40625,
+    "p99": 45.71875,
+    "p99.5": 48.78125,
+    "p99.9": 52.90625,
+    "p99.95": 53.90625,
+    "p100": 61.625
+  },
+  "suggested_cap_m": 60.0,
+  "above_threshold": {
+    "52.90625": {
+      "pixels": 7882206,
+      "fraction_of_valid": 0.00098493631718351
+    },
+    "54.0": {
+      "pixels": 3634381,
+      "fraction_of_valid": 0.0004541411170149222
+    },
+    "60.0": {
+      "pixels": 15424,
+      "fraction_of_valid": 1.9273357935885535e-06
+    },
+    "66.0": {
+      "pixels": 0,
+      "fraction_of_valid": 0.0
+    }
+  },
+  "histogram": {
+    "edges_m": [
+      0.0,
+      0.5,
+      1.0,
+      2.0,
+      5.0,
+      10.0,
+      15.0,
+      20.0,
+      25.0,
+      30.0,
+      40.0,
+      50.0,
+      75.0,
+      100.0,
+      150.0,
+      200.0,
+      500.0,
+      1000.0,
+      "Infinity"
+    ],
+    "valid_pixel_counts": [
+      0,
+      0,
+      0,
+      0,
+      2,
+      1413316209,
+      4163043667,
+      901250198,
+      575785562,
+      682050755,
+      238658186,
+      28652414,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "per_scene": {
+    "2025/Day019_Corn": {
+      "frames": 32,
+      "valid_pixels": 666835016,
+      "min_m": 15.6171875,
+      "max_m": 61.375,
+      "above_suggested_cap_pixels": 7017
+    },
+    "2025/Day019_Oat": {
+      "frames": 32,
+      "valid_pixels": 666790165,
+      "min_m": 10.7109375,
+      "max_m": 51.25,
+      "above_suggested_cap_pixels": 0
+    },
+    "2025/Day019_Wheat": {
+      "frames": 32,
+      "valid_pixels": 667752091,
+      "min_m": 11.9140625,
+      "max_m": 52.15625,
+      "above_suggested_cap_pixels": 0
+    },
+    "2025/Day019_soybean": {
+      "frames": 32,
+      "valid_pixels": 666235871,
+      "min_m": 9.671875,
+      "max_m": 53.125,
+      "above_suggested_cap_pixels": 0
+    },
+    "2025/Day028_Corn": {
+      "frames": 32,
+      "valid_pixels": 666492629,
+      "min_m": 15.859375,
+      "max_m": 62.15625,
+      "above_suggested_cap_pixels": 8160
+    },
+    "2025/Day028_Oat": {
+      "frames": 32,
+      "valid_pixels": 667023427,
+      "min_m": 10.65625,
+      "max_m": 51.65625,
+      "above_suggested_cap_pixels": 0
+    },
+    "2025/Day028_Wheat": {
+      "frames": 32,
+      "valid_pixels": 667897766,
+      "min_m": 12.171875,
+      "max_m": 52.5625,
+      "above_suggested_cap_pixels": 0
+    },
+    "2025/Day028_soybean": {
+      "frames": 32,
+      "valid_pixels": 666381005,
+      "min_m": 12.65625,
+      "max_m": 53.34375,
+      "above_suggested_cap_pixels": 0
+    },
+    "2025/Day040_Corn": {
+      "frames": 32,
+      "valid_pixels": 665786136,
+      "min_m": 14.71875,
+      "max_m": 60.34375,
+      "above_suggested_cap_pixels": 247
+    },
+    "2025/Day040_Oat": {
+      "frames": 32,
+      "valid_pixels": 666777656,
+      "min_m": 10.25,
+      "max_m": 51.5625,
+      "above_suggested_cap_pixels": 0
+    },
+    "2025/Day040_Wheat": {
+      "frames": 32,
+      "valid_pixels": 667677305,
+      "min_m": 12.234375,
+      "max_m": 52.65625,
+      "above_suggested_cap_pixels": 0
+    },
+    "2025/Day040_soybean": {
+      "frames": 32,
+      "valid_pixels": 667107926,
+      "min_m": 12.28125,
+      "max_m": 53.3125,
+      "above_suggested_cap_pixels": 0
+    }
+  },
+  "per_frame": [
+    {
+      "scene": "2025/Day019_Corn",
+      "crop": "corn",
+      "view": "nadir",
+      "path": "2025/Day019_Corn_depth/8_depth.tif",
+      "min_m": 17.359375,
+      "max_m": 18.5,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Corn",
+      "crop": "corn",
+      "view": "nadir",
+      "path": "2025/Day019_Corn_depth/22_depth.tif",
+      "min_m": 17.5,
+      "max_m": 18.515625,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Corn",
+      "crop": "corn",
+      "view": "nadir",
+      "path": "2025/Day019_Corn_depth/37_depth.tif",
+      "min_m": 18.171875,
+      "max_m": 18.453125,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Corn",
+      "crop": "corn",
+      "view": "nadir",
+      "path": "2025/Day019_Corn_depth/51_depth.tif",
+      "min_m": 18.125,
+      "max_m": 18.515625,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Corn",
+      "crop": "corn",
+      "view": "nadir",
+      "path": "2025/Day019_Corn_depth/66_depth.tif",
+      "min_m": 17.828125,
+      "max_m": 18.578125,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Corn",
+      "crop": "corn",
+      "view": "nadir",
+      "path": "2025/Day019_Corn_depth/81_depth.tif",
+      "min_m": 18.234375,
+      "max_m": 18.5625,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Corn",
+      "crop": "corn",
+      "view": "nadir",
+      "path": "2025/Day019_Corn_depth/95_depth.tif",
+      "min_m": 16.671875,
+      "max_m": 18.453125,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Corn",
+      "crop": "corn",
+      "view": "nadir",
+      "path": "2025/Day019_Corn_depth/573_depth.tif",
+      "min_m": 16.109375,
+      "max_m": 18.46875,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Corn",
+      "crop": "corn",
+      "view": "nadir",
+      "path": "2025/Day019_Corn_depth/587_depth.tif",
+      "min_m": 16.625,
+      "max_m": 18.46875,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Corn",
+      "crop": "corn",
+      "view": "nadir",
+      "path": "2025/Day019_Corn_depth/602_depth.tif",
+      "min_m": 18.1875,
+      "max_m": 18.34375,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Corn",
+      "crop": "corn",
+      "view": "nadir",
+      "path": "2025/Day019_Corn_depth/616_depth.tif",
+      "min_m": 17.3125,
+      "max_m": 18.46875,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Corn",
+      "crop": "corn",
+      "view": "nadir",
+      "path": "2025/Day019_Corn_depth/631_depth.tif",
+      "min_m": 18.203125,
+      "max_m": 18.40625,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Corn",
+      "crop": "corn",
+      "view": "nadir",
+      "path": "2025/Day019_Corn_depth/646_depth.tif",
+      "min_m": 17.609375,
+      "max_m": 18.578125,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Corn",
+      "crop": "corn",
+      "view": "nadir",
+      "path": "2025/Day019_Corn_depth/660_depth.tif",
+      "min_m": 18.15625,
+      "max_m": 18.46875,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Corn",
+      "crop": "corn",
+      "view": "nadir",
+      "path": "2025/Day019_Corn_depth/675_depth.tif",
+      "min_m": 17.953125,
+      "max_m": 18.5,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Corn",
+      "crop": "corn",
+      "view": "nadir",
+      "path": "2025/Day019_Corn_depth/689_depth.tif",
+      "min_m": 16.828125,
+      "max_m": 18.765625,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Corn",
+      "crop": "corn",
+      "view": "oblique",
+      "path": "2025/Day019_Corn_depth/140_depth.tif",
+      "min_m": 16.40625,
+      "max_m": 55.53125,
+      "valid_pixels": 20693865,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Corn",
+      "crop": "corn",
+      "view": "oblique",
+      "path": "2025/Day019_Corn_depth/200_depth.tif",
+      "min_m": 15.6171875,
+      "max_m": 59.8125,
+      "valid_pixels": 20851939,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Corn",
+      "crop": "corn",
+      "view": "oblique",
+      "path": "2025/Day019_Corn_depth/261_depth.tif",
+      "min_m": 16.5625,
+      "max_m": 59.125,
+      "valid_pixels": 20808868,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Corn",
+      "crop": "corn",
+      "view": "oblique",
+      "path": "2025/Day019_Corn_depth/321_depth.tif",
+      "min_m": 16.125,
+      "max_m": 61.03125,
+      "valid_pixels": 20852492,
+      "above_cap_pixels": 624
+    },
+    {
+      "scene": "2025/Day019_Corn",
+      "crop": "corn",
+      "view": "oblique",
+      "path": "2025/Day019_Corn_depth/381_depth.tif",
+      "min_m": 16.5,
+      "max_m": 58.46875,
+      "valid_pixels": 20884837,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Corn",
+      "crop": "corn",
+      "view": "oblique",
+      "path": "2025/Day019_Corn_depth/442_depth.tif",
+      "min_m": 16.78125,
+      "max_m": 55.0625,
+      "valid_pixels": 20806569,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Corn",
+      "crop": "corn",
+      "view": "oblique",
+      "path": "2025/Day019_Corn_depth/502_depth.tif",
+      "min_m": 17.234375,
+      "max_m": 59.71875,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Corn",
+      "crop": "corn",
+      "view": "oblique",
+      "path": "2025/Day019_Corn_depth/563_depth.tif",
+      "min_m": 16.46875,
+      "max_m": 58.40625,
+      "valid_pixels": 20810776,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Corn",
+      "crop": "corn",
+      "view": "oblique",
+      "path": "2025/Day019_Corn_depth/747_depth.tif",
+      "min_m": 16.5,
+      "max_m": 57.25,
+      "valid_pixels": 20759404,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Corn",
+      "crop": "corn",
+      "view": "oblique",
+      "path": "2025/Day019_Corn_depth/808_depth.tif",
+      "min_m": 16.25,
+      "max_m": 56.75,
+      "valid_pixels": 20634928,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Corn",
+      "crop": "corn",
+      "view": "oblique",
+      "path": "2025/Day019_Corn_depth/868_depth.tif",
+      "min_m": 15.8515625,
+      "max_m": 61.375,
+      "valid_pixels": 20866206,
+      "above_cap_pixels": 6021
+    },
+    {
+      "scene": "2025/Day019_Corn",
+      "crop": "corn",
+      "view": "oblique",
+      "path": "2025/Day019_Corn_depth/929_depth.tif",
+      "min_m": 16.59375,
+      "max_m": 58.78125,
+      "valid_pixels": 20698362,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Corn",
+      "crop": "corn",
+      "view": "oblique",
+      "path": "2025/Day019_Corn_depth/989_depth.tif",
+      "min_m": 16.4375,
+      "max_m": 57.03125,
+      "valid_pixels": 20742712,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Corn",
+      "crop": "corn",
+      "view": "oblique",
+      "path": "2025/Day019_Corn_depth/1049_depth.tif",
+      "min_m": 16.296875,
+      "max_m": 53.59375,
+      "valid_pixels": 20658565,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Corn",
+      "crop": "corn",
+      "view": "oblique",
+      "path": "2025/Day019_Corn_depth/1110_depth.tif",
+      "min_m": 16.734375,
+      "max_m": 56.625,
+      "valid_pixels": 20862227,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Corn",
+      "crop": "corn",
+      "view": "oblique",
+      "path": "2025/Day019_Corn_depth/1170_depth.tif",
+      "min_m": 16.796875,
+      "max_m": 60.1875,
+      "valid_pixels": 20812706,
+      "above_cap_pixels": 372
+    },
+    {
+      "scene": "2025/Day019_Oat",
+      "crop": "oat",
+      "view": "nadir",
+      "path": "2025/Day019_Oat_depth/7_depth.tif",
+      "min_m": 14.671875,
+      "max_m": 15.8828125,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Oat",
+      "crop": "oat",
+      "view": "nadir",
+      "path": "2025/Day019_Oat_depth/19_depth.tif",
+      "min_m": 14.296875,
+      "max_m": 16.0,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Oat",
+      "crop": "oat",
+      "view": "nadir",
+      "path": "2025/Day019_Oat_depth/32_depth.tif",
+      "min_m": 14.4765625,
+      "max_m": 16.09375,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Oat",
+      "crop": "oat",
+      "view": "nadir",
+      "path": "2025/Day019_Oat_depth/44_depth.tif",
+      "min_m": 14.765625,
+      "max_m": 16.015625,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Oat",
+      "crop": "oat",
+      "view": "nadir",
+      "path": "2025/Day019_Oat_depth/57_depth.tif",
+      "min_m": 15.2578125,
+      "max_m": 15.9375,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Oat",
+      "crop": "oat",
+      "view": "nadir",
+      "path": "2025/Day019_Oat_depth/69_depth.tif",
+      "min_m": 14.8203125,
+      "max_m": 16.03125,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Oat",
+      "crop": "oat",
+      "view": "nadir",
+      "path": "2025/Day019_Oat_depth/82_depth.tif",
+      "min_m": 15.078125,
+      "max_m": 16.046875,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Oat",
+      "crop": "oat",
+      "view": "nadir",
+      "path": "2025/Day019_Oat_depth/94_depth.tif",
+      "min_m": 14.9609375,
+      "max_m": 15.90625,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Oat",
+      "crop": "oat",
+      "view": "nadir",
+      "path": "2025/Day019_Oat_depth/338_depth.tif",
+      "min_m": 14.828125,
+      "max_m": 16.109375,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Oat",
+      "crop": "oat",
+      "view": "nadir",
+      "path": "2025/Day019_Oat_depth/350_depth.tif",
+      "min_m": 14.515625,
+      "max_m": 15.953125,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Oat",
+      "crop": "oat",
+      "view": "nadir",
+      "path": "2025/Day019_Oat_depth/363_depth.tif",
+      "min_m": 14.8671875,
+      "max_m": 16.078125,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Oat",
+      "crop": "oat",
+      "view": "nadir",
+      "path": "2025/Day019_Oat_depth/375_depth.tif",
+      "min_m": 14.453125,
+      "max_m": 16.078125,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Oat",
+      "crop": "oat",
+      "view": "nadir",
+      "path": "2025/Day019_Oat_depth/388_depth.tif",
+      "min_m": 14.5,
+      "max_m": 16.015625,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Oat",
+      "crop": "oat",
+      "view": "nadir",
+      "path": "2025/Day019_Oat_depth/400_depth.tif",
+      "min_m": 14.4453125,
+      "max_m": 16.046875,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Oat",
+      "crop": "oat",
+      "view": "nadir",
+      "path": "2025/Day019_Oat_depth/413_depth.tif",
+      "min_m": 10.7109375,
+      "max_m": 16.046875,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Oat",
+      "crop": "oat",
+      "view": "nadir",
+      "path": "2025/Day019_Oat_depth/425_depth.tif",
+      "min_m": 13.0,
+      "max_m": 16.109375,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Oat",
+      "crop": "oat",
+      "view": "oblique",
+      "path": "2025/Day019_Oat_depth/110_depth.tif",
+      "min_m": 13.5390625,
+      "max_m": 41.6875,
+      "valid_pixels": 20884865,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Oat",
+      "crop": "oat",
+      "view": "oblique",
+      "path": "2025/Day019_Oat_depth/140_depth.tif",
+      "min_m": 13.5,
+      "max_m": 40.4375,
+      "valid_pixels": 20848103,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Oat",
+      "crop": "oat",
+      "view": "oblique",
+      "path": "2025/Day019_Oat_depth/171_depth.tif",
+      "min_m": 13.6015625,
+      "max_m": 46.71875,
+      "valid_pixels": 20856071,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Oat",
+      "crop": "oat",
+      "view": "oblique",
+      "path": "2025/Day019_Oat_depth/202_depth.tif",
+      "min_m": 13.59375,
+      "max_m": 49.96875,
+      "valid_pixels": 20867764,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Oat",
+      "crop": "oat",
+      "view": "oblique",
+      "path": "2025/Day019_Oat_depth/232_depth.tif",
+      "min_m": 13.40625,
+      "max_m": 51.21875,
+      "valid_pixels": 20884200,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Oat",
+      "crop": "oat",
+      "view": "oblique",
+      "path": "2025/Day019_Oat_depth/263_depth.tif",
+      "min_m": 11.9921875,
+      "max_m": 47.5625,
+      "valid_pixels": 20716659,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Oat",
+      "crop": "oat",
+      "view": "oblique",
+      "path": "2025/Day019_Oat_depth/294_depth.tif",
+      "min_m": 13.9375,
+      "max_m": 46.625,
+      "valid_pixels": 20808466,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Oat",
+      "crop": "oat",
+      "view": "oblique",
+      "path": "2025/Day019_Oat_depth/324_depth.tif",
+      "min_m": 13.609375,
+      "max_m": 49.65625,
+      "valid_pixels": 20861895,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Oat",
+      "crop": "oat",
+      "view": "oblique",
+      "path": "2025/Day019_Oat_depth/461_depth.tif",
+      "min_m": 13.0078125,
+      "max_m": 47.3125,
+      "valid_pixels": 20214720,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Oat",
+      "crop": "oat",
+      "view": "oblique",
+      "path": "2025/Day019_Oat_depth/491_depth.tif",
+      "min_m": 14.03125,
+      "max_m": 49.6875,
+      "valid_pixels": 20837311,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Oat",
+      "crop": "oat",
+      "view": "oblique",
+      "path": "2025/Day019_Oat_depth/522_depth.tif",
+      "min_m": 13.1796875,
+      "max_m": 51.25,
+      "valid_pixels": 20887449,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Oat",
+      "crop": "oat",
+      "view": "oblique",
+      "path": "2025/Day019_Oat_depth/553_depth.tif",
+      "min_m": 13.375,
+      "max_m": 50.53125,
+      "valid_pixels": 20811306,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Oat",
+      "crop": "oat",
+      "view": "oblique",
+      "path": "2025/Day019_Oat_depth/583_depth.tif",
+      "min_m": 13.46875,
+      "max_m": 45.84375,
+      "valid_pixels": 20822935,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Oat",
+      "crop": "oat",
+      "view": "oblique",
+      "path": "2025/Day019_Oat_depth/614_depth.tif",
+      "min_m": 13.921875,
+      "max_m": 47.34375,
+      "valid_pixels": 20671703,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Oat",
+      "crop": "oat",
+      "view": "oblique",
+      "path": "2025/Day019_Oat_depth/645_depth.tif",
+      "min_m": 13.9765625,
+      "max_m": 45.78125,
+      "valid_pixels": 20734660,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Oat",
+      "crop": "oat",
+      "view": "oblique",
+      "path": "2025/Day019_Oat_depth/676_depth.tif",
+      "min_m": 13.8203125,
+      "max_m": 47.0,
+      "valid_pixels": 20879178,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Wheat",
+      "crop": "wheat",
+      "view": "nadir",
+      "path": "2025/Day019_Wheat_depth/12_depth.tif",
+      "min_m": 13.484375,
+      "max_m": 14.2890625,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Wheat",
+      "crop": "wheat",
+      "view": "nadir",
+      "path": "2025/Day019_Wheat_depth/35_depth.tif",
+      "min_m": 13.7421875,
+      "max_m": 14.796875,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Wheat",
+      "crop": "wheat",
+      "view": "nadir",
+      "path": "2025/Day019_Wheat_depth/58_depth.tif",
+      "min_m": 13.5859375,
+      "max_m": 14.5625,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Wheat",
+      "crop": "wheat",
+      "view": "nadir",
+      "path": "2025/Day019_Wheat_depth/81_depth.tif",
+      "min_m": 13.515625,
+      "max_m": 14.3359375,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Wheat",
+      "crop": "wheat",
+      "view": "nadir",
+      "path": "2025/Day019_Wheat_depth/104_depth.tif",
+      "min_m": 13.6953125,
+      "max_m": 14.25,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Wheat",
+      "crop": "wheat",
+      "view": "nadir",
+      "path": "2025/Day019_Wheat_depth/127_depth.tif",
+      "min_m": 13.5703125,
+      "max_m": 14.6796875,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Wheat",
+      "crop": "wheat",
+      "view": "nadir",
+      "path": "2025/Day019_Wheat_depth/150_depth.tif",
+      "min_m": 13.6640625,
+      "max_m": 14.1875,
+      "valid_pixels": 20887679,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Wheat",
+      "crop": "wheat",
+      "view": "nadir",
+      "path": "2025/Day019_Wheat_depth/173_depth.tif",
+      "min_m": 13.6328125,
+      "max_m": 14.453125,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Wheat",
+      "crop": "wheat",
+      "view": "nadir",
+      "path": "2025/Day019_Wheat_depth/667_depth.tif",
+      "min_m": 13.8125,
+      "max_m": 14.1953125,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Wheat",
+      "crop": "wheat",
+      "view": "nadir",
+      "path": "2025/Day019_Wheat_depth/693_depth.tif",
+      "min_m": 13.4609375,
+      "max_m": 14.0703125,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Wheat",
+      "crop": "wheat",
+      "view": "nadir",
+      "path": "2025/Day019_Wheat_depth/716_depth.tif",
+      "min_m": 13.375,
+      "max_m": 14.2578125,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Wheat",
+      "crop": "wheat",
+      "view": "nadir",
+      "path": "2025/Day019_Wheat_depth/739_depth.tif",
+      "min_m": 13.640625,
+      "max_m": 14.546875,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Wheat",
+      "crop": "wheat",
+      "view": "nadir",
+      "path": "2025/Day019_Wheat_depth/762_depth.tif",
+      "min_m": 13.4140625,
+      "max_m": 14.3046875,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Wheat",
+      "crop": "wheat",
+      "view": "nadir",
+      "path": "2025/Day019_Wheat_depth/785_depth.tif",
+      "min_m": 13.7265625,
+      "max_m": 14.7265625,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Wheat",
+      "crop": "wheat",
+      "view": "nadir",
+      "path": "2025/Day019_Wheat_depth/808_depth.tif",
+      "min_m": 13.5859375,
+      "max_m": 14.359375,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Wheat",
+      "crop": "wheat",
+      "view": "nadir",
+      "path": "2025/Day019_Wheat_depth/831_depth.tif",
+      "min_m": 13.71875,
+      "max_m": 14.4296875,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Wheat",
+      "crop": "wheat",
+      "view": "oblique",
+      "path": "2025/Day019_Wheat_depth/210_depth.tif",
+      "min_m": 14.1171875,
+      "max_m": 50.96875,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Wheat",
+      "crop": "wheat",
+      "view": "oblique",
+      "path": "2025/Day019_Wheat_depth/274_depth.tif",
+      "min_m": 12.9609375,
+      "max_m": 52.15625,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Wheat",
+      "crop": "wheat",
+      "view": "oblique",
+      "path": "2025/Day019_Wheat_depth/338_depth.tif",
+      "min_m": 12.6875,
+      "max_m": 49.90625,
+      "valid_pixels": 20869056,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Wheat",
+      "crop": "wheat",
+      "view": "oblique",
+      "path": "2025/Day019_Wheat_depth/402_depth.tif",
+      "min_m": 12.765625,
+      "max_m": 50.0625,
+      "valid_pixels": 20858370,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Wheat",
+      "crop": "wheat",
+      "view": "oblique",
+      "path": "2025/Day019_Wheat_depth/466_depth.tif",
+      "min_m": 13.796875,
+      "max_m": 47.8125,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Wheat",
+      "crop": "wheat",
+      "view": "oblique",
+      "path": "2025/Day019_Wheat_depth/531_depth.tif",
+      "min_m": 12.8984375,
+      "max_m": 50.0625,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Wheat",
+      "crop": "wheat",
+      "view": "oblique",
+      "path": "2025/Day019_Wheat_depth/595_depth.tif",
+      "min_m": 12.75,
+      "max_m": 47.96875,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Wheat",
+      "crop": "wheat",
+      "view": "oblique",
+      "path": "2025/Day019_Wheat_depth/853_depth.tif",
+      "min_m": 13.0,
+      "max_m": 45.59375,
+      "valid_pixels": 20731008,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Wheat",
+      "crop": "wheat",
+      "view": "oblique",
+      "path": "2025/Day019_Wheat_depth/917_depth.tif",
+      "min_m": 11.9140625,
+      "max_m": 43.96875,
+      "valid_pixels": 20852677,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Wheat",
+      "crop": "wheat",
+      "view": "oblique",
+      "path": "2025/Day019_Wheat_depth/981_depth.tif",
+      "min_m": 12.4765625,
+      "max_m": 45.59375,
+      "valid_pixels": 20707809,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Wheat",
+      "crop": "wheat",
+      "view": "oblique",
+      "path": "2025/Day019_Wheat_depth/1045_depth.tif",
+      "min_m": 12.3203125,
+      "max_m": 49.8125,
+      "valid_pixels": 20875609,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Wheat",
+      "crop": "wheat",
+      "view": "oblique",
+      "path": "2025/Day019_Wheat_depth/1110_depth.tif",
+      "min_m": 13.328125,
+      "max_m": 48.09375,
+      "valid_pixels": 20866530,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Wheat",
+      "crop": "wheat",
+      "view": "oblique",
+      "path": "2025/Day019_Wheat_depth/1174_depth.tif",
+      "min_m": 12.1328125,
+      "max_m": 47.6875,
+      "valid_pixels": 20708721,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Wheat",
+      "crop": "wheat",
+      "view": "oblique",
+      "path": "2025/Day019_Wheat_depth/1238_depth.tif",
+      "min_m": 12.8125,
+      "max_m": 49.625,
+      "valid_pixels": 20887276,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Wheat",
+      "crop": "wheat",
+      "view": "oblique",
+      "path": "2025/Day019_Wheat_depth/1302_depth.tif",
+      "min_m": 13.609375,
+      "max_m": 48.0625,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_Wheat",
+      "crop": "wheat",
+      "view": "oblique",
+      "path": "2025/Day019_Wheat_depth/1366_depth.tif",
+      "min_m": 12.9453125,
+      "max_m": 48.375,
+      "valid_pixels": 20866076,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_soybean",
+      "crop": "soybean",
+      "view": "nadir",
+      "path": "2025/Day019_soybean_depth/9_depth.tif",
+      "min_m": 15.3203125,
+      "max_m": 15.5859375,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_soybean",
+      "crop": "soybean",
+      "view": "nadir",
+      "path": "2025/Day019_soybean_depth/27_depth.tif",
+      "min_m": 15.125,
+      "max_m": 15.65625,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_soybean",
+      "crop": "soybean",
+      "view": "nadir",
+      "path": "2025/Day019_soybean_depth/45_depth.tif",
+      "min_m": 15.1328125,
+      "max_m": 15.609375,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_soybean",
+      "crop": "soybean",
+      "view": "nadir",
+      "path": "2025/Day019_soybean_depth/63_depth.tif",
+      "min_m": 15.0859375,
+      "max_m": 15.6484375,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_soybean",
+      "crop": "soybean",
+      "view": "nadir",
+      "path": "2025/Day019_soybean_depth/81_depth.tif",
+      "min_m": 15.2265625,
+      "max_m": 15.5703125,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_soybean",
+      "crop": "soybean",
+      "view": "nadir",
+      "path": "2025/Day019_soybean_depth/99_depth.tif",
+      "min_m": 15.0390625,
+      "max_m": 15.59375,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_soybean",
+      "crop": "soybean",
+      "view": "nadir",
+      "path": "2025/Day019_soybean_depth/117_depth.tif",
+      "min_m": 15.1328125,
+      "max_m": 15.4375,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_soybean",
+      "crop": "soybean",
+      "view": "nadir",
+      "path": "2025/Day019_soybean_depth/135_depth.tif",
+      "min_m": 15.0234375,
+      "max_m": 15.4453125,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_soybean",
+      "crop": "soybean",
+      "view": "nadir",
+      "path": "2025/Day019_soybean_depth/522_depth.tif",
+      "min_m": 14.9921875,
+      "max_m": 15.4921875,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_soybean",
+      "crop": "soybean",
+      "view": "nadir",
+      "path": "2025/Day019_soybean_depth/540_depth.tif",
+      "min_m": 14.6953125,
+      "max_m": 15.5703125,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_soybean",
+      "crop": "soybean",
+      "view": "nadir",
+      "path": "2025/Day019_soybean_depth/558_depth.tif",
+      "min_m": 15.1015625,
+      "max_m": 15.5703125,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_soybean",
+      "crop": "soybean",
+      "view": "nadir",
+      "path": "2025/Day019_soybean_depth/576_depth.tif",
+      "min_m": 15.171875,
+      "max_m": 15.515625,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_soybean",
+      "crop": "soybean",
+      "view": "nadir",
+      "path": "2025/Day019_soybean_depth/594_depth.tif",
+      "min_m": 14.9375,
+      "max_m": 15.71875,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_soybean",
+      "crop": "soybean",
+      "view": "nadir",
+      "path": "2025/Day019_soybean_depth/612_depth.tif",
+      "min_m": 15.0546875,
+      "max_m": 15.453125,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_soybean",
+      "crop": "soybean",
+      "view": "nadir",
+      "path": "2025/Day019_soybean_depth/630_depth.tif",
+      "min_m": 15.4453125,
+      "max_m": 15.484375,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_soybean",
+      "crop": "soybean",
+      "view": "nadir",
+      "path": "2025/Day019_soybean_depth/648_depth.tif",
+      "min_m": 15.1171875,
+      "max_m": 15.6796875,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_soybean",
+      "crop": "soybean",
+      "view": "oblique",
+      "path": "2025/Day019_soybean_depth/165_depth.tif",
+      "min_m": 14.0,
+      "max_m": 51.9375,
+      "valid_pixels": 20885381,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_soybean",
+      "crop": "soybean",
+      "view": "oblique",
+      "path": "2025/Day019_soybean_depth/214_depth.tif",
+      "min_m": 13.8359375,
+      "max_m": 47.59375,
+      "valid_pixels": 20712090,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_soybean",
+      "crop": "soybean",
+      "view": "oblique",
+      "path": "2025/Day019_soybean_depth/263_depth.tif",
+      "min_m": 13.859375,
+      "max_m": 53.125,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_soybean",
+      "crop": "soybean",
+      "view": "oblique",
+      "path": "2025/Day019_soybean_depth/312_depth.tif",
+      "min_m": 13.9765625,
+      "max_m": 53.09375,
+      "valid_pixels": 20867379,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_soybean",
+      "crop": "soybean",
+      "view": "oblique",
+      "path": "2025/Day019_soybean_depth/361_depth.tif",
+      "min_m": 9.671875,
+      "max_m": 52.4375,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_soybean",
+      "crop": "soybean",
+      "view": "oblique",
+      "path": "2025/Day019_soybean_depth/410_depth.tif",
+      "min_m": 13.9296875,
+      "max_m": 51.1875,
+      "valid_pixels": 20794560,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_soybean",
+      "crop": "soybean",
+      "view": "oblique",
+      "path": "2025/Day019_soybean_depth/459_depth.tif",
+      "min_m": 13.828125,
+      "max_m": 50.0625,
+      "valid_pixels": 20812949,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_soybean",
+      "crop": "soybean",
+      "view": "oblique",
+      "path": "2025/Day019_soybean_depth/508_depth.tif",
+      "min_m": 14.1796875,
+      "max_m": 50.1875,
+      "valid_pixels": 20556555,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_soybean",
+      "crop": "soybean",
+      "view": "oblique",
+      "path": "2025/Day019_soybean_depth/703_depth.tif",
+      "min_m": 13.8125,
+      "max_m": 48.875,
+      "valid_pixels": 20466111,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_soybean",
+      "crop": "soybean",
+      "view": "oblique",
+      "path": "2025/Day019_soybean_depth/752_depth.tif",
+      "min_m": 14.5,
+      "max_m": 49.71875,
+      "valid_pixels": 20669558,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_soybean",
+      "crop": "soybean",
+      "view": "oblique",
+      "path": "2025/Day019_soybean_depth/801_depth.tif",
+      "min_m": 14.0234375,
+      "max_m": 46.40625,
+      "valid_pixels": 20545784,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_soybean",
+      "crop": "soybean",
+      "view": "oblique",
+      "path": "2025/Day019_soybean_depth/850_depth.tif",
+      "min_m": 13.921875,
+      "max_m": 51.96875,
+      "valid_pixels": 20776619,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_soybean",
+      "crop": "soybean",
+      "view": "oblique",
+      "path": "2025/Day019_soybean_depth/899_depth.tif",
+      "min_m": 14.140625,
+      "max_m": 48.40625,
+      "valid_pixels": 20886619,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_soybean",
+      "crop": "soybean",
+      "view": "oblique",
+      "path": "2025/Day019_soybean_depth/948_depth.tif",
+      "min_m": 14.0625,
+      "max_m": 51.59375,
+      "valid_pixels": 20825210,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_soybean",
+      "crop": "soybean",
+      "view": "oblique",
+      "path": "2025/Day019_soybean_depth/997_depth.tif",
+      "min_m": 13.6953125,
+      "max_m": 47.71875,
+      "valid_pixels": 20572249,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day019_soybean",
+      "crop": "soybean",
+      "view": "oblique",
+      "path": "2025/Day019_soybean_depth/1046_depth.tif",
+      "min_m": 12.7578125,
+      "max_m": 50.0,
+      "valid_pixels": 20886567,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Corn",
+      "crop": "corn",
+      "view": "nadir",
+      "path": "2025/Day028_Corn_depth/8_depth.tif",
+      "min_m": 17.515625,
+      "max_m": 18.28125,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Corn",
+      "crop": "corn",
+      "view": "nadir",
+      "path": "2025/Day028_Corn_depth/23_depth.tif",
+      "min_m": 17.890625,
+      "max_m": 18.265625,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Corn",
+      "crop": "corn",
+      "view": "nadir",
+      "path": "2025/Day028_Corn_depth/38_depth.tif",
+      "min_m": 17.6875,
+      "max_m": 18.265625,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Corn",
+      "crop": "corn",
+      "view": "nadir",
+      "path": "2025/Day028_Corn_depth/52_depth.tif",
+      "min_m": 17.953125,
+      "max_m": 18.3125,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Corn",
+      "crop": "corn",
+      "view": "nadir",
+      "path": "2025/Day028_Corn_depth/67_depth.tif",
+      "min_m": 17.28125,
+      "max_m": 18.171875,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Corn",
+      "crop": "corn",
+      "view": "nadir",
+      "path": "2025/Day028_Corn_depth/82_depth.tif",
+      "min_m": 17.953125,
+      "max_m": 18.515625,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Corn",
+      "crop": "corn",
+      "view": "nadir",
+      "path": "2025/Day028_Corn_depth/97_depth.tif",
+      "min_m": 17.046875,
+      "max_m": 18.28125,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Corn",
+      "crop": "corn",
+      "view": "nadir",
+      "path": "2025/Day028_Corn_depth/112_depth.tif",
+      "min_m": 17.578125,
+      "max_m": 18.65625,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Corn",
+      "crop": "corn",
+      "view": "nadir",
+      "path": "2025/Day028_Corn_depth/589_depth.tif",
+      "min_m": 17.328125,
+      "max_m": 18.046875,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Corn",
+      "crop": "corn",
+      "view": "nadir",
+      "path": "2025/Day028_Corn_depth/604_depth.tif",
+      "min_m": 17.828125,
+      "max_m": 18.296875,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Corn",
+      "crop": "corn",
+      "view": "nadir",
+      "path": "2025/Day028_Corn_depth/619_depth.tif",
+      "min_m": 17.15625,
+      "max_m": 18.328125,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Corn",
+      "crop": "corn",
+      "view": "nadir",
+      "path": "2025/Day028_Corn_depth/634_depth.tif",
+      "min_m": 17.921875,
+      "max_m": 18.109375,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Corn",
+      "crop": "corn",
+      "view": "nadir",
+      "path": "2025/Day028_Corn_depth/649_depth.tif",
+      "min_m": 17.578125,
+      "max_m": 18.203125,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Corn",
+      "crop": "corn",
+      "view": "nadir",
+      "path": "2025/Day028_Corn_depth/663_depth.tif",
+      "min_m": 17.90625,
+      "max_m": 18.296875,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Corn",
+      "crop": "corn",
+      "view": "nadir",
+      "path": "2025/Day028_Corn_depth/678_depth.tif",
+      "min_m": 17.5625,
+      "max_m": 18.296875,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Corn",
+      "crop": "corn",
+      "view": "nadir",
+      "path": "2025/Day028_Corn_depth/693_depth.tif",
+      "min_m": 17.671875,
+      "max_m": 18.296875,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Corn",
+      "crop": "corn",
+      "view": "oblique",
+      "path": "2025/Day028_Corn_depth/143_depth.tif",
+      "min_m": 16.140625,
+      "max_m": 56.59375,
+      "valid_pixels": 20796895,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Corn",
+      "crop": "corn",
+      "view": "oblique",
+      "path": "2025/Day028_Corn_depth/203_depth.tif",
+      "min_m": 16.0625,
+      "max_m": 57.96875,
+      "valid_pixels": 20819940,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Corn",
+      "crop": "corn",
+      "view": "oblique",
+      "path": "2025/Day028_Corn_depth/264_depth.tif",
+      "min_m": 16.109375,
+      "max_m": 61.34375,
+      "valid_pixels": 20840993,
+      "above_cap_pixels": 2330
+    },
+    {
+      "scene": "2025/Day028_Corn",
+      "crop": "corn",
+      "view": "oblique",
+      "path": "2025/Day028_Corn_depth/324_depth.tif",
+      "min_m": 16.03125,
+      "max_m": 58.75,
+      "valid_pixels": 20857279,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Corn",
+      "crop": "corn",
+      "view": "oblique",
+      "path": "2025/Day028_Corn_depth/384_depth.tif",
+      "min_m": 16.296875,
+      "max_m": 59.25,
+      "valid_pixels": 20873103,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Corn",
+      "crop": "corn",
+      "view": "oblique",
+      "path": "2025/Day028_Corn_depth/445_depth.tif",
+      "min_m": 16.71875,
+      "max_m": 61.03125,
+      "valid_pixels": 20686150,
+      "above_cap_pixels": 341
+    },
+    {
+      "scene": "2025/Day028_Corn",
+      "crop": "corn",
+      "view": "oblique",
+      "path": "2025/Day028_Corn_depth/505_depth.tif",
+      "min_m": 16.46875,
+      "max_m": 58.65625,
+      "valid_pixels": 20877065,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Corn",
+      "crop": "corn",
+      "view": "oblique",
+      "path": "2025/Day028_Corn_depth/566_depth.tif",
+      "min_m": 16.296875,
+      "max_m": 58.15625,
+      "valid_pixels": 20654590,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Corn",
+      "crop": "corn",
+      "view": "oblique",
+      "path": "2025/Day028_Corn_depth/751_depth.tif",
+      "min_m": 15.953125,
+      "max_m": 56.40625,
+      "valid_pixels": 20820030,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Corn",
+      "crop": "corn",
+      "view": "oblique",
+      "path": "2025/Day028_Corn_depth/812_depth.tif",
+      "min_m": 16.390625,
+      "max_m": 57.9375,
+      "valid_pixels": 20589999,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Corn",
+      "crop": "corn",
+      "view": "oblique",
+      "path": "2025/Day028_Corn_depth/872_depth.tif",
+      "min_m": 15.9609375,
+      "max_m": 62.15625,
+      "valid_pixels": 20858613,
+      "above_cap_pixels": 4955
+    },
+    {
+      "scene": "2025/Day028_Corn",
+      "crop": "corn",
+      "view": "oblique",
+      "path": "2025/Day028_Corn_depth/933_depth.tif",
+      "min_m": 16.390625,
+      "max_m": 59.625,
+      "valid_pixels": 20651986,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Corn",
+      "crop": "corn",
+      "view": "oblique",
+      "path": "2025/Day028_Corn_depth/993_depth.tif",
+      "min_m": 15.859375,
+      "max_m": 56.59375,
+      "valid_pixels": 20698805,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Corn",
+      "crop": "corn",
+      "view": "oblique",
+      "path": "2025/Day028_Corn_depth/1053_depth.tif",
+      "min_m": 15.90625,
+      "max_m": 55.65625,
+      "valid_pixels": 20731400,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Corn",
+      "crop": "corn",
+      "view": "oblique",
+      "path": "2025/Day028_Corn_depth/1114_depth.tif",
+      "min_m": 16.15625,
+      "max_m": 55.5,
+      "valid_pixels": 20790617,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Corn",
+      "crop": "corn",
+      "view": "oblique",
+      "path": "2025/Day028_Corn_depth/1174_depth.tif",
+      "min_m": 16.125,
+      "max_m": 60.25,
+      "valid_pixels": 20742284,
+      "above_cap_pixels": 534
+    },
+    {
+      "scene": "2025/Day028_Oat",
+      "crop": "oat",
+      "view": "nadir",
+      "path": "2025/Day028_Oat_depth/7_depth.tif",
+      "min_m": 14.6484375,
+      "max_m": 15.734375,
+      "valid_pixels": 20887676,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Oat",
+      "crop": "oat",
+      "view": "nadir",
+      "path": "2025/Day028_Oat_depth/19_depth.tif",
+      "min_m": 14.390625,
+      "max_m": 15.9453125,
+      "valid_pixels": 20887648,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Oat",
+      "crop": "oat",
+      "view": "nadir",
+      "path": "2025/Day028_Oat_depth/32_depth.tif",
+      "min_m": 14.515625,
+      "max_m": 15.96875,
+      "valid_pixels": 20887675,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Oat",
+      "crop": "oat",
+      "view": "nadir",
+      "path": "2025/Day028_Oat_depth/44_depth.tif",
+      "min_m": 14.6015625,
+      "max_m": 15.96875,
+      "valid_pixels": 20887644,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Oat",
+      "crop": "oat",
+      "view": "nadir",
+      "path": "2025/Day028_Oat_depth/57_depth.tif",
+      "min_m": 14.9453125,
+      "max_m": 15.875,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Oat",
+      "crop": "oat",
+      "view": "nadir",
+      "path": "2025/Day028_Oat_depth/70_depth.tif",
+      "min_m": 14.8046875,
+      "max_m": 15.8828125,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Oat",
+      "crop": "oat",
+      "view": "nadir",
+      "path": "2025/Day028_Oat_depth/82_depth.tif",
+      "min_m": 14.71875,
+      "max_m": 15.921875,
+      "valid_pixels": 20887651,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Oat",
+      "crop": "oat",
+      "view": "nadir",
+      "path": "2025/Day028_Oat_depth/315_depth.tif",
+      "min_m": 14.4609375,
+      "max_m": 15.8671875,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Oat",
+      "crop": "oat",
+      "view": "nadir",
+      "path": "2025/Day028_Oat_depth/327_depth.tif",
+      "min_m": 14.7265625,
+      "max_m": 15.84375,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Oat",
+      "crop": "oat",
+      "view": "nadir",
+      "path": "2025/Day028_Oat_depth/340_depth.tif",
+      "min_m": 14.4609375,
+      "max_m": 15.921875,
+      "valid_pixels": 20887676,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Oat",
+      "crop": "oat",
+      "view": "nadir",
+      "path": "2025/Day028_Oat_depth/352_depth.tif",
+      "min_m": 14.7265625,
+      "max_m": 15.9765625,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Oat",
+      "crop": "oat",
+      "view": "nadir",
+      "path": "2025/Day028_Oat_depth/365_depth.tif",
+      "min_m": 14.546875,
+      "max_m": 15.796875,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Oat",
+      "crop": "oat",
+      "view": "nadir",
+      "path": "2025/Day028_Oat_depth/378_depth.tif",
+      "min_m": 14.3359375,
+      "max_m": 15.9453125,
+      "valid_pixels": 20887653,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Oat",
+      "crop": "oat",
+      "view": "nadir",
+      "path": "2025/Day028_Oat_depth/390_depth.tif",
+      "min_m": 14.6640625,
+      "max_m": 15.890625,
+      "valid_pixels": 20887674,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Oat",
+      "crop": "oat",
+      "view": "nadir",
+      "path": "2025/Day028_Oat_depth/403_depth.tif",
+      "min_m": 10.65625,
+      "max_m": 15.9765625,
+      "valid_pixels": 20887655,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Oat",
+      "crop": "oat",
+      "view": "nadir",
+      "path": "2025/Day028_Oat_depth/415_depth.tif",
+      "min_m": 11.7109375,
+      "max_m": 16.0,
+      "valid_pixels": 20887652,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Oat",
+      "crop": "oat",
+      "view": "oblique",
+      "path": "2025/Day028_Oat_depth/109_depth.tif",
+      "min_m": 13.2734375,
+      "max_m": 41.0625,
+      "valid_pixels": 20887608,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Oat",
+      "crop": "oat",
+      "view": "oblique",
+      "path": "2025/Day028_Oat_depth/139_depth.tif",
+      "min_m": 13.640625,
+      "max_m": 46.71875,
+      "valid_pixels": 20864009,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Oat",
+      "crop": "oat",
+      "view": "oblique",
+      "path": "2025/Day028_Oat_depth/169_depth.tif",
+      "min_m": 14.8828125,
+      "max_m": 51.65625,
+      "valid_pixels": 20887278,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Oat",
+      "crop": "oat",
+      "view": "oblique",
+      "path": "2025/Day028_Oat_depth/199_depth.tif",
+      "min_m": 13.234375,
+      "max_m": 44.09375,
+      "valid_pixels": 20805754,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Oat",
+      "crop": "oat",
+      "view": "oblique",
+      "path": "2025/Day028_Oat_depth/229_depth.tif",
+      "min_m": 10.90625,
+      "max_m": 50.125,
+      "valid_pixels": 20887671,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Oat",
+      "crop": "oat",
+      "view": "oblique",
+      "path": "2025/Day028_Oat_depth/259_depth.tif",
+      "min_m": 13.4609375,
+      "max_m": 49.78125,
+      "valid_pixels": 20887669,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Oat",
+      "crop": "oat",
+      "view": "oblique",
+      "path": "2025/Day028_Oat_depth/288_depth.tif",
+      "min_m": 13.578125,
+      "max_m": 47.46875,
+      "valid_pixels": 20864283,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Oat",
+      "crop": "oat",
+      "view": "oblique",
+      "path": "2025/Day028_Oat_depth/425_depth.tif",
+      "min_m": 12.671875,
+      "max_m": 50.53125,
+      "valid_pixels": 20694178,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Oat",
+      "crop": "oat",
+      "view": "oblique",
+      "path": "2025/Day028_Oat_depth/455_depth.tif",
+      "min_m": 13.234375,
+      "max_m": 47.25,
+      "valid_pixels": 20730172,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Oat",
+      "crop": "oat",
+      "view": "oblique",
+      "path": "2025/Day028_Oat_depth/485_depth.tif",
+      "min_m": 13.71875,
+      "max_m": 47.8125,
+      "valid_pixels": 20605505,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Oat",
+      "crop": "oat",
+      "view": "oblique",
+      "path": "2025/Day028_Oat_depth/514_depth.tif",
+      "min_m": 13.2265625,
+      "max_m": 51.46875,
+      "valid_pixels": 20865453,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Oat",
+      "crop": "oat",
+      "view": "oblique",
+      "path": "2025/Day028_Oat_depth/544_depth.tif",
+      "min_m": 13.34375,
+      "max_m": 49.84375,
+      "valid_pixels": 20732174,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Oat",
+      "crop": "oat",
+      "view": "oblique",
+      "path": "2025/Day028_Oat_depth/574_depth.tif",
+      "min_m": 13.375,
+      "max_m": 48.3125,
+      "valid_pixels": 20844275,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Oat",
+      "crop": "oat",
+      "view": "oblique",
+      "path": "2025/Day028_Oat_depth/604_depth.tif",
+      "min_m": 13.6171875,
+      "max_m": 46.4375,
+      "valid_pixels": 20680291,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Oat",
+      "crop": "oat",
+      "view": "oblique",
+      "path": "2025/Day028_Oat_depth/634_depth.tif",
+      "min_m": 12.953125,
+      "max_m": 43.90625,
+      "valid_pixels": 20703056,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Oat",
+      "crop": "oat",
+      "view": "oblique",
+      "path": "2025/Day028_Oat_depth/665_depth.tif",
+      "min_m": 13.8828125,
+      "max_m": 46.59375,
+      "valid_pixels": 20881367,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Wheat",
+      "crop": "wheat",
+      "view": "nadir",
+      "path": "2025/Day028_Wheat_depth/12_depth.tif",
+      "min_m": 13.2578125,
+      "max_m": 14.3359375,
+      "valid_pixels": 20887655,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Wheat",
+      "crop": "wheat",
+      "view": "nadir",
+      "path": "2025/Day028_Wheat_depth/36_depth.tif",
+      "min_m": 13.734375,
+      "max_m": 14.6875,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Wheat",
+      "crop": "wheat",
+      "view": "nadir",
+      "path": "2025/Day028_Wheat_depth/60_depth.tif",
+      "min_m": 13.53125,
+      "max_m": 14.640625,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Wheat",
+      "crop": "wheat",
+      "view": "nadir",
+      "path": "2025/Day028_Wheat_depth/84_depth.tif",
+      "min_m": 13.5859375,
+      "max_m": 14.21875,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Wheat",
+      "crop": "wheat",
+      "view": "nadir",
+      "path": "2025/Day028_Wheat_depth/107_depth.tif",
+      "min_m": 13.515625,
+      "max_m": 14.1328125,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Wheat",
+      "crop": "wheat",
+      "view": "nadir",
+      "path": "2025/Day028_Wheat_depth/131_depth.tif",
+      "min_m": 13.6796875,
+      "max_m": 14.765625,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Wheat",
+      "crop": "wheat",
+      "view": "nadir",
+      "path": "2025/Day028_Wheat_depth/155_depth.tif",
+      "min_m": 13.6328125,
+      "max_m": 14.265625,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Wheat",
+      "crop": "wheat",
+      "view": "nadir",
+      "path": "2025/Day028_Wheat_depth/179_depth.tif",
+      "min_m": 13.5,
+      "max_m": 14.4453125,
+      "valid_pixels": 20887679,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Wheat",
+      "crop": "wheat",
+      "view": "nadir",
+      "path": "2025/Day028_Wheat_depth/660_depth.tif",
+      "min_m": 13.5078125,
+      "max_m": 14.3203125,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Wheat",
+      "crop": "wheat",
+      "view": "nadir",
+      "path": "2025/Day028_Wheat_depth/684_depth.tif",
+      "min_m": 13.6015625,
+      "max_m": 14.078125,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Wheat",
+      "crop": "wheat",
+      "view": "nadir",
+      "path": "2025/Day028_Wheat_depth/708_depth.tif",
+      "min_m": 13.5625,
+      "max_m": 14.2890625,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Wheat",
+      "crop": "wheat",
+      "view": "nadir",
+      "path": "2025/Day028_Wheat_depth/732_depth.tif",
+      "min_m": 13.6796875,
+      "max_m": 14.6796875,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Wheat",
+      "crop": "wheat",
+      "view": "nadir",
+      "path": "2025/Day028_Wheat_depth/755_depth.tif",
+      "min_m": 13.453125,
+      "max_m": 14.3359375,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Wheat",
+      "crop": "wheat",
+      "view": "nadir",
+      "path": "2025/Day028_Wheat_depth/779_depth.tif",
+      "min_m": 13.7578125,
+      "max_m": 14.5234375,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Wheat",
+      "crop": "wheat",
+      "view": "nadir",
+      "path": "2025/Day028_Wheat_depth/803_depth.tif",
+      "min_m": 13.7421875,
+      "max_m": 14.3984375,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Wheat",
+      "crop": "wheat",
+      "view": "nadir",
+      "path": "2025/Day028_Wheat_depth/827_depth.tif",
+      "min_m": 13.734375,
+      "max_m": 14.375,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Wheat",
+      "crop": "wheat",
+      "view": "oblique",
+      "path": "2025/Day028_Wheat_depth/214_depth.tif",
+      "min_m": 13.8359375,
+      "max_m": 52.21875,
+      "valid_pixels": 20887679,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Wheat",
+      "crop": "wheat",
+      "view": "oblique",
+      "path": "2025/Day028_Wheat_depth/278_depth.tif",
+      "min_m": 12.828125,
+      "max_m": 52.5625,
+      "valid_pixels": 20887454,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Wheat",
+      "crop": "wheat",
+      "view": "oblique",
+      "path": "2025/Day028_Wheat_depth/342_depth.tif",
+      "min_m": 12.4296875,
+      "max_m": 49.46875,
+      "valid_pixels": 20879066,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Wheat",
+      "crop": "wheat",
+      "view": "oblique",
+      "path": "2025/Day028_Wheat_depth/406_depth.tif",
+      "min_m": 13.0703125,
+      "max_m": 49.40625,
+      "valid_pixels": 20868957,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Wheat",
+      "crop": "wheat",
+      "view": "oblique",
+      "path": "2025/Day028_Wheat_depth/470_depth.tif",
+      "min_m": 12.9765625,
+      "max_m": 48.59375,
+      "valid_pixels": 20887677,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Wheat",
+      "crop": "wheat",
+      "view": "oblique",
+      "path": "2025/Day028_Wheat_depth/534_depth.tif",
+      "min_m": 12.984375,
+      "max_m": 49.8125,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Wheat",
+      "crop": "wheat",
+      "view": "oblique",
+      "path": "2025/Day028_Wheat_depth/598_depth.tif",
+      "min_m": 12.421875,
+      "max_m": 47.59375,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Wheat",
+      "crop": "wheat",
+      "view": "oblique",
+      "path": "2025/Day028_Wheat_depth/858_depth.tif",
+      "min_m": 13.2734375,
+      "max_m": 48.125,
+      "valid_pixels": 20887366,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Wheat",
+      "crop": "wheat",
+      "view": "oblique",
+      "path": "2025/Day028_Wheat_depth/921_depth.tif",
+      "min_m": 12.171875,
+      "max_m": 46.4375,
+      "valid_pixels": 20851930,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Wheat",
+      "crop": "wheat",
+      "view": "oblique",
+      "path": "2025/Day028_Wheat_depth/985_depth.tif",
+      "min_m": 12.9609375,
+      "max_m": 50.6875,
+      "valid_pixels": 20885489,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Wheat",
+      "crop": "wheat",
+      "view": "oblique",
+      "path": "2025/Day028_Wheat_depth/1049_depth.tif",
+      "min_m": 12.90625,
+      "max_m": 50.15625,
+      "valid_pixels": 20887678,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Wheat",
+      "crop": "wheat",
+      "view": "oblique",
+      "path": "2025/Day028_Wheat_depth/1113_depth.tif",
+      "min_m": 12.3046875,
+      "max_m": 47.5625,
+      "valid_pixels": 20734095,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Wheat",
+      "crop": "wheat",
+      "view": "oblique",
+      "path": "2025/Day028_Wheat_depth/1177_depth.tif",
+      "min_m": 12.53125,
+      "max_m": 50.15625,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Wheat",
+      "crop": "wheat",
+      "view": "oblique",
+      "path": "2025/Day028_Wheat_depth/1241_depth.tif",
+      "min_m": 13.046875,
+      "max_m": 50.0,
+      "valid_pixels": 20869380,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Wheat",
+      "crop": "wheat",
+      "view": "oblique",
+      "path": "2025/Day028_Wheat_depth/1305_depth.tif",
+      "min_m": 12.4921875,
+      "max_m": 41.5,
+      "valid_pixels": 20629716,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_Wheat",
+      "crop": "wheat",
+      "view": "oblique",
+      "path": "2025/Day028_Wheat_depth/1369_depth.tif",
+      "min_m": 12.9921875,
+      "max_m": 47.53125,
+      "valid_pixels": 20875385,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_soybean",
+      "crop": "soybean",
+      "view": "nadir",
+      "path": "2025/Day028_soybean_depth/10_depth.tif",
+      "min_m": 14.8828125,
+      "max_m": 15.5546875,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_soybean",
+      "crop": "soybean",
+      "view": "nadir",
+      "path": "2025/Day028_soybean_depth/28_depth.tif",
+      "min_m": 15.046875,
+      "max_m": 15.4453125,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_soybean",
+      "crop": "soybean",
+      "view": "nadir",
+      "path": "2025/Day028_soybean_depth/46_depth.tif",
+      "min_m": 14.9453125,
+      "max_m": 15.625,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_soybean",
+      "crop": "soybean",
+      "view": "nadir",
+      "path": "2025/Day028_soybean_depth/65_depth.tif",
+      "min_m": 15.3046875,
+      "max_m": 15.5546875,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_soybean",
+      "crop": "soybean",
+      "view": "nadir",
+      "path": "2025/Day028_soybean_depth/83_depth.tif",
+      "min_m": 15.2890625,
+      "max_m": 15.5625,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_soybean",
+      "crop": "soybean",
+      "view": "nadir",
+      "path": "2025/Day028_soybean_depth/101_depth.tif",
+      "min_m": 15.2421875,
+      "max_m": 15.5234375,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_soybean",
+      "crop": "soybean",
+      "view": "nadir",
+      "path": "2025/Day028_soybean_depth/120_depth.tif",
+      "min_m": 15.203125,
+      "max_m": 15.515625,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_soybean",
+      "crop": "soybean",
+      "view": "nadir",
+      "path": "2025/Day028_soybean_depth/138_depth.tif",
+      "min_m": 15.109375,
+      "max_m": 15.4453125,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_soybean",
+      "crop": "soybean",
+      "view": "nadir",
+      "path": "2025/Day028_soybean_depth/531_depth.tif",
+      "min_m": 14.671875,
+      "max_m": 15.5078125,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_soybean",
+      "crop": "soybean",
+      "view": "nadir",
+      "path": "2025/Day028_soybean_depth/549_depth.tif",
+      "min_m": 12.796875,
+      "max_m": 15.6640625,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_soybean",
+      "crop": "soybean",
+      "view": "nadir",
+      "path": "2025/Day028_soybean_depth/568_depth.tif",
+      "min_m": 15.203125,
+      "max_m": 15.59375,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_soybean",
+      "crop": "soybean",
+      "view": "nadir",
+      "path": "2025/Day028_soybean_depth/586_depth.tif",
+      "min_m": 15.296875,
+      "max_m": 15.5,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_soybean",
+      "crop": "soybean",
+      "view": "nadir",
+      "path": "2025/Day028_soybean_depth/604_depth.tif",
+      "min_m": 15.203125,
+      "max_m": 15.65625,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_soybean",
+      "crop": "soybean",
+      "view": "nadir",
+      "path": "2025/Day028_soybean_depth/623_depth.tif",
+      "min_m": 14.9765625,
+      "max_m": 15.53125,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_soybean",
+      "crop": "soybean",
+      "view": "nadir",
+      "path": "2025/Day028_soybean_depth/641_depth.tif",
+      "min_m": 14.8984375,
+      "max_m": 15.3984375,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_soybean",
+      "crop": "soybean",
+      "view": "nadir",
+      "path": "2025/Day028_soybean_depth/659_depth.tif",
+      "min_m": 14.8984375,
+      "max_m": 15.609375,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_soybean",
+      "crop": "soybean",
+      "view": "oblique",
+      "path": "2025/Day028_soybean_depth/169_depth.tif",
+      "min_m": 14.0546875,
+      "max_m": 51.75,
+      "valid_pixels": 20835560,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_soybean",
+      "crop": "soybean",
+      "view": "oblique",
+      "path": "2025/Day028_soybean_depth/219_depth.tif",
+      "min_m": 13.46875,
+      "max_m": 47.84375,
+      "valid_pixels": 20560041,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_soybean",
+      "crop": "soybean",
+      "view": "oblique",
+      "path": "2025/Day028_soybean_depth/268_depth.tif",
+      "min_m": 14.390625,
+      "max_m": 52.4375,
+      "valid_pixels": 20887668,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_soybean",
+      "crop": "soybean",
+      "view": "oblique",
+      "path": "2025/Day028_soybean_depth/318_depth.tif",
+      "min_m": 14.4765625,
+      "max_m": 50.9375,
+      "valid_pixels": 20857352,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_soybean",
+      "crop": "soybean",
+      "view": "oblique",
+      "path": "2025/Day028_soybean_depth/367_depth.tif",
+      "min_m": 12.84375,
+      "max_m": 51.125,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_soybean",
+      "crop": "soybean",
+      "view": "oblique",
+      "path": "2025/Day028_soybean_depth/417_depth.tif",
+      "min_m": 13.515625,
+      "max_m": 53.03125,
+      "valid_pixels": 20841021,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_soybean",
+      "crop": "soybean",
+      "view": "oblique",
+      "path": "2025/Day028_soybean_depth/466_depth.tif",
+      "min_m": 13.984375,
+      "max_m": 51.25,
+      "valid_pixels": 20878880,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_soybean",
+      "crop": "soybean",
+      "view": "oblique",
+      "path": "2025/Day028_soybean_depth/516_depth.tif",
+      "min_m": 14.078125,
+      "max_m": 51.0,
+      "valid_pixels": 20758165,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_soybean",
+      "crop": "soybean",
+      "view": "oblique",
+      "path": "2025/Day028_soybean_depth/714_depth.tif",
+      "min_m": 13.9140625,
+      "max_m": 47.4375,
+      "valid_pixels": 20555224,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_soybean",
+      "crop": "soybean",
+      "view": "oblique",
+      "path": "2025/Day028_soybean_depth/764_depth.tif",
+      "min_m": 14.3515625,
+      "max_m": 49.28125,
+      "valid_pixels": 20689275,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_soybean",
+      "crop": "soybean",
+      "view": "oblique",
+      "path": "2025/Day028_soybean_depth/813_depth.tif",
+      "min_m": 13.7734375,
+      "max_m": 48.84375,
+      "valid_pixels": 20585986,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_soybean",
+      "crop": "soybean",
+      "view": "oblique",
+      "path": "2025/Day028_soybean_depth/863_depth.tif",
+      "min_m": 13.5390625,
+      "max_m": 53.34375,
+      "valid_pixels": 20856258,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_soybean",
+      "crop": "soybean",
+      "view": "oblique",
+      "path": "2025/Day028_soybean_depth/912_depth.tif",
+      "min_m": 14.0625,
+      "max_m": 49.0625,
+      "valid_pixels": 20882010,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_soybean",
+      "crop": "soybean",
+      "view": "oblique",
+      "path": "2025/Day028_soybean_depth/962_depth.tif",
+      "min_m": 14.078125,
+      "max_m": 50.5625,
+      "valid_pixels": 20820579,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_soybean",
+      "crop": "soybean",
+      "view": "oblique",
+      "path": "2025/Day028_soybean_depth/1011_depth.tif",
+      "min_m": 13.625,
+      "max_m": 46.53125,
+      "valid_pixels": 20399182,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day028_soybean",
+      "crop": "soybean",
+      "view": "oblique",
+      "path": "2025/Day028_soybean_depth/1061_depth.tif",
+      "min_m": 12.65625,
+      "max_m": 52.6875,
+      "valid_pixels": 20883244,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Corn",
+      "crop": "corn",
+      "view": "nadir",
+      "path": "2025/Day040_Corn_depth/8_depth.tif",
+      "min_m": 16.578125,
+      "max_m": 18.53125,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Corn",
+      "crop": "corn",
+      "view": "nadir",
+      "path": "2025/Day040_Corn_depth/22_depth.tif",
+      "min_m": 16.65625,
+      "max_m": 18.328125,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Corn",
+      "crop": "corn",
+      "view": "nadir",
+      "path": "2025/Day040_Corn_depth/36_depth.tif",
+      "min_m": 16.53125,
+      "max_m": 18.046875,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Corn",
+      "crop": "corn",
+      "view": "nadir",
+      "path": "2025/Day040_Corn_depth/50_depth.tif",
+      "min_m": 16.5,
+      "max_m": 18.375,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Corn",
+      "crop": "corn",
+      "view": "nadir",
+      "path": "2025/Day040_Corn_depth/71_depth.tif",
+      "min_m": 16.765625,
+      "max_m": 17.234375,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Corn",
+      "crop": "corn",
+      "view": "nadir",
+      "path": "2025/Day040_Corn_depth/85_depth.tif",
+      "min_m": 16.703125,
+      "max_m": 17.984375,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Corn",
+      "crop": "corn",
+      "view": "nadir",
+      "path": "2025/Day040_Corn_depth/99_depth.tif",
+      "min_m": 16.453125,
+      "max_m": 18.109375,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Corn",
+      "crop": "corn",
+      "view": "nadir",
+      "path": "2025/Day040_Corn_depth/579_depth.tif",
+      "min_m": 16.40625,
+      "max_m": 18.109375,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Corn",
+      "crop": "corn",
+      "view": "nadir",
+      "path": "2025/Day040_Corn_depth/594_depth.tif",
+      "min_m": 15.46875,
+      "max_m": 18.453125,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Corn",
+      "crop": "corn",
+      "view": "nadir",
+      "path": "2025/Day040_Corn_depth/608_depth.tif",
+      "min_m": 16.625,
+      "max_m": 18.0,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Corn",
+      "crop": "corn",
+      "view": "nadir",
+      "path": "2025/Day040_Corn_depth/622_depth.tif",
+      "min_m": 16.6875,
+      "max_m": 18.34375,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Corn",
+      "crop": "corn",
+      "view": "nadir",
+      "path": "2025/Day040_Corn_depth/636_depth.tif",
+      "min_m": 16.765625,
+      "max_m": 18.046875,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Corn",
+      "crop": "corn",
+      "view": "nadir",
+      "path": "2025/Day040_Corn_depth/651_depth.tif",
+      "min_m": 16.734375,
+      "max_m": 18.421875,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Corn",
+      "crop": "corn",
+      "view": "nadir",
+      "path": "2025/Day040_Corn_depth/667_depth.tif",
+      "min_m": 16.8125,
+      "max_m": 17.8125,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Corn",
+      "crop": "corn",
+      "view": "nadir",
+      "path": "2025/Day040_Corn_depth/681_depth.tif",
+      "min_m": 16.796875,
+      "max_m": 18.03125,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Corn",
+      "crop": "corn",
+      "view": "nadir",
+      "path": "2025/Day040_Corn_depth/695_depth.tif",
+      "min_m": 16.8125,
+      "max_m": 18.609375,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Corn",
+      "crop": "corn",
+      "view": "oblique",
+      "path": "2025/Day040_Corn_depth/142_depth.tif",
+      "min_m": 15.1640625,
+      "max_m": 55.21875,
+      "valid_pixels": 20640590,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Corn",
+      "crop": "corn",
+      "view": "oblique",
+      "path": "2025/Day040_Corn_depth/203_depth.tif",
+      "min_m": 15.0625,
+      "max_m": 58.0,
+      "valid_pixels": 20602564,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Corn",
+      "crop": "corn",
+      "view": "oblique",
+      "path": "2025/Day040_Corn_depth/263_depth.tif",
+      "min_m": 15.5859375,
+      "max_m": 60.34375,
+      "valid_pixels": 20866546,
+      "above_cap_pixels": 247
+    },
+    {
+      "scene": "2025/Day040_Corn",
+      "crop": "corn",
+      "view": "oblique",
+      "path": "2025/Day040_Corn_depth/324_depth.tif",
+      "min_m": 16.65625,
+      "max_m": 59.0,
+      "valid_pixels": 20865238,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Corn",
+      "crop": "corn",
+      "view": "oblique",
+      "path": "2025/Day040_Corn_depth/385_depth.tif",
+      "min_m": 15.34375,
+      "max_m": 58.09375,
+      "valid_pixels": 20874160,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Corn",
+      "crop": "corn",
+      "view": "oblique",
+      "path": "2025/Day040_Corn_depth/445_depth.tif",
+      "min_m": 17.796875,
+      "max_m": 55.59375,
+      "valid_pixels": 20794527,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Corn",
+      "crop": "corn",
+      "view": "oblique",
+      "path": "2025/Day040_Corn_depth/506_depth.tif",
+      "min_m": 14.7421875,
+      "max_m": 56.46875,
+      "valid_pixels": 20820834,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Corn",
+      "crop": "corn",
+      "view": "oblique",
+      "path": "2025/Day040_Corn_depth/567_depth.tif",
+      "min_m": 15.328125,
+      "max_m": 58.0,
+      "valid_pixels": 20133642,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Corn",
+      "crop": "corn",
+      "view": "oblique",
+      "path": "2025/Day040_Corn_depth/752_depth.tif",
+      "min_m": 14.9140625,
+      "max_m": 59.0625,
+      "valid_pixels": 20841208,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Corn",
+      "crop": "corn",
+      "view": "oblique",
+      "path": "2025/Day040_Corn_depth/813_depth.tif",
+      "min_m": 15.5859375,
+      "max_m": 57.0,
+      "valid_pixels": 20622785,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Corn",
+      "crop": "corn",
+      "view": "oblique",
+      "path": "2025/Day040_Corn_depth/874_depth.tif",
+      "min_m": 15.3515625,
+      "max_m": 59.6875,
+      "valid_pixels": 20879609,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Corn",
+      "crop": "corn",
+      "view": "oblique",
+      "path": "2025/Day040_Corn_depth/934_depth.tif",
+      "min_m": 15.53125,
+      "max_m": 58.8125,
+      "valid_pixels": 20864139,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Corn",
+      "crop": "corn",
+      "view": "oblique",
+      "path": "2025/Day040_Corn_depth/995_depth.tif",
+      "min_m": 15.0859375,
+      "max_m": 55.75,
+      "valid_pixels": 20684945,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Corn",
+      "crop": "corn",
+      "view": "oblique",
+      "path": "2025/Day040_Corn_depth/1056_depth.tif",
+      "min_m": 14.71875,
+      "max_m": 56.40625,
+      "valid_pixels": 20551594,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Corn",
+      "crop": "corn",
+      "view": "oblique",
+      "path": "2025/Day040_Corn_depth/1116_depth.tif",
+      "min_m": 14.9375,
+      "max_m": 56.59375,
+      "valid_pixels": 20810355,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Corn",
+      "crop": "corn",
+      "view": "oblique",
+      "path": "2025/Day040_Corn_depth/1177_depth.tif",
+      "min_m": 15.125,
+      "max_m": 59.5,
+      "valid_pixels": 20730520,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Oat",
+      "crop": "oat",
+      "view": "nadir",
+      "path": "2025/Day040_Oat_depth/7_depth.tif",
+      "min_m": 14.3359375,
+      "max_m": 16.0625,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Oat",
+      "crop": "oat",
+      "view": "nadir",
+      "path": "2025/Day040_Oat_depth/19_depth.tif",
+      "min_m": 14.28125,
+      "max_m": 16.125,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Oat",
+      "crop": "oat",
+      "view": "nadir",
+      "path": "2025/Day040_Oat_depth/32_depth.tif",
+      "min_m": 14.59375,
+      "max_m": 16.15625,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Oat",
+      "crop": "oat",
+      "view": "nadir",
+      "path": "2025/Day040_Oat_depth/45_depth.tif",
+      "min_m": 14.0546875,
+      "max_m": 16.296875,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Oat",
+      "crop": "oat",
+      "view": "nadir",
+      "path": "2025/Day040_Oat_depth/57_depth.tif",
+      "min_m": 14.84375,
+      "max_m": 16.09375,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Oat",
+      "crop": "oat",
+      "view": "nadir",
+      "path": "2025/Day040_Oat_depth/70_depth.tif",
+      "min_m": 14.8203125,
+      "max_m": 15.9921875,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Oat",
+      "crop": "oat",
+      "view": "nadir",
+      "path": "2025/Day040_Oat_depth/83_depth.tif",
+      "min_m": 14.9375,
+      "max_m": 16.046875,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Oat",
+      "crop": "oat",
+      "view": "nadir",
+      "path": "2025/Day040_Oat_depth/286_depth.tif",
+      "min_m": 14.75,
+      "max_m": 15.8359375,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Oat",
+      "crop": "oat",
+      "view": "nadir",
+      "path": "2025/Day040_Oat_depth/299_depth.tif",
+      "min_m": 14.84375,
+      "max_m": 15.9453125,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Oat",
+      "crop": "oat",
+      "view": "nadir",
+      "path": "2025/Day040_Oat_depth/311_depth.tif",
+      "min_m": 14.3828125,
+      "max_m": 15.984375,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Oat",
+      "crop": "oat",
+      "view": "nadir",
+      "path": "2025/Day040_Oat_depth/324_depth.tif",
+      "min_m": 14.703125,
+      "max_m": 16.265625,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Oat",
+      "crop": "oat",
+      "view": "nadir",
+      "path": "2025/Day040_Oat_depth/337_depth.tif",
+      "min_m": 14.3359375,
+      "max_m": 16.125,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Oat",
+      "crop": "oat",
+      "view": "nadir",
+      "path": "2025/Day040_Oat_depth/349_depth.tif",
+      "min_m": 14.375,
+      "max_m": 16.265625,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Oat",
+      "crop": "oat",
+      "view": "nadir",
+      "path": "2025/Day040_Oat_depth/362_depth.tif",
+      "min_m": 14.4296875,
+      "max_m": 16.109375,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Oat",
+      "crop": "oat",
+      "view": "nadir",
+      "path": "2025/Day040_Oat_depth/375_depth.tif",
+      "min_m": 10.25,
+      "max_m": 16.359375,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Oat",
+      "crop": "oat",
+      "view": "nadir",
+      "path": "2025/Day040_Oat_depth/387_depth.tif",
+      "min_m": 12.59375,
+      "max_m": 16.21875,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Oat",
+      "crop": "oat",
+      "view": "oblique",
+      "path": "2025/Day040_Oat_depth/109_depth.tif",
+      "min_m": 12.8671875,
+      "max_m": 40.78125,
+      "valid_pixels": 20886071,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Oat",
+      "crop": "oat",
+      "view": "oblique",
+      "path": "2025/Day040_Oat_depth/137_depth.tif",
+      "min_m": 13.7734375,
+      "max_m": 49.4375,
+      "valid_pixels": 20862450,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Oat",
+      "crop": "oat",
+      "view": "oblique",
+      "path": "2025/Day040_Oat_depth/165_depth.tif",
+      "min_m": 14.6171875,
+      "max_m": 51.5625,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Oat",
+      "crop": "oat",
+      "view": "oblique",
+      "path": "2025/Day040_Oat_depth/193_depth.tif",
+      "min_m": 14.203125,
+      "max_m": 50.125,
+      "valid_pixels": 20839686,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Oat",
+      "crop": "oat",
+      "view": "oblique",
+      "path": "2025/Day040_Oat_depth/221_depth.tif",
+      "min_m": 13.40625,
+      "max_m": 50.5,
+      "valid_pixels": 20885399,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Oat",
+      "crop": "oat",
+      "view": "oblique",
+      "path": "2025/Day040_Oat_depth/249_depth.tif",
+      "min_m": 13.9140625,
+      "max_m": 50.875,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Oat",
+      "crop": "oat",
+      "view": "oblique",
+      "path": "2025/Day040_Oat_depth/278_depth.tif",
+      "min_m": 13.7109375,
+      "max_m": 47.75,
+      "valid_pixels": 20520093,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Oat",
+      "crop": "oat",
+      "view": "oblique",
+      "path": "2025/Day040_Oat_depth/414_depth.tif",
+      "min_m": 13.7890625,
+      "max_m": 50.375,
+      "valid_pixels": 20871773,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Oat",
+      "crop": "oat",
+      "view": "oblique",
+      "path": "2025/Day040_Oat_depth/442_depth.tif",
+      "min_m": 13.921875,
+      "max_m": 47.625,
+      "valid_pixels": 20692603,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Oat",
+      "crop": "oat",
+      "view": "oblique",
+      "path": "2025/Day040_Oat_depth/470_depth.tif",
+      "min_m": 13.640625,
+      "max_m": 47.09375,
+      "valid_pixels": 20496235,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Oat",
+      "crop": "oat",
+      "view": "oblique",
+      "path": "2025/Day040_Oat_depth/498_depth.tif",
+      "min_m": 13.6171875,
+      "max_m": 45.84375,
+      "valid_pixels": 20480948,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Oat",
+      "crop": "oat",
+      "view": "oblique",
+      "path": "2025/Day040_Oat_depth/526_depth.tif",
+      "min_m": 13.0625,
+      "max_m": 50.9375,
+      "valid_pixels": 20798008,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Oat",
+      "crop": "oat",
+      "view": "oblique",
+      "path": "2025/Day040_Oat_depth/554_depth.tif",
+      "min_m": 13.265625,
+      "max_m": 47.625,
+      "valid_pixels": 20865801,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Oat",
+      "crop": "oat",
+      "view": "oblique",
+      "path": "2025/Day040_Oat_depth/582_depth.tif",
+      "min_m": 14.109375,
+      "max_m": 47.75,
+      "valid_pixels": 20853156,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Oat",
+      "crop": "oat",
+      "view": "oblique",
+      "path": "2025/Day040_Oat_depth/610_depth.tif",
+      "min_m": 14.140625,
+      "max_m": 47.875,
+      "valid_pixels": 20859513,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Oat",
+      "crop": "oat",
+      "view": "oblique",
+      "path": "2025/Day040_Oat_depth/638_depth.tif",
+      "min_m": 13.734375,
+      "max_m": 47.59375,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Wheat",
+      "crop": "wheat",
+      "view": "nadir",
+      "path": "2025/Day040_Wheat_depth/12_depth.tif",
+      "min_m": 13.2265625,
+      "max_m": 14.40625,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Wheat",
+      "crop": "wheat",
+      "view": "nadir",
+      "path": "2025/Day040_Wheat_depth/36_depth.tif",
+      "min_m": 13.8203125,
+      "max_m": 14.859375,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Wheat",
+      "crop": "wheat",
+      "view": "nadir",
+      "path": "2025/Day040_Wheat_depth/60_depth.tif",
+      "min_m": 13.84375,
+      "max_m": 14.75,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Wheat",
+      "crop": "wheat",
+      "view": "nadir",
+      "path": "2025/Day040_Wheat_depth/83_depth.tif",
+      "min_m": 13.671875,
+      "max_m": 14.453125,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Wheat",
+      "crop": "wheat",
+      "view": "nadir",
+      "path": "2025/Day040_Wheat_depth/107_depth.tif",
+      "min_m": 13.78125,
+      "max_m": 14.3515625,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Wheat",
+      "crop": "wheat",
+      "view": "nadir",
+      "path": "2025/Day040_Wheat_depth/130_depth.tif",
+      "min_m": 13.6640625,
+      "max_m": 14.890625,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Wheat",
+      "crop": "wheat",
+      "view": "nadir",
+      "path": "2025/Day040_Wheat_depth/154_depth.tif",
+      "min_m": 13.765625,
+      "max_m": 14.3359375,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Wheat",
+      "crop": "wheat",
+      "view": "nadir",
+      "path": "2025/Day040_Wheat_depth/178_depth.tif",
+      "min_m": 13.625,
+      "max_m": 14.5,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Wheat",
+      "crop": "wheat",
+      "view": "nadir",
+      "path": "2025/Day040_Wheat_depth/673_depth.tif",
+      "min_m": 13.609375,
+      "max_m": 14.4921875,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Wheat",
+      "crop": "wheat",
+      "view": "nadir",
+      "path": "2025/Day040_Wheat_depth/697_depth.tif",
+      "min_m": 13.734375,
+      "max_m": 14.375,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Wheat",
+      "crop": "wheat",
+      "view": "nadir",
+      "path": "2025/Day040_Wheat_depth/721_depth.tif",
+      "min_m": 13.7890625,
+      "max_m": 14.4296875,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Wheat",
+      "crop": "wheat",
+      "view": "nadir",
+      "path": "2025/Day040_Wheat_depth/744_depth.tif",
+      "min_m": 13.8828125,
+      "max_m": 14.5703125,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Wheat",
+      "crop": "wheat",
+      "view": "nadir",
+      "path": "2025/Day040_Wheat_depth/768_depth.tif",
+      "min_m": 13.703125,
+      "max_m": 14.359375,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Wheat",
+      "crop": "wheat",
+      "view": "nadir",
+      "path": "2025/Day040_Wheat_depth/791_depth.tif",
+      "min_m": 14.015625,
+      "max_m": 14.875,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Wheat",
+      "crop": "wheat",
+      "view": "nadir",
+      "path": "2025/Day040_Wheat_depth/815_depth.tif",
+      "min_m": 13.8125,
+      "max_m": 14.46875,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Wheat",
+      "crop": "wheat",
+      "view": "nadir",
+      "path": "2025/Day040_Wheat_depth/839_depth.tif",
+      "min_m": 13.8203125,
+      "max_m": 14.6640625,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Wheat",
+      "crop": "wheat",
+      "view": "oblique",
+      "path": "2025/Day040_Wheat_depth/214_depth.tif",
+      "min_m": 14.328125,
+      "max_m": 50.6875,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Wheat",
+      "crop": "wheat",
+      "view": "oblique",
+      "path": "2025/Day040_Wheat_depth/278_depth.tif",
+      "min_m": 13.1640625,
+      "max_m": 52.65625,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Wheat",
+      "crop": "wheat",
+      "view": "oblique",
+      "path": "2025/Day040_Wheat_depth/343_depth.tif",
+      "min_m": 12.7890625,
+      "max_m": 49.0,
+      "valid_pixels": 20887677,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Wheat",
+      "crop": "wheat",
+      "view": "oblique",
+      "path": "2025/Day040_Wheat_depth/407_depth.tif",
+      "min_m": 13.125,
+      "max_m": 47.78125,
+      "valid_pixels": 20758601,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Wheat",
+      "crop": "wheat",
+      "view": "oblique",
+      "path": "2025/Day040_Wheat_depth/472_depth.tif",
+      "min_m": 13.2734375,
+      "max_m": 49.375,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Wheat",
+      "crop": "wheat",
+      "view": "oblique",
+      "path": "2025/Day040_Wheat_depth/536_depth.tif",
+      "min_m": 13.296875,
+      "max_m": 50.53125,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Wheat",
+      "crop": "wheat",
+      "view": "oblique",
+      "path": "2025/Day040_Wheat_depth/601_depth.tif",
+      "min_m": 12.6875,
+      "max_m": 49.65625,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Wheat",
+      "crop": "wheat",
+      "view": "oblique",
+      "path": "2025/Day040_Wheat_depth/862_depth.tif",
+      "min_m": 12.9765625,
+      "max_m": 46.09375,
+      "valid_pixels": 20758220,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Wheat",
+      "crop": "wheat",
+      "view": "oblique",
+      "path": "2025/Day040_Wheat_depth/927_depth.tif",
+      "min_m": 12.234375,
+      "max_m": 44.8125,
+      "valid_pixels": 20805208,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Wheat",
+      "crop": "wheat",
+      "view": "oblique",
+      "path": "2025/Day040_Wheat_depth/991_depth.tif",
+      "min_m": 12.28125,
+      "max_m": 45.90625,
+      "valid_pixels": 20788219,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Wheat",
+      "crop": "wheat",
+      "view": "oblique",
+      "path": "2025/Day040_Wheat_depth/1056_depth.tif",
+      "min_m": 12.5546875,
+      "max_m": 48.625,
+      "valid_pixels": 20851638,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Wheat",
+      "crop": "wheat",
+      "view": "oblique",
+      "path": "2025/Day040_Wheat_depth/1120_depth.tif",
+      "min_m": 13.0078125,
+      "max_m": 50.5,
+      "valid_pixels": 20744567,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Wheat",
+      "crop": "wheat",
+      "view": "oblique",
+      "path": "2025/Day040_Wheat_depth/1185_depth.tif",
+      "min_m": 12.5546875,
+      "max_m": 47.3125,
+      "valid_pixels": 20791606,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Wheat",
+      "crop": "wheat",
+      "view": "oblique",
+      "path": "2025/Day040_Wheat_depth/1249_depth.tif",
+      "min_m": 13.0,
+      "max_m": 48.625,
+      "valid_pixels": 20886890,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Wheat",
+      "crop": "wheat",
+      "view": "oblique",
+      "path": "2025/Day040_Wheat_depth/1314_depth.tif",
+      "min_m": 13.1015625,
+      "max_m": 48.34375,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_Wheat",
+      "crop": "wheat",
+      "view": "oblique",
+      "path": "2025/Day040_Wheat_depth/1378_depth.tif",
+      "min_m": 12.8828125,
+      "max_m": 48.59375,
+      "valid_pixels": 20875719,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_soybean",
+      "crop": "soybean",
+      "view": "nadir",
+      "path": "2025/Day040_soybean_depth/10_depth.tif",
+      "min_m": 13.6484375,
+      "max_m": 15.484375,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_soybean",
+      "crop": "soybean",
+      "view": "nadir",
+      "path": "2025/Day040_soybean_depth/28_depth.tif",
+      "min_m": 13.7578125,
+      "max_m": 15.5,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_soybean",
+      "crop": "soybean",
+      "view": "nadir",
+      "path": "2025/Day040_soybean_depth/46_depth.tif",
+      "min_m": 14.140625,
+      "max_m": 15.4140625,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_soybean",
+      "crop": "soybean",
+      "view": "nadir",
+      "path": "2025/Day040_soybean_depth/65_depth.tif",
+      "min_m": 14.8203125,
+      "max_m": 15.3984375,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_soybean",
+      "crop": "soybean",
+      "view": "nadir",
+      "path": "2025/Day040_soybean_depth/83_depth.tif",
+      "min_m": 14.9375,
+      "max_m": 15.3046875,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_soybean",
+      "crop": "soybean",
+      "view": "nadir",
+      "path": "2025/Day040_soybean_depth/101_depth.tif",
+      "min_m": 14.8125,
+      "max_m": 15.3203125,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_soybean",
+      "crop": "soybean",
+      "view": "nadir",
+      "path": "2025/Day040_soybean_depth/120_depth.tif",
+      "min_m": 14.8515625,
+      "max_m": 15.296875,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_soybean",
+      "crop": "soybean",
+      "view": "nadir",
+      "path": "2025/Day040_soybean_depth/138_depth.tif",
+      "min_m": 14.6875,
+      "max_m": 15.25,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_soybean",
+      "crop": "soybean",
+      "view": "nadir",
+      "path": "2025/Day040_soybean_depth/530_depth.tif",
+      "min_m": 14.6796875,
+      "max_m": 15.21875,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_soybean",
+      "crop": "soybean",
+      "view": "nadir",
+      "path": "2025/Day040_soybean_depth/548_depth.tif",
+      "min_m": 12.4375,
+      "max_m": 15.625,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_soybean",
+      "crop": "soybean",
+      "view": "nadir",
+      "path": "2025/Day040_soybean_depth/567_depth.tif",
+      "min_m": 14.84375,
+      "max_m": 15.359375,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_soybean",
+      "crop": "soybean",
+      "view": "nadir",
+      "path": "2025/Day040_soybean_depth/585_depth.tif",
+      "min_m": 15.0234375,
+      "max_m": 15.1875,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_soybean",
+      "crop": "soybean",
+      "view": "nadir",
+      "path": "2025/Day040_soybean_depth/603_depth.tif",
+      "min_m": 14.3125,
+      "max_m": 15.40625,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_soybean",
+      "crop": "soybean",
+      "view": "nadir",
+      "path": "2025/Day040_soybean_depth/622_depth.tif",
+      "min_m": 14.4921875,
+      "max_m": 15.3984375,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_soybean",
+      "crop": "soybean",
+      "view": "nadir",
+      "path": "2025/Day040_soybean_depth/640_depth.tif",
+      "min_m": 13.765625,
+      "max_m": 15.5859375,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_soybean",
+      "crop": "soybean",
+      "view": "nadir",
+      "path": "2025/Day040_soybean_depth/658_depth.tif",
+      "min_m": 15.234375,
+      "max_m": 15.2734375,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_soybean",
+      "crop": "soybean",
+      "view": "oblique",
+      "path": "2025/Day040_soybean_depth/169_depth.tif",
+      "min_m": 13.796875,
+      "max_m": 52.59375,
+      "valid_pixels": 20882027,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_soybean",
+      "crop": "soybean",
+      "view": "oblique",
+      "path": "2025/Day040_soybean_depth/218_depth.tif",
+      "min_m": 12.28125,
+      "max_m": 47.21875,
+      "valid_pixels": 20476282,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_soybean",
+      "crop": "soybean",
+      "view": "oblique",
+      "path": "2025/Day040_soybean_depth/268_depth.tif",
+      "min_m": 14.34375,
+      "max_m": 53.3125,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_soybean",
+      "crop": "soybean",
+      "view": "oblique",
+      "path": "2025/Day040_soybean_depth/317_depth.tif",
+      "min_m": 14.6171875,
+      "max_m": 47.25,
+      "valid_pixels": 20852059,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_soybean",
+      "crop": "soybean",
+      "view": "oblique",
+      "path": "2025/Day040_soybean_depth/366_depth.tif",
+      "min_m": 12.71875,
+      "max_m": 53.1875,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_soybean",
+      "crop": "soybean",
+      "view": "oblique",
+      "path": "2025/Day040_soybean_depth/416_depth.tif",
+      "min_m": 12.3125,
+      "max_m": 53.15625,
+      "valid_pixels": 20835453,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_soybean",
+      "crop": "soybean",
+      "view": "oblique",
+      "path": "2025/Day040_soybean_depth/465_depth.tif",
+      "min_m": 13.7578125,
+      "max_m": 53.125,
+      "valid_pixels": 20887621,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_soybean",
+      "crop": "soybean",
+      "view": "oblique",
+      "path": "2025/Day040_soybean_depth/514_depth.tif",
+      "min_m": 13.4140625,
+      "max_m": 51.0,
+      "valid_pixels": 20849576,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_soybean",
+      "crop": "soybean",
+      "view": "oblique",
+      "path": "2025/Day040_soybean_depth/713_depth.tif",
+      "min_m": 13.3828125,
+      "max_m": 48.34375,
+      "valid_pixels": 20710488,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_soybean",
+      "crop": "soybean",
+      "view": "oblique",
+      "path": "2025/Day040_soybean_depth/762_depth.tif",
+      "min_m": 13.5625,
+      "max_m": 50.375,
+      "valid_pixels": 20840854,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_soybean",
+      "crop": "soybean",
+      "view": "oblique",
+      "path": "2025/Day040_soybean_depth/811_depth.tif",
+      "min_m": 13.21875,
+      "max_m": 48.0625,
+      "valid_pixels": 20709803,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_soybean",
+      "crop": "soybean",
+      "view": "oblique",
+      "path": "2025/Day040_soybean_depth/861_depth.tif",
+      "min_m": 14.4296875,
+      "max_m": 52.59375,
+      "valid_pixels": 20871543,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_soybean",
+      "crop": "soybean",
+      "view": "oblique",
+      "path": "2025/Day040_soybean_depth/910_depth.tif",
+      "min_m": 13.8125,
+      "max_m": 49.125,
+      "valid_pixels": 20887680,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_soybean",
+      "crop": "soybean",
+      "view": "oblique",
+      "path": "2025/Day040_soybean_depth/959_depth.tif",
+      "min_m": 13.6484375,
+      "max_m": 52.96875,
+      "valid_pixels": 20812584,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_soybean",
+      "crop": "soybean",
+      "view": "oblique",
+      "path": "2025/Day040_soybean_depth/1009_depth.tif",
+      "min_m": 13.34375,
+      "max_m": 47.6875,
+      "valid_pixels": 20627152,
+      "above_cap_pixels": 0
+    },
+    {
+      "scene": "2025/Day040_soybean",
+      "crop": "soybean",
+      "view": "oblique",
+      "path": "2025/Day040_soybean_depth/1058_depth.tif",
+      "min_m": 13.3671875,
+      "max_m": 50.125,
+      "valid_pixels": 20886564,
+      "above_cap_pixels": 0
+    }
+  ],
+  "reuse_context": {
+    "schema": 1,
+    "kind": "gt",
+    "manifest_sha256": {
+      "train": "13ee3432515250eff50eeb5238dfc178c8853239074eb8cbbea2b510272b0602"
+    },
+    "rgb_root": null,
+    "depth_root": "/content/drive/MyDrive/DepthAnythingV2-UAV/data/uav3dcrop_depth",
+    "physical_splits": [
+      "train"
+    ],
+    "parameters": {
+      "seed": 42,
+      "max_pixels_per_frame": 20000
+    },
+    "code_sha256": {
+      "runtime_state.py": "a034c7ba745152c31939352931da6c90980ac4ee25fdb7a3b4c02638b460951a",
+      "data.py": "c8f94a49a3353ef907db516b5f9f90c9cca953690372be63fef4b951c59e5fa2",
+      "analyze_gt.py": "8e574ad3a03aa41500615c3e948a998efc3f7ec11b8aeb570cecf508fd6c0e2f"
+    },
+    "extra_sha256": {},
+    "packages": {
+      "numpy": "2.1.3",
+      "tifffile": "2026.9.20",
+      "opencv-python-headless": "4.14.0.94",
+      "opencv-python": "5.0.0.93"
+    },
+    "files": {
+      "train:depth_relpath:2025/Day019_Corn_depth/8_depth.tif": {
+        "bytes": 1825938,
+        "mtime_ns": 1791882287000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/22_depth.tif": {
+        "bytes": 1705524,
+        "mtime_ns": 1791882291000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/37_depth.tif": {
+        "bytes": 663113,
+        "mtime_ns": 1791882295000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/51_depth.tif": {
+        "bytes": 1577915,
+        "mtime_ns": 1791882299000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/66_depth.tif": {
+        "bytes": 1928075,
+        "mtime_ns": 1791882303000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/81_depth.tif": {
+        "bytes": 1418959,
+        "mtime_ns": 1791882307000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/95_depth.tif": {
+        "bytes": 1346947,
+        "mtime_ns": 1791882312000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/573_depth.tif": {
+        "bytes": 1216532,
+        "mtime_ns": 1791882315000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/587_depth.tif": {
+        "bytes": 1143552,
+        "mtime_ns": 1791882318000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/602_depth.tif": {
+        "bytes": 750413,
+        "mtime_ns": 1791882322000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/616_depth.tif": {
+        "bytes": 1510304,
+        "mtime_ns": 1791882326000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/631_depth.tif": {
+        "bytes": 1018466,
+        "mtime_ns": 1791882329000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/646_depth.tif": {
+        "bytes": 1312402,
+        "mtime_ns": 1791882333000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/660_depth.tif": {
+        "bytes": 1226251,
+        "mtime_ns": 1791882336000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/675_depth.tif": {
+        "bytes": 1112015,
+        "mtime_ns": 1791882340000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/689_depth.tif": {
+        "bytes": 2145528,
+        "mtime_ns": 1791882345000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/140_depth.tif": {
+        "bytes": 2485817,
+        "mtime_ns": 1791882349000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/200_depth.tif": {
+        "bytes": 2915166,
+        "mtime_ns": 1791882353000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/261_depth.tif": {
+        "bytes": 1889864,
+        "mtime_ns": 1791882358000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/321_depth.tif": {
+        "bytes": 2332142,
+        "mtime_ns": 1791882362000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/381_depth.tif": {
+        "bytes": 2919105,
+        "mtime_ns": 1791882365000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/442_depth.tif": {
+        "bytes": 2681045,
+        "mtime_ns": 1791882369000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/502_depth.tif": {
+        "bytes": 2158967,
+        "mtime_ns": 1791882374000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/563_depth.tif": {
+        "bytes": 2241010,
+        "mtime_ns": 1791882378000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/747_depth.tif": {
+        "bytes": 2499487,
+        "mtime_ns": 1791882382000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/808_depth.tif": {
+        "bytes": 2199315,
+        "mtime_ns": 1791882386000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/868_depth.tif": {
+        "bytes": 2698505,
+        "mtime_ns": 1791882389000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/929_depth.tif": {
+        "bytes": 2266148,
+        "mtime_ns": 1791882393000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/989_depth.tif": {
+        "bytes": 2908479,
+        "mtime_ns": 1791882397000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/1049_depth.tif": {
+        "bytes": 2228684,
+        "mtime_ns": 1791882401000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/1110_depth.tif": {
+        "bytes": 2512724,
+        "mtime_ns": 1791882404000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/1170_depth.tif": {
+        "bytes": 2771405,
+        "mtime_ns": 1791882407000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/7_depth.tif": {
+        "bytes": 3678748,
+        "mtime_ns": 1791882412000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/19_depth.tif": {
+        "bytes": 2845403,
+        "mtime_ns": 1791882416000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/32_depth.tif": {
+        "bytes": 3331265,
+        "mtime_ns": 1791882419000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/44_depth.tif": {
+        "bytes": 2651970,
+        "mtime_ns": 1791882424000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/57_depth.tif": {
+        "bytes": 2227091,
+        "mtime_ns": 1791882427000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/69_depth.tif": {
+        "bytes": 2825648,
+        "mtime_ns": 1791882430000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/82_depth.tif": {
+        "bytes": 1886229,
+        "mtime_ns": 1791882437000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/94_depth.tif": {
+        "bytes": 1958479,
+        "mtime_ns": 1791882440000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/338_depth.tif": {
+        "bytes": 3033908,
+        "mtime_ns": 1791882444000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/350_depth.tif": {
+        "bytes": 3564306,
+        "mtime_ns": 1791882447000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/363_depth.tif": {
+        "bytes": 2368702,
+        "mtime_ns": 1791882450000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/375_depth.tif": {
+        "bytes": 4350604,
+        "mtime_ns": 1791882453000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/388_depth.tif": {
+        "bytes": 2351116,
+        "mtime_ns": 1791882457000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/400_depth.tif": {
+        "bytes": 3968994,
+        "mtime_ns": 1791882460000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/413_depth.tif": {
+        "bytes": 2708348,
+        "mtime_ns": 1791882464000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/425_depth.tif": {
+        "bytes": 3263097,
+        "mtime_ns": 1791882468000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/110_depth.tif": {
+        "bytes": 3197366,
+        "mtime_ns": 1791882471000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/140_depth.tif": {
+        "bytes": 3889549,
+        "mtime_ns": 1791882475000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/171_depth.tif": {
+        "bytes": 4016805,
+        "mtime_ns": 1791882478000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/202_depth.tif": {
+        "bytes": 3521872,
+        "mtime_ns": 1791882481000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/232_depth.tif": {
+        "bytes": 3342734,
+        "mtime_ns": 1791882485000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/263_depth.tif": {
+        "bytes": 3213484,
+        "mtime_ns": 1791882489000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/294_depth.tif": {
+        "bytes": 2868286,
+        "mtime_ns": 1791882492000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/324_depth.tif": {
+        "bytes": 3580071,
+        "mtime_ns": 1791882495000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/461_depth.tif": {
+        "bytes": 4138149,
+        "mtime_ns": 1791882499000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/491_depth.tif": {
+        "bytes": 3198202,
+        "mtime_ns": 1791882503000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/522_depth.tif": {
+        "bytes": 4275081,
+        "mtime_ns": 1791882506000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/553_depth.tif": {
+        "bytes": 3253447,
+        "mtime_ns": 1791882509000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/583_depth.tif": {
+        "bytes": 3377413,
+        "mtime_ns": 1791882513000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/614_depth.tif": {
+        "bytes": 2894164,
+        "mtime_ns": 1791882516000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/645_depth.tif": {
+        "bytes": 3809817,
+        "mtime_ns": 1791882519000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/676_depth.tif": {
+        "bytes": 3193228,
+        "mtime_ns": 1791882523000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/12_depth.tif": {
+        "bytes": 2233641,
+        "mtime_ns": 1791882527000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/35_depth.tif": {
+        "bytes": 2646627,
+        "mtime_ns": 1791882531000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/58_depth.tif": {
+        "bytes": 3112799,
+        "mtime_ns": 1791882535000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/81_depth.tif": {
+        "bytes": 3083869,
+        "mtime_ns": 1791882543000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/104_depth.tif": {
+        "bytes": 2691523,
+        "mtime_ns": 1791882546000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/127_depth.tif": {
+        "bytes": 3085370,
+        "mtime_ns": 1791882545000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/150_depth.tif": {
+        "bytes": 2556327,
+        "mtime_ns": 1791882545000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/173_depth.tif": {
+        "bytes": 2965080,
+        "mtime_ns": 1791882546000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/667_depth.tif": {
+        "bytes": 2157420,
+        "mtime_ns": 1791882549000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/693_depth.tif": {
+        "bytes": 2995277,
+        "mtime_ns": 1791882549000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/716_depth.tif": {
+        "bytes": 3179099,
+        "mtime_ns": 1791882550000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/739_depth.tif": {
+        "bytes": 2879237,
+        "mtime_ns": 1791882550000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/762_depth.tif": {
+        "bytes": 2998839,
+        "mtime_ns": 1791882552000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/785_depth.tif": {
+        "bytes": 2712017,
+        "mtime_ns": 1791882552000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/808_depth.tif": {
+        "bytes": 2925582,
+        "mtime_ns": 1791882553000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/831_depth.tif": {
+        "bytes": 2497257,
+        "mtime_ns": 1791882554000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/210_depth.tif": {
+        "bytes": 3491989,
+        "mtime_ns": 1791882556000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/274_depth.tif": {
+        "bytes": 4053526,
+        "mtime_ns": 1791882557000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/338_depth.tif": {
+        "bytes": 3871577,
+        "mtime_ns": 1791882557000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/402_depth.tif": {
+        "bytes": 3657472,
+        "mtime_ns": 1791882558000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/466_depth.tif": {
+        "bytes": 3233532,
+        "mtime_ns": 1791882560000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/531_depth.tif": {
+        "bytes": 2593519,
+        "mtime_ns": 1791882561000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/595_depth.tif": {
+        "bytes": 3322772,
+        "mtime_ns": 1791882561000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/853_depth.tif": {
+        "bytes": 3582601,
+        "mtime_ns": 1791882562000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/917_depth.tif": {
+        "bytes": 4041326,
+        "mtime_ns": 1791882564000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/981_depth.tif": {
+        "bytes": 2656585,
+        "mtime_ns": 1791882564000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/1045_depth.tif": {
+        "bytes": 4034697,
+        "mtime_ns": 1791882565000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/1110_depth.tif": {
+        "bytes": 3629877,
+        "mtime_ns": 1791882566000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/1174_depth.tif": {
+        "bytes": 3124278,
+        "mtime_ns": 1791882568000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/1238_depth.tif": {
+        "bytes": 3436864,
+        "mtime_ns": 1791882569000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/1302_depth.tif": {
+        "bytes": 3588153,
+        "mtime_ns": 1791882568000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/1366_depth.tif": {
+        "bytes": 3642169,
+        "mtime_ns": 1791882569000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/9_depth.tif": {
+        "bytes": 1736111,
+        "mtime_ns": 1791882572000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/27_depth.tif": {
+        "bytes": 2077690,
+        "mtime_ns": 1791882573000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/45_depth.tif": {
+        "bytes": 2132790,
+        "mtime_ns": 1791882573000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/63_depth.tif": {
+        "bytes": 1952959,
+        "mtime_ns": 1791882573000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/81_depth.tif": {
+        "bytes": 2287834,
+        "mtime_ns": 1791882576000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/99_depth.tif": {
+        "bytes": 2285823,
+        "mtime_ns": 1791882576000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/117_depth.tif": {
+        "bytes": 2132503,
+        "mtime_ns": 1791882577000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/135_depth.tif": {
+        "bytes": 2248116,
+        "mtime_ns": 1791882578000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/522_depth.tif": {
+        "bytes": 2218290,
+        "mtime_ns": 1791882580000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/540_depth.tif": {
+        "bytes": 2077007,
+        "mtime_ns": 1791882580000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/558_depth.tif": {
+        "bytes": 2056753,
+        "mtime_ns": 1791882581000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/576_depth.tif": {
+        "bytes": 2196623,
+        "mtime_ns": 1791882582000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/594_depth.tif": {
+        "bytes": 1940719,
+        "mtime_ns": 1791882584000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/612_depth.tif": {
+        "bytes": 1996686,
+        "mtime_ns": 1791882584000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/630_depth.tif": {
+        "bytes": 453170,
+        "mtime_ns": 1791882584000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/648_depth.tif": {
+        "bytes": 2380218,
+        "mtime_ns": 1791882584000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/165_depth.tif": {
+        "bytes": 2894672,
+        "mtime_ns": 1791882587000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/214_depth.tif": {
+        "bytes": 2482301,
+        "mtime_ns": 1791882587000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/263_depth.tif": {
+        "bytes": 1988906,
+        "mtime_ns": 1791882588000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/312_depth.tif": {
+        "bytes": 2110403,
+        "mtime_ns": 1791882589000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/361_depth.tif": {
+        "bytes": 2632863,
+        "mtime_ns": 1791882590000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/410_depth.tif": {
+        "bytes": 2882509,
+        "mtime_ns": 1791882591000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/459_depth.tif": {
+        "bytes": 2087130,
+        "mtime_ns": 1791882591000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/508_depth.tif": {
+        "bytes": 2023002,
+        "mtime_ns": 1791882593000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/703_depth.tif": {
+        "bytes": 2345257,
+        "mtime_ns": 1791882594000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/752_depth.tif": {
+        "bytes": 2557347,
+        "mtime_ns": 1791882595000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/801_depth.tif": {
+        "bytes": 2194896,
+        "mtime_ns": 1791882595000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/850_depth.tif": {
+        "bytes": 2154123,
+        "mtime_ns": 1791882597000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/899_depth.tif": {
+        "bytes": 2828656,
+        "mtime_ns": 1791882598000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/948_depth.tif": {
+        "bytes": 2557098,
+        "mtime_ns": 1791882600000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/997_depth.tif": {
+        "bytes": 2563669,
+        "mtime_ns": 1791882598000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/1046_depth.tif": {
+        "bytes": 2265613,
+        "mtime_ns": 1791882600000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/8_depth.tif": {
+        "bytes": 2032842,
+        "mtime_ns": 1791882602000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/23_depth.tif": {
+        "bytes": 1329839,
+        "mtime_ns": 1791882603000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/38_depth.tif": {
+        "bytes": 1959301,
+        "mtime_ns": 1791882604000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/52_depth.tif": {
+        "bytes": 1819103,
+        "mtime_ns": 1791882605000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/67_depth.tif": {
+        "bytes": 1661288,
+        "mtime_ns": 1791882607000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/82_depth.tif": {
+        "bytes": 1643846,
+        "mtime_ns": 1791882608000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/97_depth.tif": {
+        "bytes": 1350606,
+        "mtime_ns": 1791882609000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/112_depth.tif": {
+        "bytes": 1440508,
+        "mtime_ns": 1791882609000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/589_depth.tif": {
+        "bytes": 1189478,
+        "mtime_ns": 1791882611000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/604_depth.tif": {
+        "bytes": 1904389,
+        "mtime_ns": 1791882612000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/619_depth.tif": {
+        "bytes": 2330190,
+        "mtime_ns": 1791882613000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/634_depth.tif": {
+        "bytes": 1190392,
+        "mtime_ns": 1791882613000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/649_depth.tif": {
+        "bytes": 1817700,
+        "mtime_ns": 1791882615000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/663_depth.tif": {
+        "bytes": 1506995,
+        "mtime_ns": 1791882616000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/678_depth.tif": {
+        "bytes": 1981052,
+        "mtime_ns": 1791882617000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/693_depth.tif": {
+        "bytes": 1353477,
+        "mtime_ns": 1791882617000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/143_depth.tif": {
+        "bytes": 2999187,
+        "mtime_ns": 1791882618000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/203_depth.tif": {
+        "bytes": 3545669,
+        "mtime_ns": 1791882620000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/264_depth.tif": {
+        "bytes": 3448337,
+        "mtime_ns": 1791882620000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/324_depth.tif": {
+        "bytes": 2855874,
+        "mtime_ns": 1791882621000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/384_depth.tif": {
+        "bytes": 3990958,
+        "mtime_ns": 1791882622000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/445_depth.tif": {
+        "bytes": 3731976,
+        "mtime_ns": 1791882623000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/505_depth.tif": {
+        "bytes": 3752674,
+        "mtime_ns": 1791882624000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/566_depth.tif": {
+        "bytes": 2798821,
+        "mtime_ns": 1791882624000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/751_depth.tif": {
+        "bytes": 3449280,
+        "mtime_ns": 1791882627000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/812_depth.tif": {
+        "bytes": 3499860,
+        "mtime_ns": 1791882627000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/872_depth.tif": {
+        "bytes": 3798186,
+        "mtime_ns": 1791882628000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/933_depth.tif": {
+        "bytes": 3422537,
+        "mtime_ns": 1791882628000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/993_depth.tif": {
+        "bytes": 3485667,
+        "mtime_ns": 1791882631000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/1053_depth.tif": {
+        "bytes": 3143601,
+        "mtime_ns": 1791882630000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/1114_depth.tif": {
+        "bytes": 3367647,
+        "mtime_ns": 1791882632000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/1174_depth.tif": {
+        "bytes": 3824749,
+        "mtime_ns": 1791882634000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/7_depth.tif": {
+        "bytes": 3818862,
+        "mtime_ns": 1791882634000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/19_depth.tif": {
+        "bytes": 3332721,
+        "mtime_ns": 1791882634000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/32_depth.tif": {
+        "bytes": 3595856,
+        "mtime_ns": 1791882636000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/44_depth.tif": {
+        "bytes": 3257100,
+        "mtime_ns": 1791882637000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/57_depth.tif": {
+        "bytes": 3260595,
+        "mtime_ns": 1791882638000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/70_depth.tif": {
+        "bytes": 3284813,
+        "mtime_ns": 1791882638000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/82_depth.tif": {
+        "bytes": 2941039,
+        "mtime_ns": 1791882639000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/315_depth.tif": {
+        "bytes": 3015353,
+        "mtime_ns": 1791882640000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/327_depth.tif": {
+        "bytes": 3508587,
+        "mtime_ns": 1791882641000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/340_depth.tif": {
+        "bytes": 4059986,
+        "mtime_ns": 1791882642000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/352_depth.tif": {
+        "bytes": 3328037,
+        "mtime_ns": 1791882643000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/365_depth.tif": {
+        "bytes": 4200538,
+        "mtime_ns": 1791882644000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/378_depth.tif": {
+        "bytes": 2964931,
+        "mtime_ns": 1791882645000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/390_depth.tif": {
+        "bytes": 4005997,
+        "mtime_ns": 1791882645000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/403_depth.tif": {
+        "bytes": 3187542,
+        "mtime_ns": 1791882646000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/415_depth.tif": {
+        "bytes": 3459118,
+        "mtime_ns": 1791882648000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/109_depth.tif": {
+        "bytes": 3879003,
+        "mtime_ns": 1791882649000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/139_depth.tif": {
+        "bytes": 3848702,
+        "mtime_ns": 1791882649000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/169_depth.tif": {
+        "bytes": 3440031,
+        "mtime_ns": 1791882651000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/199_depth.tif": {
+        "bytes": 4228571,
+        "mtime_ns": 1791882651000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/229_depth.tif": {
+        "bytes": 3961511,
+        "mtime_ns": 1791882653000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/259_depth.tif": {
+        "bytes": 4163424,
+        "mtime_ns": 1791882653000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/288_depth.tif": {
+        "bytes": 3826513,
+        "mtime_ns": 1791882655000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/425_depth.tif": {
+        "bytes": 3939839,
+        "mtime_ns": 1791882655000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/455_depth.tif": {
+        "bytes": 4369314,
+        "mtime_ns": 1791882656000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/485_depth.tif": {
+        "bytes": 3194817,
+        "mtime_ns": 1791882656000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/514_depth.tif": {
+        "bytes": 4144729,
+        "mtime_ns": 1791882659000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/544_depth.tif": {
+        "bytes": 3779940,
+        "mtime_ns": 1791882658000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/574_depth.tif": {
+        "bytes": 4369788,
+        "mtime_ns": 1791882658000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/604_depth.tif": {
+        "bytes": 3752192,
+        "mtime_ns": 1791882660000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/634_depth.tif": {
+        "bytes": 4463990,
+        "mtime_ns": 1791882663000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/665_depth.tif": {
+        "bytes": 3982841,
+        "mtime_ns": 1791882663000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/12_depth.tif": {
+        "bytes": 2385716,
+        "mtime_ns": 1791882664000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/36_depth.tif": {
+        "bytes": 3354078,
+        "mtime_ns": 1791882664000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/60_depth.tif": {
+        "bytes": 3670923,
+        "mtime_ns": 1791882667000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/84_depth.tif": {
+        "bytes": 2827377,
+        "mtime_ns": 1791882668000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/107_depth.tif": {
+        "bytes": 2923290,
+        "mtime_ns": 1791882668000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/131_depth.tif": {
+        "bytes": 3034379,
+        "mtime_ns": 1791882668000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/155_depth.tif": {
+        "bytes": 3018726,
+        "mtime_ns": 1791882671000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/179_depth.tif": {
+        "bytes": 3151700,
+        "mtime_ns": 1791882671000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/660_depth.tif": {
+        "bytes": 3675132,
+        "mtime_ns": 1791882671000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/684_depth.tif": {
+        "bytes": 2969472,
+        "mtime_ns": 1791882672000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/708_depth.tif": {
+        "bytes": 3264197,
+        "mtime_ns": 1791882674000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/732_depth.tif": {
+        "bytes": 3415383,
+        "mtime_ns": 1791882675000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/755_depth.tif": {
+        "bytes": 3385058,
+        "mtime_ns": 1791882675000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/779_depth.tif": {
+        "bytes": 3397220,
+        "mtime_ns": 1791882677000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/803_depth.tif": {
+        "bytes": 3117584,
+        "mtime_ns": 1791882679000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/827_depth.tif": {
+        "bytes": 2834180,
+        "mtime_ns": 1791882678000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/214_depth.tif": {
+        "bytes": 3804034,
+        "mtime_ns": 1791882679000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/278_depth.tif": {
+        "bytes": 4255688,
+        "mtime_ns": 1791882680000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/342_depth.tif": {
+        "bytes": 4409399,
+        "mtime_ns": 1791882682000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/406_depth.tif": {
+        "bytes": 4237543,
+        "mtime_ns": 1791882682000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/470_depth.tif": {
+        "bytes": 4359118,
+        "mtime_ns": 1791882683000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/534_depth.tif": {
+        "bytes": 3441432,
+        "mtime_ns": 1791882684000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/598_depth.tif": {
+        "bytes": 3651233,
+        "mtime_ns": 1791882685000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/858_depth.tif": {
+        "bytes": 3730271,
+        "mtime_ns": 1791882686000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/921_depth.tif": {
+        "bytes": 4348653,
+        "mtime_ns": 1791882686000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/985_depth.tif": {
+        "bytes": 3548051,
+        "mtime_ns": 1791882687000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/1049_depth.tif": {
+        "bytes": 3590744,
+        "mtime_ns": 1791882689000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/1113_depth.tif": {
+        "bytes": 3632933,
+        "mtime_ns": 1791882690000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/1177_depth.tif": {
+        "bytes": 4399228,
+        "mtime_ns": 1791882690000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/1241_depth.tif": {
+        "bytes": 3655366,
+        "mtime_ns": 1791882690000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/1305_depth.tif": {
+        "bytes": 3835970,
+        "mtime_ns": 1791882692000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/1369_depth.tif": {
+        "bytes": 3958071,
+        "mtime_ns": 1791882694000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/10_depth.tif": {
+        "bytes": 2988786,
+        "mtime_ns": 1791882694000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/28_depth.tif": {
+        "bytes": 2326683,
+        "mtime_ns": 1791882694000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/46_depth.tif": {
+        "bytes": 2731276,
+        "mtime_ns": 1791882696000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/65_depth.tif": {
+        "bytes": 2051100,
+        "mtime_ns": 1791882698000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/83_depth.tif": {
+        "bytes": 2249583,
+        "mtime_ns": 1791882698000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/101_depth.tif": {
+        "bytes": 2440701,
+        "mtime_ns": 1791882698000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/120_depth.tif": {
+        "bytes": 2511989,
+        "mtime_ns": 1791882699000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/138_depth.tif": {
+        "bytes": 2429813,
+        "mtime_ns": 1791882701000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/531_depth.tif": {
+        "bytes": 2359102,
+        "mtime_ns": 1791882702000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/549_depth.tif": {
+        "bytes": 1963446,
+        "mtime_ns": 1791882702000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/568_depth.tif": {
+        "bytes": 2447361,
+        "mtime_ns": 1791882703000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/586_depth.tif": {
+        "bytes": 2074375,
+        "mtime_ns": 1791882705000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/604_depth.tif": {
+        "bytes": 2421121,
+        "mtime_ns": 1791882705000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/623_depth.tif": {
+        "bytes": 2223074,
+        "mtime_ns": 1791882705000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/641_depth.tif": {
+        "bytes": 2397086,
+        "mtime_ns": 1791882707000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/659_depth.tif": {
+        "bytes": 2671725,
+        "mtime_ns": 1791882708000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/169_depth.tif": {
+        "bytes": 3616562,
+        "mtime_ns": 1791882709000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/219_depth.tif": {
+        "bytes": 2885023,
+        "mtime_ns": 1791882709000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/268_depth.tif": {
+        "bytes": 2627811,
+        "mtime_ns": 1791882710000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/318_depth.tif": {
+        "bytes": 2368862,
+        "mtime_ns": 1791882712000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/367_depth.tif": {
+        "bytes": 3067027,
+        "mtime_ns": 1791882713000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/417_depth.tif": {
+        "bytes": 3513316,
+        "mtime_ns": 1791882713000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/466_depth.tif": {
+        "bytes": 2415473,
+        "mtime_ns": 1791882714000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/516_depth.tif": {
+        "bytes": 2380115,
+        "mtime_ns": 1791882717000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/714_depth.tif": {
+        "bytes": 2809497,
+        "mtime_ns": 1791882716000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/764_depth.tif": {
+        "bytes": 3346953,
+        "mtime_ns": 1791882716000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/813_depth.tif": {
+        "bytes": 2873216,
+        "mtime_ns": 1791882718000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/863_depth.tif": {
+        "bytes": 2564684,
+        "mtime_ns": 1791882720000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/912_depth.tif": {
+        "bytes": 3478552,
+        "mtime_ns": 1791882720000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/962_depth.tif": {
+        "bytes": 3264568,
+        "mtime_ns": 1791882720000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/1011_depth.tif": {
+        "bytes": 2763376,
+        "mtime_ns": 1791882722000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/1061_depth.tif": {
+        "bytes": 3062301,
+        "mtime_ns": 1791882724000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/8_depth.tif": {
+        "bytes": 3237593,
+        "mtime_ns": 1791882724000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/22_depth.tif": {
+        "bytes": 3072445,
+        "mtime_ns": 1791882724000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/36_depth.tif": {
+        "bytes": 3004973,
+        "mtime_ns": 1791882726000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/50_depth.tif": {
+        "bytes": 2395880,
+        "mtime_ns": 1791882727000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/71_depth.tif": {
+        "bytes": 1437237,
+        "mtime_ns": 1791882728000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/85_depth.tif": {
+        "bytes": 2642715,
+        "mtime_ns": 1791882728000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/99_depth.tif": {
+        "bytes": 2669403,
+        "mtime_ns": 1791882730000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/579_depth.tif": {
+        "bytes": 1683616,
+        "mtime_ns": 1791882732000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/594_depth.tif": {
+        "bytes": 2035035,
+        "mtime_ns": 1791882732000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/608_depth.tif": {
+        "bytes": 2580816,
+        "mtime_ns": 1791882732000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/622_depth.tif": {
+        "bytes": 2915559,
+        "mtime_ns": 1791882733000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/636_depth.tif": {
+        "bytes": 2352953,
+        "mtime_ns": 1791882735000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/651_depth.tif": {
+        "bytes": 3076897,
+        "mtime_ns": 1791882735000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/667_depth.tif": {
+        "bytes": 2029017,
+        "mtime_ns": 1791882736000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/681_depth.tif": {
+        "bytes": 2442031,
+        "mtime_ns": 1791882736000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/695_depth.tif": {
+        "bytes": 2576655,
+        "mtime_ns": 1791882738000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/142_depth.tif": {
+        "bytes": 3537849,
+        "mtime_ns": 1791882740000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/203_depth.tif": {
+        "bytes": 3779952,
+        "mtime_ns": 1791882740000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/263_depth.tif": {
+        "bytes": 3898744,
+        "mtime_ns": 1791882740000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/324_depth.tif": {
+        "bytes": 3388593,
+        "mtime_ns": 1791882742000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/385_depth.tif": {
+        "bytes": 4259893,
+        "mtime_ns": 1791882743000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/445_depth.tif": {
+        "bytes": 3353060,
+        "mtime_ns": 1791882744000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/506_depth.tif": {
+        "bytes": 4127153,
+        "mtime_ns": 1791882744000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/567_depth.tif": {
+        "bytes": 3454976,
+        "mtime_ns": 1791882746000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/752_depth.tif": {
+        "bytes": 3993472,
+        "mtime_ns": 1791882746000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/813_depth.tif": {
+        "bytes": 3536770,
+        "mtime_ns": 1791882748000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/874_depth.tif": {
+        "bytes": 4091568,
+        "mtime_ns": 1791882748000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/934_depth.tif": {
+        "bytes": 3625845,
+        "mtime_ns": 1791882750000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/995_depth.tif": {
+        "bytes": 3776569,
+        "mtime_ns": 1791882750000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/1056_depth.tif": {
+        "bytes": 3375166,
+        "mtime_ns": 1791882751000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/1116_depth.tif": {
+        "bytes": 4072212,
+        "mtime_ns": 1791882751000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/1177_depth.tif": {
+        "bytes": 4146334,
+        "mtime_ns": 1791882754000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/7_depth.tif": {
+        "bytes": 4280667,
+        "mtime_ns": 1791882754000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/19_depth.tif": {
+        "bytes": 3247708,
+        "mtime_ns": 1791882755000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/32_depth.tif": {
+        "bytes": 3352231,
+        "mtime_ns": 1791882755000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/45_depth.tif": {
+        "bytes": 3099704,
+        "mtime_ns": 1791882757000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/57_depth.tif": {
+        "bytes": 3359487,
+        "mtime_ns": 1791882757000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/70_depth.tif": {
+        "bytes": 3174641,
+        "mtime_ns": 1791882758000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/83_depth.tif": {
+        "bytes": 2546725,
+        "mtime_ns": 1791882760000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/286_depth.tif": {
+        "bytes": 2539692,
+        "mtime_ns": 1791882761000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/299_depth.tif": {
+        "bytes": 3224504,
+        "mtime_ns": 1791882761000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/311_depth.tif": {
+        "bytes": 3833837,
+        "mtime_ns": 1791882762000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/324_depth.tif": {
+        "bytes": 2913404,
+        "mtime_ns": 1791882763000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/337_depth.tif": {
+        "bytes": 4307734,
+        "mtime_ns": 1791882764000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/349_depth.tif": {
+        "bytes": 3089773,
+        "mtime_ns": 1791882764000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/362_depth.tif": {
+        "bytes": 4272420,
+        "mtime_ns": 1791882766000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/375_depth.tif": {
+        "bytes": 2993585,
+        "mtime_ns": 1791882767000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/387_depth.tif": {
+        "bytes": 3523758,
+        "mtime_ns": 1791882767000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/109_depth.tif": {
+        "bytes": 3737983,
+        "mtime_ns": 1791882768000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/137_depth.tif": {
+        "bytes": 3840801,
+        "mtime_ns": 1791882769000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/165_depth.tif": {
+        "bytes": 4139130,
+        "mtime_ns": 1791882771000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/193_depth.tif": {
+        "bytes": 3680720,
+        "mtime_ns": 1791882771000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/221_depth.tif": {
+        "bytes": 4333212,
+        "mtime_ns": 1791882771000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/249_depth.tif": {
+        "bytes": 4315210,
+        "mtime_ns": 1791882774000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/278_depth.tif": {
+        "bytes": 3206949,
+        "mtime_ns": 1791882774000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/414_depth.tif": {
+        "bytes": 3987594,
+        "mtime_ns": 1791882774000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/442_depth.tif": {
+        "bytes": 4255039,
+        "mtime_ns": 1791882775000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/470_depth.tif": {
+        "bytes": 4210344,
+        "mtime_ns": 1791882777000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/498_depth.tif": {
+        "bytes": 3485329,
+        "mtime_ns": 1791882777000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/526_depth.tif": {
+        "bytes": 4037904,
+        "mtime_ns": 1791882777000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/554_depth.tif": {
+        "bytes": 4103061,
+        "mtime_ns": 1791882778000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/582_depth.tif": {
+        "bytes": 3423045,
+        "mtime_ns": 1791882780000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/610_depth.tif": {
+        "bytes": 3539751,
+        "mtime_ns": 1791882781000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/638_depth.tif": {
+        "bytes": 3622132,
+        "mtime_ns": 1791882781000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/12_depth.tif": {
+        "bytes": 2580742,
+        "mtime_ns": 1791882783000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/36_depth.tif": {
+        "bytes": 3300411,
+        "mtime_ns": 1791882784000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/60_depth.tif": {
+        "bytes": 3160938,
+        "mtime_ns": 1791882785000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/83_depth.tif": {
+        "bytes": 3420103,
+        "mtime_ns": 1791882784000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/107_depth.tif": {
+        "bytes": 3193006,
+        "mtime_ns": 1791882787000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/130_depth.tif": {
+        "bytes": 3593423,
+        "mtime_ns": 1791882788000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/154_depth.tif": {
+        "bytes": 3021688,
+        "mtime_ns": 1791882789000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/178_depth.tif": {
+        "bytes": 3096098,
+        "mtime_ns": 1791882789000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/673_depth.tif": {
+        "bytes": 3798835,
+        "mtime_ns": 1791882791000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/697_depth.tif": {
+        "bytes": 3328558,
+        "mtime_ns": 1791882792000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/721_depth.tif": {
+        "bytes": 3275027,
+        "mtime_ns": 1791882792000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/744_depth.tif": {
+        "bytes": 3126323,
+        "mtime_ns": 1791882793000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/768_depth.tif": {
+        "bytes": 3173515,
+        "mtime_ns": 1791882795000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/791_depth.tif": {
+        "bytes": 3155817,
+        "mtime_ns": 1791882796000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/815_depth.tif": {
+        "bytes": 3444927,
+        "mtime_ns": 1791882796000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/839_depth.tif": {
+        "bytes": 3442377,
+        "mtime_ns": 1791882797000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/214_depth.tif": {
+        "bytes": 3930064,
+        "mtime_ns": 1791882799000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/278_depth.tif": {
+        "bytes": 4351047,
+        "mtime_ns": 1791882800000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/343_depth.tif": {
+        "bytes": 4415671,
+        "mtime_ns": 1791882801000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/407_depth.tif": {
+        "bytes": 3997261,
+        "mtime_ns": 1791882800000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/472_depth.tif": {
+        "bytes": 4094603,
+        "mtime_ns": 1791882803000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/536_depth.tif": {
+        "bytes": 3598213,
+        "mtime_ns": 1791882803000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/601_depth.tif": {
+        "bytes": 3547348,
+        "mtime_ns": 1791882804000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/862_depth.tif": {
+        "bytes": 3947338,
+        "mtime_ns": 1791882804000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/927_depth.tif": {
+        "bytes": 4389285,
+        "mtime_ns": 1791882807000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/991_depth.tif": {
+        "bytes": 3276726,
+        "mtime_ns": 1791882807000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/1056_depth.tif": {
+        "bytes": 4263929,
+        "mtime_ns": 1791882808000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/1120_depth.tif": {
+        "bytes": 3931210,
+        "mtime_ns": 1791882808000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/1185_depth.tif": {
+        "bytes": 3823019,
+        "mtime_ns": 1791882810000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/1249_depth.tif": {
+        "bytes": 3831651,
+        "mtime_ns": 1791882810000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/1314_depth.tif": {
+        "bytes": 4163235,
+        "mtime_ns": 1791882812000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/1378_depth.tif": {
+        "bytes": 4113446,
+        "mtime_ns": 1791882812000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/10_depth.tif": {
+        "bytes": 3776028,
+        "mtime_ns": 1791882814000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/28_depth.tif": {
+        "bytes": 3795758,
+        "mtime_ns": 1791882814000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/46_depth.tif": {
+        "bytes": 3348522,
+        "mtime_ns": 1791882815000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/65_depth.tif": {
+        "bytes": 2954066,
+        "mtime_ns": 1791882817000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/83_depth.tif": {
+        "bytes": 3080885,
+        "mtime_ns": 1791882817000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/101_depth.tif": {
+        "bytes": 2942250,
+        "mtime_ns": 1791882818000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/120_depth.tif": {
+        "bytes": 2950674,
+        "mtime_ns": 1791882820000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/138_depth.tif": {
+        "bytes": 2280307,
+        "mtime_ns": 1791882820000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/530_depth.tif": {
+        "bytes": 2383611,
+        "mtime_ns": 1791882821000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/548_depth.tif": {
+        "bytes": 2325443,
+        "mtime_ns": 1791882821000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/567_depth.tif": {
+        "bytes": 3123699,
+        "mtime_ns": 1791882824000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/585_depth.tif": {
+        "bytes": 2084081,
+        "mtime_ns": 1791882824000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/603_depth.tif": {
+        "bytes": 3020429,
+        "mtime_ns": 1791882825000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/622_depth.tif": {
+        "bytes": 2371767,
+        "mtime_ns": 1791882825000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/640_depth.tif": {
+        "bytes": 3707141,
+        "mtime_ns": 1791882827000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/658_depth.tif": {
+        "bytes": 400381,
+        "mtime_ns": 1791882827000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/169_depth.tif": {
+        "bytes": 4482201,
+        "mtime_ns": 1791882829000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/218_depth.tif": {
+        "bytes": 3184200,
+        "mtime_ns": 1791882829000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/268_depth.tif": {
+        "bytes": 3150114,
+        "mtime_ns": 1791882831000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/317_depth.tif": {
+        "bytes": 2413735,
+        "mtime_ns": 1791882832000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/366_depth.tif": {
+        "bytes": 3374403,
+        "mtime_ns": 1791882832000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/416_depth.tif": {
+        "bytes": 4199622,
+        "mtime_ns": 1791882833000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/465_depth.tif": {
+        "bytes": 3047363,
+        "mtime_ns": 1791882834000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/514_depth.tif": {
+        "bytes": 2776058,
+        "mtime_ns": 1791882835000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/713_depth.tif": {
+        "bytes": 3420739,
+        "mtime_ns": 1791882836000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/762_depth.tif": {
+        "bytes": 4022918,
+        "mtime_ns": 1791882837000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/811_depth.tif": {
+        "bytes": 3435738,
+        "mtime_ns": 1791882837000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/861_depth.tif": {
+        "bytes": 2627813,
+        "mtime_ns": 1791882839000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/910_depth.tif": {
+        "bytes": 4385360,
+        "mtime_ns": 1791882839000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/959_depth.tif": {
+        "bytes": 3700131,
+        "mtime_ns": 1791882841000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/1009_depth.tif": {
+        "bytes": 3616339,
+        "mtime_ns": 1791882840000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/1058_depth.tif": {
+        "bytes": 3229777,
+        "mtime_ns": 1791882843000000000
+      }
+    }
+  }
+}

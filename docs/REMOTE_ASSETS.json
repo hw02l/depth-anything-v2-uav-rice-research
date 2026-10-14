@@ -1,0 +1,416 @@
+{
+  "drive_root": "MyDrive/DepthAnythingV2-UAV/",
+  "drive_root_id": "1hOje2EW7uqJyNJ5d17vG3QmlqkfS83AE",
+  "datasets": {
+    "rgb_folder_id": "1vghwdkOkT67YgQsYZBzd5pjGNSDAIJbe",
+    "depth_folder_id": "1jx7UXjTxOzxBL8_F8rSYXIbYWw-jBNP9",
+    "paths": [
+      "data/uav3dcrop_rgb/",
+      "data/uav3dcrop_depth/"
+    ],
+    "train_validation_pairs": 512,
+    "files": 1024,
+    "recorded_total_bytes": 7850330776,
+    "rgb_revision": "90226a6f9c0d7afea9e2bb863f385c2a2010a3d1",
+    "depth_revision": "3d3afe42f84bafc36c80633bbe39c059b455c895",
+    "copies_downloaded_this_migration": 0,
+    "integrity_record": "experiments/metric_shape_20261013T123006472484Z/ssd_integrity.json"
+  },
+  "checkpoint_inventory": [
+    {
+      "experiment": "relative_encoder_trial_20261013_s42_518",
+      "folder": "checkpoint_epoch_0001",
+      "drive_folder_id": "1VhPaqln-GCBcA6wt0Z9iS4r8Kkr_IfCq",
+      "drive_path": "MyDrive/DepthAnythingV2-UAV/runs/relative_encoder_trial_20261013_s42_518/checkpoint_epoch_0001/",
+      "files": [
+        {
+          "name": "complete.json",
+          "drive_id": "1_5TxEkplZVJd9lCuo84_iy-sTv17nr-A",
+          "bytes": 321,
+          "recorded_sha256": null,
+          "checksum_recomputed_for_heavy_bytes_this_migration": false
+        },
+        {
+          "name": "trainer_state.pt",
+          "drive_id": "1X-OtVBrw0XskUdsun4VgO0gPGzjXDU-b",
+          "bytes": 197927323,
+          "recorded_sha256": "289ad42cdb702382fca78043822b169222e4b4f37a957f001645f19d238837c9",
+          "checksum_recomputed_for_heavy_bytes_this_migration": false
+        },
+        {
+          "name": "model.safetensors",
+          "drive_id": "1ArjoHR9pgpiUITpfKVxqKEFTg3AV5HfC",
+          "bytes": 99173660,
+          "recorded_sha256": "3c7d16bc91871b693059ed1efddb8ce7aeb5fb56d273e83d86fc3dd17a0edfd0",
+          "checksum_recomputed_for_heavy_bytes_this_migration": false
+        },
+        {
+          "name": "config.json",
+          "drive_id": "1tbWgupbmM505qHXARcslKVZQJFth7yC2",
+          "bytes": 1690,
+          "recorded_sha256": "962e1013d8630649251ddbe4b8a20ca7ada86ae0e9f0b766a0287123355d4c83",
+          "checksum_recomputed_for_heavy_bytes_this_migration": false
+        }
+      ],
+      "recorded_hash_source": "Drive complete.json",
+      "large_bytes_copied_to_local": false
+    },
+    {
+      "experiment": "relative_encoder_trial_20261013_s42_518",
+      "folder": "checkpoint_epoch_0000",
+      "drive_folder_id": "19FgniHWJ0F3hX7kgifa4dnCbpUnSO0E4",
+      "drive_path": "MyDrive/DepthAnythingV2-UAV/runs/relative_encoder_trial_20261013_s42_518/checkpoint_epoch_0000/",
+      "files": [
+        {
+          "name": "complete.json",
+          "drive_id": "19SxlCm3iCe3NSMs1mhdb7qwimW7p8E7w",
+          "bytes": 321,
+          "recorded_sha256": null,
+          "checksum_recomputed_for_heavy_bytes_this_migration": false
+        },
+        {
+          "name": "trainer_state.pt",
+          "drive_id": "1giBWR3dSb2ZblLruOBaHRQyPnzO5iQ8H",
+          "bytes": 2769,
+          "recorded_sha256": "77960113d0a7f345811ebe98690580e211fd9e076a9fa08b741bcfffb5fa309b",
+          "checksum_recomputed_for_heavy_bytes_this_migration": false
+        },
+        {
+          "name": "model.safetensors",
+          "drive_id": "1nAlLtVkq5nCbBN32nTlC2NfyoFBmGs7H",
+          "bytes": 99173660,
+          "recorded_sha256": "8e030518104a5262344780301e1b46c7eacbfe0b1e5e3d968eb5ef9de1f3efe0",
+          "checksum_recomputed_for_heavy_bytes_this_migration": false
+        },
+        {
+          "name": "config.json",
+          "drive_id": "1oeSmt5OKt97KWIbYJKYAouFEFiPQhjTT",
+          "bytes": 1690,
+          "recorded_sha256": "962e1013d8630649251ddbe4b8a20ca7ada86ae0e9f0b766a0287123355d4c83",
+          "checksum_recomputed_for_heavy_bytes_this_migration": false
+        }
+      ],
+      "recorded_hash_source": "Drive complete.json",
+      "large_bytes_copied_to_local": false
+    },
+    {
+      "experiment": "metric_shape_20261013T123006472484Z",
+      "folder": "checkpoint_epoch_0001",
+      "drive_folder_id": "1EudPs4tBqg6LZaEioGGQGhLAbE07Ta4P",
+      "drive_path": "MyDrive/DepthAnythingV2-UAV/runs/metric_shape_20261013T123006472484Z/checkpoint_epoch_0001/",
+      "files": [
+        {
+          "name": "complete.json",
+          "drive_id": "1iYr3BvXViPHNA3yUcbhH6L2zkibqdnMb",
+          "bytes": 321,
+          "recorded_sha256": null,
+          "checksum_recomputed_for_heavy_bytes_this_migration": false
+        },
+        {
+          "name": "trainer_state.pt",
+          "drive_id": "1NQZUZPCkwjhhGpTHJValAluNLXAH2LBy",
+          "bytes": 197927323,
+          "recorded_sha256": "2381221666a2d93fe049d423dc7de16cd783b1c48184db49ff500c8f4f83ac0a",
+          "checksum_recomputed_for_heavy_bytes_this_migration": false
+        },
+        {
+          "name": "model.safetensors",
+          "drive_id": "1GeIrySg1OAF7H8r3Fcix5YFeiPEu42_R",
+          "bytes": 99173660,
+          "recorded_sha256": "7eb3353d87bab9f7e30d913714027d429540800b2189165fe533acc3e1294788",
+          "checksum_recomputed_for_heavy_bytes_this_migration": false
+        },
+        {
+          "name": "config.json",
+          "drive_id": "1Yc6PeSObURUJUJtCOXBAB6KOtmRokoMS",
+          "bytes": 1690,
+          "recorded_sha256": "3e7b200e8af4da2104274d9d3697d46d8d3c5fa9f0dfe00b33d5bd62dc471c34",
+          "checksum_recomputed_for_heavy_bytes_this_migration": false
+        }
+      ],
+      "recorded_hash_source": "Drive complete.json",
+      "large_bytes_copied_to_local": false
+    },
+    {
+      "experiment": "metric_shape_20261013T123006472484Z",
+      "folder": "checkpoint_epoch_0000",
+      "drive_folder_id": "14ZrtRiFp2LE0oCZBbXORXoEJz6jfE187",
+      "drive_path": "MyDrive/DepthAnythingV2-UAV/runs/metric_shape_20261013T123006472484Z/checkpoint_epoch_0000/",
+      "files": [
+        {
+          "name": "complete.json",
+          "drive_id": "1C2FgiejUGRwTqjTFTGHGaBZRhMAATCM0",
+          "bytes": 321,
+          "recorded_sha256": null,
+          "checksum_recomputed_for_heavy_bytes_this_migration": false
+        },
+        {
+          "name": "trainer_state.pt",
+          "drive_id": "19mg4H1QJdw9v9bhDwBOvQJIvYvnBkzoc",
+          "bytes": 2769,
+          "recorded_sha256": "77960113d0a7f345811ebe98690580e211fd9e076a9fa08b741bcfffb5fa309b",
+          "checksum_recomputed_for_heavy_bytes_this_migration": false
+        },
+        {
+          "name": "model.safetensors",
+          "drive_id": "1Qp-PMiy0ONwPCLkCAJcXLZT8KLJn81NE",
+          "bytes": 99173660,
+          "recorded_sha256": "ad065c77a7421ca55159a1f0db9433397a607690f2d76bb8a6fc54b1be7a3124",
+          "checksum_recomputed_for_heavy_bytes_this_migration": false
+        },
+        {
+          "name": "config.json",
+          "drive_id": "1NwlFqzhgXv6W3qsEO6tw4aPEjem1SI1m",
+          "bytes": 1690,
+          "recorded_sha256": "3e7b200e8af4da2104274d9d3697d46d8d3c5fa9f0dfe00b33d5bd62dc471c34",
+          "checksum_recomputed_for_heavy_bytes_this_migration": false
+        }
+      ],
+      "recorded_hash_source": "Drive complete.json",
+      "large_bytes_copied_to_local": false
+    },
+    {
+      "experiment": "metric_outdoor_full_20261014_s42_518_cap80_gt65",
+      "folder": "checkpoint_epoch_0005",
+      "drive_folder_id": "1V-n8qZG7pH7-piY5byzI28BvSSnnkXc6",
+      "drive_path": "MyDrive/DepthAnythingV2-UAV/runs/metric_outdoor_full_20261014_s42_518_cap80_gt65/checkpoint_epoch_0005/",
+      "files": [
+        {
+          "name": "complete.json",
+          "drive_id": "11_hIZ29cr52laB2V7J7Az6yR6NRfVmtU",
+          "bytes": 321,
+          "recorded_sha256": null,
+          "checksum_recomputed_for_heavy_bytes_this_migration": false
+        },
+        {
+          "name": "trainer_state.pt",
+          "drive_id": "1BfgiuDjvLKWZcDiO8aTrRWIVd9-n7XQl",
+          "bytes": 197940835,
+          "recorded_sha256": "b8be075012d158237a2a158d127d23279228b71b9c9e24827eb44d7748f9eaf1",
+          "checksum_recomputed_for_heavy_bytes_this_migration": false
+        },
+        {
+          "name": "model.safetensors",
+          "drive_id": "1TrurCzqN35EnKnI6dY4H7bio7mMMmWii",
+          "bytes": 99173660,
+          "recorded_sha256": "c80887515ffdf4ed1708e64a4f85ce6aee20b2550cea7b1b39d9e4d50da3ebf0",
+          "checksum_recomputed_for_heavy_bytes_this_migration": false
+        },
+        {
+          "name": "config.json",
+          "drive_id": "1GiazBsqo7KCX05f07ZGe1Uxr2tb5i0nj",
+          "bytes": 1569,
+          "recorded_sha256": "3c6ab05881e6a76edbfd33ff393fdfb082582084e9262826bb1ac0fd2b1dac7c",
+          "checksum_recomputed_for_heavy_bytes_this_migration": false
+        }
+      ],
+      "recorded_hash_source": "Drive complete.json",
+      "large_bytes_copied_to_local": false
+    },
+    {
+      "experiment": "metric_outdoor_full_20261014_s42_518_cap80_gt65",
+      "folder": "checkpoint_epoch_0004",
+      "drive_folder_id": "1-UefqZIlGO31ahN7DUH0slA7lPbZ6WwW",
+      "drive_path": "MyDrive/DepthAnythingV2-UAV/runs/metric_outdoor_full_20261014_s42_518_cap80_gt65/checkpoint_epoch_0004/",
+      "files": [
+        {
+          "name": "complete.json",
+          "drive_id": "1WtMcQHNur8GkOblEFWbOy80XGWpLVkx5",
+          "bytes": 321,
+          "recorded_sha256": null,
+          "checksum_recomputed_for_heavy_bytes_this_migration": false
+        },
+        {
+          "name": "trainer_state.pt",
+          "drive_id": "1ZFBOkdutZAfBr5la7rr3ZDSkXdY4Kzm7",
+          "bytes": 197940835,
+          "recorded_sha256": "f30a358c46e0bdf190e23655f3d73c820f693c06fa116e4f2bcdb61f6ef5093b",
+          "checksum_recomputed_for_heavy_bytes_this_migration": false
+        },
+        {
+          "name": "model.safetensors",
+          "drive_id": "1qaNDmN8AyKPhuDFbB65mkDXY2rYN_B9p",
+          "bytes": 99173660,
+          "recorded_sha256": "5afa020ad8df72281d4fe25a628ada20d2a2346f6facb668503aca5ee650fb7e",
+          "checksum_recomputed_for_heavy_bytes_this_migration": false
+        },
+        {
+          "name": "config.json",
+          "drive_id": "1Etr5lkSj9pomt63vniV3Rslr61Wj-zQ6",
+          "bytes": 1569,
+          "recorded_sha256": "3c6ab05881e6a76edbfd33ff393fdfb082582084e9262826bb1ac0fd2b1dac7c",
+          "checksum_recomputed_for_heavy_bytes_this_migration": false
+        }
+      ],
+      "recorded_hash_source": "Drive complete.json",
+      "large_bytes_copied_to_local": false
+    },
+    {
+      "experiment": "metric_outdoor_full_20261014_s42_518_cap80_gt65",
+      "folder": "checkpoint_epoch_0003",
+      "drive_folder_id": "1GQucGf461bvCLiPCKe15_YjTsHUFHBPd",
+      "drive_path": "MyDrive/DepthAnythingV2-UAV/runs/metric_outdoor_full_20261014_s42_518_cap80_gt65/checkpoint_epoch_0003/",
+      "files": [
+        {
+          "name": "complete.json",
+          "drive_id": "1h0T89NVM1uQ0l62AIEItrGJp4D7nbtAs",
+          "bytes": 321,
+          "recorded_sha256": null,
+          "checksum_recomputed_for_heavy_bytes_this_migration": false
+        },
+        {
+          "name": "trainer_state.pt",
+          "drive_id": "1gqrwP4l5oLV7CRf87oksG5apB4UpIvsW",
+          "bytes": 197940835,
+          "recorded_sha256": "4943b131cb09ec8ffce5662b9ee96f626560ccea848f887d4adeed8c9d07d358",
+          "checksum_recomputed_for_heavy_bytes_this_migration": false
+        },
+        {
+          "name": "model.safetensors",
+          "drive_id": "1hrEfvXCFa2RHFesU1ZLBlubofE9zejAS",
+          "bytes": 99173660,
+          "recorded_sha256": "3f153275c4195195f3c84c861ec8a2d021be9417fc6129d745714a753a45a933",
+          "checksum_recomputed_for_heavy_bytes_this_migration": false
+        },
+        {
+          "name": "config.json",
+          "drive_id": "1tE7pt4rf7VIP7IjDMZTo22hAlUIISUGo",
+          "bytes": 1569,
+          "recorded_sha256": "3c6ab05881e6a76edbfd33ff393fdfb082582084e9262826bb1ac0fd2b1dac7c",
+          "checksum_recomputed_for_heavy_bytes_this_migration": false
+        }
+      ],
+      "recorded_hash_source": "Drive complete.json",
+      "large_bytes_copied_to_local": false
+    },
+    {
+      "experiment": "metric_outdoor_full_20261014_s42_518_cap80_gt65",
+      "folder": "checkpoint_epoch_0002",
+      "drive_folder_id": "1RuJR2NKKrfItVkzfQDDBC23D-W3tlyB_",
+      "drive_path": "MyDrive/DepthAnythingV2-UAV/runs/metric_outdoor_full_20261014_s42_518_cap80_gt65/checkpoint_epoch_0002/",
+      "files": [
+        {
+          "name": "complete.json",
+          "drive_id": "1E_FAuUfB0XuUjD-Hl7K3dnoQxitk4F0Q",
+          "bytes": 321,
+          "recorded_sha256": null,
+          "checksum_recomputed_for_heavy_bytes_this_migration": false
+        },
+        {
+          "name": "trainer_state.pt",
+          "drive_id": "1LJYDfwI0A8EtgZ9Ee3tMRH3myKdsUwGo",
+          "bytes": 197940835,
+          "recorded_sha256": "c44a151a9b809c92b7954886c09c23e6232bcf1045db6d5326a4c00f3e9cc374",
+          "checksum_recomputed_for_heavy_bytes_this_migration": false
+        },
+        {
+          "name": "model.safetensors",
+          "drive_id": "1A83y6dz-jGYuRd7REhZo0of78Hl3SKS3",
+          "bytes": 99173660,
+          "recorded_sha256": "0ac17fa7f363646f12c7607d22f150cb64205bcdab734587322fcd75c05a70b3",
+          "checksum_recomputed_for_heavy_bytes_this_migration": false
+        },
+        {
+          "name": "config.json",
+          "drive_id": "1SzKpG7c-qB3uGEFqgTWnUTAPPHy6faH1",
+          "bytes": 1569,
+          "recorded_sha256": "3c6ab05881e6a76edbfd33ff393fdfb082582084e9262826bb1ac0fd2b1dac7c",
+          "checksum_recomputed_for_heavy_bytes_this_migration": false
+        }
+      ],
+      "recorded_hash_source": "Drive complete.json",
+      "large_bytes_copied_to_local": false
+    },
+    {
+      "experiment": "metric_outdoor_full_20261014_s42_518_cap80_gt65",
+      "folder": "checkpoint_epoch_0001",
+      "drive_folder_id": "1MKpPTrN8q9pe973MjZvvMvk3QSwUPNvK",
+      "drive_path": "MyDrive/DepthAnythingV2-UAV/runs/metric_outdoor_full_20261014_s42_518_cap80_gt65/checkpoint_epoch_0001/",
+      "files": [
+        {
+          "name": "complete.json",
+          "drive_id": "1iJpsBaqXXwdvaBkftNz96lFDBdovLdO1",
+          "bytes": 321,
+          "recorded_sha256": null,
+          "checksum_recomputed_for_heavy_bytes_this_migration": false
+        },
+        {
+          "name": "trainer_state.pt",
+          "drive_id": "1LsujKiGlO9KA0blVquzEBvbiDUZConxD",
+          "bytes": 197940835,
+          "recorded_sha256": "30d9f2577c6ba7e178c7ee6d42dfa4125e73537df9dd34375fdbfbc406a90aa8",
+          "checksum_recomputed_for_heavy_bytes_this_migration": false
+        },
+        {
+          "name": "model.safetensors",
+          "drive_id": "1GWJxKY1tJ6t4uu2pCtznfOTe8YOc0-Ao",
+          "bytes": 99173660,
+          "recorded_sha256": "4a5bfead5449bd9b80501b19487df4f4d8d200f6663eaa34fcc7d57dad782ba1",
+          "checksum_recomputed_for_heavy_bytes_this_migration": false
+        },
+        {
+          "name": "config.json",
+          "drive_id": "1MJ8jUkZCMIfmReHht4oJLxXp1nA_xKjF",
+          "bytes": 1569,
+          "recorded_sha256": "3c6ab05881e6a76edbfd33ff393fdfb082582084e9262826bb1ac0fd2b1dac7c",
+          "checksum_recomputed_for_heavy_bytes_this_migration": false
+        }
+      ],
+      "recorded_hash_source": "Drive complete.json",
+      "large_bytes_copied_to_local": false
+    },
+    {
+      "experiment": "metric_outdoor_full_20261014_s42_518_cap80_gt65",
+      "folder": "checkpoint_epoch_0000",
+      "drive_folder_id": "1u8wA5LdDUAtcQdHp8wHA7oMaQIlbrwSF",
+      "drive_path": "MyDrive/DepthAnythingV2-UAV/runs/metric_outdoor_full_20261014_s42_518_cap80_gt65/checkpoint_epoch_0000/",
+      "files": [
+        {
+          "name": "complete.json",
+          "drive_id": "1goEVarK0f3cSU4tOM1Ebc8D_uimKh5mX",
+          "bytes": 321,
+          "recorded_sha256": null,
+          "checksum_recomputed_for_heavy_bytes_this_migration": false
+        },
+        {
+          "name": "trainer_state.pt",
+          "drive_id": "1FmJPG57ID5dXMvLDkR223CpP79t6tt5p",
+          "bytes": 16213,
+          "recorded_sha256": "3c9845fe65efe1959927c033479f49769936be20e94214c098d60755e65f172b",
+          "checksum_recomputed_for_heavy_bytes_this_migration": false
+        },
+        {
+          "name": "model.safetensors",
+          "drive_id": "1pjjzT159UC4oRS7MZo7AeQMTIUwK-uft",
+          "bytes": 99173660,
+          "recorded_sha256": "ad065c77a7421ca55159a1f0db9433397a607690f2d76bb8a6fc54b1be7a3124",
+          "checksum_recomputed_for_heavy_bytes_this_migration": false
+        },
+        {
+          "name": "config.json",
+          "drive_id": "1Pfhr-td7SyWt_5puppYgB5j_Q7AeoEZk",
+          "bytes": 1569,
+          "recorded_sha256": "3c6ab05881e6a76edbfd33ff393fdfb082582084e9262826bb1ac0fd2b1dac7c",
+          "checksum_recomputed_for_heavy_bytes_this_migration": false
+        }
+      ],
+      "recorded_hash_source": "Drive complete.json",
+      "large_bytes_copied_to_local": false
+    }
+  ],
+  "prediction_cache": {
+    "path": "experiments/metric_shape_20261013T123006472484Z/analysis/prediction_cache/",
+    "folder_id": "1y7Yfk_iTS8cV3HaNWBWbG7D8AWGW8aQg",
+    "predictions": 384,
+    "recorded_entries": 384,
+    "inventory_record": "experiments/metric_shape_20261013T123006472484Z/prediction_cache_integrity.json",
+    "listing_limit_note": "Drive folder listing is bounded; complete prior integrity JSON is retained",
+    "copied_this_migration": false
+  },
+  "model_cache": {
+    "path": "model_cache/",
+    "folder_id": "1j5Xu6D1b_F1EnbySs8wkDuZtGvKijIyf",
+    "outdoor_revision": "fd2c22027eaf20374204f14099b8341e1925ad39",
+    "copied_this_migration": false
+  }
+}

@@ -1,0 +1,114 @@
+[
+  {
+    "index": 7,
+    "image_relpath": "2025/Day047_Corn/images/576.JPG",
+    "crop": "corn",
+    "view": "nadir",
+    "roi": [
+      1152,
+      0,
+      512,
+      512
+    ],
+    "display_depth_min_m": 16.046875,
+    "display_depth_max_m": 18.109375,
+    "selection": "worst A minus B local MAE per crop, plus direction worst and one best-local example",
+    "figure": "/content/drive/MyDrive/DepthAnythingV2-UAV/experiments/metric_shape_20261013T123006472484Z/analysis/figures/comparison_007_corn_nadir.png"
+  },
+  {
+    "index": 44,
+    "image_relpath": "2025/Day047_Oat/images/380.JPG",
+    "crop": "oat",
+    "view": "nadir",
+    "roi": [
+      2688,
+      0,
+      512,
+      512
+    ],
+    "display_depth_min_m": 14.0625,
+    "display_depth_max_m": 16.25,
+    "selection": "worst A minus B local MAE per crop, plus direction worst and one best-local example",
+    "figure": "/content/drive/MyDrive/DepthAnythingV2-UAV/experiments/metric_shape_20261013T123006472484Z/analysis/figures/comparison_044_oat_nadir.png"
+  },
+  {
+    "index": 103,
+    "image_relpath": "2025/Day047_soybean/images/137.JPG",
+    "crop": "soybean",
+    "view": "nadir",
+    "roi": [
+      384,
+      0,
+      512,
+      512
+    ],
+    "display_depth_min_m": 14.6796875,
+    "display_depth_max_m": 15.328125,
+    "selection": "worst A minus B local MAE per crop, plus direction worst and one best-local example",
+    "figure": "/content/drive/MyDrive/DepthAnythingV2-UAV/experiments/metric_shape_20261013T123006472484Z/analysis/figures/comparison_103_soybean_nadir.png"
+  },
+  {
+    "index": 65,
+    "image_relpath": "2025/Day047_Wheat/images/36.JPG",
+    "crop": "wheat",
+    "view": "nadir",
+    "roi": [
+      2688,
+      0,
+      512,
+      512
+    ],
+    "display_depth_min_m": 13.9609375,
+    "display_depth_max_m": 14.890625,
+    "selection": "worst A minus B local MAE per crop, plus direction worst and one best-local example",
+    "figure": "/content/drive/MyDrive/DepthAnythingV2-UAV/experiments/metric_shape_20261013T123006472484Z/analysis/figures/comparison_065_wheat_nadir.png"
+  },
+  {
+    "index": 14,
+    "image_relpath": "2025/Day047_Corn/images/680.JPG",
+    "crop": "corn",
+    "view": "nadir",
+    "roi": [
+      3072,
+      0,
+      512,
+      512
+    ],
+    "display_depth_min_m": 16.3125,
+    "display_depth_max_m": 18.375,
+    "selection": "worst A minus B local MAE per crop, plus direction worst and one best-local example",
+    "figure": "/content/drive/MyDrive/DepthAnythingV2-UAV/experiments/metric_shape_20261013T123006472484Z/analysis/figures/comparison_014_corn_nadir.png"
+  },
+  {
+    "index": 20,
+    "image_relpath": "2025/Day047_Corn/images/385.JPG",
+    "crop": "corn",
+    "view": "oblique",
+    "roi": [
+      1152,
+      0,
+      512,
+      512
+    ],
+    "display_depth_min_m": 15.6640625,
+    "display_depth_max_m": 53.28125,
+    "selection": "worst A minus B local MAE per crop, plus direction worst and one best-local example",
+    "figure": "/content/drive/MyDrive/DepthAnythingV2-UAV/experiments/metric_shape_20261013T123006472484Z/analysis/figures/comparison_020_corn_oblique.png"
+  },
+  {
+    "index": 101,
+    "image_relpath": "2025/Day047_soybean/images/101.JPG",
+    "crop": "soybean",
+    "view": "nadir",
+    "roi": [
+      0,
+      0,
+      512,
+      512
+    ],
+    "display_depth_min_m": 14.890625,
+    "display_depth_max_m": 14.9765625,
+    "selection": "worst A minus B local MAE per crop, plus direction worst and one best-local example",
+    "figure": "/content/drive/MyDrive/DepthAnythingV2-UAV/experiments/metric_shape_20261013T123006472484Z/analysis/figures/comparison_101_soybean_nadir.png"
+  }
+]

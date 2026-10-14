@@ -1,0 +1,12 @@
+\begin{figure}[H]\centering
+\begin{tikzpicture}
+\begin{groupplot}[group style={group size=2 by 3,vertical sep=.9cm,horizontal sep=1.2cm},
+width=.39\textwidth,height=3.8cm,grid=major,grid style={gray!20},
+xlabel={Epoch},xmin=1,xmax=5,xtick={1,2,3,4,5},tick label style={font=\scriptsize},label style={font=\small},ylabel style={font=\scriptsize}]
+\nextgroupplot[ylabel={RMSE (m)},ymin=0,ymax=2.2]\addplot[blue,mark=*] coordinates{(1,1.6299)(2,1.9953)(3,1.3334)(4,1.0562)(5,1.0094)};
+\nextgroupplot[ylabel={AbsRel},ymin=0,ymax=.10]\addplot[teal!80!black,mark=square*] coordinates{(1,.05088)(2,.08907)(3,.05726)(4,.03913)(5,.03694)};
+\nextgroupplot[ylabel={$\Delta$-MAE (m)},ymin=.055,ymax=.070]\addplot[orange!85!black,mark=triangle*] coordinates{(1,.06537)(2,.06339)(3,.06299)(4,.06237)(5,.06148)};
+\nextgroupplot[ylabel={Amplitude ratio},ymin=.25,ymax=.38]\addplot[red!75!black,mark=diamond*] coordinates{(1,.3046)(2,.3263)(3,.3228)(4,.3428)(5,.3304)};
+\nextgroupplot[ylabel={Sign match},ymin=.75,ymax=.83,ytick={.76,.78,.80,.82}]\addplot[purple,mark=*] coordinates{(1,.7828)(2,.8024)(3,.8082)(4,.8052)(5,.8102)};
+\end{groupplot}\end{tikzpicture}
+\caption{第3回モデルDのepoch曲線。既存epoch CSVの数値から再描画した。RMSE/AbsRelは全validation画素、$\Delta$-MAEは全有効14 pxペア、振幅比・符号一致はGT差20 cm以上の固定標本である。縦軸範囲は指標ごとに異なる。}\label{fig:curves}\end{figure}

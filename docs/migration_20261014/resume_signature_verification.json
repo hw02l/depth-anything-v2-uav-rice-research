@@ -1,0 +1,25 @@
+{
+  "code_and_manifests": {
+    "train.py": true,
+    "modeling.py": true,
+    "data.py": true,
+    "losses.py": true,
+    "metrics.py": true,
+    "audit_data.py": true,
+    "memory_preflight.py": true,
+    "analyze_gt.py": true,
+    "evaluate.py": true,
+    "scene_split_plan.json": true,
+    "train_manifest": true,
+    "validation_manifest": true
+  },
+  "state": {
+    "status": "paused_after_epoch",
+    "completed_epochs": 5,
+    "remaining_epochs": 15,
+    "best_validation_rmse_m": 1.0094461878368737,
+    "best_epoch": 5
+  },
+  "run_metadata_is_authoritative": true,
+  "initial_source_build_has_preflight_modeling_hash": true
+}

@@ -1,0 +1,13 @@
+\begin{figure}[H]\centering\begin{tikzpicture}
+\begin{axis}[width=.84\textwidth,height=6.2cm,ybar,bar width=15pt,
+symbolic x coords={edge,transition,interior},xtick=data,
+xticklabels={0--128 px,128--512 px,$\geq512$ px},
+ylabel={14 px local delta MAE (m)},ymin=0,ymax=.43,
+legend style={at={(.5,1.06)},anchor=south,legend columns=2,font=\scriptsize},grid=major,grid style={gray!20}]
+\addplot[fill=blue!70] coordinates{(edge,.38929)(transition,.09682)(interior,.05814)};
+\addplot[fill=orange!80] coordinates{(edge,.08717)(transition,.07033)(interior,.05945)};
+\addplot[fill=green!65!black] coordinates{(edge,.09189)(transition,.07112)(interior,.06220)};
+\addplot[fill=gray!60] coordinates{(edge,.07866)(transition,.06898)(interior,.05934)};
+\legend{A Relative由来,B 未学習,C 1 epoch,ゼロ差分}
+\end{axis}\end{tikzpicture}
+\caption{第2回固定標本における画像端距離別14 px局所差MAE。端0--128 px帯はペアの10.90\%だが、Aの誤差が突出する。}\label{fig:edge}\end{figure}

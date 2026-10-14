@@ -1,0 +1,8 @@
+# Install into a Colab CUDA runtime. Intentionally omit torch/torchvision so the
+# runtime's CUDA-enabled build is preserved.
+transformers==4.56.2
+huggingface_hub>=0.34,<1.0
+opencv-python-headless>=4.10,<5
+tifffile>=2024.8
+requests>=2.32,<3
+safetensors>=0.6,<1

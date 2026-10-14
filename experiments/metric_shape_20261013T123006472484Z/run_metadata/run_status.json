@@ -1,0 +1,7 @@
+{
+  "status": "completed",
+  "completed_epochs": 1,
+  "remaining_epochs": 0,
+  "best_validation_rmse_m": 1.7489813428537024,
+  "best_epoch": 1
+}

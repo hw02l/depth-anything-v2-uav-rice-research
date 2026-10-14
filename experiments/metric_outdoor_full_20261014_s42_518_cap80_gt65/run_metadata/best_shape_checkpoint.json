@@ -1,0 +1,8 @@
+{
+  "path": "checkpoint_epoch_0005",
+  "epoch": 5,
+  "selection_metric": "minimum sampled GT |delta| >= 20cm local delta MAE",
+  "metric_value_m": 0.3409020610743553,
+  "sample_count": 1911836,
+  "split": "validation only"
+}

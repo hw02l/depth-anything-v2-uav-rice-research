@@ -1,0 +1,34 @@
+{
+  "A": {
+    "experiment": "relative_encoder_trial_20261013_s42_518",
+    "source": "source_snapshot",
+    "epochs": 1,
+    "model_cap_m": 65,
+    "gt_cap_m": 65
+  },
+  "B": {
+    "initialization": "pretrained Metric Outdoor Small",
+    "additional_epochs": 0,
+    "model_cap_m": 80,
+    "gt_cap_m": 65
+  },
+  "C": {
+    "experiment": "metric_shape_20261013T123006472484Z",
+    "source": "source_v4",
+    "epochs": 1,
+    "model_cap_m": 80,
+    "gt_cap_m": 65
+  },
+  "D": {
+    "experiment": "metric_outdoor_full_20261014_s42_518_cap80_gt65",
+    "source": "source_full_v1",
+    "planned_epochs": 20,
+    "completed_epochs": 5,
+    "remaining_epochs": 15,
+    "status": "paused_after_epoch",
+    "model_cap_m": 80,
+    "gt_cap_m": 65,
+    "scheduler_total_optimizer_steps": 1920,
+    "initialized_from_C": false
+  }
+}

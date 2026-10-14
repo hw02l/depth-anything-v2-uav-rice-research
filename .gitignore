@@ -114,3 +114,30 @@ reports/latex/*
 
 # Local logs and temporary files
 *.tmp
+
+
+# Local-first migration: no secrets, heavy assets, raw notebook output or TeX caches
+.codex-presentation-build/
+.env
+.env.*
+!.env.example
+*.local.json
+*.pem
+credentials*.json
+client_secret*.json
+service_account*.json
+token*.json
+.ipynb_checkpoints/
+**/.texcache/
+**/.texmfvar/
+papers/**/build_logs/
+papers/**/paper_ja_compat.pdf
+papers/**/paper_ja_fontfixed.pdf
+*.xdv
+*.lof
+*.lot
+# Small scientific execution logs are deliberate research evidence.
+!experiments/**/*.log
+
+# Incoming results stay private until deliberately reviewed and curated.
+experiments/**/imports/

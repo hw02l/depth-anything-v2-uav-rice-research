@@ -1,0 +1,26 @@
+\chapter{評価方法}
+\section{絶対深度指標}
+有効画素数を$N$、予測深度を$\hat d_i$、GTを$d_i$とする。平均絶対誤差、二乗平均平方根誤差、絶対相対誤差は
+\[
+\mathrm{MAE}=\frac1N\sum_i|\hat d_i-d_i|,\quad
+\mathrm{RMSE}=\sqrt{\frac1N\sum_i(\hat d_i-d_i)^2},\quad
+\mathrm{AbsRel}=\frac1N\sum_i\frac{|\hat d_i-d_i|}{d_i}
+\]
+である。RMSEは大誤差を二乗で重みづけ、AbsRelはGT距離に対する誤差比を表す。Pearson相関$r$は有効画素上の予測とGTの線形相関であり、尺度バイアス自体を測らないため絶対誤差と併記した。深度MAE等は元解像度へ復元後の全validation画素集計である。
+\section{局所深度差指標}
+元画像座標で水平方向または垂直方向に14 pixel離れた有効画素対$(i,j)$について、
+\[
+\Delta d_{ij}=d_j-d_i,\quad \Delta\hat d_{ij}=\hat d_j-\hat d_i,\quad
+E_\Delta=\frac1P\sum_{(i,j)}|\Delta\hat d_{ij}-\Delta d_{ij}|
+\]
+を14 px局所深度差MAEとした。ペア両端がGT有効mask内にあるものを採用する。これは画素深度の絶対誤差ではなく差分誤差である。
+GT絶対差分が20 cm以上の固定標本に対して、差分振幅比を
+\[
+R_{\mathrm{amp}}=\frac{\operatorname{mean}|\Delta\hat d|}{\operatorname{mean}|\Delta d|}
+\]
+と定義した。比が1未満なら平均振幅を過小推定する。符号一致率はGT差分非ゼロのペアで$\mathrm{sign}(\Delta\hat d)=\mathrm{sign}(\Delta d)$となる割合で、予測0は不一致とする。差分相関は$\Delta d,\Delta\hat d$のPearson相関、回帰傾きは切片を含む最小二乗回帰$\Delta\hat d=a+b\Delta d+\epsilon$の$b$である。回帰で予測を補正していない。
+\section{全ペア・固定標本・基準値}
+絶対深度と14 px局所MAEは全有効画素・全有効ペアで計算した。GT差分階級、符号、振幅・相関・回帰、画像端帯は固定座標標本による詳細集計である。第2回の14 px固定標本は25,552,938 pairと報告され、候補座標はモデル共通、seed規則が保存された。標本値を全ペア値と混同しない。第3回CSVはfull-pair列とsampled列を分けるが、固定標本数が報告資料で照合できない項目は本稿で25,552,938と仮定しない。
+局所変化を常に0とする基準では$\Delta\hat d=0$となり、局所MAEはGTペアの平均絶対差分である。このゼロ差分基準は絶対深度MAE/RMSEを定義しない。第2回の全14 pxペア値は0.06421224 mであった。GT差分が小さいペアが多いと平坦予測が総合局所MAEで有利になり得る。
+\section{境界と統計単位}
+画像端からの最短距離で0--128 px、128--512 px、512 px以上に分類した。主指標は全画面評価のままであり、端除外値は診断である。validation 128画像内の画素・ペアは空間自己相関をもつ。数十億画素を独立標本として信頼区間や有意差検定を行っていない。画像単位の再標本化に必要な統一画像単位集計を根拠一式から確認できないため、信頼区間・有意差を報告しない。

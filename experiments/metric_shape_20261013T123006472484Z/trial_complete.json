@@ -1,0 +1,26 @@
+{
+  "run": "/content/drive/MyDrive/DepthAnythingV2-UAV/runs/metric_outdoor_trial2_20261013_s42_518_cap80_gt65",
+  "training_total_seconds_including_startup_save": 742.176799672,
+  "checkpoints_verified": {
+    "checkpoint_epoch_0000": {
+      "completed_epoch": 0,
+      "file_sha256": {
+        "model.safetensors": "ad065c77a7421ca55159a1f0db9433397a607690f2d76bb8a6fc54b1be7a3124",
+        "config.json": "3e7b200e8af4da2104274d9d3697d46d8d3c5fa9f0dfe00b33d5bd62dc471c34",
+        "trainer_state.pt": "77960113d0a7f345811ebe98690580e211fd9e076a9fa08b741bcfffb5fa309b"
+      }
+    },
+    "checkpoint_epoch_0001": {
+      "completed_epoch": 1,
+      "file_sha256": {
+        "model.safetensors": "7eb3353d87bab9f7e30d913714027d429540800b2189165fe533acc3e1294788",
+        "config.json": "3e7b200e8af4da2104274d9d3697d46d8d3c5fa9f0dfe00b33d5bd62dc471c34",
+        "trainer_state.pt": "2381221666a2d93fe049d423dc7de16cd783b1c48184db49ff500c8f4f83ac0a"
+      }
+    }
+  },
+  "model_output_ceiling_m": 80,
+  "gt_mask_max_m": 65,
+  "epochs": 1,
+  "test_used": false
+}

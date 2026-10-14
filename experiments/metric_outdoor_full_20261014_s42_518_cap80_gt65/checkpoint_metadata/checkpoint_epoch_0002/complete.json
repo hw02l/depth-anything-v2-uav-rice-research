@@ -1,0 +1,8 @@
+{
+  "completed_epoch": 2,
+  "file_sha256": {
+    "model.safetensors": "0ac17fa7f363646f12c7607d22f150cb64205bcdab734587322fcd75c05a70b3",
+    "config.json": "3c6ab05881e6a76edbfd33ff393fdfb082582084e9262826bb1ac0fd2b1dac7c",
+    "trainer_state.pt": "c44a151a9b809c92b7954886c09c23e6232bcf1045db6d5326a4c00f3e9cc374"
+  }
+}

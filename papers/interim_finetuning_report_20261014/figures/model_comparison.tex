@@ -1,0 +1,7 @@
+\begin{figure}[H]\centering
+\begin{tikzpicture}\begin{groupplot}[group style={group size=2 by 1,horizontal sep=1.4cm},width=.43\textwidth,height=5.2cm,ybar=12pt,grid=major,grid style={gray!20},symbolic x coords={A,B,C,D},xtick=data,ylabel style={font=\scriptsize}]
+\nextgroupplot[ylabel={RMSE (m)},ymin=0,ymax=16]\addplot[fill=blue!65] coordinates{(A,3.9063)(B,14.5340)(C,1.7490)(D,1.0094)};
+\nextgroupplot[ylabel={$\Delta$-MAE (m)},ymin=0,ymax=.12]\addplot[fill=orange!75] coordinates{(A,.10545)(B,.06561)(C,.06800)(D,.06148)};
+\addplot[black,dashed,thick,forget plot] coordinates{(A,.064212)(D,.064212)};
+\end{groupplot}\end{tikzpicture}
+\caption{モデルA--Dのvalidation比較。左は全有効画素RMSE、右は全有効14 pxペア局所MAE。破線は第2回ゼロ差分基準0.06421 m。}\label{fig:compare}\end{figure}

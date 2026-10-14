@@ -1,0 +1,1642 @@
+{
+  "status": "pass",
+  "source_manifest": "/content/drive/MyDrive/DepthAnythingV2-UAV/uav_metric_finetuning/config/verified_plan/train.csv",
+  "source_manifest_sha256": "13ee3432515250eff50eeb5238dfc178c8853239074eb8cbbea2b510272b0602",
+  "split": "train",
+  "seed": 42,
+  "sampling": "uniform random sample without replacement per TIFF",
+  "frames": 384,
+  "scenes": {
+    "2025/Day019_Corn": {
+      "frames": 32,
+      "valid_pixels": 666835016
+    },
+    "2025/Day019_Oat": {
+      "frames": 32,
+      "valid_pixels": 666790165
+    },
+    "2025/Day019_Wheat": {
+      "frames": 32,
+      "valid_pixels": 667752091
+    },
+    "2025/Day019_soybean": {
+      "frames": 32,
+      "valid_pixels": 666235871
+    },
+    "2025/Day028_Corn": {
+      "frames": 32,
+      "valid_pixels": 666492629
+    },
+    "2025/Day028_Oat": {
+      "frames": 32,
+      "valid_pixels": 667023427
+    },
+    "2025/Day028_Wheat": {
+      "frames": 32,
+      "valid_pixels": 667897766
+    },
+    "2025/Day028_soybean": {
+      "frames": 32,
+      "valid_pixels": 666381005
+    },
+    "2025/Day040_Corn": {
+      "frames": 32,
+      "valid_pixels": 665786136
+    },
+    "2025/Day040_Oat": {
+      "frames": 32,
+      "valid_pixels": 666777656
+    },
+    "2025/Day040_Wheat": {
+      "frames": 32,
+      "valid_pixels": 667677305
+    },
+    "2025/Day040_soybean": {
+      "frames": 32,
+      "valid_pixels": 667107926
+    }
+  },
+  "valid_pixels_scanned": 8002756993,
+  "sampled_valid_pixels": 7680000,
+  "depth_unit": "metres",
+  "valid_rule": "finite and > 0; range clipping is not applied before quantiles",
+  "quantiles_m": {
+    "p50": 17.078125,
+    "p90": 31.671875,
+    "p95": 37.40625,
+    "p99": 45.71875,
+    "p99.5": 48.78125,
+    "p99.9": 52.90625,
+    "p99.95": 53.90625,
+    "p100": 61.625
+  },
+  "suggested_max_depth_m": 60.0,
+  "suggestion_rule": "ceil(p99.9 * 1.10 / 5) * 5; review alongside histograms before training",
+  "note": "This is a train-only estimate. Review the range and units before setting the model output cap.",
+  "reuse_context": {
+    "schema": 1,
+    "kind": "gt",
+    "manifest_sha256": {
+      "train": "13ee3432515250eff50eeb5238dfc178c8853239074eb8cbbea2b510272b0602"
+    },
+    "rgb_root": null,
+    "depth_root": "/content/drive/MyDrive/DepthAnythingV2-UAV/data/uav3dcrop_depth",
+    "physical_splits": [
+      "train"
+    ],
+    "parameters": {
+      "seed": 42,
+      "max_pixels_per_frame": 20000
+    },
+    "code_sha256": {
+      "runtime_state.py": "a034c7ba745152c31939352931da6c90980ac4ee25fdb7a3b4c02638b460951a",
+      "data.py": "c8f94a49a3353ef907db516b5f9f90c9cca953690372be63fef4b951c59e5fa2",
+      "analyze_gt.py": "8e574ad3a03aa41500615c3e948a998efc3f7ec11b8aeb570cecf508fd6c0e2f"
+    },
+    "extra_sha256": {},
+    "packages": {
+      "numpy": "2.1.3",
+      "tifffile": "2026.9.20",
+      "opencv-python-headless": "4.14.0.94",
+      "opencv-python": "5.0.0.93"
+    },
+    "files": {
+      "train:depth_relpath:2025/Day019_Corn_depth/8_depth.tif": {
+        "bytes": 1825938,
+        "mtime_ns": 1791882287000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/22_depth.tif": {
+        "bytes": 1705524,
+        "mtime_ns": 1791882291000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/37_depth.tif": {
+        "bytes": 663113,
+        "mtime_ns": 1791882295000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/51_depth.tif": {
+        "bytes": 1577915,
+        "mtime_ns": 1791882299000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/66_depth.tif": {
+        "bytes": 1928075,
+        "mtime_ns": 1791882303000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/81_depth.tif": {
+        "bytes": 1418959,
+        "mtime_ns": 1791882307000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/95_depth.tif": {
+        "bytes": 1346947,
+        "mtime_ns": 1791882312000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/573_depth.tif": {
+        "bytes": 1216532,
+        "mtime_ns": 1791882315000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/587_depth.tif": {
+        "bytes": 1143552,
+        "mtime_ns": 1791882318000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/602_depth.tif": {
+        "bytes": 750413,
+        "mtime_ns": 1791882322000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/616_depth.tif": {
+        "bytes": 1510304,
+        "mtime_ns": 1791882326000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/631_depth.tif": {
+        "bytes": 1018466,
+        "mtime_ns": 1791882329000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/646_depth.tif": {
+        "bytes": 1312402,
+        "mtime_ns": 1791882333000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/660_depth.tif": {
+        "bytes": 1226251,
+        "mtime_ns": 1791882336000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/675_depth.tif": {
+        "bytes": 1112015,
+        "mtime_ns": 1791882340000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/689_depth.tif": {
+        "bytes": 2145528,
+        "mtime_ns": 1791882345000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/140_depth.tif": {
+        "bytes": 2485817,
+        "mtime_ns": 1791882349000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/200_depth.tif": {
+        "bytes": 2915166,
+        "mtime_ns": 1791882353000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/261_depth.tif": {
+        "bytes": 1889864,
+        "mtime_ns": 1791882358000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/321_depth.tif": {
+        "bytes": 2332142,
+        "mtime_ns": 1791882362000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/381_depth.tif": {
+        "bytes": 2919105,
+        "mtime_ns": 1791882365000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/442_depth.tif": {
+        "bytes": 2681045,
+        "mtime_ns": 1791882369000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/502_depth.tif": {
+        "bytes": 2158967,
+        "mtime_ns": 1791882374000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/563_depth.tif": {
+        "bytes": 2241010,
+        "mtime_ns": 1791882378000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/747_depth.tif": {
+        "bytes": 2499487,
+        "mtime_ns": 1791882382000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/808_depth.tif": {
+        "bytes": 2199315,
+        "mtime_ns": 1791882386000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/868_depth.tif": {
+        "bytes": 2698505,
+        "mtime_ns": 1791882389000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/929_depth.tif": {
+        "bytes": 2266148,
+        "mtime_ns": 1791882393000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/989_depth.tif": {
+        "bytes": 2908479,
+        "mtime_ns": 1791882397000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/1049_depth.tif": {
+        "bytes": 2228684,
+        "mtime_ns": 1791882401000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/1110_depth.tif": {
+        "bytes": 2512724,
+        "mtime_ns": 1791882404000000000
+      },
+      "train:depth_relpath:2025/Day019_Corn_depth/1170_depth.tif": {
+        "bytes": 2771405,
+        "mtime_ns": 1791882407000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/7_depth.tif": {
+        "bytes": 3678748,
+        "mtime_ns": 1791882412000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/19_depth.tif": {
+        "bytes": 2845403,
+        "mtime_ns": 1791882416000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/32_depth.tif": {
+        "bytes": 3331265,
+        "mtime_ns": 1791882419000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/44_depth.tif": {
+        "bytes": 2651970,
+        "mtime_ns": 1791882424000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/57_depth.tif": {
+        "bytes": 2227091,
+        "mtime_ns": 1791882427000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/69_depth.tif": {
+        "bytes": 2825648,
+        "mtime_ns": 1791882430000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/82_depth.tif": {
+        "bytes": 1886229,
+        "mtime_ns": 1791882437000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/94_depth.tif": {
+        "bytes": 1958479,
+        "mtime_ns": 1791882440000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/338_depth.tif": {
+        "bytes": 3033908,
+        "mtime_ns": 1791882444000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/350_depth.tif": {
+        "bytes": 3564306,
+        "mtime_ns": 1791882447000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/363_depth.tif": {
+        "bytes": 2368702,
+        "mtime_ns": 1791882450000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/375_depth.tif": {
+        "bytes": 4350604,
+        "mtime_ns": 1791882453000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/388_depth.tif": {
+        "bytes": 2351116,
+        "mtime_ns": 1791882457000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/400_depth.tif": {
+        "bytes": 3968994,
+        "mtime_ns": 1791882460000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/413_depth.tif": {
+        "bytes": 2708348,
+        "mtime_ns": 1791882464000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/425_depth.tif": {
+        "bytes": 3263097,
+        "mtime_ns": 1791882468000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/110_depth.tif": {
+        "bytes": 3197366,
+        "mtime_ns": 1791882471000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/140_depth.tif": {
+        "bytes": 3889549,
+        "mtime_ns": 1791882475000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/171_depth.tif": {
+        "bytes": 4016805,
+        "mtime_ns": 1791882478000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/202_depth.tif": {
+        "bytes": 3521872,
+        "mtime_ns": 1791882481000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/232_depth.tif": {
+        "bytes": 3342734,
+        "mtime_ns": 1791882485000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/263_depth.tif": {
+        "bytes": 3213484,
+        "mtime_ns": 1791882489000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/294_depth.tif": {
+        "bytes": 2868286,
+        "mtime_ns": 1791882492000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/324_depth.tif": {
+        "bytes": 3580071,
+        "mtime_ns": 1791882495000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/461_depth.tif": {
+        "bytes": 4138149,
+        "mtime_ns": 1791882499000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/491_depth.tif": {
+        "bytes": 3198202,
+        "mtime_ns": 1791882503000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/522_depth.tif": {
+        "bytes": 4275081,
+        "mtime_ns": 1791882506000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/553_depth.tif": {
+        "bytes": 3253447,
+        "mtime_ns": 1791882509000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/583_depth.tif": {
+        "bytes": 3377413,
+        "mtime_ns": 1791882513000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/614_depth.tif": {
+        "bytes": 2894164,
+        "mtime_ns": 1791882516000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/645_depth.tif": {
+        "bytes": 3809817,
+        "mtime_ns": 1791882519000000000
+      },
+      "train:depth_relpath:2025/Day019_Oat_depth/676_depth.tif": {
+        "bytes": 3193228,
+        "mtime_ns": 1791882523000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/12_depth.tif": {
+        "bytes": 2233641,
+        "mtime_ns": 1791882527000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/35_depth.tif": {
+        "bytes": 2646627,
+        "mtime_ns": 1791882531000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/58_depth.tif": {
+        "bytes": 3112799,
+        "mtime_ns": 1791882535000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/81_depth.tif": {
+        "bytes": 3083869,
+        "mtime_ns": 1791882543000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/104_depth.tif": {
+        "bytes": 2691523,
+        "mtime_ns": 1791882546000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/127_depth.tif": {
+        "bytes": 3085370,
+        "mtime_ns": 1791882545000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/150_depth.tif": {
+        "bytes": 2556327,
+        "mtime_ns": 1791882545000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/173_depth.tif": {
+        "bytes": 2965080,
+        "mtime_ns": 1791882546000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/667_depth.tif": {
+        "bytes": 2157420,
+        "mtime_ns": 1791882549000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/693_depth.tif": {
+        "bytes": 2995277,
+        "mtime_ns": 1791882549000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/716_depth.tif": {
+        "bytes": 3179099,
+        "mtime_ns": 1791882550000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/739_depth.tif": {
+        "bytes": 2879237,
+        "mtime_ns": 1791882550000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/762_depth.tif": {
+        "bytes": 2998839,
+        "mtime_ns": 1791882552000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/785_depth.tif": {
+        "bytes": 2712017,
+        "mtime_ns": 1791882552000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/808_depth.tif": {
+        "bytes": 2925582,
+        "mtime_ns": 1791882553000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/831_depth.tif": {
+        "bytes": 2497257,
+        "mtime_ns": 1791882554000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/210_depth.tif": {
+        "bytes": 3491989,
+        "mtime_ns": 1791882556000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/274_depth.tif": {
+        "bytes": 4053526,
+        "mtime_ns": 1791882557000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/338_depth.tif": {
+        "bytes": 3871577,
+        "mtime_ns": 1791882557000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/402_depth.tif": {
+        "bytes": 3657472,
+        "mtime_ns": 1791882558000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/466_depth.tif": {
+        "bytes": 3233532,
+        "mtime_ns": 1791882560000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/531_depth.tif": {
+        "bytes": 2593519,
+        "mtime_ns": 1791882561000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/595_depth.tif": {
+        "bytes": 3322772,
+        "mtime_ns": 1791882561000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/853_depth.tif": {
+        "bytes": 3582601,
+        "mtime_ns": 1791882562000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/917_depth.tif": {
+        "bytes": 4041326,
+        "mtime_ns": 1791882564000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/981_depth.tif": {
+        "bytes": 2656585,
+        "mtime_ns": 1791882564000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/1045_depth.tif": {
+        "bytes": 4034697,
+        "mtime_ns": 1791882565000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/1110_depth.tif": {
+        "bytes": 3629877,
+        "mtime_ns": 1791882566000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/1174_depth.tif": {
+        "bytes": 3124278,
+        "mtime_ns": 1791882568000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/1238_depth.tif": {
+        "bytes": 3436864,
+        "mtime_ns": 1791882569000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/1302_depth.tif": {
+        "bytes": 3588153,
+        "mtime_ns": 1791882568000000000
+      },
+      "train:depth_relpath:2025/Day019_Wheat_depth/1366_depth.tif": {
+        "bytes": 3642169,
+        "mtime_ns": 1791882569000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/9_depth.tif": {
+        "bytes": 1736111,
+        "mtime_ns": 1791882572000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/27_depth.tif": {
+        "bytes": 2077690,
+        "mtime_ns": 1791882573000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/45_depth.tif": {
+        "bytes": 2132790,
+        "mtime_ns": 1791882573000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/63_depth.tif": {
+        "bytes": 1952959,
+        "mtime_ns": 1791882573000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/81_depth.tif": {
+        "bytes": 2287834,
+        "mtime_ns": 1791882576000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/99_depth.tif": {
+        "bytes": 2285823,
+        "mtime_ns": 1791882576000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/117_depth.tif": {
+        "bytes": 2132503,
+        "mtime_ns": 1791882577000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/135_depth.tif": {
+        "bytes": 2248116,
+        "mtime_ns": 1791882578000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/522_depth.tif": {
+        "bytes": 2218290,
+        "mtime_ns": 1791882580000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/540_depth.tif": {
+        "bytes": 2077007,
+        "mtime_ns": 1791882580000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/558_depth.tif": {
+        "bytes": 2056753,
+        "mtime_ns": 1791882581000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/576_depth.tif": {
+        "bytes": 2196623,
+        "mtime_ns": 1791882582000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/594_depth.tif": {
+        "bytes": 1940719,
+        "mtime_ns": 1791882584000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/612_depth.tif": {
+        "bytes": 1996686,
+        "mtime_ns": 1791882584000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/630_depth.tif": {
+        "bytes": 453170,
+        "mtime_ns": 1791882584000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/648_depth.tif": {
+        "bytes": 2380218,
+        "mtime_ns": 1791882584000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/165_depth.tif": {
+        "bytes": 2894672,
+        "mtime_ns": 1791882587000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/214_depth.tif": {
+        "bytes": 2482301,
+        "mtime_ns": 1791882587000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/263_depth.tif": {
+        "bytes": 1988906,
+        "mtime_ns": 1791882588000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/312_depth.tif": {
+        "bytes": 2110403,
+        "mtime_ns": 1791882589000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/361_depth.tif": {
+        "bytes": 2632863,
+        "mtime_ns": 1791882590000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/410_depth.tif": {
+        "bytes": 2882509,
+        "mtime_ns": 1791882591000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/459_depth.tif": {
+        "bytes": 2087130,
+        "mtime_ns": 1791882591000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/508_depth.tif": {
+        "bytes": 2023002,
+        "mtime_ns": 1791882593000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/703_depth.tif": {
+        "bytes": 2345257,
+        "mtime_ns": 1791882594000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/752_depth.tif": {
+        "bytes": 2557347,
+        "mtime_ns": 1791882595000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/801_depth.tif": {
+        "bytes": 2194896,
+        "mtime_ns": 1791882595000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/850_depth.tif": {
+        "bytes": 2154123,
+        "mtime_ns": 1791882597000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/899_depth.tif": {
+        "bytes": 2828656,
+        "mtime_ns": 1791882598000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/948_depth.tif": {
+        "bytes": 2557098,
+        "mtime_ns": 1791882600000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/997_depth.tif": {
+        "bytes": 2563669,
+        "mtime_ns": 1791882598000000000
+      },
+      "train:depth_relpath:2025/Day019_soybean_depth/1046_depth.tif": {
+        "bytes": 2265613,
+        "mtime_ns": 1791882600000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/8_depth.tif": {
+        "bytes": 2032842,
+        "mtime_ns": 1791882602000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/23_depth.tif": {
+        "bytes": 1329839,
+        "mtime_ns": 1791882603000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/38_depth.tif": {
+        "bytes": 1959301,
+        "mtime_ns": 1791882604000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/52_depth.tif": {
+        "bytes": 1819103,
+        "mtime_ns": 1791882605000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/67_depth.tif": {
+        "bytes": 1661288,
+        "mtime_ns": 1791882607000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/82_depth.tif": {
+        "bytes": 1643846,
+        "mtime_ns": 1791882608000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/97_depth.tif": {
+        "bytes": 1350606,
+        "mtime_ns": 1791882609000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/112_depth.tif": {
+        "bytes": 1440508,
+        "mtime_ns": 1791882609000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/589_depth.tif": {
+        "bytes": 1189478,
+        "mtime_ns": 1791882611000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/604_depth.tif": {
+        "bytes": 1904389,
+        "mtime_ns": 1791882612000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/619_depth.tif": {
+        "bytes": 2330190,
+        "mtime_ns": 1791882613000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/634_depth.tif": {
+        "bytes": 1190392,
+        "mtime_ns": 1791882613000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/649_depth.tif": {
+        "bytes": 1817700,
+        "mtime_ns": 1791882615000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/663_depth.tif": {
+        "bytes": 1506995,
+        "mtime_ns": 1791882616000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/678_depth.tif": {
+        "bytes": 1981052,
+        "mtime_ns": 1791882617000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/693_depth.tif": {
+        "bytes": 1353477,
+        "mtime_ns": 1791882617000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/143_depth.tif": {
+        "bytes": 2999187,
+        "mtime_ns": 1791882618000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/203_depth.tif": {
+        "bytes": 3545669,
+        "mtime_ns": 1791882620000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/264_depth.tif": {
+        "bytes": 3448337,
+        "mtime_ns": 1791882620000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/324_depth.tif": {
+        "bytes": 2855874,
+        "mtime_ns": 1791882621000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/384_depth.tif": {
+        "bytes": 3990958,
+        "mtime_ns": 1791882622000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/445_depth.tif": {
+        "bytes": 3731976,
+        "mtime_ns": 1791882623000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/505_depth.tif": {
+        "bytes": 3752674,
+        "mtime_ns": 1791882624000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/566_depth.tif": {
+        "bytes": 2798821,
+        "mtime_ns": 1791882624000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/751_depth.tif": {
+        "bytes": 3449280,
+        "mtime_ns": 1791882627000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/812_depth.tif": {
+        "bytes": 3499860,
+        "mtime_ns": 1791882627000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/872_depth.tif": {
+        "bytes": 3798186,
+        "mtime_ns": 1791882628000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/933_depth.tif": {
+        "bytes": 3422537,
+        "mtime_ns": 1791882628000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/993_depth.tif": {
+        "bytes": 3485667,
+        "mtime_ns": 1791882631000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/1053_depth.tif": {
+        "bytes": 3143601,
+        "mtime_ns": 1791882630000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/1114_depth.tif": {
+        "bytes": 3367647,
+        "mtime_ns": 1791882632000000000
+      },
+      "train:depth_relpath:2025/Day028_Corn_depth/1174_depth.tif": {
+        "bytes": 3824749,
+        "mtime_ns": 1791882634000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/7_depth.tif": {
+        "bytes": 3818862,
+        "mtime_ns": 1791882634000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/19_depth.tif": {
+        "bytes": 3332721,
+        "mtime_ns": 1791882634000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/32_depth.tif": {
+        "bytes": 3595856,
+        "mtime_ns": 1791882636000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/44_depth.tif": {
+        "bytes": 3257100,
+        "mtime_ns": 1791882637000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/57_depth.tif": {
+        "bytes": 3260595,
+        "mtime_ns": 1791882638000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/70_depth.tif": {
+        "bytes": 3284813,
+        "mtime_ns": 1791882638000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/82_depth.tif": {
+        "bytes": 2941039,
+        "mtime_ns": 1791882639000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/315_depth.tif": {
+        "bytes": 3015353,
+        "mtime_ns": 1791882640000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/327_depth.tif": {
+        "bytes": 3508587,
+        "mtime_ns": 1791882641000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/340_depth.tif": {
+        "bytes": 4059986,
+        "mtime_ns": 1791882642000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/352_depth.tif": {
+        "bytes": 3328037,
+        "mtime_ns": 1791882643000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/365_depth.tif": {
+        "bytes": 4200538,
+        "mtime_ns": 1791882644000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/378_depth.tif": {
+        "bytes": 2964931,
+        "mtime_ns": 1791882645000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/390_depth.tif": {
+        "bytes": 4005997,
+        "mtime_ns": 1791882645000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/403_depth.tif": {
+        "bytes": 3187542,
+        "mtime_ns": 1791882646000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/415_depth.tif": {
+        "bytes": 3459118,
+        "mtime_ns": 1791882648000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/109_depth.tif": {
+        "bytes": 3879003,
+        "mtime_ns": 1791882649000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/139_depth.tif": {
+        "bytes": 3848702,
+        "mtime_ns": 1791882649000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/169_depth.tif": {
+        "bytes": 3440031,
+        "mtime_ns": 1791882651000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/199_depth.tif": {
+        "bytes": 4228571,
+        "mtime_ns": 1791882651000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/229_depth.tif": {
+        "bytes": 3961511,
+        "mtime_ns": 1791882653000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/259_depth.tif": {
+        "bytes": 4163424,
+        "mtime_ns": 1791882653000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/288_depth.tif": {
+        "bytes": 3826513,
+        "mtime_ns": 1791882655000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/425_depth.tif": {
+        "bytes": 3939839,
+        "mtime_ns": 1791882655000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/455_depth.tif": {
+        "bytes": 4369314,
+        "mtime_ns": 1791882656000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/485_depth.tif": {
+        "bytes": 3194817,
+        "mtime_ns": 1791882656000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/514_depth.tif": {
+        "bytes": 4144729,
+        "mtime_ns": 1791882659000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/544_depth.tif": {
+        "bytes": 3779940,
+        "mtime_ns": 1791882658000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/574_depth.tif": {
+        "bytes": 4369788,
+        "mtime_ns": 1791882658000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/604_depth.tif": {
+        "bytes": 3752192,
+        "mtime_ns": 1791882660000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/634_depth.tif": {
+        "bytes": 4463990,
+        "mtime_ns": 1791882663000000000
+      },
+      "train:depth_relpath:2025/Day028_Oat_depth/665_depth.tif": {
+        "bytes": 3982841,
+        "mtime_ns": 1791882663000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/12_depth.tif": {
+        "bytes": 2385716,
+        "mtime_ns": 1791882664000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/36_depth.tif": {
+        "bytes": 3354078,
+        "mtime_ns": 1791882664000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/60_depth.tif": {
+        "bytes": 3670923,
+        "mtime_ns": 1791882667000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/84_depth.tif": {
+        "bytes": 2827377,
+        "mtime_ns": 1791882668000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/107_depth.tif": {
+        "bytes": 2923290,
+        "mtime_ns": 1791882668000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/131_depth.tif": {
+        "bytes": 3034379,
+        "mtime_ns": 1791882668000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/155_depth.tif": {
+        "bytes": 3018726,
+        "mtime_ns": 1791882671000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/179_depth.tif": {
+        "bytes": 3151700,
+        "mtime_ns": 1791882671000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/660_depth.tif": {
+        "bytes": 3675132,
+        "mtime_ns": 1791882671000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/684_depth.tif": {
+        "bytes": 2969472,
+        "mtime_ns": 1791882672000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/708_depth.tif": {
+        "bytes": 3264197,
+        "mtime_ns": 1791882674000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/732_depth.tif": {
+        "bytes": 3415383,
+        "mtime_ns": 1791882675000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/755_depth.tif": {
+        "bytes": 3385058,
+        "mtime_ns": 1791882675000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/779_depth.tif": {
+        "bytes": 3397220,
+        "mtime_ns": 1791882677000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/803_depth.tif": {
+        "bytes": 3117584,
+        "mtime_ns": 1791882679000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/827_depth.tif": {
+        "bytes": 2834180,
+        "mtime_ns": 1791882678000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/214_depth.tif": {
+        "bytes": 3804034,
+        "mtime_ns": 1791882679000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/278_depth.tif": {
+        "bytes": 4255688,
+        "mtime_ns": 1791882680000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/342_depth.tif": {
+        "bytes": 4409399,
+        "mtime_ns": 1791882682000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/406_depth.tif": {
+        "bytes": 4237543,
+        "mtime_ns": 1791882682000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/470_depth.tif": {
+        "bytes": 4359118,
+        "mtime_ns": 1791882683000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/534_depth.tif": {
+        "bytes": 3441432,
+        "mtime_ns": 1791882684000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/598_depth.tif": {
+        "bytes": 3651233,
+        "mtime_ns": 1791882685000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/858_depth.tif": {
+        "bytes": 3730271,
+        "mtime_ns": 1791882686000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/921_depth.tif": {
+        "bytes": 4348653,
+        "mtime_ns": 1791882686000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/985_depth.tif": {
+        "bytes": 3548051,
+        "mtime_ns": 1791882687000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/1049_depth.tif": {
+        "bytes": 3590744,
+        "mtime_ns": 1791882689000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/1113_depth.tif": {
+        "bytes": 3632933,
+        "mtime_ns": 1791882690000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/1177_depth.tif": {
+        "bytes": 4399228,
+        "mtime_ns": 1791882690000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/1241_depth.tif": {
+        "bytes": 3655366,
+        "mtime_ns": 1791882690000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/1305_depth.tif": {
+        "bytes": 3835970,
+        "mtime_ns": 1791882692000000000
+      },
+      "train:depth_relpath:2025/Day028_Wheat_depth/1369_depth.tif": {
+        "bytes": 3958071,
+        "mtime_ns": 1791882694000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/10_depth.tif": {
+        "bytes": 2988786,
+        "mtime_ns": 1791882694000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/28_depth.tif": {
+        "bytes": 2326683,
+        "mtime_ns": 1791882694000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/46_depth.tif": {
+        "bytes": 2731276,
+        "mtime_ns": 1791882696000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/65_depth.tif": {
+        "bytes": 2051100,
+        "mtime_ns": 1791882698000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/83_depth.tif": {
+        "bytes": 2249583,
+        "mtime_ns": 1791882698000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/101_depth.tif": {
+        "bytes": 2440701,
+        "mtime_ns": 1791882698000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/120_depth.tif": {
+        "bytes": 2511989,
+        "mtime_ns": 1791882699000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/138_depth.tif": {
+        "bytes": 2429813,
+        "mtime_ns": 1791882701000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/531_depth.tif": {
+        "bytes": 2359102,
+        "mtime_ns": 1791882702000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/549_depth.tif": {
+        "bytes": 1963446,
+        "mtime_ns": 1791882702000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/568_depth.tif": {
+        "bytes": 2447361,
+        "mtime_ns": 1791882703000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/586_depth.tif": {
+        "bytes": 2074375,
+        "mtime_ns": 1791882705000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/604_depth.tif": {
+        "bytes": 2421121,
+        "mtime_ns": 1791882705000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/623_depth.tif": {
+        "bytes": 2223074,
+        "mtime_ns": 1791882705000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/641_depth.tif": {
+        "bytes": 2397086,
+        "mtime_ns": 1791882707000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/659_depth.tif": {
+        "bytes": 2671725,
+        "mtime_ns": 1791882708000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/169_depth.tif": {
+        "bytes": 3616562,
+        "mtime_ns": 1791882709000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/219_depth.tif": {
+        "bytes": 2885023,
+        "mtime_ns": 1791882709000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/268_depth.tif": {
+        "bytes": 2627811,
+        "mtime_ns": 1791882710000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/318_depth.tif": {
+        "bytes": 2368862,
+        "mtime_ns": 1791882712000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/367_depth.tif": {
+        "bytes": 3067027,
+        "mtime_ns": 1791882713000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/417_depth.tif": {
+        "bytes": 3513316,
+        "mtime_ns": 1791882713000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/466_depth.tif": {
+        "bytes": 2415473,
+        "mtime_ns": 1791882714000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/516_depth.tif": {
+        "bytes": 2380115,
+        "mtime_ns": 1791882717000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/714_depth.tif": {
+        "bytes": 2809497,
+        "mtime_ns": 1791882716000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/764_depth.tif": {
+        "bytes": 3346953,
+        "mtime_ns": 1791882716000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/813_depth.tif": {
+        "bytes": 2873216,
+        "mtime_ns": 1791882718000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/863_depth.tif": {
+        "bytes": 2564684,
+        "mtime_ns": 1791882720000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/912_depth.tif": {
+        "bytes": 3478552,
+        "mtime_ns": 1791882720000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/962_depth.tif": {
+        "bytes": 3264568,
+        "mtime_ns": 1791882720000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/1011_depth.tif": {
+        "bytes": 2763376,
+        "mtime_ns": 1791882722000000000
+      },
+      "train:depth_relpath:2025/Day028_soybean_depth/1061_depth.tif": {
+        "bytes": 3062301,
+        "mtime_ns": 1791882724000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/8_depth.tif": {
+        "bytes": 3237593,
+        "mtime_ns": 1791882724000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/22_depth.tif": {
+        "bytes": 3072445,
+        "mtime_ns": 1791882724000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/36_depth.tif": {
+        "bytes": 3004973,
+        "mtime_ns": 1791882726000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/50_depth.tif": {
+        "bytes": 2395880,
+        "mtime_ns": 1791882727000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/71_depth.tif": {
+        "bytes": 1437237,
+        "mtime_ns": 1791882728000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/85_depth.tif": {
+        "bytes": 2642715,
+        "mtime_ns": 1791882728000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/99_depth.tif": {
+        "bytes": 2669403,
+        "mtime_ns": 1791882730000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/579_depth.tif": {
+        "bytes": 1683616,
+        "mtime_ns": 1791882732000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/594_depth.tif": {
+        "bytes": 2035035,
+        "mtime_ns": 1791882732000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/608_depth.tif": {
+        "bytes": 2580816,
+        "mtime_ns": 1791882732000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/622_depth.tif": {
+        "bytes": 2915559,
+        "mtime_ns": 1791882733000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/636_depth.tif": {
+        "bytes": 2352953,
+        "mtime_ns": 1791882735000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/651_depth.tif": {
+        "bytes": 3076897,
+        "mtime_ns": 1791882735000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/667_depth.tif": {
+        "bytes": 2029017,
+        "mtime_ns": 1791882736000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/681_depth.tif": {
+        "bytes": 2442031,
+        "mtime_ns": 1791882736000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/695_depth.tif": {
+        "bytes": 2576655,
+        "mtime_ns": 1791882738000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/142_depth.tif": {
+        "bytes": 3537849,
+        "mtime_ns": 1791882740000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/203_depth.tif": {
+        "bytes": 3779952,
+        "mtime_ns": 1791882740000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/263_depth.tif": {
+        "bytes": 3898744,
+        "mtime_ns": 1791882740000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/324_depth.tif": {
+        "bytes": 3388593,
+        "mtime_ns": 1791882742000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/385_depth.tif": {
+        "bytes": 4259893,
+        "mtime_ns": 1791882743000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/445_depth.tif": {
+        "bytes": 3353060,
+        "mtime_ns": 1791882744000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/506_depth.tif": {
+        "bytes": 4127153,
+        "mtime_ns": 1791882744000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/567_depth.tif": {
+        "bytes": 3454976,
+        "mtime_ns": 1791882746000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/752_depth.tif": {
+        "bytes": 3993472,
+        "mtime_ns": 1791882746000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/813_depth.tif": {
+        "bytes": 3536770,
+        "mtime_ns": 1791882748000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/874_depth.tif": {
+        "bytes": 4091568,
+        "mtime_ns": 1791882748000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/934_depth.tif": {
+        "bytes": 3625845,
+        "mtime_ns": 1791882750000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/995_depth.tif": {
+        "bytes": 3776569,
+        "mtime_ns": 1791882750000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/1056_depth.tif": {
+        "bytes": 3375166,
+        "mtime_ns": 1791882751000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/1116_depth.tif": {
+        "bytes": 4072212,
+        "mtime_ns": 1791882751000000000
+      },
+      "train:depth_relpath:2025/Day040_Corn_depth/1177_depth.tif": {
+        "bytes": 4146334,
+        "mtime_ns": 1791882754000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/7_depth.tif": {
+        "bytes": 4280667,
+        "mtime_ns": 1791882754000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/19_depth.tif": {
+        "bytes": 3247708,
+        "mtime_ns": 1791882755000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/32_depth.tif": {
+        "bytes": 3352231,
+        "mtime_ns": 1791882755000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/45_depth.tif": {
+        "bytes": 3099704,
+        "mtime_ns": 1791882757000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/57_depth.tif": {
+        "bytes": 3359487,
+        "mtime_ns": 1791882757000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/70_depth.tif": {
+        "bytes": 3174641,
+        "mtime_ns": 1791882758000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/83_depth.tif": {
+        "bytes": 2546725,
+        "mtime_ns": 1791882760000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/286_depth.tif": {
+        "bytes": 2539692,
+        "mtime_ns": 1791882761000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/299_depth.tif": {
+        "bytes": 3224504,
+        "mtime_ns": 1791882761000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/311_depth.tif": {
+        "bytes": 3833837,
+        "mtime_ns": 1791882762000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/324_depth.tif": {
+        "bytes": 2913404,
+        "mtime_ns": 1791882763000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/337_depth.tif": {
+        "bytes": 4307734,
+        "mtime_ns": 1791882764000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/349_depth.tif": {
+        "bytes": 3089773,
+        "mtime_ns": 1791882764000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/362_depth.tif": {
+        "bytes": 4272420,
+        "mtime_ns": 1791882766000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/375_depth.tif": {
+        "bytes": 2993585,
+        "mtime_ns": 1791882767000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/387_depth.tif": {
+        "bytes": 3523758,
+        "mtime_ns": 1791882767000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/109_depth.tif": {
+        "bytes": 3737983,
+        "mtime_ns": 1791882768000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/137_depth.tif": {
+        "bytes": 3840801,
+        "mtime_ns": 1791882769000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/165_depth.tif": {
+        "bytes": 4139130,
+        "mtime_ns": 1791882771000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/193_depth.tif": {
+        "bytes": 3680720,
+        "mtime_ns": 1791882771000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/221_depth.tif": {
+        "bytes": 4333212,
+        "mtime_ns": 1791882771000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/249_depth.tif": {
+        "bytes": 4315210,
+        "mtime_ns": 1791882774000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/278_depth.tif": {
+        "bytes": 3206949,
+        "mtime_ns": 1791882774000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/414_depth.tif": {
+        "bytes": 3987594,
+        "mtime_ns": 1791882774000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/442_depth.tif": {
+        "bytes": 4255039,
+        "mtime_ns": 1791882775000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/470_depth.tif": {
+        "bytes": 4210344,
+        "mtime_ns": 1791882777000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/498_depth.tif": {
+        "bytes": 3485329,
+        "mtime_ns": 1791882777000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/526_depth.tif": {
+        "bytes": 4037904,
+        "mtime_ns": 1791882777000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/554_depth.tif": {
+        "bytes": 4103061,
+        "mtime_ns": 1791882778000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/582_depth.tif": {
+        "bytes": 3423045,
+        "mtime_ns": 1791882780000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/610_depth.tif": {
+        "bytes": 3539751,
+        "mtime_ns": 1791882781000000000
+      },
+      "train:depth_relpath:2025/Day040_Oat_depth/638_depth.tif": {
+        "bytes": 3622132,
+        "mtime_ns": 1791882781000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/12_depth.tif": {
+        "bytes": 2580742,
+        "mtime_ns": 1791882783000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/36_depth.tif": {
+        "bytes": 3300411,
+        "mtime_ns": 1791882784000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/60_depth.tif": {
+        "bytes": 3160938,
+        "mtime_ns": 1791882785000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/83_depth.tif": {
+        "bytes": 3420103,
+        "mtime_ns": 1791882784000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/107_depth.tif": {
+        "bytes": 3193006,
+        "mtime_ns": 1791882787000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/130_depth.tif": {
+        "bytes": 3593423,
+        "mtime_ns": 1791882788000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/154_depth.tif": {
+        "bytes": 3021688,
+        "mtime_ns": 1791882789000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/178_depth.tif": {
+        "bytes": 3096098,
+        "mtime_ns": 1791882789000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/673_depth.tif": {
+        "bytes": 3798835,
+        "mtime_ns": 1791882791000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/697_depth.tif": {
+        "bytes": 3328558,
+        "mtime_ns": 1791882792000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/721_depth.tif": {
+        "bytes": 3275027,
+        "mtime_ns": 1791882792000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/744_depth.tif": {
+        "bytes": 3126323,
+        "mtime_ns": 1791882793000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/768_depth.tif": {
+        "bytes": 3173515,
+        "mtime_ns": 1791882795000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/791_depth.tif": {
+        "bytes": 3155817,
+        "mtime_ns": 1791882796000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/815_depth.tif": {
+        "bytes": 3444927,
+        "mtime_ns": 1791882796000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/839_depth.tif": {
+        "bytes": 3442377,
+        "mtime_ns": 1791882797000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/214_depth.tif": {
+        "bytes": 3930064,
+        "mtime_ns": 1791882799000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/278_depth.tif": {
+        "bytes": 4351047,
+        "mtime_ns": 1791882800000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/343_depth.tif": {
+        "bytes": 4415671,
+        "mtime_ns": 1791882801000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/407_depth.tif": {
+        "bytes": 3997261,
+        "mtime_ns": 1791882800000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/472_depth.tif": {
+        "bytes": 4094603,
+        "mtime_ns": 1791882803000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/536_depth.tif": {
+        "bytes": 3598213,
+        "mtime_ns": 1791882803000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/601_depth.tif": {
+        "bytes": 3547348,
+        "mtime_ns": 1791882804000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/862_depth.tif": {
+        "bytes": 3947338,
+        "mtime_ns": 1791882804000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/927_depth.tif": {
+        "bytes": 4389285,
+        "mtime_ns": 1791882807000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/991_depth.tif": {
+        "bytes": 3276726,
+        "mtime_ns": 1791882807000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/1056_depth.tif": {
+        "bytes": 4263929,
+        "mtime_ns": 1791882808000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/1120_depth.tif": {
+        "bytes": 3931210,
+        "mtime_ns": 1791882808000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/1185_depth.tif": {
+        "bytes": 3823019,
+        "mtime_ns": 1791882810000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/1249_depth.tif": {
+        "bytes": 3831651,
+        "mtime_ns": 1791882810000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/1314_depth.tif": {
+        "bytes": 4163235,
+        "mtime_ns": 1791882812000000000
+      },
+      "train:depth_relpath:2025/Day040_Wheat_depth/1378_depth.tif": {
+        "bytes": 4113446,
+        "mtime_ns": 1791882812000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/10_depth.tif": {
+        "bytes": 3776028,
+        "mtime_ns": 1791882814000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/28_depth.tif": {
+        "bytes": 3795758,
+        "mtime_ns": 1791882814000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/46_depth.tif": {
+        "bytes": 3348522,
+        "mtime_ns": 1791882815000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/65_depth.tif": {
+        "bytes": 2954066,
+        "mtime_ns": 1791882817000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/83_depth.tif": {
+        "bytes": 3080885,
+        "mtime_ns": 1791882817000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/101_depth.tif": {
+        "bytes": 2942250,
+        "mtime_ns": 1791882818000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/120_depth.tif": {
+        "bytes": 2950674,
+        "mtime_ns": 1791882820000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/138_depth.tif": {
+        "bytes": 2280307,
+        "mtime_ns": 1791882820000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/530_depth.tif": {
+        "bytes": 2383611,
+        "mtime_ns": 1791882821000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/548_depth.tif": {
+        "bytes": 2325443,
+        "mtime_ns": 1791882821000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/567_depth.tif": {
+        "bytes": 3123699,
+        "mtime_ns": 1791882824000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/585_depth.tif": {
+        "bytes": 2084081,
+        "mtime_ns": 1791882824000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/603_depth.tif": {
+        "bytes": 3020429,
+        "mtime_ns": 1791882825000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/622_depth.tif": {
+        "bytes": 2371767,
+        "mtime_ns": 1791882825000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/640_depth.tif": {
+        "bytes": 3707141,
+        "mtime_ns": 1791882827000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/658_depth.tif": {
+        "bytes": 400381,
+        "mtime_ns": 1791882827000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/169_depth.tif": {
+        "bytes": 4482201,
+        "mtime_ns": 1791882829000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/218_depth.tif": {
+        "bytes": 3184200,
+        "mtime_ns": 1791882829000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/268_depth.tif": {
+        "bytes": 3150114,
+        "mtime_ns": 1791882831000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/317_depth.tif": {
+        "bytes": 2413735,
+        "mtime_ns": 1791882832000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/366_depth.tif": {
+        "bytes": 3374403,
+        "mtime_ns": 1791882832000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/416_depth.tif": {
+        "bytes": 4199622,
+        "mtime_ns": 1791882833000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/465_depth.tif": {
+        "bytes": 3047363,
+        "mtime_ns": 1791882834000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/514_depth.tif": {
+        "bytes": 2776058,
+        "mtime_ns": 1791882835000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/713_depth.tif": {
+        "bytes": 3420739,
+        "mtime_ns": 1791882836000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/762_depth.tif": {
+        "bytes": 4022918,
+        "mtime_ns": 1791882837000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/811_depth.tif": {
+        "bytes": 3435738,
+        "mtime_ns": 1791882837000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/861_depth.tif": {
+        "bytes": 2627813,
+        "mtime_ns": 1791882839000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/910_depth.tif": {
+        "bytes": 4385360,
+        "mtime_ns": 1791882839000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/959_depth.tif": {
+        "bytes": 3700131,
+        "mtime_ns": 1791882841000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/1009_depth.tif": {
+        "bytes": 3616339,
+        "mtime_ns": 1791882840000000000
+      },
+      "train:depth_relpath:2025/Day040_soybean_depth/1058_depth.tif": {
+        "bytes": 3229777,
+        "mtime_ns": 1791882843000000000
+      }
+    }
+  }
+}

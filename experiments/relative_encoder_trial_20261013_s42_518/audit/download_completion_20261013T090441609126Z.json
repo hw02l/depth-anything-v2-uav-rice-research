@@ -1,0 +1,16 @@
+{
+  "status": {
+    "pairs": 512,
+    "complete_pairs": 512,
+    "expected_files": 1024,
+    "present_files": 1024,
+    "missing_files": 0,
+    "conflicting_files": [],
+    "planned_bytes": 7850330776,
+    "new_bytes": 0,
+    "complete": true
+  },
+  "elapsed_seconds": 685.9734795710001,
+  "download_log": "/content/drive/MyDrive/DepthAnythingV2-UAV/work/uav_metric_finetuning/download_parallel_20261013T090441609126Z.log",
+  "gpu_used": false
+}

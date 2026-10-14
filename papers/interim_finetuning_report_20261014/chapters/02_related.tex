@@ -1,0 +1,14 @@
+\chapter{関連研究と理論}
+\section{単眼深度推定}
+単眼画像$I$から深度場$D$を求める問題は画素ごとの回帰$D=f_\theta(I)$として表される。単眼投影では物体の大きさと距離の組合せが同じ画像を生じ得るため、尺度は画像内容のみから常に一意ではない。Relative Depthは主に前後関係や相対構造を表し、Metric Depthはメートル等の実尺度を出力する。Relative checkpointをMetric推定へ転用するには、尺度を学ぶheadとMetric教師が必要である。
+\section{Depth Anything V2、ViT、DPT}
+Depth Anything V2は大規模な合成深度教師と実画像擬似ラベルを組み合わせた単眼深度モデルであり、複数規模のモデルと屋内・屋外Metric checkpointが公開されている\cite{dav2}。SmallはDINOv2 ViT-S/14系encoderから得る中間特徴を用いる\cite{dinov2}。Vision Transformer（ViT）は画像をpatch token列へ写像し、Self-Attentionにより文脈特徴を学習する\cite{vit2021}。Dense Prediction Transformer（DPT）は異なるTransformer層の特徴を解像度別のマップへ射影し、融合ブロックで段階的に統合して密な画素予測を行う\cite{dpt2021}。したがって出力は単一patchの分類ではなく、encoder特徴とdecoder再構成の組合せである。
+Metric Depth実装はhead出力をsigmoidで$[0,1]$へ写像し、モデル上限$M$でスケールする。本研究ではGTマスク上限とforward係数を別パラメータにした。$M$は予測可能深度範囲、$G$はloss・評価で採用するGT画素範囲である。
+\section{転移学習とSiLog}
+事前学習特徴を新しい分布へ適応する転移学習として、本研究はRelative backboneからMetric headを学ぶAと、Metric Outdoor全体を追加更新するC/Dを比較した。尺度不変対数損失（SiLog）は$g_i=\log\hat d_i-\log d_i$に基づき、対数誤差の二乗平均から共通対数尺度偏差成分を控除する\cite{eigen2014}。
+\[
+L_{\mathrm{SiLog}}=\sqrt{\frac1N\sum_{i=1}^N g_i^2-\lambda\left(\frac1N\sum_{i=1}^N g_i\right)^2},\quad \lambda=0.5.
+\]
+この構成は相対的な誤差と尺度バイアスを同時に扱うが、14 px差分を直接最小化する損失ではない。本稿の学習ではSiLogを変更していない。
+\section{写真測量深度と植物高}
+UAV3DCropは反復・複数視点UAV画像と写真測量由来幾何情報を含むベンチマークである\cite{uav3dcrop}。本研究のGTはカメラ座標系の光軸方向Z-depthであり、世界座標系の鉛直軸高さではない。草丈の計算には植物頂部と地面の対応、カメラ姿勢・内部標定、座標変換が必要である。よって本研究の深度差分は植物垂直高差の教師ではない。

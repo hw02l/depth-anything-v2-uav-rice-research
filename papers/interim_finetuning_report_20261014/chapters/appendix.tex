@@ -1,0 +1,58 @@
+\chapter{再現性・根拠資料}
+\section{実験条件と環境}
+表\ref{tab:repro}は各回の報告書、run metadata、学習CSVから照合できた条件を示す。保存資料で確認できない環境情報は未記録とし、推測で補っていない。
+\setlength{\tabcolsep}{3pt}
+\begin{longtable}{p{.23\textwidth}p{.34\textwidth}p{.35\textwidth}}
+\caption{実験条件と記録状態}\label{tab:repro}\\
+\toprule 項目&第1・2回&第3回（モデルD）\\\midrule\endfirsthead
+\toprule 項目&第1・2回&第3回（モデルD）\\\midrule\endhead
+対象&UAV3DCrop Corn, Oat, Wheat, Soybean&同左\\
+分割&train 384（Day019/028/040）、validation 128（Day047）&同左、各epochで同じsplit\\
+未使用データ&independent test 319組、過去評価52組&同左\\
+入力&518 px&518 px\\
+初期化&A: Relative Small backbone、新Metric head。B: pretrained Outdoor。C: pretrained Outdoor&D: pretrained Metric Outdoor Smallから独立run\\
+出力上限&A 65 m、B/C 80 m&80 m\\
+GT評価上限&65 m&65 m\\
+最適化&AdamW、SiLog、seed 42。詳細は各実行報告を参照&AdamW、encoder LR $5\times10^{-6}$、neck/head LR $5\times10^{-5}$、batch 1、accumulation 4、AMP\\
+学習計画&A/C各1 epoch&Dは20 epoch計画、epoch 1--5完了\\
+scheduler&実験ごとに異なる。CとDは同一条件ではない&PolynomialLR 1920 planned updates、96/epoch。epoch 5でsuccessful update 479\\
+GPU&Colab無料Tesla T4（第1回ログ）&Colab無料Tesla T4。peak allocated 0.877 GiB、reserved 1.248 GiB\\
+時間&第2回学習+validation 約12分05秒&D epoch 1--5合計5272.7秒（約1時間27分53秒）\\
+AMP skip&第2回のoptimizer更新skip 1回&D epoch 1で1回、epoch 2--5で0回\\
+ソフトウェア版&保存資料から全てを一意に確認できず&Python、PyTorch、CUDA/cuDNN版は根拠資料で未記録\\
+\bottomrule
+\end{longtable}
+\setlength{\tabcolsep}{6pt}
+
+\section{データ・コード・成果物の保管先}
+研究データはDriveの\texttt{MyDrive/DepthAnythingV2-UAV/data/}に保存された512組を再利用した。転送量は7,850,330,776 bytesである。本論文作成ではデータ再取得、GPU推論、checkpoint再ロードを行っていない。再現コードは第3回実験フォルダー内の\texttt{source\_full\_v1/}である。
+
+\begin{longtable}{p{.25\textwidth}p{.38\textwidth}p{.28\textwidth}}
+\caption{主要根拠ファイルと所在}\label{tab:evidence}\\
+\toprule 内容&Drive上の識別子・保存先&本稿での用途\\\midrule\endfirsthead
+\toprule 内容&Drive上の識別子・保存先&本稿での用途\\\midrule\endhead
+第1回報告書&\href{https://drive.google.com/file/d/1VMxUVF_IU3AqAfkJxukfUXoSpQLg9AyK/view}{file ID 1VMxUVF...}&A/B指標、split、学習条件\\
+第2回最終報告書&\href{https://drive.google.com/file/d/1ful2HPTS2hxQaEfP2MKXYhXly_Au4QPE/view}{file ID 1ful2H...}&C指標、局所差・境界分析、ゼロ基準\\
+第2回shape summary&\href{https://drive.google.com/file/d/1i1OxW1rB6Y0ac33AvAWvTyqJLDBMjV0H/view}{shape summary JSON}&階級・標本集計\\
+第2回shape groups&\href{https://drive.google.com/file/d/1NbkSH6HvjyaIC1NBStsDSjVM0ox0MQWr/view}{shape groups CSV}&詳細階級データ\\
+第2回境界分析&\href{https://drive.google.com/file/d/1U25edQrjgpiTXOlKlBDwYr_1pOwahQIK/view}{border analysis JSON}&端・内部比較\\
+第2回図一覧&\href{https://drive.google.com/drive/folders/1RGQZpkQC0yzcuYoOJJ4ko0z6c4CWP2y3}{analysis/figures folder}&既存29図。Corn Nadir比較・overviewへは\href{https://drive.google.com/file/d/1ferTPKjV3D5lSlqZ4UORRwmfJH7NvbXH/view}{代表比較図}と\href{https://drive.google.com/file/d/1Gx3Y3r_Rd8YzXlUoace2Z3x_ZqDBDVla/view}{overview}\\
+第3回実験folder&\href{https://drive.google.com/drive/folders/1sRjrWY4hGMa6ExJR_87fW85i-aMmD26T}{experiment folder}&report、results、source、metadata\\
+第3回run&\href{https://drive.google.com/drive/folders/1lPYUTGEI1DFZAb7jwtg4K-vy6FYn_vU5}{run folder}&checkpoint、status、metadata\\
+epoch metrics CSV&\href{https://drive.google.com/file/d/1ygYe-EXIaAFcvQBcQVbjoykwWEw-i2AI/view}{epoch metrics CSV}&本稿添付CSVと学習曲線の元データ\\
+epoch metrics JSON&\href{https://drive.google.com/file/d/1VgRC6HboXjYBlQhm3wO8mJZpcVWFVX0q/view}{epoch metrics JSON}&epoch・群別詳細値\\
+第3回run metadata&\href{https://drive.google.com/file/d/1chvwnVW9hMf7TdWpTdyK36pqmjC6t4ps/view}{run metadata}&条件、run識別\\
+第3回学習ログ&\href{https://drive.google.com/file/d/1vnJer46u7bRmgL7XDUJoq3uhjG2E_91O/view}{training log}&実行経過・停止状態\\
+Drive同期receipt&\href{https://drive.google.com/file/d/1wd0pB6A3iRpy5YRsqKIVQkEU053eg1xB/view}{sync receipt}&保存同期記録\\
+第3回再現コード&\href{https://drive.google.com/drive/folders/1bXiGrNYgJ273D57jnXMLts9VFgYUn4TC}{source\_full\_v1 folder}&学習・評価実装\\
+第3回Notebook&\href{https://drive.google.com/file/d/10_y0J-ttoonRJKPcAC0ZU57saEbJytAm/view}{Colab notebook}&run Notebook\\
+\bottomrule
+\end{longtable}
+
+\section{図表の作成根拠}
+本PDFの図1は第3回epoch CSVの5行からベクトル図として再描画した学習曲線である。図2は第2回報告書・shape summaryのGT差分階級集計、図3は第2回border analysisと第3回epoch CSVの端・内部値、図4は各回報告書の共通validation表から作成したモデル比較である。既存PNGの転載ではなく、保存済みの数値を使って再描画した図である。第2回の元比較図29枚は上記Drive folderに保存されている。
+
+画素・ペアは画像内で空間依存するため、集計数を独立標本数と解釈していない。画像単位bootstrapに必要な全モデル共通の画像別出力表は、確認した根拠資料には含まれないため、信頼区間および有意差検定は実施していない。
+
+\section{ファイル整合性}
+第3回epoch CSVはDriveから取得したファイルをパッケージへ複製し、内容を変更していない。ローカル複製のSHA256は\texttt{9C19EC8C\allowbreak 234015E4\allowbreak 51F9B709\allowbreak 4DE4390C\allowbreak 7DB31954\allowbreak A609007A\allowbreak 831BFD9F\allowbreak 22CF65AD}である。表・曲線のepoch 1--5は同CSVおよび第3回日本語報告書の値を照合した。Drive上checkpointのhashは本論文作成時に再計算しておらず、未検証の値は記載しない。checkpointとcomplete metadataの正本は第3回run folderを参照する。

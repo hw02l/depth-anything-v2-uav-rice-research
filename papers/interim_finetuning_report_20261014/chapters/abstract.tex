@@ -1,0 +1,4 @@
+\chapter*{要旨}\addcontentsline{toc}{chapter}{要旨}
+農作物の生育状態を広域・反復的に把握する手段としてUAV画像と深度推定を組み合わせた計測が期待される。しかし単眼モデルのカメラ座標系深度は、地表から植物頂部までの垂直距離である草丈とは異なる。本研究ではDepth Anything V2 SmallをUAV3DCropのCorn、Oat、Wheat、Soybean画像へ適応した第1〜3回実験を再整理し、絶対深度誤差と局所深度構造を別々に評価した。学習384組（Day019、028、040）、検証128組（Day047）を用い、独立test319組および過去52組は未使用とした。モデルAはRelative Small由来backboneに新規Metric headを設け1 epoch学習、Bは未学習Metric Outdoor Small、Cは同モデルを1 epoch追加学習、Dは元のMetric Outdoor Smallから独立した20 epoch計画runを開始しepoch 5まで学習した。
+共通validationのRMSEはBの14.5340 mからCの1.7490 m、D epoch 5の1.0094 mへ低下した。D epoch 5はMAE 0.7373 m、AbsRel 0.03694、Pearson 0.9919、14 px局所差MAE 0.06148 mであった。一方、GT差20 cm以上の標本では振幅比0.3304、符号一致率81.02\%で、大きな変化の過小推定が残った。第2回分析ではAの局所誤差増加が画像端128 px以内に集中し、同帯は標本ペア10.90\%でA−B局所MAE増分の82.52\%を占めた。局所変化ゼロの基準が総局所MAEに有利となり得ることも確認した。結果はカメラZ-depthに対するもので、垂直草丈や稲高を実証しない。独立test、複数seed、稲高GTは今後の課題である。
+\noindent\textbf{キーワード：}単眼深度推定，Metric Depth，UAV，局所深度差，草丈

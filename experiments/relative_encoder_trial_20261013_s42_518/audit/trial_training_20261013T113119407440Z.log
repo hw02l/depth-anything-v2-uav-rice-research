@@ -1,0 +1,15 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1791891103.143953   29075 cpu_feature_guard.cc:227] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1791891108.901695   29075 cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
+Starting epoch 1/1; completed 0, remaining including this epoch 1.
+{"epoch": 1, "train_silog": 0.2913335415069014, "validation": {"valid_pixels": 2668757375, "mae_m": 2.489719037049856, "rmse_m": 3.906303692277367, "abs_rel": 0.12119911586118606, "local_depth_delta_mae_m": 0.10545404876581911, "local_pair_count": 5320891492, "pearson_r": 0.8711710630360532, "local_delta_stride_px": 14, "per_crop": {"corn": {"valid_pixels": 667150032, "mae_m": 3.12500297649213, "rmse_m": 4.958108702434167, "abs_rel": 0.12041646194755513, "local_depth_delta_mae_m": 0.12570577429168436, "local_pair_count": 1330152410, "pearson_r": 0.8948570912043592, "local_delta_stride_px": 14}, "oat": {"valid_pixels": 666662844, "mae_m": 2.0158735513402437, "rmse_m": 3.4187300964980145, "abs_rel": 0.10274163454471262, "local_depth_delta_mae_m": 0.1059692764200133, "local_pair_count": 1329156759, "pearson_r": 0.8802348868110871, "local_delta_stride_px": 14}, "soybean": {"valid_pixels": 667062075, "mae_m": 2.3345172111713723, "rmse_m": 3.6020848175284805, "abs_rel": 0.12079603395789369, "local_depth_delta_mae_m": 0.09377817169081643, "local_pair_count": 1329957669, "pearson_r": 0.8776613152833482, "local_delta_stride_px": 14}, "wheat": {"valid_pixels": 667882424, "mae_m": 2.4831231614351124, "rmse_m": 3.4339712571327268, "abs_rel": 0.14080727554805633, "local_depth_delta_mae_m": 0.0963717014697146, "local_pair_count": 1331624654, "pearson_r": 0.8898890081523152, "local_delta_stride_px": 14}}}, "encoder_lr": 8.221023593737756e-08, "head_lr": 8.221023593737755e-07, "epoch_seconds": 774.4691676250004, "peak_allocated_bytes": 943323648, "peak_reserved_bytes": 1340080128, "free_vram_after_epoch_bytes": 14031847424, "mean_epoch_seconds_this_session": 774.4691676250004, "estimated_total_seconds_at_current_rate": 774.4691676250004, "estimated_remaining_seconds": 0.0, "completed_epochs": 1, "remaining_epochs": 0}
+Run status: {
+  "status": "completed",
+  "completed_epochs": 1,
+  "remaining_epochs": 0,
+  "best_validation_rmse_m": 3.906303692277367,
+  "best_epoch": 1
+}
+Best validation RMSE: 3.906304 m at epoch 1; test data was not read.

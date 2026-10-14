@@ -1,0 +1,26 @@
+section,item,value,source_or_note
+Data,Train split,"384 pairs; Day019/028/040",Trial 1 report; Trial 3 metadata
+Data,Validation split,"128 pairs; Day047",Trial 1 report; Trial 3 metadata
+Data,Independent test,"319 pairs; unused",Trial reports
+Data,Past evaluation,"52 pairs; unused for training/model selection",Trial reports
+Data,RGB+GT transfer,"7,850,330,776 bytes; 512 pairs / 1024 files",Trial 1 report
+Data,Original resolution,"3956 x 5280",Trial 1 report
+Data,GT coordinate,"Camera-frame Z-depth; not vertical plant height",dataset/methodology
+Training,Input,"518 px",run_metadata.json
+Training,Model output cap,"80 m for B/C/D; 65 m for A",run metadata / reports
+Training,GT valid cap,"65 m",source_full_v1 / run metadata
+Training,Optimizer,"AdamW",run_metadata.json
+Training,Loss,"SiLog",source_full_v1 / run metadata
+Training,Seed,"42",run_metadata.json
+Training,Batch and accumulation,"batch=1; gradient accumulation=4",run_metadata.json
+Training,AMP,"enabled",run_metadata.json
+Training,Learning rates,"encoder 5e-6; neck/head 5e-5",run_metadata.json
+Training,Planned scheduler,"PolynomialLR 1920 planned optimizer updates / 20 epochs",run_metadata.json
+Training,Trial 3 progress,"5/20 epochs; paused after epoch 5",run_status.json / report
+Runtime,Accelerator,"Google Colab free Tesla T4",training logs
+Runtime,Python/PyTorch/CUDA versions,"Not found in reviewed evidence; intentionally not inferred",source/run logs
+Evaluation,Absolute metrics,"All valid validation pixels",Trial reports / epoch_metrics.csv
+Evaluation,Local14,"All valid pairs",Trial reports / epoch_metrics.csv
+Evaluation,Trial 2 detailed shape,"Fixed common-coordinate sample, 25,552,938 pairs",shape_summary.json / report
+Evaluation,Trial 3 detailed sample count,"Not assumed equal to Trial 2 without a verified count",epoch CSV / report
+Statistics,Confidence intervals,"Not computed; matched image-level evidence unavailable",methodology

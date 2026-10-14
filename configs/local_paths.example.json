@@ -1,0 +1,8 @@
+{
+  "project_root": ".",
+  "optional_rgb_root": "data/uav3dcrop/rgb",
+  "optional_depth_root": "data/uav3dcrop/depth",
+  "optional_checkpoint_root": "checkpoints",
+  "drive_project_in_colab": "/content/drive/MyDrive/DepthAnythingV2-UAV",
+  "note": "Copy to local_paths.local.json for private machine-specific configuration. No automatic downloads."
+}

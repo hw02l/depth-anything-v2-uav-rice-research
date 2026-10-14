@@ -1,0 +1,33 @@
+{
+  "status": "failed",
+  "gt_max_depth_m": 65.0,
+  "device": "Tesla T4",
+  "total_vram_bytes": 15637086208,
+  "total_vram_gib": 14.56317138671875,
+  "free_vram_before_model_bytes": 15367733248,
+  "training_feasible": false,
+  "feasibility_scope": "Synthetic square training step with headroom; real data/validation can still OOM.",
+  "image_size": 518,
+  "batch_size": 1,
+  "amp": true,
+  "initialization": {
+    "initialization": "metric_outdoor",
+    "source": "/content/drive/MyDrive/DepthAnythingV2-UAV/model_cache/models--depth-anything--Depth-Anything-V2-Metric-Outdoor-Small-hf/snapshots/fd2c22027eaf20374204f14099b8341e1925ad39",
+    "source_revision": "fd2c22027eaf20374204f14099b8341e1925ad39",
+    "max_depth_m": 80.0,
+    "transferred_encoder_tensors": 0,
+    "transferred_encoder_parameters": 0,
+    "metric_head": "sigmoid * max_depth"
+  },
+  "peak_allocated_bytes_one_synthetic_step": null,
+  "peak_reserved_bytes_one_synthetic_step": null,
+  "optimizer_step": "synthetic-only; no dataset samples or checkpoint were used",
+  "parameters": 24785089,
+  "trainable_parameters": 24785089,
+  "static_parameter_gradient_adam_bytes_lower_bound": 396561424,
+  "static_lower_bound_gib_excludes_activations": 0.3693266063928604,
+  "baseline_model_allocated_bytes": 99148288,
+  "baseline_model_reserved_bytes": 121634816,
+  "message": "RuntimeError: \u640d\u5931\u307e\u305f\u306f\u52fe\u914d\u306b\u6570\u5024\u7570\u5e38\u304c\u3042\u308a\u307e\u3059\u3002AMP\u306b\u3088\u308b\u66f4\u65b0\u30b9\u30ad\u30c3\u30d7\u3092\u30e1\u30e2\u30ea\u8a08\u6e2c\u306e\u6210\u529f\u3068\u3057\u3066\u6271\u3048\u307e\u305b\u3093\u3002\u8a2d\u5b9a\u3092\u78ba\u8a8d\u3057\u3066\u518d\u8a08\u6e2c\u3057\u3066\u304f\u3060\u3055\u3044\u3002",
+  "elapsed_seconds": 3.7646780449999824
+}

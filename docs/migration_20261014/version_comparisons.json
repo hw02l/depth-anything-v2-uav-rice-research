@@ -1,0 +1,14 @@
+{
+  "local_preparation_vs_executed_trial1": [],
+  "epoch_csv_versions": {
+    "drive_original_bytes": 10541,
+    "paper_attachment_bytes": 10544,
+    "same_text_after_stripping_all_leading_BOMs": true,
+    "drive_original_sha256": "3cbcef72630bc6020efd2095fc6eaf31e86889df52e07be1d4ea2c8d3c262395",
+    "paper_attachment_sha256": "9c19ec8c234015e451f9b7094de4390c7db31954a609007a831bfd9f22cf65ad",
+    "drive_leading_BOM_count": 1,
+    "paper_leading_BOM_count": 2,
+    "decision": "Raw original and paper attachment retained separately; paper attachment has one additional UTF-8 BOM. Canonical raw copy also provided alongside paper."
+  },
+  "source_build_note": "Initial source_build modeling hash predates the logged integer-config fix; canonical run_metadata signature matches actual source_full_v1."
+}
