@@ -1,0 +1,6 @@
+{
+  "stage": "ready_for_depth_decision",
+  "audit_path": "/content/drive/MyDrive/DepthAnythingV2-UAV/work/uav_metric_finetuning/data_audit_20261013T090441609126Z.json",
+  "gt_path": "/content/drive/MyDrive/DepthAnythingV2-UAV/work/uav_metric_finetuning/gt_distribution_train_20261013T090441609126Z.json",
+  "tail_report": "/content/drive/MyDrive/DepthAnythingV2-UAV/work/uav_metric_finetuning/gt_tail_train_20261013T090441609126Z.json"
+}

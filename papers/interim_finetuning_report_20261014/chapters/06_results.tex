@@ -1,0 +1,54 @@
+\chapter{実験結果}
+\section{モデルA--Dの主比較}
+表\ref{tab:maincompare}は共通validationの確定済み結果である。A/Bは第1回、Cは第2回、Dは第3回epoch 5である。絶対指標は有効画素、local14は全有効ペアで集計した。
+\begin{table}[H]\centering\scriptsize
+\caption{共通validationにおける主要モデル比較}\label{tab:maincompare}
+\begin{tabular}{lrrrrrr}\toprule
+モデル&epoch&MAE m&RMSE m&AbsRel&Pearson $r$&local14 MAE m\\\midrule
+A Relative由来Metric&1&2.4897&3.9063&.12120&.8712&.10545\\
+B 未学習Metric Outdoor&0&13.2730&14.5340&.65896&.7848&.06561\\
+C Metric Outdoor追加学習&1&1.1324&1.7490&.05208&.9773&.06800\\
+D Metric Outdoor独立run&5&.7373&1.0094&.03694&.9919&.06148\\\bottomrule
+\end{tabular}\end{table}
+Bの局所差MAEがCより僅かに低いことだけで形状復元が優れるとは言えない。第2回ゼロ差分基準0.06421 mに対しBは0.06561 m、Cは0.06800 mである。Dは全ペアlocal14が0.06148 mとなり、この基準を下回った。
+\section{第3回epoch別推移}
+表\ref{tab:epochs}はDriveの第3回epoch CSVと報告表の値である。GT差20 cm以上の局所MAE、振幅比、符号、画像端・内部は固定標本、local14は全有効ペア指標である。
+\begin{table}[H]\centering\scriptsize
+\caption{モデルDのepoch別validation結果}\label{tab:epochs}
+\begin{tabular}{rrrrrrrrrrr}\toprule
+Ep.&SiLog&MAE&RMSE&AbsRel&$r$&local14&GT$\geq$20cm MAE&振幅比&符号&秒\\\midrule
+1&.10622&1.0791&1.6299&.05088&.9805&.06537&.35276&.3046&78.28\%&1085.5\\
+2&.05288&1.7002&1.9953&.08907&.9884&.06339&.34543&.3263&80.24\%&1044.1\\
+3&.03596&1.0492&1.3334&.05726&.9894&.06299&.34708&.3228&80.82\%&1097.8\\
+4&.03025&.7744&1.0562&.03913&.9901&.06237&.34495&.3428&80.52\%&1024.4\\
+5&.02794&.7373&1.0094&.03694&.9919&.06148&.34090&.3304&81.02\%&1020.9\\\bottomrule
+\end{tabular}\end{table}
+\noindent\small MAE/RMSE/GT局所MAE/local14はm、振幅比・損失は無次元、Pearsonは$r$である。各epochのVRAM peakはallocated 0.877 GiB、reserved 1.248 GiB。AMP skipはepoch 1が1回、epoch 2--5は0回。\normalsize
+\input{figures/learning_curves.tex}
+epoch 2ではRMSEが1.6299 mから1.9953 m、MAEが1.0791 mから1.7002 m、AbsRelが0.05088から0.08907へ一時悪化した。一方local14は0.06537 mから0.06339 mへ改善し、振幅比・符号一致も上昇した。epoch 3--5で絶対誤差は低下し、epoch 5に最小値となった。複数指標は単調に同時改善していない。
+\section{GT差20 cm以上の局所構造}
+第2回モデルCでは、GT差20 cm以上の標本平均絶対差分0.44370 m、予測平均振幅約0.1453 m、振幅比0.327であった。該当区間局所MAEは0.35423 m、符号一致77.95\%であり、86.72\%のペアで振幅を過小推定した。第3回Dではepoch 1から5へ振幅比0.3046から0.3304、区間MAE0.35276 mから0.34090 m、符号一致78.28\%から81.02\%へ変化した。改善はあるが単調ではない。CとDの振幅比の差は小さいが、標本抽出条件を厳密に突合できないため対応のある差分比較とは解釈しない。
+\input{figures/delta_bins.tex}
+第2回GT差分階級標本の72.96\%は0--5 cmであった。同階級の局所MAEはゼロ基準0.01617 mに対しA 0.07480 m、B 0.02266 m、C 0.03451 mである。20 cm以上ではゼロ基準0.44370 m、A 0.41357 m、B 0.41684 m、C 0.35423 mとなり、Cは大きい差分を小さくする誤差を相対的に減らした。
+\section{画像端と画像内部}
+\input{figures/edge_analysis.tex}
+第2回標本の画像端0--128 pxではA局所MAE 0.38929 m、B 0.08717 m、C 0.09189 mであった。この帯のペア割合は10.90\%だが、A−Bの総局所MAE増分の82.52\%を占めた。端から512 px以上の内部ではA 0.05814 m、B 0.05945 m、C 0.06220 mとなり順位が逆転する。D epoch 5は端0--128 pxのsampled local MAE 0.08095 m、内部512 px以上0.05678 mである。GT差20 cm以上のDでは端MAE0.36135 m、振幅比0.4951、符号84.40\%、内部MAE0.35727 m、比0.2028、符号77.67\%である。標本結果であり因果効果ではない。
+\section{作物・撮影方向別}
+\begin{table}[H]\centering\small
+\caption{モデルD epoch 5の作物別結果}\label{tab:crop}
+\begin{tabular}{lrrrr}\toprule 作物&MAE m&RMSE m&AbsRel&local14 MAE m\\\midrule
+Corn&1.00694&1.30455&.04711&.08305\\
+Oat&.89419&1.13390&.04414&.06255\\
+Soybean&.60541&.86185&.03249&.04892\\
+Wheat&.44293&.58861&.02403&.05142\\\bottomrule\end{tabular}\end{table}
+\begin{table}[H]\centering\small
+\caption{モデルD epoch 5の撮影方向別結果}\label{tab:view}
+\begin{tabular}{lrrrrr}\toprule 方向&MAE m&RMSE m&AbsRel&Pearson $r$&local14 MAE m\\\midrule
+Nadir&.57857&.75396&.03704&.79186&.03649\\
+Oblique&.89654&1.21291&.03684&.99173&.08657\\\bottomrule\end{tabular}\end{table}
+ObliqueはNadirよりMAE、RMSE、局所14 MAEが大きい。Pearsonの方向差は深度分布レンジや画像混合集計の影響を受けるため、単独で難易度を決めない。作物・方向・深度範囲が均衡化された要因実験ではないため、差を作物固有の原因へ帰属させない。
+\section{checkpoint選択}
+第3回報告書ではvalidation RMSE最良はepoch 5（1.0094 m）、GT差20 cm以上の標本局所MAE最良もepoch 5（0.34090 m）である。ただし振幅比はepoch 4の0.3428が最高、符号一致と全14 px MAEはepoch 5が最良である。「局所形状最良」は単一の報告済み選択基準に限った呼称であり、総合最良を意味しない。独立testは未使用である。
+\input{figures/model_comparison.tex}
+
+

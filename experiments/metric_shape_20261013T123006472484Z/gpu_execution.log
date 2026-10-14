@@ -1,0 +1,39 @@
+STAGE_START 1024 files, four streams; original Drive retained
+STAGE 64 /1024 elapsed 12
+STAGE 128 /1024 elapsed 25
+STAGE 192 /1024 elapsed 37
+STAGE 256 /1024 elapsed 46
+STAGE 320 /1024 elapsed 62
+STAGE 384 /1024 elapsed 73
+STAGE 448 /1024 elapsed 85
+STAGE 512 /1024 elapsed 95
+STAGE 576 /1024 elapsed 109
+STAGE 640 /1024 elapsed 123
+STAGE 704 /1024 elapsed 136
+STAGE 768 /1024 elapsed 150
+STAGE 832 /1024 elapsed 162
+STAGE 896 /1024 elapsed 175
+STAGE 960 /1024 elapsed 186
+STAGE 1024 /1024 elapsed 203
+OUTPUT_CAP_PROBE_PASS scale= 0.8125 error= 9.5367431640625e-07
+Traceback (most recent call last):
+  File "/content/drive/MyDrive/DepthAnythingV2-UAV/experiments/metric_shape_20261013T123006472484Z/source/memory_preflight.py", line 139, in <module>
+    main()
+    ~~~~^^
+  File "/content/drive/MyDrive/DepthAnythingV2-UAV/experiments/metric_shape_20261013T123006472484Z/source/memory_preflight.py", line 100, in main
+    require_finite_gradients(loss, model.parameters())
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/content/drive/MyDrive/DepthAnythingV2-UAV/experiments/metric_shape_20261013T123006472484Z/source/memory_preflight.py", line 21, in require_finite_gradients
+    raise RuntimeError("損失または勾配に数値異常があります。AMPによる更新スキップをメモリ計測の成功として扱えません。設定を確認して再計測してください。")
+RuntimeError: 損失または勾配に数値異常があります。AMPによる更新スキップをメモリ計測の成功として扱えません。設定を確認して再計測してください。
+Traceback (most recent call last):
+  File "/content/drive/MyDrive/DepthAnythingV2-UAV/experiments/metric_shape_20261013T123006472484Z/source/run_experiment2.py", line 102, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "/content/drive/MyDrive/DepthAnythingV2-UAV/experiments/metric_shape_20261013T123006472484Z/source/run_experiment2.py", line 86, in main
+    subprocess.run([sys.executable,'-u',str(source/'memory_preflight.py'),*common,'--output',str(preflight)],check=True)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/subprocess.py", line 577, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['/usr/bin/python3', '-u', '/content/drive/MyDrive/DepthAnythingV2-UAV/experiments/metric_shape_20261013T123006472484Z/source/memory_preflight.py', '--initialization', 'metric_outdoor', '--metric-model', '/content/drive/MyDrive/DepthAnythingV2-UAV/model_cache/models--depth-anything--Depth-Anything-V2-Metric-Outdoor-Small-hf/snapshots/fd2c22027eaf20374204f14099b8341e1925ad39', '--max-depth', '65', '--model-max-depth', '80', '--image-size', '518', '--batch-size', '1', '--amp', '--output', '/content/drive/MyDrive/DepthAnythingV2-UAV/experiments/metric_shape_20261013T123006472484Z/metric_outdoor_preflight.json']' returned non-zero exit status 1.

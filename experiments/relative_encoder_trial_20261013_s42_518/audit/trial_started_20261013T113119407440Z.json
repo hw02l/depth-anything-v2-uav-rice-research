@@ -1,0 +1,25 @@
+{
+  "config": {
+    "TRAINING_MODES": [
+      "relative_encoder"
+    ],
+    "EPOCHS": 1,
+    "IMAGE_SIZE": 518,
+    "BATCH_SIZE": 1,
+    "GRAD_ACCUMULATION": 4,
+    "USE_AMP": true,
+    "SEED": 42,
+    "WORKERS": 2,
+    "MAX_DEPTH_M": 65.0,
+    "RUN_LABEL": "trial_20261013_s42_518",
+    "RUN_KIND": "trial",
+    "RESUME_TRAINING": false
+  },
+  "run_dir": "/content/drive/MyDrive/DepthAnythingV2-UAV/runs/relative_encoder_trial_20261013_s42_518",
+  "log": "/content/drive/MyDrive/DepthAnythingV2-UAV/work/uav_metric_finetuning/trial_training_20261013T113119407440Z.log",
+  "pid": 29075,
+  "local_sha256_verified_files": 1024,
+  "preflight": "/content/drive/MyDrive/DepthAnythingV2-UAV/preflight/relative_encoder_res518_bs1_20261013T101139959993Z.json",
+  "started_utc": "2026-10-13T11:31:22.870507+00:00",
+  "compute_policy": "free T4 only; no purchase"
+}

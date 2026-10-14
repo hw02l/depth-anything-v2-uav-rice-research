@@ -1,0 +1,11 @@
+{
+  "pid": 3669,
+  "source_zip_sha256": "ab5e712c0c417abd30ca7c543c4fa5ce8ff4d884f0137032255140aced31d05a",
+  "audit": "/content/drive/MyDrive/DepthAnythingV2-UAV/work/uav_metric_finetuning/data_audit_content_verified_20261013T100748626322Z.json",
+  "gt_report": "/content/drive/MyDrive/DepthAnythingV2-UAV/work/uav_metric_finetuning/gt_distribution_train_content_verified_20261013T100748626322Z.json",
+  "source": "/content/drive/MyDrive/DepthAnythingV2-UAV/experiments/metric_shape_20261013T123006472484Z/source",
+  "gt_max_depth": 65,
+  "metric_model_max_depth": 80,
+  "epochs": 1,
+  "started_utc": "2026-10-13T12:30:06.738653+00:00"
+}

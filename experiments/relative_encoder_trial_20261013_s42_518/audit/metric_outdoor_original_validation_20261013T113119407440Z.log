@@ -1,0 +1,66 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1791892540.098919   35474 cpu_feature_guard.cc:227] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1791892543.763906   35474 cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
+{
+  "model": "/content/drive/MyDrive/DepthAnythingV2-UAV/model_cache/models--depth-anything--Depth-Anything-V2-Metric-Outdoor-Small-hf/snapshots/fd2c22027eaf20374204f14099b8341e1925ad39",
+  "manifest": "/content/drive/MyDrive/DepthAnythingV2-UAV/uav_metric_finetuning/config/verified_plan/validation.csv",
+  "manifest_sha256": "96c4eab0eb0075ac141ff9b17c22a45734f242f7cc895f8eaf064a4f14cc871e",
+  "split": "validation",
+  "pairs": 128,
+  "max_depth_m": 80.0,
+  "device": "cuda",
+  "metrics": {
+    "valid_pixels": 2668757375,
+    "mae_m": 13.273041195990658,
+    "rmse_m": 14.5340315805138,
+    "abs_rel": 0.6589618830681756,
+    "local_depth_delta_mae_m": 0.06560940811267252,
+    "local_pair_count": 5320891492,
+    "pearson_r": 0.7847520351225075,
+    "local_delta_stride_px": 14,
+    "per_crop": {
+      "corn": {
+        "valid_pixels": 667150032,
+        "mae_m": 15.221068285681767,
+        "rmse_m": 16.59759722023521,
+        "abs_rel": 0.6819288696645038,
+        "local_depth_delta_mae_m": 0.08680054495597238,
+        "local_pair_count": 1330152410,
+        "pearson_r": 0.8119900533389601,
+        "local_delta_stride_px": 14
+      },
+      "oat": {
+        "valid_pixels": 666662844,
+        "mae_m": 13.375055813566663,
+        "rmse_m": 14.456860265523751,
+        "abs_rel": 0.6683595345922025,
+        "local_depth_delta_mae_m": 0.06639499832032228,
+        "local_pair_count": 1329156759,
+        "pearson_r": 0.7991859280174644,
+        "local_delta_stride_px": 14
+      },
+      "soybean": {
+        "valid_pixels": 667062075,
+        "mae_m": 12.268205659564048,
+        "rmse_m": 13.343256662129868,
+        "abs_rel": 0.634392329180515,
+        "local_depth_delta_mae_m": 0.053502511832107795,
+        "local_pair_count": 1329957669,
+        "pearson_r": 0.8222231166879114,
+        "local_delta_stride_px": 14
+      },
+      "wheat": {
+        "valid_pixels": 667882424,
+        "mae_m": 12.22892326851457,
+        "rmse_m": 13.507566162708835,
+        "abs_rel": 0.6511789662707054,
+        "local_depth_delta_mae_m": 0.05574930625777525,
+        "local_pair_count": 1331624654,
+        "pearson_r": 0.7140195741990808,
+        "local_delta_stride_px": 14
+      }
+    }
+  }
+}

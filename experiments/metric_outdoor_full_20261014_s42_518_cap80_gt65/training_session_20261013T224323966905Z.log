@@ -1,0 +1,10 @@
+Loading weights:   0%|          | 0/287 [00:00<?, ?it/s]Loading weights: 100%|██████████| 287/287 [00:00<00:00, 5915.40it/s]
+Traceback (most recent call last):
+  File "/content/drive/MyDrive/DepthAnythingV2-UAV/experiments/metric_outdoor_full_20261014_s42_518_cap80_gt65/source_full_v1/train.py", line 611, in <module>
+    main()
+    ~~~~^^
+  File "/content/drive/MyDrive/DepthAnythingV2-UAV/experiments/metric_outdoor_full_20261014_s42_518_cap80_gt65/source_full_v1/train.py", line 374, in main
+    preflight = validate_preflight(args.memory_preflight_report, args, init_summary)
+  File "/content/drive/MyDrive/DepthAnythingV2-UAV/experiments/metric_outdoor_full_20261014_s42_518_cap80_gt65/source_full_v1/train.py", line 168, in validate_preflight
+    raise ValueError(f"GPU preflight does not match this training run ({', '.join(failed)}). Rerun it with identical settings/model.")
+ValueError: GPU preflight does not match this training run (training_feasible, initialization, image_size, batch_size, amp, source, source_revision, model_max_depth, gt_max_depth, gpu). Rerun it with identical settings/model.

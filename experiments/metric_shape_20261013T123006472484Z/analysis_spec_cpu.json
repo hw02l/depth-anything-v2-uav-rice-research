@@ -1,0 +1,17 @@
+{
+  "manifest": "/content/drive/MyDrive/DepthAnythingV2-UAV/uav_metric_finetuning/config/verified_plan/validation.csv",
+  "validation_sha256": "96c4eab0eb0075ac141ff9b17c22a45734f242f7cc895f8eaf064a4f14cc871e",
+  "rgb_root": "/content/drive/MyDrive/DepthAnythingV2-UAV/data/uav3dcrop_rgb",
+  "depth_root": "/content/drive/MyDrive/DepthAnythingV2-UAV/data/uav3dcrop_depth",
+  "output": "/content/drive/MyDrive/DepthAnythingV2-UAV/experiments/metric_shape_20261013T123006472484Z/analysis",
+  "models": {
+    "A": "/content/drive/MyDrive/DepthAnythingV2-UAV/runs/relative_encoder_trial_20261013_s42_518/checkpoint_epoch_0001",
+    "B": "/content/drive/MyDrive/DepthAnythingV2-UAV/model_cache/models--depth-anything--Depth-Anything-V2-Metric-Outdoor-Small-hf/snapshots/fd2c22027eaf20374204f14099b8341e1925ad39",
+    "C": "/content/drive/MyDrive/DepthAnythingV2-UAV/runs/metric_outdoor_trial2_20261013_s42_518_cap80_gt65/checkpoint_epoch_0001"
+  },
+  "model_caps": {
+    "A": 65,
+    "B": 80,
+    "C": 80
+  }
+}

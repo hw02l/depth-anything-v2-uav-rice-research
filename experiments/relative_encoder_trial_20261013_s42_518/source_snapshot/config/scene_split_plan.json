@@ -1,0 +1,44 @@
+{
+  "seed": 42,
+  "rgb_repo": "Link-Dev/UAV3DCrop",
+  "depth_repo": "Link-Dev/UAV3DCrop_depth",
+  "rgb_revision": "90226a6f9c0d7afea9e2bb863f385c2a2010a3d1",
+  "depth_revision": "3d3afe42f84bafc36c80633bbe39c059b455c895",
+  "max_frames_per_scene_per_view": 16,
+  "nadir_threshold": 0.9,
+  "train_scenes": [
+    "2025/Day019_Corn",
+    "2025/Day019_Oat",
+    "2025/Day019_Wheat",
+    "2025/Day019_soybean",
+    "2025/Day028_Corn",
+    "2025/Day028_Oat",
+    "2025/Day028_Wheat",
+    "2025/Day028_soybean",
+    "2025/Day040_Corn",
+    "2025/Day040_Oat",
+    "2025/Day040_Wheat",
+    "2025/Day040_soybean"
+  ],
+  "validation_scenes": [
+    "2025/Day047_Corn",
+    "2025/Day047_Oat",
+    "2025/Day047_Wheat",
+    "2025/Day047_soybean"
+  ],
+  "independent_test_scenes": [
+    "2025/Day052_Corn",
+    "2025/Day052_Oat",
+    "2025/Day052_Wheat",
+    "2025/Day052_soybean",
+    "2025/Day069_Corn",
+    "2025/Day069_soybean",
+    "2025/Day077_Corn",
+    "2025/Day077_soybean",
+    "2025/Day083_Corn",
+    "2025/Day083_soybean"
+  ],
+  "protected_evaluation_days": ["2025/Day001", "2025/Day007"],
+  "required_crops": ["corn", "oat", "wheat", "soybean"],
+  "note": "A day is kept within one split. Day001 and Day007 are quarantined because the existing 52-pair evaluation includes scenes from those acquisition days. The final test scenes are planned but are not used for model selection. No dataset files are downloaded by this config."
+}

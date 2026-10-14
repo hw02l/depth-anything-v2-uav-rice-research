@@ -1,0 +1,46 @@
+{
+  "source_directory": "C:\\Users\\81902\\Documents\\Codex\\2026-09-20\\depth-anything-v2-python-uav-rgb\\uav_metric_finetuning",
+  "file_sha256": {
+    "__init__.py": "defa9684a69f9acc71873590c8e3485219d5c9538de877808cda6a6af446dff5",
+    "analyze_gt.py": "8e574ad3a03aa41500615c3e948a998efc3f7ec11b8aeb570cecf508fd6c0e2f",
+    "audit_data.py": "4933b3265a18c060bfd0d92f69fd6af27e66d458eafd7e3e0f398270ab927b5d",
+    "build_remote_plan.py": "3a79e345001ec4d717fa11fd695f36a4c510b44debfcf934e07f695219d80fb6",
+    "colab_train.ipynb": "5c9d248e8810bce3edfde0451d9267e6ff54b94da74a95ebc5c7e761d7a6b67f",
+    "config/scene_split_plan.json": "e1b8c18ace24fabbdf9490fbc3d596f4f5ebc0e484cc23b02821dff43dd25a59",
+    "config/verified_plan/independent_test.csv": "9932fd511dcee66ecb6194260e2d595089d9735f477b95ff4d3b12346b384a0b",
+    "config/verified_plan/plan_summary.json": "62a71266b48ed66d849dc22f6ebc6ed1f493c988da070ad5c9a2cf99e6e5091b",
+    "config/verified_plan/train.csv": "13ee3432515250eff50eeb5238dfc178c8853239074eb8cbbea2b510272b0602",
+    "config/verified_plan/validation.csv": "96c4eab0eb0075ac141ff9b17c22a45734f242f7cc895f8eaf064a4f14cc871e",
+    "cpu_smoke.py": "5af72c9a5f2c874b67ef7ed59f96c69e929ac485772bcd8f06254ea92fea4f48",
+    "data.py": "c8f94a49a3353ef907db516b5f9f90c9cca953690372be63fef4b951c59e5fa2",
+    "evaluate.py": "653d7dd0a593f5640583135314b2192c1385be4978d0738e196c53172e5aac2b",
+    "fetch_selected_data.py": "5725404df990f88d08546ec87714e6241d25791c6d26f0c35bc0198d92d33cf4",
+    "losses.py": "702468a33fb1ff56cb5fd29dd85b5f1899afc87306a3f446d1e0fc83e7e2233b",
+    "memory_preflight.py": "94ee5565a6b3eab34dca86c9f2895fe5dd00f03b7050819b6c50c6b607d3e6fe",
+    "metrics.py": "434e1336173735a4a48973ae2d981f0abfb266f81e878a5f2c874dae19603c37",
+    "modeling.py": "1f8917cf414c9f0a2adfee37172023f76c568127d3e546e8e6e204801211d704",
+    "README_ja.md": "6a0e2739bd6e892d87ff0c5768cf04d9fb2e1d5b891a57e75a3c103afda9142d",
+    "requirements-colab.txt": "264217d499ec38538a3237e1e33f3a3ce03e9af928734bf4845f551ba6c9da05",
+    "runtime_state.py": "a034c7ba745152c31939352931da6c90980ac4ee25fdb7a3b4c02638b460951a",
+    "stage_selected_data.py": "1cd266f413bdfb58146cdc39579b5976a123cf4790d7c05d5e46c6dd5be53df2",
+    "tests/test_preparation.py": "bd8de739747fd3ff49e5598a00de29acfcab3937f9939b70f77ca230b9114741",
+    "train.py": "cb1d09d93253a74b2f0666522eba917f513cf2e38fed70ff1a67fe94d370b1d5"
+  },
+  "plan_counts": {
+    "train": 384,
+    "validation": 128,
+    "independent_test": 319
+  },
+  "train_validation_bytes": 7850330776,
+  "rgb_revision": "90226a6f9c0d7afea9e2bb863f385c2a2010a3d1",
+  "depth_revision": "3d3afe42f84bafc36c80633bbe39c059b455c895",
+  "checks": {
+    "offline_tests": 15,
+    "offline_tests_status": "pass",
+    "notebook_schema": "pass",
+    "cpu_smoke_both_initializations": "pass",
+    "cpu_model_reload_difference": 0.0,
+    "real_gpu_test": "not_run",
+    "real_dataset_download": "not_run"
+  }
+}

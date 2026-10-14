@@ -1,0 +1,23 @@
+{
+  "status": "pass",
+  "checkpoints_sha256_verified": [
+    "checkpoint_epoch_0000",
+    "checkpoint_epoch_0001",
+    "checkpoint_epoch_0002",
+    "checkpoint_epoch_0003",
+    "checkpoint_epoch_0004",
+    "checkpoint_epoch_0005"
+  ],
+  "metrics_json": "/content/drive/MyDrive/DepthAnythingV2-UAV/experiments/metric_outdoor_full_20261014_s42_518_cap80_gt65/results/epoch_metrics.json",
+  "metrics_csv": "/content/drive/MyDrive/DepthAnythingV2-UAV/experiments/metric_outdoor_full_20261014_s42_518_cap80_gt65/results/epoch_metrics.csv",
+  "report": "/content/drive/MyDrive/DepthAnythingV2-UAV/experiments/metric_outdoor_full_20261014_s42_518_cap80_gt65/report_ja.md",
+  "figure_paths": [
+    "/content/drive/MyDrive/DepthAnythingV2-UAV/experiments/metric_outdoor_full_20261014_s42_518_cap80_gt65/results/gt_ge20cm_amplitude_ratio.png",
+    "/content/drive/MyDrive/DepthAnythingV2-UAV/experiments/metric_outdoor_full_20261014_s42_518_cap80_gt65/results/gt_ge20cm_sign_match.png",
+    "/content/drive/MyDrive/DepthAnythingV2-UAV/experiments/metric_outdoor_full_20261014_s42_518_cap80_gt65/results/local14_mae.png",
+    "/content/drive/MyDrive/DepthAnythingV2-UAV/experiments/metric_outdoor_full_20261014_s42_518_cap80_gt65/results/validation_abs_rel.png",
+    "/content/drive/MyDrive/DepthAnythingV2-UAV/experiments/metric_outdoor_full_20261014_s42_518_cap80_gt65/results/validation_rmse.png"
+  ],
+  "drive_free_bytes": 55093170176,
+  "completed_utc": "2026-10-14T00:22:27.578819+00:00"
+}

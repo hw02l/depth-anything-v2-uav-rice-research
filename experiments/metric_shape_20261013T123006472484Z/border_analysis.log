@@ -1,0 +1,6 @@
+BORDER_ANALYZE 32 /128
+BORDER_ANALYZE 64 /128
+BORDER_ANALYZE 96 /128
+BORDER_ANALYZE 128 /128
+WARNING:torchao.kernel.intmm:Warning: Detected no triton, on systems without Triton certain kernels will not work
+BORDER_ANALYSIS_COMPLETE {"validation_image": "2025/Day047_Corn/images/576.JPG", "model_cap_m": 65.0, "native_prediction_shape": [518, 686], "before_min_m": 32.49460983276367, "before_max_m": 32.50682067871094, "before_mean_m": 32.500667572021484, "before_border_17px_mean_m": 32.50066375732422, "before_interior_67px_mean_m": 32.50069046020508, "trained_border_17px_mean_m": 23.480716705322266, "trained_interior_67px_mean_m": 17.42169189453125, "scope": "single frame descriptive initialization diagnostic; not an architecture causality test"}

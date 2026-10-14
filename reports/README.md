@@ -1,0 +1,3 @@
+# 日本語報告書
+
+第1〜3回の報告書をtrial1_execution_report_ja.md、trial2_report_ja.md、trial3_report_ja.mdへ取り込んだ。第2回の原報告と後続ローカル検証版は別名で保持している。各実験内のログと統計が数値の根拠である。最新の統合論文は../papers/interim_finetuning_report_20261014/。既存KITTI・ETH3D等の資料・スライドもそのまま保持している。

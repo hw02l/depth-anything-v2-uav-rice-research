@@ -1,0 +1,97 @@
+{
+  "status": "pass",
+  "gt_max_depth_m": 65.0,
+  "device": "Tesla T4",
+  "total_vram_bytes": 15637086208,
+  "total_vram_gib": 14.56317138671875,
+  "free_vram_before_model_bytes": 15527116800,
+  "training_feasible": true,
+  "feasibility_scope": "Synthetic square training step with headroom; real data/validation can still OOM.",
+  "image_size": 518,
+  "batch_size": 1,
+  "amp": true,
+  "initialization": {
+    "initialization": "metric_outdoor",
+    "source": "/content/drive/MyDrive/DepthAnythingV2-UAV/model_cache/models--depth-anything--Depth-Anything-V2-Metric-Outdoor-Small-hf/snapshots/fd2c22027eaf20374204f14099b8341e1925ad39",
+    "source_revision": "fd2c22027eaf20374204f14099b8341e1925ad39",
+    "max_depth_m": 80.0,
+    "transferred_encoder_tensors": 0,
+    "transferred_encoder_parameters": 0,
+    "metric_head": "sigmoid * max_depth"
+  },
+  "peak_allocated_bytes_one_synthetic_step": 634380800,
+  "peak_reserved_bytes_one_synthetic_step": 813694976,
+  "optimizer_step": "synthetic-only; no dataset samples or checkpoint were used",
+  "parameters": 24785089,
+  "trainable_parameters": 24785089,
+  "static_parameter_gradient_adam_bytes_lower_bound": 396561424,
+  "static_lower_bound_gib_excludes_activations": 0.3693266063928604,
+  "baseline_model_allocated_bytes": 99148288,
+  "baseline_model_reserved_bytes": 121634816,
+  "amp_scale_attempts": [
+    {
+      "scale": 65536.0,
+      "finite_gradients": false
+    },
+    {
+      "scale": 32768.0,
+      "finite_gradients": false
+    },
+    {
+      "scale": 16384.0,
+      "finite_gradients": true
+    }
+  ],
+  "loss": 1.5018067359924316,
+  "elapsed_seconds": 4.471475812000108,
+  "required_vram_with_margin_bytes": 1454374911,
+  "free_vram_after_step_bytes": 14663090176
+}
+Starting epoch 1/1; completed 0, remaining including this epoch 1.
+TRAIN_BATCH 32/384; updates=8; AMP skipped=0; scale=65536.0
+TRAIN_BATCH 64/384; updates=16; AMP skipped=0; scale=65536.0
+TRAIN_BATCH 96/384; updates=24; AMP skipped=0; scale=65536.0
+TRAIN_BATCH 128/384; updates=32; AMP skipped=0; scale=65536.0
+TRAIN_BATCH 160/384; updates=40; AMP skipped=0; scale=65536.0
+TRAIN_BATCH 192/384; updates=47; AMP skipped=1; scale=32768.0
+TRAIN_BATCH 224/384; updates=55; AMP skipped=1; scale=32768.0
+TRAIN_BATCH 256/384; updates=63; AMP skipped=1; scale=32768.0
+TRAIN_BATCH 288/384; updates=71; AMP skipped=1; scale=32768.0
+TRAIN_BATCH 320/384; updates=79; AMP skipped=1; scale=32768.0
+TRAIN_BATCH 352/384; updates=87; AMP skipped=1; scale=32768.0
+TRAIN_BATCH 384/384; updates=95; AMP skipped=1; scale=32768.0
+{"epoch": 1, "optimizer_steps_completed": 95, "amp_skipped_steps": 1, "amp_scale_start": 65536.0, "amp_scale_end": 32768.0, "train_silog": 0.10020452591804012, "validation": {"valid_pixels": 2668757375, "mae_m": 1.132449589761593, "rmse_m": 1.7489813428537024, "abs_rel": 0.052083251285569565, "local_depth_delta_mae_m": 0.06799809103539975, "local_pair_count": 5320891492, "pearson_r": 0.9772608294518428, "local_delta_stride_px": 14, "per_crop": {"corn": {"valid_pixels": 667150032, "mae_m": 2.10170179655407, "rmse_m": 2.8880919186304608, "abs_rel": 0.08445351937886549, "local_depth_delta_mae_m": 0.08715485740840781, "local_pair_count": 1330152410, "pearson_r": 0.9884313522635295, "local_delta_stride_px": 14}, "oat": {"valid_pixels": 666662844, "mae_m": 0.959519255158051, "rmse_m": 1.3152117471517422, "abs_rel": 0.04571174363074239, "local_depth_delta_mae_m": 0.0693309185982178, "local_pair_count": 1329156759, "pearson_r": 0.9893709816879757, "local_delta_stride_px": 14}, "soybean": {"valid_pixels": 667062075, "mae_m": 0.7253624559261745, "rmse_m": 0.9762660640352773, "abs_rel": 0.040430682185567904, "local_depth_delta_mae_m": 0.05643601193069251, "local_pair_count": 1329957669, "pearson_r": 0.992692870059902, "local_delta_stride_px": 14}, "wheat": {"valid_pixels": 667882424, "mae_m": 0.7434619258266819, "rmse_m": 1.1011672566648236, "abs_rel": 0.03774660951517911, "local_depth_delta_mae_m": 0.05907975213862329, "local_pair_count": 1331624654, "pearson_r": 0.9892609338365748, "local_delta_stride_px": 14}}}, "encoder_lr": 8.221023593737756e-08, "head_lr": 8.221023593737755e-07, "epoch_seconds": 725.094641918, "peak_allocated_bytes": 943323648, "peak_reserved_bytes": 1340080128, "free_vram_after_epoch_bytes": 14138802176, "mean_epoch_seconds_this_session": 725.094641918, "estimated_total_seconds_at_current_rate": 725.094641918, "estimated_remaining_seconds": 0.0, "completed_epochs": 1, "remaining_epochs": 0}
+Run status: {
+  "status": "completed",
+  "completed_epochs": 1,
+  "remaining_epochs": 0,
+  "best_validation_rmse_m": 1.7489813428537024,
+  "best_epoch": 1
+}
+Best validation RMSE: 1.748981 m at epoch 1; test data was not read.
+INFER A 16 /128 elapsed 24
+INFER A 32 /128 elapsed 38
+INFER A 48 /128 elapsed 53
+INFER A 64 /128 elapsed 68
+INFER A 80 /128 elapsed 82
+INFER A 96 /128 elapsed 98
+INFER A 112 /128 elapsed 113
+INFER A 128 /128 elapsed 128
+INFER B 16 /128 elapsed 143
+INFER B 32 /128 elapsed 158
+INFER B 48 /128 elapsed 171
+INFER B 64 /128 elapsed 185
+INFER B 80 /128 elapsed 199
+INFER B 96 /128 elapsed 212
+INFER B 112 /128 elapsed 226
+INFER B 128 /128 elapsed 240
+INFER C 16 /128 elapsed 255
+INFER C 32 /128 elapsed 270
+INFER C 48 /128 elapsed 285
+INFER C 64 /128 elapsed 299
+INFER C 80 /128 elapsed 313
+INFER C 96 /128 elapsed 327
+INFER C 112 /128 elapsed 341
+INFER C 128 /128 elapsed 354
+GPU_INFERENCE_COMPLETE
+ALL_GPU_WORK_COMPLETE. Persisted training and prediction cache. Switch to CPU for analysis.

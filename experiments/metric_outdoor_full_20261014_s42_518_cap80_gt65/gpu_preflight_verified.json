@@ -1,0 +1,12 @@
+{
+  "status": "pass",
+  "gpu": "Tesla T4",
+  "free_vram_before_bytes": 15527116800,
+  "total_vram_bytes": 15637086208,
+  "model_output_cap_m": 80,
+  "gt_mask_max_m": 65,
+  "snapshot": "/content/drive/MyDrive/DepthAnythingV2-UAV/model_cache/models--depth-anything--Depth-Anything-V2-Metric-Outdoor-Small-hf/snapshots/fd2c22027eaf20374204f14099b8341e1925ad39",
+  "report": "/content/drive/MyDrive/DepthAnythingV2-UAV/experiments/metric_outdoor_full_20261014_s42_518_cap80_gt65/preflight/metric_outdoor_res518_cap80_gt65_20261013T223322Z.json",
+  "completed_utc": "2026-10-13T22:33:40.624062+00:00",
+  "compute_policy": "free GPU only; no Compute Units, purchase, upgrade, or limit bypass"
+}

@@ -1,0 +1,678 @@
+{
+  "plan": "config/scene_split_plan.json",
+  "seed": 42,
+  "rgb_revision": "90226a6f9c0d7afea9e2bb863f385c2a2010a3d1",
+  "depth_revision": "3d3afe42f84bafc36c80633bbe39c059b455c895",
+  "max_pairs_per_scene_per_view": 16,
+  "nadir_rule": "abs(transform_matrix[2][2]) >= 0.9",
+  "selected_pair_counts": {
+    "train": 384,
+    "validation": 128,
+    "independent_test": 319
+  },
+  "split_distributions": {
+    "train": {
+      "scenes": {
+        "2025/Day019_Corn": 32,
+        "2025/Day019_Oat": 32,
+        "2025/Day019_Wheat": 32,
+        "2025/Day019_soybean": 32,
+        "2025/Day028_Corn": 32,
+        "2025/Day028_Oat": 32,
+        "2025/Day028_Wheat": 32,
+        "2025/Day028_soybean": 32,
+        "2025/Day040_Corn": 32,
+        "2025/Day040_Oat": 32,
+        "2025/Day040_Wheat": 32,
+        "2025/Day040_soybean": 32
+      },
+      "crops": {
+        "corn": 96,
+        "oat": 96,
+        "wheat": 96,
+        "soybean": 96
+      },
+      "days": {
+        "2025/Day019": 128,
+        "2025/Day028": 128,
+        "2025/Day040": 128
+      },
+      "views": {
+        "nadir": 192,
+        "oblique": 192
+      }
+    },
+    "validation": {
+      "scenes": {
+        "2025/Day047_Corn": 32,
+        "2025/Day047_Oat": 32,
+        "2025/Day047_Wheat": 32,
+        "2025/Day047_soybean": 32
+      },
+      "crops": {
+        "corn": 32,
+        "oat": 32,
+        "wheat": 32,
+        "soybean": 32
+      },
+      "days": {
+        "2025/Day047": 128
+      },
+      "views": {
+        "nadir": 64,
+        "oblique": 64
+      }
+    },
+    "independent_test": {
+      "scenes": {
+        "2025/Day052_Corn": 32,
+        "2025/Day052_Oat": 32,
+        "2025/Day052_Wheat": 31,
+        "2025/Day052_soybean": 32,
+        "2025/Day069_Corn": 32,
+        "2025/Day069_soybean": 32,
+        "2025/Day077_Corn": 32,
+        "2025/Day077_soybean": 32,
+        "2025/Day083_Corn": 32,
+        "2025/Day083_soybean": 32
+      },
+      "crops": {
+        "corn": 128,
+        "oat": 32,
+        "wheat": 31,
+        "soybean": 128
+      },
+      "days": {
+        "2025/Day052": 127,
+        "2025/Day069": 64,
+        "2025/Day077": 64,
+        "2025/Day083": 64
+      },
+      "views": {
+        "nadir": 160,
+        "oblique": 159
+      }
+    }
+  },
+  "total_selected_bytes": 13164335850,
+  "total_selected_gib": 12.260243156924844,
+  "sizes_complete": true,
+  "selected_bytes_by_split": {
+    "train": {
+      "bytes": 5748288339,
+      "gib": 5.353510695509613,
+      "sizes_complete": true
+    },
+    "validation": {
+      "bytes": 2102042437,
+      "gib": 1.9576795743778348,
+      "sizes_complete": true
+    },
+    "independent_test": {
+      "bytes": 5314005074,
+      "gib": 4.949052887037396,
+      "sizes_complete": true
+    }
+  },
+  "scene_metadata": [
+    {
+      "scene": "2025/Day019_Corn",
+      "split": "train",
+      "available_frames_by_view": {
+        "nadir": 233,
+        "oblique": 967
+      },
+      "selected_pairs_by_view": {
+        "nadir": 16,
+        "oblique": 16
+      },
+      "selected_candidates_by_view": {
+        "nadir": 16,
+        "oblique": 16
+      },
+      "missing_rgb_candidates": 0,
+      "missing_depth_candidates": 0,
+      "missing_pair_candidates": 0,
+      "transforms_sha256": "a8d00ff8c4453698cd450bbe2a5c6a7dba9e11d1b01d25c1366770ef54ead1af",
+      "transforms_size_bytes": 1090560
+    },
+    {
+      "scene": "2025/Day019_Oat",
+      "split": "train",
+      "available_frames_by_view": {
+        "nadir": 200,
+        "oblique": 490
+      },
+      "selected_pairs_by_view": {
+        "nadir": 16,
+        "oblique": 16
+      },
+      "selected_candidates_by_view": {
+        "nadir": 16,
+        "oblique": 16
+      },
+      "missing_rgb_candidates": 0,
+      "missing_depth_candidates": 0,
+      "missing_pair_candidates": 0,
+      "transforms_sha256": "81f6567b704c7118f005935a6df604e453facec34a81244abf5a00c443c0f7fa",
+      "transforms_size_bytes": 1219511
+    },
+    {
+      "scene": "2025/Day019_Wheat",
+      "split": "train",
+      "available_frames_by_view": {
+        "nadir": 368,
+        "oblique": 1027
+      },
+      "selected_pairs_by_view": {
+        "nadir": 16,
+        "oblique": 16
+      },
+      "selected_candidates_by_view": {
+        "nadir": 16,
+        "oblique": 16
+      },
+      "missing_rgb_candidates": 0,
+      "missing_depth_candidates": 0,
+      "missing_pair_candidates": 0,
+      "transforms_sha256": "659a9019ccf5b52c5725e513e66a8f02508013a7b083eaab11dc9ad8505a0102",
+      "transforms_size_bytes": 1267685
+    },
+    {
+      "scene": "2025/Day019_soybean",
+      "split": "train",
+      "available_frames_by_view": {
+        "nadir": 287,
+        "oblique": 783
+      },
+      "selected_pairs_by_view": {
+        "nadir": 16,
+        "oblique": 16
+      },
+      "selected_candidates_by_view": {
+        "nadir": 16,
+        "oblique": 16
+      },
+      "missing_rgb_candidates": 0,
+      "missing_depth_candidates": 0,
+      "missing_pair_candidates": 0,
+      "transforms_sha256": "61610c9ef7307075be6d7e4009e9a145b9fb4af8c9392895839678cc5e31cf6c",
+      "transforms_size_bytes": 970398
+    },
+    {
+      "scene": "2025/Day028_Corn",
+      "split": "train",
+      "available_frames_by_view": {
+        "nadir": 237,
+        "oblique": 967
+      },
+      "selected_pairs_by_view": {
+        "nadir": 16,
+        "oblique": 16
+      },
+      "selected_candidates_by_view": {
+        "nadir": 16,
+        "oblique": 16
+      },
+      "missing_rgb_candidates": 0,
+      "missing_depth_candidates": 0,
+      "missing_pair_candidates": 0,
+      "transforms_sha256": "4b99b22812e4c3bbdc6cc58237472656dc443b436cb1f7852c096dc567d8181b",
+      "transforms_size_bytes": 1093851
+    },
+    {
+      "scene": "2025/Day028_Oat",
+      "split": "train",
+      "available_frames_by_view": {
+        "nadir": 201,
+        "oblique": 475
+      },
+      "selected_pairs_by_view": {
+        "nadir": 16,
+        "oblique": 16
+      },
+      "selected_candidates_by_view": {
+        "nadir": 16,
+        "oblique": 16
+      },
+      "missing_rgb_candidates": 0,
+      "missing_depth_candidates": 0,
+      "missing_pair_candidates": 0,
+      "transforms_sha256": "a881e9751ffcb0a2f29b97aed5039f90cbd489dc0dd80b1e3b7e9d757bf10c1c",
+      "transforms_size_bytes": 1194618
+    },
+    {
+      "scene": "2025/Day028_Wheat",
+      "split": "train",
+      "available_frames_by_view": {
+        "nadir": 380,
+        "oblique": 1022
+      },
+      "selected_pairs_by_view": {
+        "nadir": 16,
+        "oblique": 16
+      },
+      "selected_candidates_by_view": {
+        "nadir": 16,
+        "oblique": 16
+      },
+      "missing_rgb_candidates": 0,
+      "missing_depth_candidates": 0,
+      "missing_pair_candidates": 0,
+      "transforms_sha256": "3dcdedffcf3e9a2cb303de875be806d58ea47bf76d320b8d03531159b58ec83e",
+      "transforms_size_bytes": 2477181
+    },
+    {
+      "scene": "2025/Day028_soybean",
+      "split": "train",
+      "available_frames_by_view": {
+        "nadir": 293,
+        "oblique": 792
+      },
+      "selected_pairs_by_view": {
+        "nadir": 16,
+        "oblique": 16
+      },
+      "selected_candidates_by_view": {
+        "nadir": 16,
+        "oblique": 16
+      },
+      "missing_rgb_candidates": 0,
+      "missing_depth_candidates": 0,
+      "missing_pair_candidates": 0,
+      "transforms_sha256": "771c018cb9e2f101e313653a9913eb2a363e67394371b52052e47d80a2522fcd",
+      "transforms_size_bytes": 983962
+    },
+    {
+      "scene": "2025/Day040_Corn",
+      "split": "train",
+      "available_frames_by_view": {
+        "nadir": 228,
+        "oblique": 971
+      },
+      "selected_pairs_by_view": {
+        "nadir": 16,
+        "oblique": 16
+      },
+      "selected_candidates_by_view": {
+        "nadir": 16,
+        "oblique": 16
+      },
+      "missing_rgb_candidates": 0,
+      "missing_depth_candidates": 0,
+      "missing_pair_candidates": 0,
+      "transforms_sha256": "eeb7971b642a72cc1ea9078d29918597239aba3bed7e1d2c033ed4d4a8e41ef7",
+      "transforms_size_bytes": 1089427
+    },
+    {
+      "scene": "2025/Day040_Oat",
+      "split": "train",
+      "available_frames_by_view": {
+        "nadir": 202,
+        "oblique": 448
+      },
+      "selected_pairs_by_view": {
+        "nadir": 16,
+        "oblique": 16
+      },
+      "selected_candidates_by_view": {
+        "nadir": 16,
+        "oblique": 16
+      },
+      "missing_rgb_candidates": 0,
+      "missing_depth_candidates": 0,
+      "missing_pair_candidates": 0,
+      "transforms_sha256": "42ebf6711b81f52cd8dbbf58851ac7dc165f050e49c9b8abc7c60390726528fb",
+      "transforms_size_bytes": 1148577
+    },
+    {
+      "scene": "2025/Day040_Wheat",
+      "split": "train",
+      "available_frames_by_view": {
+        "nadir": 378,
+        "oblique": 1032
+      },
+      "selected_pairs_by_view": {
+        "nadir": 16,
+        "oblique": 16
+      },
+      "selected_candidates_by_view": {
+        "nadir": 16,
+        "oblique": 16
+      },
+      "missing_rgb_candidates": 0,
+      "missing_depth_candidates": 0,
+      "missing_pair_candidates": 0,
+      "transforms_sha256": "4c62713b64af3d6f3f8f3b207f9abedfaf0df5a0d669ec5e7fd323e64c1cc6fc",
+      "transforms_size_bytes": 1282182
+    },
+    {
+      "scene": "2025/Day040_soybean",
+      "split": "train",
+      "available_frames_by_view": {
+        "nadir": 293,
+        "oblique": 789
+      },
+      "selected_pairs_by_view": {
+        "nadir": 16,
+        "oblique": 16
+      },
+      "selected_candidates_by_view": {
+        "nadir": 16,
+        "oblique": 16
+      },
+      "missing_rgb_candidates": 0,
+      "missing_depth_candidates": 0,
+      "missing_pair_candidates": 0,
+      "transforms_sha256": "a45f206471e1fd500d75f9c8af060763cc7210be35360f90b9f07f2e55c98ae7",
+      "transforms_size_bytes": 981386
+    },
+    {
+      "scene": "2025/Day047_Corn",
+      "split": "validation",
+      "available_frames_by_view": {
+        "nadir": 212,
+        "oblique": 968
+      },
+      "selected_pairs_by_view": {
+        "nadir": 16,
+        "oblique": 16
+      },
+      "selected_candidates_by_view": {
+        "nadir": 16,
+        "oblique": 16
+      },
+      "missing_rgb_candidates": 0,
+      "missing_depth_candidates": 0,
+      "missing_pair_candidates": 0,
+      "transforms_sha256": "978956a499120be09ddbd86963398832b4e770a7640043319c1f0cb3d51f7554",
+      "transforms_size_bytes": 1072075
+    },
+    {
+      "scene": "2025/Day047_Oat",
+      "split": "validation",
+      "available_frames_by_view": {
+        "nadir": 201,
+        "oblique": 482
+      },
+      "selected_pairs_by_view": {
+        "nadir": 16,
+        "oblique": 16
+      },
+      "selected_candidates_by_view": {
+        "nadir": 16,
+        "oblique": 16
+      },
+      "missing_rgb_candidates": 0,
+      "missing_depth_candidates": 0,
+      "missing_pair_candidates": 0,
+      "transforms_sha256": "664e325f7cbeed638c7406c895ff6bc3deff2261d58c204030b06411abd2db01",
+      "transforms_size_bytes": 1207354
+    },
+    {
+      "scene": "2025/Day047_Wheat",
+      "split": "validation",
+      "available_frames_by_view": {
+        "nadir": 376,
+        "oblique": 1039
+      },
+      "selected_pairs_by_view": {
+        "nadir": 16,
+        "oblique": 16
+      },
+      "selected_candidates_by_view": {
+        "nadir": 16,
+        "oblique": 16
+      },
+      "missing_rgb_candidates": 0,
+      "missing_depth_candidates": 0,
+      "missing_pair_candidates": 0,
+      "transforms_sha256": "ad80dfc098b5cfb125b6c42a3a49f19396cb6d54ccbeeda4f183f842bfe41372",
+      "transforms_size_bytes": 1286354
+    },
+    {
+      "scene": "2025/Day047_soybean",
+      "split": "validation",
+      "available_frames_by_view": {
+        "nadir": 292,
+        "oblique": 792
+      },
+      "selected_pairs_by_view": {
+        "nadir": 16,
+        "oblique": 16
+      },
+      "selected_candidates_by_view": {
+        "nadir": 16,
+        "oblique": 16
+      },
+      "missing_rgb_candidates": 0,
+      "missing_depth_candidates": 0,
+      "missing_pair_candidates": 0,
+      "transforms_sha256": "49cf1220e236bff24d59f216871efc6cef595e70cac72d40e7f2749429f80710",
+      "transforms_size_bytes": 983814
+    },
+    {
+      "scene": "2025/Day052_Corn",
+      "split": "independent_test",
+      "available_frames_by_view": {
+        "nadir": 223,
+        "oblique": 970
+      },
+      "selected_pairs_by_view": {
+        "nadir": 16,
+        "oblique": 16
+      },
+      "selected_candidates_by_view": {
+        "nadir": 16,
+        "oblique": 16
+      },
+      "missing_rgb_candidates": 0,
+      "missing_depth_candidates": 0,
+      "missing_pair_candidates": 0,
+      "transforms_sha256": "c4cbc43f96f0a82c6b969c02dacaa06262cd4a0d2bd7cdfbe4529d8944b3afe3",
+      "transforms_size_bytes": 1084273
+    },
+    {
+      "scene": "2025/Day052_Oat",
+      "split": "independent_test",
+      "available_frames_by_view": {
+        "nadir": 203,
+        "oblique": 475
+      },
+      "selected_pairs_by_view": {
+        "nadir": 16,
+        "oblique": 16
+      },
+      "selected_candidates_by_view": {
+        "nadir": 16,
+        "oblique": 16
+      },
+      "missing_rgb_candidates": 0,
+      "missing_depth_candidates": 0,
+      "missing_pair_candidates": 0,
+      "transforms_sha256": "3320e901dc969315d83f303c75ebeec5cbe7360ba24e3a3b03445c10ea0c44f7",
+      "transforms_size_bytes": 1198482
+    },
+    {
+      "scene": "2025/Day052_Wheat",
+      "split": "independent_test",
+      "available_frames_by_view": {
+        "nadir": 379,
+        "oblique": 1036
+      },
+      "selected_pairs_by_view": {
+        "nadir": 16,
+        "oblique": 15
+      },
+      "selected_candidates_by_view": {
+        "nadir": 16,
+        "oblique": 16
+      },
+      "missing_rgb_candidates": 0,
+      "missing_depth_candidates": 1,
+      "missing_pair_candidates": 1,
+      "transforms_sha256": "60b857d4dae9f52f0a5c32c248e7570b57fa3f58332ff99af2bb0a7cafb26d71",
+      "transforms_size_bytes": 1285404,
+      "missing_candidate_details": [
+        {
+          "view": "oblique",
+          "filename": "1383.JPG",
+          "image_relpath": "2025/Day052_Wheat/images/1383.JPG",
+          "depth_relpath": "2025/Day052_Wheat_depth/1383_depth.tif",
+          "missing_rgb": false,
+          "missing_depth": true
+        }
+      ]
+    },
+    {
+      "scene": "2025/Day052_soybean",
+      "split": "independent_test",
+      "available_frames_by_view": {
+        "nadir": 294,
+        "oblique": 788
+      },
+      "selected_pairs_by_view": {
+        "nadir": 16,
+        "oblique": 16
+      },
+      "selected_candidates_by_view": {
+        "nadir": 16,
+        "oblique": 16
+      },
+      "missing_rgb_candidates": 0,
+      "missing_depth_candidates": 0,
+      "missing_pair_candidates": 0,
+      "transforms_sha256": "27a2b1828948e799f93675ca111bb0b5551ba1986b89e47073f6a803cf196b3c",
+      "transforms_size_bytes": 981931
+    },
+    {
+      "scene": "2025/Day069_Corn",
+      "split": "independent_test",
+      "available_frames_by_view": {
+        "nadir": 219,
+        "oblique": 1022
+      },
+      "selected_pairs_by_view": {
+        "nadir": 16,
+        "oblique": 16
+      },
+      "selected_candidates_by_view": {
+        "nadir": 16,
+        "oblique": 16
+      },
+      "missing_rgb_candidates": 0,
+      "missing_depth_candidates": 0,
+      "missing_pair_candidates": 0,
+      "transforms_sha256": "485dee3ed16923eeaa14e7e1f3fe9f977d6a672882fe72110aa018ac40a0399d",
+      "transforms_size_bytes": 1127878
+    },
+    {
+      "scene": "2025/Day069_soybean",
+      "split": "independent_test",
+      "available_frames_by_view": {
+        "nadir": 295,
+        "oblique": 791
+      },
+      "selected_pairs_by_view": {
+        "nadir": 16,
+        "oblique": 16
+      },
+      "selected_candidates_by_view": {
+        "nadir": 16,
+        "oblique": 16
+      },
+      "missing_rgb_candidates": 0,
+      "missing_depth_candidates": 0,
+      "missing_pair_candidates": 0,
+      "transforms_sha256": "6e15d9b4afe514d06067b3cc6f8f29dff7a1052f1c8f4de9817b31e671d05fd6",
+      "transforms_size_bytes": 985130
+    },
+    {
+      "scene": "2025/Day077_Corn",
+      "split": "independent_test",
+      "available_frames_by_view": {
+        "nadir": 216,
+        "oblique": 968
+      },
+      "selected_pairs_by_view": {
+        "nadir": 16,
+        "oblique": 16
+      },
+      "selected_candidates_by_view": {
+        "nadir": 16,
+        "oblique": 16
+      },
+      "missing_rgb_candidates": 0,
+      "missing_depth_candidates": 0,
+      "missing_pair_candidates": 0,
+      "transforms_sha256": "77988bbf79ea8b9860d28d6b4657995b53a4a8849e76b505b43db2ced3b0f0ed",
+      "transforms_size_bytes": 1075678
+    },
+    {
+      "scene": "2025/Day077_soybean",
+      "split": "independent_test",
+      "available_frames_by_view": {
+        "nadir": 295,
+        "oblique": 792
+      },
+      "selected_pairs_by_view": {
+        "nadir": 16,
+        "oblique": 16
+      },
+      "selected_candidates_by_view": {
+        "nadir": 16,
+        "oblique": 16
+      },
+      "missing_rgb_candidates": 0,
+      "missing_depth_candidates": 0,
+      "missing_pair_candidates": 0,
+      "transforms_sha256": "7350c6f8dec7e889f877e97be227bcf0ac04cbc8f82ddb84c26bb933df99d61a",
+      "transforms_size_bytes": 986000
+    },
+    {
+      "scene": "2025/Day083_Corn",
+      "split": "independent_test",
+      "available_frames_by_view": {
+        "nadir": 226,
+        "oblique": 969
+      },
+      "selected_pairs_by_view": {
+        "nadir": 16,
+        "oblique": 16
+      },
+      "selected_candidates_by_view": {
+        "nadir": 16,
+        "oblique": 16
+      },
+      "missing_rgb_candidates": 0,
+      "missing_depth_candidates": 0,
+      "missing_pair_candidates": 0,
+      "transforms_sha256": "8ba365174bd50399e17e06ca7ab372e37e95b0ff13026228c31a3533a6cb4617",
+      "transforms_size_bytes": 1085794
+    },
+    {
+      "scene": "2025/Day083_soybean",
+      "split": "independent_test",
+      "available_frames_by_view": {
+        "nadir": 294,
+        "oblique": 787
+      },
+      "selected_pairs_by_view": {
+        "nadir": 16,
+        "oblique": 16
+      },
+      "selected_candidates_by_view": {
+        "nadir": 16,
+        "oblique": 16
+      },
+      "missing_rgb_candidates": 0,
+      "missing_depth_candidates": 0,
+      "missing_pair_candidates": 0,
+      "transforms_sha256": "659a5d5566402dbb2729e3683da9c711bb541165339df9bf10e28a8d170de192",
+      "transforms_size_bytes": 980212
+    }
+  ],
+  "downloaded_rgb_or_depth_frames": 0,
+  "message": "This plan queries small transforms.json files and Hugging Face path metadata (file names, sizes, IDs) only. It does not download RGB or depth frames.",
+  "plan_sha256": "2e35a00983ba0fe5d8daf75811f6b4fdaca1da2846d6887a5cb0517e9deec0e5"
+}

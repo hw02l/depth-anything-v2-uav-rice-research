@@ -1,0 +1,12 @@
+{
+  "status": "saved_ready_to_disconnect",
+  "gpu_terminated_and_cpu_only": true,
+  "all_analysis_processes_completed": true,
+  "trial_epochs": 1,
+  "independent_test_used": false,
+  "compute_units_numeric_usage": "unavailable",
+  "charges_or_purchases": false,
+  "figures": 29,
+  "final_zip_sha256": "92d3e194a860b0a075036b00c92fcb3318d9e8dca633c37bf2632e83dcf9d8f1",
+  "saved_utc": "2026-10-13T14:27:39.409355+00:00"
+}

@@ -1,0 +1,32 @@
+PREDICTION_CACHE_VERIFY 64 /384
+PREDICTION_CACHE_VERIFY 128 /384
+PREDICTION_CACHE_VERIFY 192 /384
+PREDICTION_CACHE_VERIFY 256 /384
+PREDICTION_CACHE_VERIFY 320 /384
+PREDICTION_CACHE_VERIFY 384 /384
+ANALYZE 8 /128 elapsed 24
+ANALYZE 16 /128 elapsed 48
+ANALYZE 24 /128 elapsed 79
+ANALYZE 32 /128 elapsed 107
+ANALYZE 40 /128 elapsed 134
+ANALYZE 48 /128 elapsed 158
+ANALYZE 56 /128 elapsed 187
+ANALYZE 64 /128 elapsed 211
+ANALYZE 72 /128 elapsed 235
+ANALYZE 80 /128 elapsed 263
+ANALYZE 88 /128 elapsed 289
+ANALYZE 96 /128 elapsed 315
+ANALYZE 104 /128 elapsed 355
+ANALYZE 112 /128 elapsed 382
+ANALYZE 120 /128 elapsed 407
+ANALYZE 128 /128 elapsed 434
+SHAPE_ANALYSIS_COMPLETE /content/drive/MyDrive/DepthAnythingV2-UAV/experiments/metric_shape_20261013T123006472484Z/analysis/shape_summary.json
+STATISTICS_COMPLETE; creating representative comparison figures
+FIGURE /content/drive/MyDrive/DepthAnythingV2-UAV/experiments/metric_shape_20261013T123006472484Z/analysis/figures/comparison_007_corn_nadir.png
+FIGURE /content/drive/MyDrive/DepthAnythingV2-UAV/experiments/metric_shape_20261013T123006472484Z/analysis/figures/comparison_044_oat_nadir.png
+FIGURE /content/drive/MyDrive/DepthAnythingV2-UAV/experiments/metric_shape_20261013T123006472484Z/analysis/figures/comparison_103_soybean_nadir.png
+FIGURE /content/drive/MyDrive/DepthAnythingV2-UAV/experiments/metric_shape_20261013T123006472484Z/analysis/figures/comparison_065_wheat_nadir.png
+FIGURE /content/drive/MyDrive/DepthAnythingV2-UAV/experiments/metric_shape_20261013T123006472484Z/analysis/figures/comparison_014_corn_nadir.png
+FIGURE /content/drive/MyDrive/DepthAnythingV2-UAV/experiments/metric_shape_20261013T123006472484Z/analysis/figures/comparison_020_corn_oblique.png
+FIGURE /content/drive/MyDrive/DepthAnythingV2-UAV/experiments/metric_shape_20261013T123006472484Z/analysis/figures/comparison_101_soybean_nadir.png
+ALL_CPU_ANALYSIS_COMPLETE

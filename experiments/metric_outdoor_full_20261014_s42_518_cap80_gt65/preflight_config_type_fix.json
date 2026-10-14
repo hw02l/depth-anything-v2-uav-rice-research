@@ -1,0 +1,18 @@
+{
+  "status": "pass",
+  "change": "strict HubConfig max_depth is integer typed; model output remains 80m and GT mask remains 65m",
+  "source_file": "/content/drive/MyDrive/DepthAnythingV2-UAV/experiments/metric_outdoor_full_20261014_s42_518_cap80_gt65/source_full_v1/modeling.py",
+  "tested_config_type": "DepthAnythingConfig",
+  "cpu_config_assignment": {
+    "model_output_cap": {
+      "value_m": 80,
+      "type": "int"
+    },
+    "gt_mask_cap": {
+      "value_m": 65,
+      "type": "int"
+    }
+  },
+  "modified_utc": "2026-10-13T22:33:15.657798+00:00",
+  "cuda_used": false
+}

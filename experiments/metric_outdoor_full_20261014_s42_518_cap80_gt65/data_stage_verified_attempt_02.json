@@ -1,0 +1,20 @@
+{
+  "status": "pass",
+  "train_pairs": 384,
+  "validation_pairs": 128,
+  "files": 1024,
+  "bytes": 7850330776,
+  "source": "existing Google Drive data; no external or Hugging Face data download",
+  "local_status": {
+    "pairs": 512,
+    "complete_pairs": 512,
+    "expected_files": 1024,
+    "present_files": 1024,
+    "missing_files": 0,
+    "conflicting_files": [],
+    "planned_bytes": 7850330776,
+    "new_bytes": 0,
+    "complete": true
+  },
+  "completed_utc": "2026-10-13T22:50:21.284175+00:00"
+}

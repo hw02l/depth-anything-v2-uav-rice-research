@@ -1,0 +1,14 @@
+{
+  "status": "pass",
+  "tested": [
+    "complete checkpoint hashes",
+    "optimizer/scheduler/scaler restore",
+    "Python/NumPy/Torch RNG continuation equality",
+    "safe epoch 5 pause target while total epochs remain 20",
+    "sampled local-shape validation output and crop/view groups"
+  ],
+  "train_steps_per_epoch": 96,
+  "scheduler_total_optimizer_steps_for_20_epochs": 1920,
+  "validation_sample_candidates_per_image_axis": 100000,
+  "cuda_used": false
+}

@@ -1,0 +1,30 @@
+\documentclass[a4paper,11pt,ja=standard,xelatex]{bxjsreport}
+% Embed static Japanese TrueType fonts for PDF viewer compatibility.
+\setCJKmainfont[Path=C:/Windows/Fonts/,BoldFont=yumindb.ttf]{yumin.ttf}
+\setCJKsansfont[Path=C:/Windows/Fonts/,BoldFont=meiryob.ttc]{meiryo.ttc}
+\setCJKmonofont[Path=C:/Windows/Fonts/,BoldFont=meiryob.ttc]{meiryo.ttc}
+\usepackage{amsmath,amssymb,booktabs,longtable,array,multirow}
+\usepackage{graphicx,float,caption,subcaption,tikz,pgfplots,xcolor,hyperref,url,enumitem}
+\usepgfplotslibrary{groupplots}\pgfplotsset{compat=1.18}
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue}
+\setlength{\parskip}{0.25em}\setlength{\parindent}{1em}\renewcommand{\arraystretch}{1.16}
+\title{UAV農作物画像におけるDepth Anything V2 Smallの\\Metric Depth適応と局所深度構造の評価}
+\author{著者名・所属：提出前に記入}\date{2026年10月14日}
+\begin{document}\maketitle\pagenumbering{roman}
+\input{chapters/abstract.tex}\tableofcontents\listoffigures\listoftables
+\clearpage\pagenumbering{arabic}
+\input{chapters/01_intro.tex}\input{chapters/02_related.tex}
+\input{chapters/03_dataset.tex}\input{chapters/04_method.tex}
+\input{chapters/05_evaluation.tex}\input{chapters/06_results.tex}
+\input{chapters/07_discussion.tex}\input{chapters/08_limits.tex}
+\input{chapters/09_conclusion.tex}\appendix\input{chapters/appendix.tex}
+\begin{thebibliography}{99}
+\bibitem{eigen2014} D. Eigen, C. Puhrsch, and R. Fergus, "Depth Map Prediction from a Single Image using a Multi-Scale Deep Network," NeurIPS 27, 2014. arXiv:1406.2283.
+\bibitem{vit2021} A. Dosovitskiy et al., "An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale," ICLR, 2021. arXiv:2010.11929.
+\bibitem{dpt2021} R. Ranftl, A. Bochkovskiy, and V. Koltun, "Vision Transformers for Dense Prediction," ICCV, 2021. arXiv:2103.13413.
+\bibitem{dinov2} M. Oquab et al., "DINOv2: Learning Robust Visual Features without Supervision," TMLR, 2024. arXiv:2304.07193.
+\bibitem{dav2} L. Yang et al., "Depth Anything V2," NeurIPS 37, 2024, pp. 21875--21911. arXiv:2406.09414.
+\bibitem{adamw} I. Loshchilov and F. Hutter, "Decoupled Weight Decay Regularization," ICLR, 2019. arXiv:1711.05101.
+\bibitem{uav3dcrop} J. Zhou et al., "UAV3DCrop: Benchmarking 3D Reconstruction in Repeated Multi-Angle UAV Crop Surveys," arXiv:2608.06404, 2026. Preprint.
+\bibitem{cropheight} L. P. Magar et al., "Plant height measurement using UAV-based aerial RGB and LiDAR images in soybean," Frontiers in Plant Science, 16, 1488760, 2025. doi:10.3389/fpls.2025.1488760.
+\end{thebibliography}\end{document}

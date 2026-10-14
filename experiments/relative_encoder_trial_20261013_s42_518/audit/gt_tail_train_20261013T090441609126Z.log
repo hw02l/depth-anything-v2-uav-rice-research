@@ -1,0 +1,186 @@
+Full train pixel scan 32/384
+Full train pixel scan 64/384
+Full train pixel scan 96/384
+Full train pixel scan 128/384
+Full train pixel scan 160/384
+Full train pixel scan 192/384
+Full train pixel scan 224/384
+Full train pixel scan 256/384
+Full train pixel scan 288/384
+Full train pixel scan 320/384
+Full train pixel scan 352/384
+Full train pixel scan 384/384
+{
+  "status": "pass",
+  "split": "train",
+  "frames": 384,
+  "manifest_sha256": "13ee3432515250eff50eeb5238dfc178c8853239074eb8cbbea2b510272b0602",
+  "gt_report": "/content/drive/MyDrive/DepthAnythingV2-UAV/work/uav_metric_finetuning/gt_distribution_train_20261013T090441609126Z.json",
+  "gt_report_sha256": "6e795758a397f6a8142ec50c1e69f4bcda74f1b82a8dfe761bcb946f0815f420",
+  "analysis_code_sha256": "10d2c1c06d0aed99ad35b588e65ffaf101321c289d44adcf648eb4289c3c3a43",
+  "valid_rule": "finite and >0; no range clipping",
+  "full_pixel_min_m": 9.671875,
+  "full_pixel_max_m": 62.15625,
+  "total_pixels": 8020869120,
+  "valid_pixels": 8002756993,
+  "nonfinite_pixels": 0,
+  "nonpositive_finite_pixels": 18112127,
+  "sample_quantiles_m": {
+    "p50": 17.078125,
+    "p90": 31.671875,
+    "p95": 37.40625,
+    "p99": 45.71875,
+    "p99.5": 48.78125,
+    "p99.9": 52.90625,
+    "p99.95": 53.90625,
+    "p100": 61.625
+  },
+  "suggested_cap_m": 60.0,
+  "above_threshold": {
+    "52.90625": {
+      "pixels": 7882206,
+      "fraction_of_valid": 0.00098493631718351
+    },
+    "54.0": {
+      "pixels": 3634381,
+      "fraction_of_valid": 0.0004541411170149222
+    },
+    "60.0": {
+      "pixels": 15424,
+      "fraction_of_valid": 1.9273357935885535e-06
+    },
+    "66.0": {
+      "pixels": 0,
+      "fraction_of_valid": 0.0
+    }
+  },
+  "histogram": {
+    "edges_m": [
+      0.0,
+      0.5,
+      1.0,
+      2.0,
+      5.0,
+      10.0,
+      15.0,
+      20.0,
+      25.0,
+      30.0,
+      40.0,
+      50.0,
+      75.0,
+      100.0,
+      150.0,
+      200.0,
+      500.0,
+      1000.0,
+      "Infinity"
+    ],
+    "valid_pixel_counts": [
+      0,
+      0,
+      0,
+      0,
+      2,
+      1413316209,
+      4163043667,
+      901250198,
+      575785562,
+      682050755,
+      238658186,
+      28652414,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "per_scene": {
+    "2025/Day019_Corn": {
+      "frames": 32,
+      "valid_pixels": 666835016,
+      "min_m": 15.6171875,
+      "max_m": 61.375,
+      "above_suggested_cap_pixels": 7017
+    },
+    "2025/Day019_Oat": {
+      "frames": 32,
+      "valid_pixels": 666790165,
+      "min_m": 10.7109375,
+      "max_m": 51.25,
+      "above_suggested_cap_pixels": 0
+    },
+    "2025/Day019_Wheat": {
+      "frames": 32,
+      "valid_pixels": 667752091,
+      "min_m": 11.9140625,
+      "max_m": 52.15625,
+      "above_suggested_cap_pixels": 0
+    },
+    "2025/Day019_soybean": {
+      "frames": 32,
+      "valid_pixels": 666235871,
+      "min_m": 9.671875,
+      "max_m": 53.125,
+      "above_suggested_cap_pixels": 0
+    },
+    "2025/Day028_Corn": {
+      "frames": 32,
+      "valid_pixels": 666492629,
+      "min_m": 15.859375,
+      "max_m": 62.15625,
+      "above_suggested_cap_pixels": 8160
+    },
+    "2025/Day028_Oat": {
+      "frames": 32,
+      "valid_pixels": 667023427,
+      "min_m": 10.65625,
+      "max_m": 51.65625,
+      "above_suggested_cap_pixels": 0
+    },
+    "2025/Day028_Wheat": {
+      "frames": 32,
+      "valid_pixels": 667897766,
+      "min_m": 12.171875,
+      "max_m": 52.5625,
+      "above_suggested_cap_pixels": 0
+    },
+    "2025/Day028_soybean": {
+      "frames": 32,
+      "valid_pixels": 666381005,
+      "min_m": 12.65625,
+      "max_m": 53.34375,
+      "above_suggested_cap_pixels": 0
+    },
+    "2025/Day040_Corn": {
+      "frames": 32,
+      "valid_pixels": 665786136,
+      "min_m": 14.71875,
+      "max_m": 60.34375,
+      "above_suggested_cap_pixels": 247
+    },
+    "2025/Day040_Oat": {
+      "frames": 32,
+      "valid_pixels": 666777656,
+      "min_m": 10.25,
+      "max_m": 51.5625,
+      "above_suggested_cap_pixels": 0
+    },
+    "2025/Day040_Wheat": {
+      "frames": 32,
+      "valid_pixels": 667677305,
+      "min_m": 12.234375,
+      "max_m": 52.65625,
+      "above_suggested_cap_pixels": 0
+    },
+    "2025/Day040_soybean": {
+      "frames": 32,
+      "valid_pixels": 667107926,
+      "min_m": 12.28125,
+      "max_m": 53.3125,
+      "above_suggested_cap_pixels": 0
+    }
+  }
+}

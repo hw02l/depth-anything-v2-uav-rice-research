@@ -1,0 +1,7 @@
+{
+  "status": "paused_after_epoch",
+  "completed_epochs": 5,
+  "remaining_epochs": 15,
+  "best_validation_rmse_m": 1.0094461878368737,
+  "best_epoch": 5
+}
