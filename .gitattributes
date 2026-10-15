@@ -6,3 +6,9 @@ experiments/** -text
 papers/** -text
 uav_metric_finetuning/** -text
 configs/uav3dcrop_verified/** -text
+# New inference code uses stable LF bytes across Windows/Linux checkouts.
+src/uav_metric_research/multiscale.py text eol=lf
+src/uav_metric_research/fusion.py text eol=lf
+scripts/multiscale_*.py text eol=lf
+tests/test_multiscale.py text eol=lf
+tests/test_fusion.py text eol=lf

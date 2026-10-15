@@ -1,0 +1,73 @@
+{
+  "experiment_id": "multiscale_tile_inference_20261016",
+  "status": "inference_completed_transfer_interrupted",
+  "recorded_jst": "2026-10-16T02:10:03+09:00",
+  "parent_commit": "3de99b0f35e9083c2c74426a57c44014c6b032c2",
+  "branch": "research/multiscale-tile-inference-20261016",
+  "original_frozen_source_sha_verified_files": 81,
+  "canonical_signature_verified_files": 10,
+  "windows_cpu_tests_passed": 43,
+  "baseline_reproduced_epochs": [
+    17,
+    18,
+    20
+  ],
+  "baseline_validation_images_per_epoch": 128,
+  "multiscale_diagnosed_epochs": [
+    17,
+    18,
+    20
+  ],
+  "multiscale_original_pixel_distances": [
+    14,
+    28,
+    56,
+    107,
+    214
+  ],
+  "pilot_images": 16,
+  "full_inference_epochs": [
+    17,
+    20
+  ],
+  "full_methods": [
+    "B0",
+    "B1_1036",
+    "B2_t2000_o25",
+    "B3"
+  ],
+  "images_per_full_method": 128,
+  "weights_updated": false,
+  "independent_test_used": false,
+  "historical52_used": false,
+  "zero_gt_ge20cm_sample_images_14_28px": [
+    {
+      "index": 101,
+      "image_relpath": "2025/Day047_soybean/images/101.JPG"
+    },
+    {
+      "index": 107,
+      "image_relpath": "2025/Day047_soybean/images/584.JPG"
+    }
+  ],
+  "remote_result_archive": {
+    "bytes": 148115613,
+    "sha256": "bbc7829e60b6d3b12efa48838616de09ef79a7f49f6e45ee08cda1cb4898c073",
+    "windows_complete_sha256_verified": false,
+    "complete_received_chunks": 497,
+    "chunk_base64_characters": 32768
+  },
+  "interruption": "Windows progress-state atomic replace WinError5; old SSH client exited during archive transfer; computation was already complete",
+  "recovery": "Progress lock retry and quiet buffered relay prepared; authenticated resume required; do not rerun inference",
+  "pending": [
+    "complete archive transfer and full SHA256",
+    "final image-level/seam analysis and figures",
+    "detailed final Japanese report",
+    "NFS backup and final GPU/container/SSH cleanup audit",
+    "push and new PR"
+  ],
+  "final_gpu_cleanup_verified": false,
+  "ssh_old_client": "exited after transfer interruption; new authenticated session pending",
+  "final_report_complete": false,
+  "github_pr_created": false
+}
