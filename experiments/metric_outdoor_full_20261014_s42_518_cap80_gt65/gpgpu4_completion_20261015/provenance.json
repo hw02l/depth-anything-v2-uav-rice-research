@@ -1,0 +1,114 @@
+{
+  "generated_local": true,
+  "created_utc_not_recorded": true,
+  "epoch_sources": {
+    "epochs_1_5": {
+      "logical_source": "original saved run_records/epoch_metrics.jsonl",
+      "bytes": 72921,
+      "sha256": "48f403dffc2e253b74171930a385c6dda672afd02071789e649216dabcd8def4"
+    },
+    "epochs_6_10": {
+      "logical_source": "GPGPU4 migration session log, 2026-10-15 phase 1",
+      "bytes": 126035,
+      "sha256": "2ed1e93c6647db8aed16068820ec74c93f4b08f3c69e0562e5b32dd735e0716b"
+    },
+    "epochs_11_20": {
+      "logical_source": "GPGPU4 migration session log, 2026-10-15 phases 2 and 3",
+      "bytes": 254876,
+      "sha256": "e679f4c8a12d1b3173e8bcfbdce3a2d35cf8c49a5f7abaae65691e89d8e8205c"
+    }
+  },
+  "scope": "CPU-only aggregation from already saved per-epoch logs; no training or inference performed",
+  "validation_epochs": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "checkpoint_hashes": {
+    "epoch_20": {
+      "model.safetensors": "52769e2e95704d0862e708e8772195b861c647dd4812058eaf698a44305c3bcb",
+      "config.json": "3c6ab05881e6a76edbfd33ff393fdfb082582084e9262826bb1ac0fd2b1dac7c",
+      "trainer_state.pt": "14afb302c1250a46496ae00b18a536476772eeb5ffdd8437125737bd2713427d"
+    },
+    "epoch_17_best_rmse": {
+      "model.safetensors": "93c86cbb4c514e13404bb82ce7c9f16fdfe7cfb09e90d6d7103b172587e9fc89",
+      "config.json": "3c6ab05881e6a76edbfd33ff393fdfb082582084e9262826bb1ac0fd2b1dac7c",
+      "trainer_state.pt": "df6a5299f1e0c638b6fc0516ec6ef4501caa152c8192114df71dba6347c672fe"
+    }
+  },
+  "gpu_cleanup": {
+    "final_status": "run completed at epoch 20/20",
+    "final_audit_job": "028_final_cleanup_audit",
+    "final_audit_exit_code": 0,
+    "backup_job": "029_persist_final_checkpoints",
+    "backup_job_exit_code": 0,
+    "backup_bytes": 594550777,
+    "gpu_process_check": "nvidia-smi: 15 MiB/8192 MiB, 0% utilization; no GPU compute apps",
+    "singularity_instances": "none (only header returned)",
+    "session_close_event": "session_closed; outer SSH exit code 255, no unfinished job",
+    "backup_location_note": "Private user NFS backup under /home1; exact account path is retained locally and omitted from the repository copy."
+  },
+  "package_files": {
+    "epoch_metrics_1_20.csv": {
+      "bytes": 8487,
+      "sha256": "d3811faee1566276e4d14fc73252b475691ce436ccf8bdb1d2b5fa5fdb9ee73c"
+    },
+    "epoch_metrics_1_20.json": {
+      "bytes": 411137,
+      "sha256": "ad0f050376b0c9342cd764101861a0c514d87e3a1e0a7795a6196081b8f4ba75"
+    },
+    "figures/curve_large_delta_amplitude.svg": {
+      "bytes": 3882,
+      "sha256": "6a9e682e230b0ec91f0d71d213a4adf064fb317dd806023bb3cece7f072a10f8"
+    },
+    "figures/curve_large_delta_sign.svg": {
+      "bytes": 3870,
+      "sha256": "b62cc624e106af24a0c96e92d1c34e0a09d6dc155f737f99195ca8abb2b814a0"
+    },
+    "figures/curve_local14_mae.svg": {
+      "bytes": 3849,
+      "sha256": "168405b87f4a629e6a3d2e3f5039b6b00640cc205c4c4e62afa5355522b56239"
+    },
+    "figures/curve_validation_absrel.svg": {
+      "bytes": 3842,
+      "sha256": "b5f2b8dc86f51c23e924450f8c092d0992d35521524f746b1add9acf7b0ca434"
+    },
+    "figures/curve_validation_rmse.svg": {
+      "bytes": 3842,
+      "sha256": "2b1a3b16096c9aa8674a364362204043a14fc88b452d6c8fa33a29829d9b8949"
+    },
+    "group_metrics_1_20.csv": {
+      "bytes": 15974,
+      "sha256": "8aa9c42237bc505f2f128bc86eaf1338604fda8ebb2cc04864ac239c50226bb4"
+    },
+    "README.md": {
+      "bytes": 1397,
+      "sha256": "3900ff87a456c585e8c062a339e5a6b77bc2d0c097e1cb4f55d99104b41b2b70"
+    },
+    "report_ja.md": {
+      "bytes": 7936,
+      "sha256": "5043238e7b57d311290a86b5c5aec1dd79d82ef4c6247f27f94f49d737c2b395"
+    },
+    "run_status_gpgpu4.json": {
+      "bytes": 1033,
+      "sha256": "b14fd89406630fd01d25f85f4717f270fdc69ea5fc53cb36bba2fae9c7a81f9c"
+    }
+  }
+}
