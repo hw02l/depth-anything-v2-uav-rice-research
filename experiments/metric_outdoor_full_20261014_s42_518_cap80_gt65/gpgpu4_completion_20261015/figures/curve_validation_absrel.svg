@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="540" viewBox="0 0 920 540"><rect width="100%" height="100%" fill="white"/>
+<text x="460.0" y="34" text-anchor="middle" font-family="sans-serif" font-size="22" font-weight="bold">Validation AbsRel by epoch</text>
+<text x="22" y="270.0" transform="rotate(-90 22 270.0)" text-anchor="middle" font-family="sans-serif" font-size="16">AbsRel</text>
+<line x1="88" y1="466.0" x2="892" y2="466.0" stroke="#ddd"/>
+<text x="78" y="471.0" text-anchor="end" font-family="sans-serif" font-size="13">0.021</text>
+<line x1="88" y1="386.4" x2="892" y2="386.4" stroke="#ddd"/>
+<text x="78" y="391.4" text-anchor="end" font-family="sans-serif" font-size="13">0.036</text>
+<line x1="88" y1="306.8" x2="892" y2="306.8" stroke="#ddd"/>
+<text x="78" y="311.8" text-anchor="end" font-family="sans-serif" font-size="13">0.051</text>
+<line x1="88" y1="227.2" x2="892" y2="227.2" stroke="#ddd"/>
+<text x="78" y="232.2" text-anchor="end" font-family="sans-serif" font-size="13">0.066</text>
+<line x1="88" y1="147.6" x2="892" y2="147.6" stroke="#ddd"/>
+<text x="78" y="152.6" text-anchor="end" font-family="sans-serif" font-size="13">0.081</text>
+<line x1="88" y1="68.0" x2="892" y2="68.0" stroke="#ddd"/>
+<text x="78" y="73.0" text-anchor="end" font-family="sans-serif" font-size="13">0.096</text>
+<line x1="88.0" y1="68" x2="88.0" y2="466" stroke="#eee"/>
+<text x="88.0" y="489" text-anchor="middle" font-family="sans-serif" font-size="13">1</text>
+<line x1="257.3" y1="68" x2="257.3" y2="466" stroke="#eee"/>
+<text x="257.3" y="489" text-anchor="middle" font-family="sans-serif" font-size="13">5</text>
+<line x1="468.8" y1="68" x2="468.8" y2="466" stroke="#eee"/>
+<text x="468.8" y="489" text-anchor="middle" font-family="sans-serif" font-size="13">10</text>
+<line x1="680.4" y1="68" x2="680.4" y2="466" stroke="#eee"/>
+<text x="680.4" y="489" text-anchor="middle" font-family="sans-serif" font-size="13">15</text>
+<line x1="765.1" y1="68" x2="765.1" y2="466" stroke="#eee"/>
+<text x="765.1" y="489" text-anchor="middle" font-family="sans-serif" font-size="13">17</text>
+<line x1="892.0" y1="68" x2="892.0" y2="466" stroke="#eee"/>
+<text x="892.0" y="489" text-anchor="middle" font-family="sans-serif" font-size="13">20</text>
+<line x1="88" y1="466" x2="892" y2="466" stroke="#333"/>
+<line x1="88" y1="68" x2="88" y2="466" stroke="#333"/>
+<polyline points="88.0,306.9 130.3,106.5 172.6,273.4 214.9,368.5 257.3,380.0 299.6,344.8 341.9,363.3 384.2,373.4 426.5,284.1 468.8,395.8 511.2,412.7 553.5,400.7 595.8,378.7 638.1,399.9 680.4,412.7 722.7,398.4 765.1,427.5 807.4,419.8 849.7,422.4 892.0,420.7" fill="none" stroke="#d1495b" stroke-width="3"/>
+<circle cx="88.0" cy="306.9" r="3" fill="#d1495b"/>
+<circle cx="130.3" cy="106.5" r="3" fill="#d1495b"/>
+<circle cx="172.6" cy="273.4" r="3" fill="#d1495b"/>
+<circle cx="214.9" cy="368.5" r="3" fill="#d1495b"/>
+<circle cx="257.3" cy="380.0" r="5" fill="#d1495b"/>
+<circle cx="299.6" cy="344.8" r="3" fill="#d1495b"/>
+<circle cx="341.9" cy="363.3" r="3" fill="#d1495b"/>
+<circle cx="384.2" cy="373.4" r="3" fill="#d1495b"/>
+<circle cx="426.5" cy="284.1" r="3" fill="#d1495b"/>
+<circle cx="468.8" cy="395.8" r="5" fill="#d1495b"/>
+<circle cx="511.2" cy="412.7" r="3" fill="#d1495b"/>
+<circle cx="553.5" cy="400.7" r="3" fill="#d1495b"/>
+<circle cx="595.8" cy="378.7" r="3" fill="#d1495b"/>
+<circle cx="638.1" cy="399.9" r="3" fill="#d1495b"/>
+<circle cx="680.4" cy="412.7" r="5" fill="#d1495b"/>
+<circle cx="722.7" cy="398.4" r="3" fill="#d1495b"/>
+<circle cx="765.1" cy="427.5" r="5" fill="#d1495b"/>
+<circle cx="807.4" cy="419.8" r="3" fill="#d1495b"/>
+<circle cx="849.7" cy="422.4" r="3" fill="#d1495b"/>
+<circle cx="892.0" cy="420.7" r="5" fill="#d1495b"/>
+<text x="460.0" y="522" text-anchor="middle" font-family="sans-serif" font-size="16">Epoch</text>
+</svg>

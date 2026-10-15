@@ -1,0 +1,18 @@
+{
+  "status": "completed",
+  "completed_epochs": 20,
+  "planned_epochs": 20,
+  "remaining_epochs": 0,
+  "initial_resume_point": "checkpoint_epoch_0005 (original checkpoint left unchanged)",
+  "best_validation_rmse_m": 0.7769630624938112,
+  "best_validation_rmse_epoch": 17,
+  "best_full_14px_local_mae_m": 0.05956617844989499,
+  "best_full_14px_local_mae_epoch": 18,
+  "best_gt_ge_20cm_sample_delta_mae_m": 0.3361806171089982,
+  "best_gt_ge_20cm_sample_delta_mae_epoch": 20,
+  "latest_checkpoint_epoch": 20,
+  "original_colab_run_metadata_and_run_status_preserved": true,
+  "checkpoint_retention": "epoch 5 through epoch 20 retained in the GPGPU4 local compute run; full epoch 17 and epoch 20 checkpoints copied and SHA256-verified in the user NFS backup under ~/gpu4_research_backup_metric_outdoor_epoch20_20261015",
+  "data_split": "train 384, validation 128; independent test319 and historical52 not used",
+  "source_full_v1": "unchanged; migration-only adapter and environment audit recorded outside the fixed source snapshot"
+}
