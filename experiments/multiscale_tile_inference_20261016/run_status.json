@@ -1,7 +1,7 @@
 {
   "experiment_id": "multiscale_tile_inference_20261016",
-  "status": "analysis_complete_remote_cleanup_unverified",
-  "recorded_jst": "2026-10-31T09:53:21+09:00",
+  "status": "analysis_complete_remote_cleanup_unverified_pr_draft",
+  "recorded_jst": "2026-10-31T09:55:40+09:00",
   "parent_commit": "3de99b0f35e9083c2c74426a57c44014c6b032c2",
   "branch": "research/multiscale-tile-inference-20261016",
   "original_frozen_source_sha_verified_files": 81,
@@ -60,18 +60,20 @@
   "interruption": "Results archive transfer was recovered and SHA256 verified. A subsequent cleanup job started after the 2026-10-31 09:22:57 preflight, then SSH returned Connection reset before job_finished; no post-cleanup receipt is available.",
   "recovery": "Do not rerun inference. Cleanup completion, remote backup receipt, cache-retention state, and post-session process/container state remain unverified.",
   "pending": [
-    "read-only audit and safe completion of interrupted remote cleanup (requires interactive DNS/GPGPU4 authentication)",
-    "push branch and create dependent pull request"
+    "read-only audit and safe completion of interrupted remote cleanup (requires interactive DNS/GPGPU4 authentication)"
   ],
   "final_gpu_cleanup_verified": false,
   "ssh_old_client": "Disconnected during cleanup. Later read-only audit attempts stopped at the DNS password prompt before authentication; no remote audit command ran.",
   "final_report_complete": true,
-  "github_pr_created": false,
+  "github_pr_created": true,
   "results_archive_sha256_verified": true,
   "results_archive_bytes": 148115613,
   "results_import_directory": "imports/bbc7829e60b6d3b1",
   "figures_complete": true,
   "analysis_complete": true,
   "remote_cleanup_state": "unknown_after_SSH_connection_reset; later audit not authenticated",
-  "remote_nfs_secondary_backup_verified": false
+  "remote_nfs_secondary_backup_verified": false,
+  "github_pr_number": 4,
+  "github_pr_url": "https://github.com/hw02l/depth-anything-v2-uav-rice-research/pull/4",
+  "github_pr_draft": true
 }

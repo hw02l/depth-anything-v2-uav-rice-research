@@ -72,5 +72,12 @@
     "raw_rgb_gt_redistributed": false,
     "derived_validation_figures_published": true,
     "attribution": "UAV3DCrop, Link-Dev; arXiv:2608.06404"
+  },
+  "pull_request": {
+    "number": 4,
+    "url": "https://github.com/hw02l/depth-anything-v2-uav-rice-research/pull/4",
+    "draft": true,
+    "base": "research/gpgpu4-migration-20261015",
+    "depends_on_pr": 3
   }
 }

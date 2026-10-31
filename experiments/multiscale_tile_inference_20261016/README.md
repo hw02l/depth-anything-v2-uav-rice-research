@@ -1,6 +1,6 @@
 # 多スケール診断・高解像度／タイル推論
 
-20epoch学習済みDepth Anything V2 Metric Outdoor Smallを固定し、Day047 validation 128画像で比較した探索的実験です。追加学習・重み更新は行わず、独立test319組と過去52組は未使用です。GTは写真測量由来のカメラ座標系Z-depth（m）であり、世界座標の鉛直草丈ではありません。
+20epoch学習済みDepth Anything V2 Metric Outdoor Smallを固定し、Day047 validation 128画像で比較した探索的実験です。追加学習・重み更新は行わず、独立test319組と過去52組は未使用です。 [PR #4](https://github.com/hw02l/depth-anything-v2-uav-rice-research/pull/4)を作成し、GPGPU4 cleanup監査未確認のためdraftにしています。GTは写真測量由来のカメラ座標系Z-depth（m）であり、世界座標の鉛直草丈ではありません。
 
 ## 主な実測結果（epoch 20）
 

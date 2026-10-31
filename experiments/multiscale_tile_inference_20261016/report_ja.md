@@ -19,7 +19,7 @@ Depth Anything V2 Metric Outdoor SmallをUAV農作物画像へ適応させた20e
 
 ## 2. 正本・既存成果の保護
 
-正本は2026-09-20のWindows研究リポジトリ。開始時のHEADは `3de99b0f35e9083c2c74426a57c44014c6b032c2`、新ブランチは `research/multiscale-tile-inference-20261016`。PR baseは `research/gpgpu4-migration-20261015`（[PR #3](https://github.com/hw02l/depth-anything-v2-uav-rice-research/pull/3)）。PR #3は `research/local-first-20261014` への依存PRであり、mainを最新成果とみなしていない。PR #1・#2・#3をマージ・クローズ・書き換えしていない。開始時の未追跡資料も保持した。
+正本は2026-09-20のWindows研究リポジトリ。開始時のHEADは `3de99b0f35e9083c2c74426a57c44014c6b032c2`、新ブランチは `research/multiscale-tile-inference-20261016`。PR baseは `research/gpgpu4-migration-20261015`（[PR #3](https://github.com/hw02l/depth-anything-v2-uav-rice-research/pull/3)）。PR #3は `research/local-first-20261014` への依存PRであり、mainを最新成果とみなしていない。PR #1・#2・#3をマージ・クローズ・書き換えしていない。開始時の未追跡資料も保持した。 本実験の変更は[PR #4](https://github.com/hw02l/depth-anything-v2-uav-rice-research/pull/4)へまとめ、PR #3のheadをbaseとするdraftとして公開した。cleanup監査未確認を解消後にready化する状態である。
 
 固定source_full_v1、旧run、原ログ、分割manifest、checkpointは編集せず、新コードと結果を独立させた。固定ソース81件と正式署名10件のSHA256を検証した。実モデルはeval、inference_mode、FP32、requires_grad=False。optimizerを復元せず、学習は実施していない。
 
