@@ -48,6 +48,6 @@
     "windows_transfer_verified": true
   },
   "gpu_client_session_closed": true,
-  "client_shutdown_warning": "The client emitted a Python interpreter-shutdown warning for a daemon thread blocked on stdin during idle-timeout exit; the terminal returned to the local PowerShell prompt and SSH reported the connection closed.",
+  "client_shutdown_error": "After the session_closed event, Python emitted Fatal Python error: _enter_buffered_busy could not acquire the stdin BufferedReader lock during interpreter shutdown, possibly due to daemon threads. The terminal returned to the local PowerShell prompt and SSH reported the connection closed.",
   "notes": "Read-only audit. No inference was rerun. User/general GPU status was not re-queried."
 }

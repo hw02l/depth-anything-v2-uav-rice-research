@@ -69,7 +69,7 @@
     "pruned_cache_arrays": 1272,
     "pruned_temporary_bytes": 106276678656,
     "post_audit_ssh_client_closed": true,
-    "client_shutdown_warning": "Python interpreter-shutdown warning for a daemon thread blocked on stdin; local PowerShell prompt returned and SSH connection closed.",
+    "client_shutdown_error": "After session_closed, Python emitted Fatal Python error: _enter_buffered_busy could not acquire the stdin BufferedReader lock during interpreter shutdown, possibly due to daemon threads. The terminal returned to the local PowerShell prompt and SSH reported the connection closed.",
     "no_inference_rerun": true,
     "weights_updated": false,
     "gpu_or_user_status_requeried_after_preflight": false

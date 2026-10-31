@@ -1,7 +1,7 @@
 {
   "experiment_id": "multiscale_tile_inference_20261016",
   "status": "analysis_complete_remote_cleanup_verified_pr_ready",
-  "recorded_jst": "2026-10-31T10:13:31+09:00",
+  "recorded_jst": "2026-10-31T10:19:20+09:00",
   "parent_commit": "3de99b0f35e9083c2c74426a57c44014c6b032c2",
   "branch": "research/multiscale-tile-inference-20261016",
   "original_frozen_source_sha_verified_files": 81,
@@ -61,7 +61,7 @@
   "recovery": "No inference rerun. Cleanup and backup integrity passed the read-only audit; the idle-timeout client returned to the local PowerShell prompt and SSH reported its connection closed.",
   "pending": [],
   "final_gpu_cleanup_verified": true,
-  "ssh_old_client": "Cleanup audit job 009_recovery_inventory finished with exit code 0. After idle timeout, the terminal returned to the local PowerShell prompt and SSH reported the connection closed. Python emitted a shutdown warning for the stdin daemon thread.",
+  "ssh_old_client": "Cleanup audit job 009_recovery_inventory finished with exit code 0. After the session_closed event and idle timeout, the terminal returned to the local PowerShell prompt and SSH reported the connection closed. The local client then emitted Fatal Python error: _enter_buffered_busy because a daemon stdin reader held a lock during interpreter shutdown.",
   "final_report_complete": true,
   "github_pr_created": true,
   "results_archive_sha256_verified": true,

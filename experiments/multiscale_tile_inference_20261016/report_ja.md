@@ -362,7 +362,7 @@ GPGPU4の読み取り専用事前確認（2026-10-31 09:22:57 JST）では、nvi
 
 予測cacheの監査対象1,344件のうち、保持対象72件は全件存在し異常なし、削除対象1,272件は全件消去済みで、消去対象が残存する例や保持対象の欠損はなかった。削除対象の一時予測データは106,276,678,656 bytes。cleanup receiptはepoch 17、18、20のcheckpoint hashを記録し、重み更新なしを示す。独立test319組・過去52組は未使用のままで、推論は再実行していない。監査結果の要約とhashは `logs/cleanup_state_audit_20261031.json` に保存した。
 
-監査結果取得後、PowerShell側のSSHクライアントは150秒のidle timeoutで終了し、端末がローカルのPowerShell promptへ戻った。SSHクライアントから `Connection to mips2.mips.cis.iwate-u.ac.jp closed.` が出力され、接続終了を確認した。終了時にstdin待機中のdaemon threadに関するPython interpreter-shutdown warningが出たが、SSH接続は切断され、リモートジョブも監査jobの終了コード0を確認済みである。その他のユーザーのプロセスやファイルには触れていない。cleanupと成果物の整合性を確認し、PR #4はreview-readyとする。
+監査結果取得後、PowerShell側のSSHクライアントは150秒のidle timeoutで終了し、端末がローカルのPowerShell promptへ戻った。SSHクライアントから `Connection to mips2.mips.cis.iwate-u.ac.jp closed.` が出力され、接続終了を確認した。その後、stdin待機中のdaemon threadがロックを保持したまま終了したため、Pythonから `Fatal Python error: _enter_buffered_busy` が出力された。SSH切断とPowerShell promptへの復帰はその前に確認済みであり、リモート監査jobも終了コード0で完了した。その他のユーザーのプロセスやファイルには触れていない。cleanupと成果物の整合性を確認し、PR #4はreview-readyである。
 ## 18. 出典
 
 データ：Link-Dev, [UAV3DCrop](https://huggingface.co/datasets/Link-Dev/UAV3DCrop) / [UAV3DCrop Depth](https://huggingface.co/datasets/Link-Dev/UAV3DCrop_depth), [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)。両dataset cardを2026-10-31に再確認し、RGBとDepthそれぞれの配布物がCC BY 4.0と明記されていることを確認した。Depth cardのカメラ視線軸Z-depth・m・float16 TIFFという定義も照合した。図は統計、色付け、予測・誤差比較、ROIを加えた加工物。原データそのものは再配布していない。
