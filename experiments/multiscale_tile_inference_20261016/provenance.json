@@ -54,15 +54,24 @@
     "scope": "pre-cleanup snapshot only; not current post-cleanup status"
   },
   "remote_cleanup": {
-    "state": "unverified_after_connection_reset_and_unauthenticated_audit",
-    "receipt_present_locally": false,
-    "nfs_secondary_backup_verified": false,
-    "prediction_cache_retention_verified": false,
-    "post_disconnect_gpu_processes_containers_ssh_verified_stopped": false,
+    "state": "cleanup_and_nfs_backup_verified_ssh_closed",
+    "audit_job_id": "009_recovery_inventory",
+    "audit_session_id": "session_20261031T100844_f084f105",
+    "audit_script_sha256": "78a078bdd5ff44e59f6072e50c71f258cb86096f7bb03a99057f3685077a4fe4",
+    "audit_status": "pass",
+    "audit_record": "logs/cleanup_state_audit_20261031.json",
+    "interrupted_cleanup_pid_26516_absent": true,
+    "owned_gpu_and_inference_processes_remaining": 0,
+    "singularity_instances": 0,
+    "nfs_secondary_backup_verified": true,
+    "prediction_cache_retention_verified": true,
+    "retained_cache_arrays": 72,
+    "pruned_cache_arrays": 1272,
+    "pruned_temporary_bytes": 106276678656,
+    "post_audit_ssh_client_closed": true,
+    "client_shutdown_warning": "Python interpreter-shutdown warning for a daemon thread blocked on stdin; local PowerShell prompt returned and SSH connection closed.",
     "no_inference_rerun": true,
-    "later_audit_attempted": true,
-    "later_audit_authenticated": false,
-    "audit_command_executed": false,
+    "weights_updated": false,
     "gpu_or_user_status_requeried_after_preflight": false
   },
   "dataset_license": {
@@ -76,7 +85,7 @@
   "pull_request": {
     "number": 4,
     "url": "https://github.com/hw02l/depth-anything-v2-uav-rice-research/pull/4",
-    "draft": true,
+    "draft": false,
     "base": "research/gpgpu4-migration-20261015",
     "depends_on_pr": 3
   }

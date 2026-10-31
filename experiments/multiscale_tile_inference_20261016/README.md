@@ -1,6 +1,6 @@
 # 多スケール診断・高解像度／タイル推論
 
-20epoch学習済みDepth Anything V2 Metric Outdoor Smallを固定し、Day047 validation 128画像で比較した探索的実験です。追加学習・重み更新は行わず、独立test319組と過去52組は未使用です。 [PR #4](https://github.com/hw02l/depth-anything-v2-uav-rice-research/pull/4)を作成し、GPGPU4 cleanup監査未確認のためdraftにしています。GTは写真測量由来のカメラ座標系Z-depth（m）であり、世界座標の鉛直草丈ではありません。
+20epoch学習済みDepth Anything V2 Metric Outdoor Smallを固定し、Day047 validation 128画像で比較した探索的実験です。追加学習・重み更新は行わず、独立test319組と過去52組は未使用です。[PR #4](https://github.com/hw02l/depth-anything-v2-uav-rice-research/pull/4)にコード・結果・報告をまとめました。GTは写真測量由来のカメラ座標系Z-depth（m）であり、世界座標の鉛直草丈ではありません。
 
 ## 主な実測結果（epoch 20）
 
@@ -35,4 +35,4 @@ CPUテスト: python -m unittest discover -s tests -p "test_multiscale.py" -v。
 
 ## 遠隔後片付けの状態
 
-2026-10-31 09:22:57 JSTの事前確認時点ではGPU compute process・ログイン利用者・Singularity instanceはありませんでした。結果転送後に始めた予測cache整理はSSHのConnection resetにより完了通知前に切断されました。その後の監査接続はDNSパスワード待ちで停止し、認証も監査コマンドも実行していません。NFS二次バックアップ、予測cache保持状態、cleanup receipt、切断後のGPU・コンテナ・SSH終了は未確認です。実験結果の再推論は不要で、後片付けの完了と誤って記録していません。詳細は run_status.json と report_ja.md を参照してください。
+2026-10-31の読み取り専用監査（GPGPU4、job `009_recovery_inventory`、監査スクリプトSHA256=`78a078bdd5ff44e59f6072e50c71f258cb86096f7bb03a99057f3685077a4fe4`）は `status=pass` で完了しました。中断していたcleanup PID 26516は存在せず、実験自身のGPU・推論プロセスとSingularity instanceもありません。NFS二次バックアップのcleanup receipt・結果アーカイブ・実行ソースのSHA256はすべてmanifestと一致しました。予測cacheは保持対象72件がすべて正常、整理対象1272件はすべて消去済みで、不整合はありません。整理対象の一時ファイル106,276,678,656 bytesが削除され、学習checkpointと重みは変更されていません。PowerShellはidle timeout後にローカルpromptへ戻り、SSH接続の終了を確認しました。終了時にstdin待機daemon threadに関するPython警告が出ましたが、SSHは明示的に切断されています。監査記録は `logs/cleanup_state_audit_20261031.json`、詳細は `report_ja.md` を参照してください。

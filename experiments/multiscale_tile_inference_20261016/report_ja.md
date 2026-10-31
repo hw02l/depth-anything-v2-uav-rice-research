@@ -19,7 +19,7 @@ Depth Anything V2 Metric Outdoor SmallをUAV農作物画像へ適応させた20e
 
 ## 2. 正本・既存成果の保護
 
-正本は2026-09-20のWindows研究リポジトリ。開始時のHEADは `3de99b0f35e9083c2c74426a57c44014c6b032c2`、新ブランチは `research/multiscale-tile-inference-20261016`。PR baseは `research/gpgpu4-migration-20261015`（[PR #3](https://github.com/hw02l/depth-anything-v2-uav-rice-research/pull/3)）。PR #3は `research/local-first-20261014` への依存PRであり、mainを最新成果とみなしていない。PR #1・#2・#3をマージ・クローズ・書き換えしていない。開始時の未追跡資料も保持した。 本実験の変更は[PR #4](https://github.com/hw02l/depth-anything-v2-uav-rice-research/pull/4)へまとめ、PR #3のheadをbaseとするdraftとして公開した。cleanup監査未確認を解消後にready化する状態である。
+正本は2026-09-20のWindows研究リポジトリ。開始時のHEADは `3de99b0f35e9083c2c74426a57c44014c6b032c2`、新ブランチは `research/multiscale-tile-inference-20261016`。PR baseは `research/gpgpu4-migration-20261015`（[PR #3](https://github.com/hw02l/depth-anything-v2-uav-rice-research/pull/3)）。PR #3は `research/local-first-20261014` への依存PRであり、mainを最新成果とみなしていない。PR #1・#2・#3をマージ・クローズ・書き換えしていない。開始時の未追跡資料も保持した。本実験の変更は[PR #4](https://github.com/hw02l/depth-anything-v2-uav-rice-research/pull/4)へまとめ、PR #3のheadをbaseとする。GPGPU4の後片付けとSSH切断を監査し、結果を本報告書とprovenanceに記録した。
 
 固定source_full_v1、旧run、原ログ、分割manifest、checkpointは編集せず、新コードと結果を独立させた。固定ソース81件と正式署名10件のSHA256を検証した。実モデルはeval、inference_mode、FP32、requires_grad=False。optimizerを復元せず、学習は実施していない。
 
@@ -356,9 +356,13 @@ validationはDay047の128画像のみ。pilot16枚を含む同じvalidationで�
 
 再現コード・設定・評価標本、ベースライン、全方式のCSV、画像単位の対応差、ランタイム、図、固定pilot、入力・標本ハッシュを本ディレクトリに保存した。CPU単体テスト28件は合格。既存source_full_v1の81ファイルと正式署名10件を照合し、既存学習成果・分割manifest・checkpointを変更していない。検証済み推論アーカイブは148,115,613 bytes、SHA256=bbc7829e60b6d3b12efa48838616de09ef79a7f49f6e45ee08cda1cb4898c073。Windows側でアーカイブ全体と内部ファイルSHA256を検証し、ローカルに複製した。RGB/GT・重み・予測cacheはGitへ含めていない。
 
-GPGPU4の読み取り専用事前確認（2026-10-31 09:22:57 JST）では、nvidia-smi --query-compute-appsは空、w/whoのログイン利用者は0人、Singularity instanceは0件だった。GPUは15MiB（Xorgとgnome-shellの表示用プロセス）で、計算利用は確認されなかった。この記録は後続cleanup開始前の一時点である。
+GPGPU4の読み取り専用事前確認（2026-10-31 09:22:57 JST）では、nvidia-smi --query-compute-appsは空、w/whoのログイン利用者は0人、Singularity instanceは0件だった。GPUは15MiB（Xorgとgnome-shellの表示用プロセス）で、計算利用は確認されなかった。この記録はcleanup開始前の一時点である。後続のcleanup監査ではGPU・利用者状況を再照会していない。
 
-研究成果アーカイブの転送後に始めたローカル予測cache整理は、SSHのConnection resetにより完了通知前に切断された。cleanupの完了receipt、NFS側二次バックアップの最終SHA256、削除対象cacheの最終状態、切断後の自己所有プロセス・コンテナ・SSHの終了状態はまだ監査できていない。したがって、cleanup完了とは記録しない。後続の監査接続はDNSパスワード入力待ちまで進んだが、認証前に停止したため、監査コマンドは実行していない。今回の継続中にGPU・利用者状況を再照会していない。計算自体はすでに完了しており、推論を再実行する理由はない。run_status.jsonとprovenance.jsonにも未確認のまま残した。
+2026-10-31 10:08 JSTに認証済みの読み取り専用監査 `009_recovery_inventory`（監査コードSHA256=`78a078bdd5ff44e59f6072e50c71f258cb86096f7bb03a99057f3685077a4fe4`）を実行し、終了コード0、`status=pass`を得た。中断cleanup PID 26516は存在せず、実験自身のGPU・推論プロセスは残っていなかった。Singularity instanceも0件だった。NFSバックアップ `gpu4_inference_backup_multiscale_20261016_bbc7829e60b6` の `complete.json` に登録されたcleanup receipt、結果アーカイブ、実行ソースのSHA256がすべて一致した。既存の学習バックアップ594,550,777 bytesも検証済みである。
+
+予測cacheの監査対象1,344件のうち、保持対象72件は全件存在し異常なし、削除対象1,272件は全件消去済みで、消去対象が残存する例や保持対象の欠損はなかった。削除対象の一時予測データは106,276,678,656 bytes。cleanup receiptはepoch 17、18、20のcheckpoint hashを記録し、重み更新なしを示す。独立test319組・過去52組は未使用のままで、推論は再実行していない。監査結果の要約とhashは `logs/cleanup_state_audit_20261031.json` に保存した。
+
+監査結果取得後、PowerShell側のSSHクライアントは150秒のidle timeoutで終了し、端末がローカルのPowerShell promptへ戻った。SSHクライアントから `Connection to mips2.mips.cis.iwate-u.ac.jp closed.` が出力され、接続終了を確認した。終了時にstdin待機中のdaemon threadに関するPython interpreter-shutdown warningが出たが、SSH接続は切断され、リモートジョブも監査jobの終了コード0を確認済みである。その他のユーザーのプロセスやファイルには触れていない。cleanupと成果物の整合性を確認し、PR #4はreview-readyとする。
 ## 18. 出典
 
 データ：Link-Dev, [UAV3DCrop](https://huggingface.co/datasets/Link-Dev/UAV3DCrop) / [UAV3DCrop Depth](https://huggingface.co/datasets/Link-Dev/UAV3DCrop_depth), [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)。両dataset cardを2026-10-31に再確認し、RGBとDepthそれぞれの配布物がCC BY 4.0と明記されていることを確認した。Depth cardのカメラ視線軸Z-depth・m・float16 TIFFという定義も照合した。図は統計、色付け、予測・誤差比較、ROIを加えた加工物。原データそのものは再配布していない。
