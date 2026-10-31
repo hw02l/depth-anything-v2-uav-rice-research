@@ -1,0 +1,10 @@
+Date: 2026-10-31 (JST)
+Command: & '.\.venv\Scripts\python.exe' -m unittest discover -s tests -v
+Runtime: repository .venv, Python 3.11, NumPy 2.5.3, OpenCV 5.0.0, PyTorch 2.14.0+cpu
+CUDA available: false
+Result: Ran 28 tests in 19.192s; OK
+Coverage: tests/test_multiscale.py, tests/test_fusion.py, tests/test_research_workspace.py
+GPU used: no
+Package installation: none
+
+The system Python 3.11 lacked NumPy and OpenCV and could not import the full suite. No packages were installed into it; the complete suite was run successfully in the existing repository .venv instead.

@@ -1,0 +1,83 @@
+{
+  "experiment_id": "multiscale_tile_inference_20261016",
+  "status": "analysis_complete_remote_cleanup_verified_pr_ready",
+  "recorded_jst": "2026-10-31T10:25:43+09:00",
+  "parent_commit": "3de99b0f35e9083c2c74426a57c44014c6b032c2",
+  "branch": "research/multiscale-tile-inference-20261016",
+  "original_frozen_source_sha_verified_files": 81,
+  "canonical_signature_verified_files": 10,
+  "windows_cpu_tests_passed": 28,
+  "cpu_test_command": "& '.\\.venv\\Scripts\\python.exe' -m unittest discover -s tests -v",
+  "cpu_test_duration_seconds": 19.192,
+  "cpu_test_cuda_available": false,
+  "baseline_reproduced_epochs": [
+    17,
+    18,
+    20
+  ],
+  "baseline_validation_images_per_epoch": 128,
+  "multiscale_diagnosed_epochs": [
+    17,
+    18,
+    20
+  ],
+  "multiscale_original_pixel_distances": [
+    14,
+    28,
+    56,
+    107,
+    214
+  ],
+  "pilot_images": 16,
+  "full_inference_epochs": [
+    17,
+    20
+  ],
+  "full_methods": [
+    "B0",
+    "B1_1036",
+    "B2_t2000_o25",
+    "B3"
+  ],
+  "images_per_full_method": 128,
+  "weights_updated": false,
+  "independent_test_used": false,
+  "historical52_used": false,
+  "zero_gt_ge20cm_sample_images_14_28px": [
+    {
+      "index": 101,
+      "image_relpath": "2025/Day047_soybean/images/101.JPG"
+    },
+    {
+      "index": 107,
+      "image_relpath": "2025/Day047_soybean/images/584.JPG"
+    }
+  ],
+  "remote_result_archive": {
+    "bytes": 148115613,
+    "sha256": "bbc7829e60b6d3b12efa48838616de09ef79a7f49f6e45ee08cda1cb4898c073",
+    "windows_complete_sha256_verified": true,
+    "complete_received_chunks": 497,
+    "chunk_base64_characters": 32768
+  },
+  "interruption": "Results archive transfer was recovered and SHA256 verified. The cleanup SSH connection reset before job_finished; a later authenticated read-only audit verified cleanup, NFS backup, cache retention, and absence of owned GPU/inference processes and containers.",
+  "recovery": "No inference rerun. Cleanup and backup integrity passed the read-only audit; the idle-timeout client returned to the local PowerShell prompt and SSH reported its connection closed.",
+  "pending": [],
+  "final_gpu_cleanup_verified": true,
+  "ssh_old_client": "Cleanup audit job 009_recovery_inventory finished with exit code 0. After the session_closed event and idle timeout, the terminal returned to the local PowerShell prompt and SSH reported the connection closed. The local client then emitted Fatal Python error: _enter_buffered_busy because a daemon stdin reader held a lock during interpreter shutdown.",
+  "final_report_complete": true,
+  "github_pr_created": true,
+  "results_archive_sha256_verified": true,
+  "results_archive_bytes": 148115613,
+  "results_import_directory": "imports/bbc7829e60b6d3b1",
+  "figures_complete": true,
+  "analysis_complete": true,
+  "remote_cleanup_state": "verified_by_authenticated_read_only_audit;_ssh_closed",
+  "remote_nfs_secondary_backup_verified": true,
+  "cleanup_audit_job_id": "009_recovery_inventory",
+  "cleanup_audit_script_sha256": "78a078bdd5ff44e59f6072e50c71f258cb86096f7bb03a99057f3685077a4fe4",
+  "cleanup_audit_record": "logs/cleanup_state_audit_20261031.json",
+  "github_pr_number": 4,
+  "github_pr_url": "https://github.com/hw02l/depth-anything-v2-uav-rice-research/pull/4",
+  "github_pr_draft": false
+}

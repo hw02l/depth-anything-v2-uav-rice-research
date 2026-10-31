@@ -1,0 +1,18 @@
+{
+  "scripts/multiscale_analyze.py": "f1d85fcb915257c03a3ab73d9fd5131573df75332207db82c4a6218f5623d1f1",
+  "scripts/multiscale_benchmark_fusion.py": "66b4bd4e8007dd6eee5ebd0963839182591ad16f55d48b5ce748346a432b4390",
+  "scripts/multiscale_compare.py": "d426c2100b48749dac84707c37c35b0d44b989864ff43f609e8e208fc46e9cab",
+  "scripts/multiscale_diagnose.py": "cecd666394f593bffe9552c51c6c1179784f05c0f05e047a40aed0c08769886e",
+  "scripts/multiscale_experiment.py": "29ca4e8350c76a186077465e31ffc46acbce685a1f61eae66ae366fdf1b74122",
+  "scripts/multiscale_export_panels.py": "20b0d5cbfaf0e2cb163874f34183f04a7291b46ba9c4703a0b9fa89d76f5e0a5",
+  "scripts/multiscale_fuse.py": "dc5cd27379d42dde8fc4411413a0ebaed0127d87a65cd92bf8a42d5d8a9821c0",
+  "scripts/multiscale_gpu_preflight.py": "61f4401bacc641bb0724e8420b679d967960468814104b6487ab4c08ba7bc4ab",
+  "scripts/multiscale_gt_figures.py": "0ce184db4ff2862f40b7259c200f256205a1dbfc558bf022c38a9b920e642b52",
+  "scripts/multiscale_render_panels.py": "f1f54c1c3ae26cfd78ec5e994ce5ae179f5f030529d66a957fd7c40c674e0417",
+  "scripts/multiscale_select.py": "78177064f3242f42c57a7c32b9dfa616d5facace26ccd2aa696e6b0404c07221",
+  "scripts/multiscale_write_report.py": "62835e1e67c47d3d04efbe5c60031e22abacfef59647fb6d13f0316d1080e9b1",
+  "src/uav_metric_research/fusion.py": "d5fa3f3e53b817f15d92f4a30c60725f9682478d7f89e4f71e16d4be5333844d",
+  "src/uav_metric_research/multiscale.py": "6a52037bc3be06567663e2e18bf6a5239e0a93be2ef737097f29bd83ecd0ac90",
+  "tests/test_fusion.py": "192722467c7b744a6353e5859a63f2d8465e9b77674cb6943102c928d5c39f59",
+  "tests/test_multiscale.py": "70549223be222a311f7b08c4b1c7a0b2be08d62388d6899ed5ce15d5be865c2b"
+}

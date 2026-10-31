@@ -1,0 +1,112 @@
+{
+  "selected_tile_label": "B2_t2000_o25",
+  "selected_tile_method": {
+    "kind": "tile",
+    "short_side": 518,
+    "tile_size": 2000,
+    "overlap": 0.25
+  },
+  "unique_pilot_images": 16,
+  "checkpoint_image_cases": 32,
+  "ranked": {
+    "B1_1036": {
+      "label": "B1_1036",
+      "joint_image_mean_large14_mae_m": 0.34243161263136845,
+      "rmse_ep17_m": 2.761078325686834,
+      "rmse_ep20_m": 3.1752574127458484,
+      "mean_seconds": 0.48882217650680104,
+      "mean_overlap_disagreement_m": null
+    },
+    "B2_t1500_o10": {
+      "label": "B2_t1500_o10",
+      "joint_image_mean_large14_mae_m": 0.33454847916649116,
+      "rmse_ep17_m": 4.873477532635409,
+      "rmse_ep20_m": 4.940147189088289,
+      "mean_seconds": 0.8205052381090354,
+      "mean_overlap_disagreement_m": 0.9632065830413591
+    },
+    "B2_t1500_o25": {
+      "label": "B2_t1500_o25",
+      "joint_image_mean_large14_mae_m": 0.33462375946732464,
+      "rmse_ep17_m": 4.845170474186067,
+      "rmse_ep20_m": 4.908029823482255,
+      "mean_seconds": 1.356885701941792,
+      "mean_overlap_disagreement_m": 0.751153082390757
+    },
+    "B2_t2000_o10": {
+      "label": "B2_t2000_o10",
+      "joint_image_mean_large14_mae_m": 0.3321145208221736,
+      "rmse_ep17_m": 3.8360985594460164,
+      "rmse_ep20_m": 3.864754877618736,
+      "mean_seconds": 0.7977950888598571,
+      "mean_overlap_disagreement_m": 0.5279416401463095
+    },
+    "B2_t2000_o25": {
+      "label": "B2_t2000_o25",
+      "joint_image_mean_large14_mae_m": 0.33114138798201176,
+      "rmse_ep17_m": 3.7530648162251907,
+      "rmse_ep20_m": 3.792726773928882,
+      "mean_seconds": 1.0609357530920533,
+      "mean_overlap_disagreement_m": 0.6404150145826861
+    }
+  },
+  "baseline_pilot_rmse": {
+    "17": 0.8776148327076274,
+    "20": 0.9238870092950778
+  },
+  "run_B3": true,
+  "B3": {
+    "trigger_before_full_results": "selected B2 pilot RMSE > 1.5 times paired B0 pilot RMSE in either epoch, or mean tile overlap disagreement > 1 m",
+    "formula": "B0 + alpha * ((Q - L(Q)) - (B0 - L(B0)))",
+    "lowpass_L": "normalized square box filter, BORDER_REFLECT_101, original pixel coordinates",
+    "radius_original_px": 107,
+    "alpha": 1.0,
+    "GT_used_during_fusion": false,
+    "parameter_policy": "One prespecified diagnostic fusion; no GT-derived scale/offset and no posthoc radius/alpha search"
+  },
+  "selection_rule": "mean over 16 images of mean epoch17/20 GT>=20cm 14px MAE; RMSE then time then label break exact ties",
+  "pilot_selection_sha256": "fdaec6e5461cd239c7ee248d53d96aefa9e5a121739d274366823d00332d173d",
+  "evidence": [
+    {
+      "path": "pilot_results/B1_1036_ep17/summary.json",
+      "sha256": "469525f4bfccc60476301c3072af4ce421b116554f4f2c5eaeaa7982be31decd"
+    },
+    {
+      "path": "pilot_results/B1_1036_ep20/summary.json",
+      "sha256": "2402abea37dbe8b093386e05799ac2f1d6b91266403c42c363924e0219e42f30"
+    },
+    {
+      "path": "pilot_results/B2_t1500_o10_ep17/summary.json",
+      "sha256": "e574036377c46dc4611cefaf22bbc40fdc046ec0873ed7e4b0b4735a8d33542a"
+    },
+    {
+      "path": "pilot_results/B2_t1500_o10_ep20/summary.json",
+      "sha256": "edfbb682870cdba47e3b018c91e59db52061e1f8405e6ae30515942ae4417df3"
+    },
+    {
+      "path": "pilot_results/B2_t1500_o25_ep17/summary.json",
+      "sha256": "d44b58e700ea34b352f936454758e1298113cac565f4246d50c85a931cc3e07a"
+    },
+    {
+      "path": "pilot_results/B2_t1500_o25_ep20/summary.json",
+      "sha256": "52b0f8e3481ef7fc77320fc0b535bdf8928314cb36912846881f5c91f2790b8e"
+    },
+    {
+      "path": "pilot_results/B2_t2000_o10_ep17/summary.json",
+      "sha256": "cfbae6314460f735e46266a21114ef9570b557443f211f6bfecd0bddabf1d0a2"
+    },
+    {
+      "path": "pilot_results/B2_t2000_o10_ep20/summary.json",
+      "sha256": "cd7c1f3bcb3b4084c258f255d0fe13337267f933d9b6b3722d83b6415989c152"
+    },
+    {
+      "path": "pilot_results/B2_t2000_o25_ep17/summary.json",
+      "sha256": "e13158a363bc6b0c8b7d1684f3f73f4b6f49935d0d9165d6b0704d1dcc8e7ff5"
+    },
+    {
+      "path": "pilot_results/B2_t2000_o25_ep20/summary.json",
+      "sha256": "24f7c79a3d635c6aa2a9d63ced0c28078a69cfa057c9e77c5ed4d080ebd471ab"
+    }
+  ],
+  "scope": "exploratory Day047 validation selection; checkpoint cases are not independent images"
+}

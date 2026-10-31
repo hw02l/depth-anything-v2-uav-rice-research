@@ -1,0 +1,53 @@
+{
+  "observed_at_jst": "2026-10-31T10:09:50+09:00",
+  "session_id": "session_20261031T100844_f084f105",
+  "host": "GPGPU4",
+  "job_id": "009_recovery_inventory",
+  "job_pid": 26847,
+  "job_exit_code": 0,
+  "audit_script_sha256": "78a078bdd5ff44e59f6072e50c71f258cb86096f7bb03a99057f3685077a4fe4",
+  "status": "pass",
+  "interrupted_cleanup_pid_26516": {
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "",
+    "interpretation": "no such process"
+  },
+  "owned_processes_remaining": [],
+  "owned_inference_process_matches": [],
+  "singularity_instances": "none",
+  "nfs_backup": {
+    "name": "gpu4_inference_backup_multiscale_20261016_bbc7829e60b6",
+    "all_manifest_hashes_match": true,
+    "original_training_backup_verified_bytes": 594550777,
+    "cleanup_receipt_sha256": "eb1d7975414317f71eaf05083f84d927b285198cf46164c0514cfc7e74589405",
+    "results_archive_bytes": 148115613,
+    "results_archive_sha256": "bbc7829e60b6d3b12efa48838616de09ef79a7f49f6e45ee08cda1cb4898c073",
+    "runtime_source_archive_sha256": "081b78cfd453dea794458dca9af859bc94535c0c99f2a1703983186fb8fe7061"
+  },
+  "prediction_cache": {
+    "inventory_rows": 1344,
+    "retained_arrays": 72,
+    "retained_missing": 0,
+    "retained_bad": 0,
+    "pruned_arrays": 1272,
+    "pruned_still_present": 0,
+    "pruned_temporary_bytes": 106276678656,
+    "retention_manifest_sha256": "5678067ae0b9a4a3ff0f290dddbcba7f26924d809add2f5eac5c46e3175a1bf3"
+  },
+  "localdata_free_bytes": {
+    "before_cleanup": 50587414528,
+    "after_cleanup": 156868247552
+  },
+  "source_and_weight_integrity": {
+    "frozen_source_signature_files_verified": 10,
+    "weights_updated": false,
+    "original_run_completed_epochs": 20,
+    "independent_test_used": false,
+    "historical52_used": false,
+    "windows_transfer_verified": true
+  },
+  "gpu_client_session_closed": true,
+  "client_shutdown_error": "After the session_closed event, Python emitted Fatal Python error: _enter_buffered_busy could not acquire the stdin BufferedReader lock during interpreter shutdown, possibly due to daemon threads. The terminal returned to the local PowerShell prompt and SSH reported the connection closed.",
+  "notes": "Read-only audit. No inference was rerun. User/general GPU status was not re-queried."
+}

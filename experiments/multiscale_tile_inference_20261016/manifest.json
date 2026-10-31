@@ -1,0 +1,14 @@
+{
+  "validation_sha256": "96c4eab0eb0075ac141ff9b17c22a45734f242f7cc895f8eaf064a4f14cc871e",
+  "images": 128,
+  "pilot_images": 16,
+  "independent_test_used": false,
+  "historical52_used": false,
+  "full14_zero_delta": {
+    "valid_pairs": 5320891492,
+    "local_mae_m": 0.0642122381635221
+  },
+  "input_inventory_sha256": "59271cd7f39fbd0cf8e5228c222d3825ae2bd11eedec641232072ddce0afa6e5",
+  "pair_manifest_sha256": "bcb56eab03bec4a44f0626da0f4814876fae67774e536e00cd9f1ad16b1f5728",
+  "pilot_selection_sha256": "fdaec6e5461cd239c7ee248d53d96aefa9e5a121739d274366823d00332d173d"
+}

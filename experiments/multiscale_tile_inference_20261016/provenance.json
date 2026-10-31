@@ -1,0 +1,92 @@
+{
+  "experiment_id": "multiscale_tile_inference_20261016",
+  "branch": "research/multiscale-tile-inference-20261016",
+  "parent_commit": "3de99b0f35e9083c2c74426a57c44014c6b032c2",
+  "pr_base": "research/gpgpu4-migration-20261015",
+  "inference": {
+    "epochs": [
+      17,
+      20
+    ],
+    "methods": [
+      "B0_518",
+      "B1_whole_1036",
+      "B2_tile_2000_overlap25",
+      "B3_GT_free_fusion"
+    ],
+    "validation_images_per_method_epoch": 128,
+    "multiscale_epochs": [
+      17,
+      18,
+      20
+    ],
+    "weights_updated": false,
+    "independent_test_used": false,
+    "historical_52_used": false
+  },
+  "source_integrity": {
+    "frozen_source_files_sha256_verified": 81,
+    "canonical_signature_files_verified": 10,
+    "archive_bytes": 148115613,
+    "archive_sha256": "bbc7829e60b6d3b12efa48838616de09ef79a7f49f6e45ee08cda1cb4898c073",
+    "windows_full_archive_sha256_verified": true,
+    "checkpoint_epochs": [
+      17,
+      18,
+      20
+    ]
+  },
+  "evaluation": {
+    "validation_day": "Day047",
+    "images": 128,
+    "gt": "photogrammetry camera-axis Z-depth in metres",
+    "gt_validity": "finite and 0 < d <= 65 m",
+    "source_split_sha256": "96c4eab0eb0075ac141ff9b17c22a45734f242f7cc895f8eaf064a4f14cc871e",
+    "cpu_unit_tests_passed": 28,
+    "bootstrap": "10,000 paired image-cluster resamples, seed 42; descriptive within Day047 only"
+  },
+  "remote_status_snapshot_before_cleanup": {
+    "time_jst": "2026-10-31T09:22:57+09:00",
+    "compute_app_processes": 0,
+    "interactive_users": 0,
+    "singularity_instances": 0,
+    "gpu_display_memory_mib": 15,
+    "scope": "pre-cleanup snapshot only; not current post-cleanup status"
+  },
+  "remote_cleanup": {
+    "state": "cleanup_and_nfs_backup_verified_ssh_closed",
+    "audit_job_id": "009_recovery_inventory",
+    "audit_session_id": "session_20261031T100844_f084f105",
+    "audit_script_sha256": "78a078bdd5ff44e59f6072e50c71f258cb86096f7bb03a99057f3685077a4fe4",
+    "audit_status": "pass",
+    "audit_record": "logs/cleanup_state_audit_20261031.json",
+    "interrupted_cleanup_pid_26516_absent": true,
+    "owned_gpu_and_inference_processes_remaining": 0,
+    "singularity_instances": 0,
+    "nfs_secondary_backup_verified": true,
+    "prediction_cache_retention_verified": true,
+    "retained_cache_arrays": 72,
+    "pruned_cache_arrays": 1272,
+    "pruned_temporary_bytes": 106276678656,
+    "post_audit_ssh_client_closed": true,
+    "client_shutdown_error": "After session_closed, Python emitted Fatal Python error: _enter_buffered_busy could not acquire the stdin BufferedReader lock during interpreter shutdown, possibly due to daemon threads. The terminal returned to the local PowerShell prompt and SSH reported the connection closed.",
+    "no_inference_rerun": true,
+    "weights_updated": false,
+    "gpu_or_user_status_requeried_after_preflight": false
+  },
+  "dataset_license": {
+    "rgb": "CC BY 4.0",
+    "depth": "CC BY 4.0",
+    "cards_checked": "2026-10-31",
+    "raw_rgb_gt_redistributed": false,
+    "derived_validation_figures_published": true,
+    "attribution": "UAV3DCrop, Link-Dev; arXiv:2608.06404"
+  },
+  "pull_request": {
+    "number": 4,
+    "url": "https://github.com/hw02l/depth-anything-v2-uav-rice-research/pull/4",
+    "draft": false,
+    "base": "research/gpgpu4-migration-20261015",
+    "depends_on_pr": 3
+  }
+}
