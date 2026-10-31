@@ -1,6 +1,6 @@
 {
   "experiment_id": "multiscale_tile_inference_20261016",
-  "created_jst": "2026-10-31T10:19:20+09:00",
+  "created_jst": "2026-10-31T10:24:02+09:00",
   "files": [
     {
       "path": "analysis_summary.json",
@@ -344,18 +344,18 @@
     },
     {
       "path": "README.md",
-      "bytes": 4850,
-      "sha256": "d0fbf1ebe331b34dd3f996e28a190bd01b00a816199334b0237f3cd2e9da9e77"
+      "bytes": 4948,
+      "sha256": "f65b9396a48f2f52f4c8623340ac5a8a7366aea0eb1bb5447a3f15e46ebe5a07"
     },
     {
       "path": "report_ja.md",
-      "bytes": 32264,
-      "sha256": "f9ca63c1fd7646f638740db5b19bfadc9969271829d4839357ef8e0dc9c94400"
+      "bytes": 32510,
+      "sha256": "62186143565dac9b6124d09f5fb86c35f3374f7656ddc466435eb08c5561f0b1"
     },
     {
       "path": "run_status.json",
-      "bytes": 3116,
-      "sha256": "c8fd114dad250e2c8e8f62023ae1d00630516f4cc930f0b43d901c8648560088"
+      "bytes": 3274,
+      "sha256": "2bdbe94ef96472bd9f16b0d1a59595f7c7738856b1308ab88ab5e292ea942bc4"
     },
     {
       "path": "runtime_metrics.csv",
@@ -371,6 +371,11 @@
       "path": "logs/cleanup_state_audit_20261031.json",
       "bytes": 2259,
       "sha256": "58d0cf978e0ae539a4033e281013beac9da6f6a1279854b9cc98e2d6b8dea803"
+    },
+    {
+      "path": "logs/cpu_tests_20261031.txt",
+      "bytes": 568,
+      "sha256": "30d07e0414e09b3e847504a3d1fbeacca98f9eb0dd6cb883bb5bb01f679ed55a"
     }
   ]
 }

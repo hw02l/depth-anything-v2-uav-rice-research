@@ -354,7 +354,7 @@ validationはDay047の128画像のみ。pilot16枚を含む同じvalidationで�
 
 ## 17. 再現・保存・後始末
 
-再現コード・設定・評価標本、ベースライン、全方式のCSV、画像単位の対応差、ランタイム、図、固定pilot、入力・標本ハッシュを本ディレクトリに保存した。CPU単体テスト28件は合格。既存source_full_v1の81ファイルと正式署名10件を照合し、既存学習成果・分割manifest・checkpointを変更していない。検証済み推論アーカイブは148,115,613 bytes、SHA256=bbc7829e60b6d3b12efa48838616de09ef79a7f49f6e45ee08cda1cb4898c073。Windows側でアーカイブ全体と内部ファイルSHA256を検証し、ローカルに複製した。RGB/GT・重み・予測cacheはGitへ含めていない。
+再現コード・設定・評価標本、ベースライン、全方式のCSV、画像単位の対応差、ランタイム、図、固定pilot、入力・標本ハッシュを本ディレクトリに保存した。2026-10-31にCPU専用の `.venv` から全テスト28件を19.192秒で実行し、すべて合格した（PyTorch 2.14.0+cpu、CUDA unavailable）。追加パッケージのインストールは行っていない。実行条件は `logs/cpu_tests_20261031.txt` に記録した。既存source_full_v1の81ファイルと正式署名10件を照合し、既存学習成果・分割manifest・checkpointを変更していない。検証済み推論アーカイブは148,115,613 bytes、SHA256=bbc7829e60b6d3b12efa48838616de09ef79a7f49f6e45ee08cda1cb4898c073。Windows側でアーカイブ全体と内部ファイルSHA256を検証し、ローカルに複製した。RGB/GT・重み・予測cacheはGitへ含めていない。
 
 GPGPU4の読み取り専用事前確認（2026-10-31 09:22:57 JST）では、nvidia-smi --query-compute-appsは空、w/whoのログイン利用者は0人、Singularity instanceは0件だった。GPUは15MiB（Xorgとgnome-shellの表示用プロセス）で、計算利用は確認されなかった。この記録はcleanup開始前の一時点である。後続のcleanup監査ではGPU・利用者状況を再照会していない。
 
