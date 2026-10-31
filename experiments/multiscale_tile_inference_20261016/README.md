@@ -31,7 +31,7 @@
 
 ## 再現と保護
 
-CPUテスト（全28件）: `.venv/Scripts/python.exe -m unittest discover -s tests -v`。環境・所要時間・結果は `logs/cpu_tests_20261031.txt` に記録しました。多尺度評価・図表生成コードは scripts/multiscale_analyze.py と scripts/multiscale_write_report.py、推論コードは scripts/multiscale_experiment.py、scripts/multiscale_diagnose.py、scripts/multiscale_fuse.py にあります。元のrun/checkpoint・固定source・分割manifestは変更していません。画像、GT、checkpoint、全画素予測cache、認証情報はGit対象外です。
+CPUテスト（全28件）: `& '.\.venv\Scripts\python.exe' -m unittest discover -s tests -v`。環境・所要時間・結果は `logs/cpu_tests_20261031.txt` に記録しました。多尺度評価・図表生成コードは scripts/multiscale_analyze.py と scripts/multiscale_write_report.py、推論コードは scripts/multiscale_experiment.py、scripts/multiscale_diagnose.py、scripts/multiscale_fuse.py にあります。元のrun/checkpoint・固定source・分割manifestは変更していません。画像、GT、checkpoint、全画素予測cache、認証情報はGit対象外です。
 
 ## 遠隔後片付けの状態
 

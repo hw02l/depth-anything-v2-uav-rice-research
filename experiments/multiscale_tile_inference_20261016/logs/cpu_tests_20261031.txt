@@ -1,5 +1,5 @@
 Date: 2026-10-31 (JST)
-Command: .venv\Scripts\python.exe -m unittest discover -s tests -v
+Command: & '.\.venv\Scripts\python.exe' -m unittest discover -s tests -v
 Runtime: repository .venv, Python 3.11, NumPy 2.5.3, OpenCV 5.0.0, PyTorch 2.14.0+cpu
 CUDA available: false
 Result: Ran 28 tests in 19.192s; OK

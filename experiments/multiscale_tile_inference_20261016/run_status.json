@@ -1,13 +1,13 @@
 {
   "experiment_id": "multiscale_tile_inference_20261016",
   "status": "analysis_complete_remote_cleanup_verified_pr_ready",
-  "recorded_jst": "2026-10-31T10:24:02+09:00",
+  "recorded_jst": "2026-10-31T10:25:43+09:00",
   "parent_commit": "3de99b0f35e9083c2c74426a57c44014c6b032c2",
   "branch": "research/multiscale-tile-inference-20261016",
   "original_frozen_source_sha_verified_files": 81,
   "canonical_signature_verified_files": 10,
   "windows_cpu_tests_passed": 28,
-  "cpu_test_command": ".venv/Scripts/python.exe -m unittest discover -s tests -v",
+  "cpu_test_command": "& '.\\.venv\\Scripts\\python.exe' -m unittest discover -s tests -v",
   "cpu_test_duration_seconds": 19.192,
   "cpu_test_cuda_available": false,
   "baseline_reproduced_epochs": [
