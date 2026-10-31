@@ -1,29 +1,38 @@
-# 多スケール診断・高解像度タイル推論
+# 多スケール診断・高解像度／タイル推論
 
-20epoch完了コミット `3de99b0f35e9083c2c74426a57c44014c6b032c2` に依存する、重み固定の新実験。PR baseは `research/gpgpu4-migration-20261015`（未マージPR #3）。PR #2はmainへのローカル統合、PR #3はPR #2のheadへの20epoch完了記録であり、既存PRを変更しない。
+20epoch学習済みDepth Anything V2 Metric Outdoor Smallを固定し、Day047 validation 128画像で比較した探索的実験です。追加学習・重み更新は行わず、独立test319組と過去52組は未使用です。GTは写真測量由来のカメラ座標系Z-depth（m）であり、世界座標の鉛直草丈ではありません。
 
-固定source_full_v1、既存checkpoint、過去run、分割manifestを変更しない。独立test319組・過去52組は使用しない。GTはカメラ座標系Z-depthであり、稲の垂直草丈ではない。
+## 主な実測結果（epoch 20）
 
-## ファイル
+|方式|絶対RMSE (m)|14px全ペア局所MAE (m)|GT差20cm以上局所MAE (m)|振幅比|符号一致率|
+|---|---:|---:|---:|---:|---:|
+|B0 全体518px|0.7942|0.05964|0.33618|0.3327|82.48%|
+|B1 全体1036px|2.4203|0.06842|0.34448|0.3862|81.91%|
+|B2 2000pxタイル・公称25%重複|3.8536|0.06983|0.34082|0.4663|83.19%|
+|B3 全体低周波＋タイル高周波|0.7940|0.06406|0.32801|0.4014|84.63%|
 
-- `config.json`: 推論前に定めた候補・指標・中止基準。
-- `manifest.json`, `image_inventory.csv`: Day047の128画像、サイズ、入力SHA256、有効画素数。
-- `pilot_selection.csv`: 作物×方向8群から各2枚、GT深度中央値の四分位順位で固定した16枚。
-- `pair_manifest.json`: 全モデルで共有する5距離×2方向の有効ペア座標SHA256。座標生成は旧方式と同じseed、順序、GT mask。
-- `gt_reference_*.csv`: **GTのみ**の実測とゼロ差分基準。学習済みモデルの推論結果ではない。
-- `figures/gt_reference_*.png`, `.svg`: GTのみの尺度・作物・方向・位置別図。
-- `code_history/baseline_004/`: baseline実行時の新コードのバイト保存。既存研究の固定ソースとは別で、監査用。以後の最適化は数値定義を変えない。
+単純な高解像度化・タイル化は14px全ペアMAEと絶対RMSEを悪化させました。GTを使わないB3は大差分MAEを下げ、絶対RMSEを保ちましたが、14px全ペアMAEと画像端誤差は悪化し、振幅比も1未満です。解像度だけで局所形状の過小推定を解消する仮説は支持されません。B3は本validation内で選んだ探索的方式で、独立test上の性能を意味しません。
 
-## 再現の入口
+## 成果物
 
-正本の仮想環境で `python -m unittest discover -s tests -p test_multiscale.py -v` を実行する。
+- report_ja.md: 方法・結果・全図・群別・限界を含む日本語報告。
+- config.json, manifest.json, pair_manifest.json, pilot_selection.csv: 設定、入力ハッシュ、共通評価ペア、予測前に固定したpilot選択。
+- baseline_reproduction.json: epoch17/18/20の基準再現。
+- multiscale_metrics.csv, method_comparison.csv, per_image_metrics.csv, group_metrics.csv, runtime_metrics.csv: 指標と画像／群／実行時間。
+- paired_differences.csv, image_variability.csv, per_image_multiscale.csv.gz: 対応付き画像差、ばらつき、尺度別画像結果。
+- provenance.json, run_status.json, results_manifest.json: 来歴、実行・未完了cleanup状態、公開ファイルSHA256。
+- figures/: 同じ尺度で作成した集計図と8枚の代表画像・境界拡大図。図はCC BY 4.0のデータから作成した加工図で、RGB/GT原本は再配布していません。
 
-`python scripts/multiscale_experiment.py prepare --output work/new_gt_preparation` は既存のvalidation128枚だけを読み、GT基準・入力ハッシュ・pilotと評価標本を新規出力する。既存出力は上書きしない。
+## データセットと図の出典
 
-GPGPU4では、自己所有localdataの独立した計算用repoにコードを配置する。`scripts/multiscale_gpu_preflight.py` で現在のGPU空き、w/who、ローカル領域、コンテナを確認し、Singularity `exec --nv --cleanenv` 内で `scripts/multiscale_experiment.py run --phase baseline` を実行する。`--help` の各パスは存在確認済みのlocaldata資産に置換する。SIFとprivate siteは既存運用記録のSHA256を照合する。ホストへのパッケージ導入・sudoは不要。
+データ: [UAV3DCrop RGB](https://huggingface.co/datasets/Link-Dev/UAV3DCrop) および [UAV3DCrop Depth](https://huggingface.co/datasets/Link-Dev/UAV3DCrop_depth)。各配布元のdataset cardはCC BY 4.0と記載しており、[ライセンス本文](https://creativecommons.org/licenses/by/4.0/)に従って出典を表示しています。図はvalidation画像・深度を切り出し、色付け、予測・誤差比較した加工物です。RGB/GT原本やcheckpointは本リポジトリに再配布していません。
 
-epoch17/20の両方が再現してから `scripts/multiscale_compare.py gate --runs <B0_ep17> <B0_ep20> --output <gate.json>` で証拠ハッシュ付きgateを作る。`scripts/multiscale_diagnose.py` がB0予測cacheを再利用して5距離を診断する。pilotは `run --phase pilot`、全128枚はpilotの実測と選択理由を保存したlockを用いて `run --phase full` とする。予測cacheは重み、RGB、方式、座標、実行ソースと内容SHA256を検証し、分析時に再利用する。
+引用: Zhou et al., “UAV3DCrop: Benchmarking 3D Reconstruction in Repeated Multi-Angle UAV Crop Surveys,” arXiv:2608.06404 (2026), https://arxiv.org/abs/2608.06404.
 
-モデルはcheckpointのcomplete markerと全ファイルSHA256を照合し、configから構築する。既知のattention名前対応96件だけを監査し、287テンソルをstrict=Trueでロードして全値の一致を確認する。optimizerはロードせず、eval、inference_mode、FP32、requires_grad=Falseを使う。
+## 再現と保護
 
-RGB/GT、重み、全画素cache、認証情報、私的SSHログはGitに含めない。元データはLink-Dev [UAV3DCrop](https://huggingface.co/datasets/Link-Dev/UAV3DCrop)／[UAV3DCrop Depth](https://huggingface.co/datasets/Link-Dev/UAV3DCrop_depth)、[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)。図はGTの統計・色付け等を加えた加工物。公開cardの許諾とZ-depthの定義を2026-10-16に確認した。
+CPUテスト: python -m unittest discover -s tests -p "test_multiscale.py" -v。多尺度評価・図表生成コードは scripts/multiscale_analyze.py と scripts/multiscale_write_report.py、推論コードは scripts/multiscale_experiment.py、scripts/multiscale_diagnose.py、scripts/multiscale_fuse.py にあります。元のrun/checkpoint・固定source・分割manifestは変更していません。画像、GT、checkpoint、全画素予測cache、認証情報はGit対象外です。
+
+## 遠隔後片付けの状態
+
+2026-10-31 09:22:57 JSTの事前確認時点ではGPU compute process・ログイン利用者・Singularity instanceはありませんでした。結果転送後に始めた予測cache整理はSSHのConnection resetにより完了通知前に切断されました。その後の監査接続はDNSパスワード待ちで停止し、認証も監査コマンドも実行していません。NFS二次バックアップ、予測cache保持状態、cleanup receipt、切断後のGPU・コンテナ・SSH終了は未確認です。実験結果の再推論は不要で、後片付けの完了と誤って記録していません。詳細は run_status.json と report_ja.md を参照してください。

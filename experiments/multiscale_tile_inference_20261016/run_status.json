@@ -1,7 +1,7 @@
 {
   "experiment_id": "multiscale_tile_inference_20261016",
-  "status": "inference_completed_transfer_interrupted",
-  "recorded_jst": "2026-10-16T02:10:03+09:00",
+  "status": "analysis_complete_remote_cleanup_unverified",
+  "recorded_jst": "2026-10-31T09:53:21+09:00",
   "parent_commit": "3de99b0f35e9083c2c74426a57c44014c6b032c2",
   "branch": "research/multiscale-tile-inference-20261016",
   "original_frozen_source_sha_verified_files": 81,
@@ -57,17 +57,21 @@
     "complete_received_chunks": 497,
     "chunk_base64_characters": 32768
   },
-  "interruption": "Windows progress-state atomic replace WinError5; old SSH client exited during archive transfer; computation was already complete",
-  "recovery": "Progress lock retry and quiet buffered relay prepared; authenticated resume required; do not rerun inference",
+  "interruption": "Results archive transfer was recovered and SHA256 verified. A subsequent cleanup job started after the 2026-10-31 09:22:57 preflight, then SSH returned Connection reset before job_finished; no post-cleanup receipt is available.",
+  "recovery": "Do not rerun inference. Cleanup completion, remote backup receipt, cache-retention state, and post-session process/container state remain unverified.",
   "pending": [
-    "complete archive transfer and full SHA256",
-    "final image-level/seam analysis and figures",
-    "detailed final Japanese report",
-    "NFS backup and final GPU/container/SSH cleanup audit",
-    "push and new PR"
+    "read-only audit and safe completion of interrupted remote cleanup (requires interactive DNS/GPGPU4 authentication)",
+    "push branch and create dependent pull request"
   ],
   "final_gpu_cleanup_verified": false,
-  "ssh_old_client": "exited after transfer interruption; new authenticated session pending",
-  "final_report_complete": false,
-  "github_pr_created": false
+  "ssh_old_client": "Disconnected during cleanup. Later read-only audit attempts stopped at the DNS password prompt before authentication; no remote audit command ran.",
+  "final_report_complete": true,
+  "github_pr_created": false,
+  "results_archive_sha256_verified": true,
+  "results_archive_bytes": 148115613,
+  "results_import_directory": "imports/bbc7829e60b6d3b1",
+  "figures_complete": true,
+  "analysis_complete": true,
+  "remote_cleanup_state": "unknown_after_SSH_connection_reset; later audit not authenticated",
+  "remote_nfs_secondary_backup_verified": false
 }
