@@ -1,0 +1,742 @@
+{
+  "experiment_id": "local_huber_20261105",
+  "created_utc": "2026-11-07T11:56:12.942913+00:00",
+  "evaluation_only": true,
+  "independent_test_used": false,
+  "signature": {
+    "method": "B0全体518px; frozen preprocess/restore/valid_gt/fixed pair sampler; final model only",
+    "groups": [
+      "E0",
+      "E1",
+      "E2",
+      "E3"
+    ],
+    "validation_images": 128,
+    "scales": [
+      14,
+      28,
+      56,
+      107,
+      214
+    ],
+    "validation_manifest_sha256": "96c4eab0eb0075ac141ff9b17c22a45734f242f7cc895f8eaf064a4f14cc871e",
+    "pair_manifest_sha256": "bcb56eab03bec4a44f0626da0f4814876fae67774e536e00cd9f1ad16b1f5728",
+    "base_model_sha256": "52769e2e95704d0862e708e8772195b861c647dd4812058eaf698a44305c3bcb",
+    "base_config_sha256": "3c6ab05881e6a76edbfd33ff393fdfb082582084e9262826bb1ac0fd2b1dac7c",
+    "final_checkpoint_sha256": {
+      "E0": "52769e2e95704d0862e708e8772195b861c647dd4812058eaf698a44305c3bcb",
+      "E1": "d912edb89b4d42cfeabef5051d97e756210019414116f60e0961084525f3a19c",
+      "E2": "b6875d59fd4ee32bbacce32664c493c885645acec906b074f2f615f27ef892b4",
+      "E3": "223b75d1f5d81844bc5702565a8291270a8ae951d6e8e7c12be9f1b3ad12e886"
+    },
+    "code_sha256": "d84f2d9d8eb9c6eef274e4a427af6341e5b4915729e8b6f12c8cde04f6a1eb82"
+  },
+  "attention_load_audit": {
+    "mode": "legacy_serialized_attention_to_runtime",
+    "renamed_tensors": 96,
+    "verified_tensors": 287,
+    "strict_load": true,
+    "loaded_values_exact": true,
+    "mapping": [
+      {
+        "stored": "backbone.encoder.layer.0.attention.attention.query.weight",
+        "runtime": "backbone.encoder.layer.0.attention.q_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.0.attention.attention.query.bias",
+        "runtime": "backbone.encoder.layer.0.attention.q_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.0.attention.attention.key.weight",
+        "runtime": "backbone.encoder.layer.0.attention.k_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.0.attention.attention.key.bias",
+        "runtime": "backbone.encoder.layer.0.attention.k_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.0.attention.attention.value.weight",
+        "runtime": "backbone.encoder.layer.0.attention.v_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.0.attention.attention.value.bias",
+        "runtime": "backbone.encoder.layer.0.attention.v_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.0.attention.output.dense.weight",
+        "runtime": "backbone.encoder.layer.0.attention.o_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.0.attention.output.dense.bias",
+        "runtime": "backbone.encoder.layer.0.attention.o_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.1.attention.attention.query.weight",
+        "runtime": "backbone.encoder.layer.1.attention.q_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.1.attention.attention.query.bias",
+        "runtime": "backbone.encoder.layer.1.attention.q_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.1.attention.attention.key.weight",
+        "runtime": "backbone.encoder.layer.1.attention.k_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.1.attention.attention.key.bias",
+        "runtime": "backbone.encoder.layer.1.attention.k_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.1.attention.attention.value.weight",
+        "runtime": "backbone.encoder.layer.1.attention.v_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.1.attention.attention.value.bias",
+        "runtime": "backbone.encoder.layer.1.attention.v_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.1.attention.output.dense.weight",
+        "runtime": "backbone.encoder.layer.1.attention.o_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.1.attention.output.dense.bias",
+        "runtime": "backbone.encoder.layer.1.attention.o_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.2.attention.attention.query.weight",
+        "runtime": "backbone.encoder.layer.2.attention.q_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.2.attention.attention.query.bias",
+        "runtime": "backbone.encoder.layer.2.attention.q_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.2.attention.attention.key.weight",
+        "runtime": "backbone.encoder.layer.2.attention.k_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.2.attention.attention.key.bias",
+        "runtime": "backbone.encoder.layer.2.attention.k_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.2.attention.attention.value.weight",
+        "runtime": "backbone.encoder.layer.2.attention.v_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.2.attention.attention.value.bias",
+        "runtime": "backbone.encoder.layer.2.attention.v_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.2.attention.output.dense.weight",
+        "runtime": "backbone.encoder.layer.2.attention.o_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.2.attention.output.dense.bias",
+        "runtime": "backbone.encoder.layer.2.attention.o_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.3.attention.attention.query.weight",
+        "runtime": "backbone.encoder.layer.3.attention.q_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.3.attention.attention.query.bias",
+        "runtime": "backbone.encoder.layer.3.attention.q_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.3.attention.attention.key.weight",
+        "runtime": "backbone.encoder.layer.3.attention.k_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.3.attention.attention.key.bias",
+        "runtime": "backbone.encoder.layer.3.attention.k_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.3.attention.attention.value.weight",
+        "runtime": "backbone.encoder.layer.3.attention.v_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.3.attention.attention.value.bias",
+        "runtime": "backbone.encoder.layer.3.attention.v_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.3.attention.output.dense.weight",
+        "runtime": "backbone.encoder.layer.3.attention.o_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.3.attention.output.dense.bias",
+        "runtime": "backbone.encoder.layer.3.attention.o_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.4.attention.attention.query.weight",
+        "runtime": "backbone.encoder.layer.4.attention.q_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.4.attention.attention.query.bias",
+        "runtime": "backbone.encoder.layer.4.attention.q_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.4.attention.attention.key.weight",
+        "runtime": "backbone.encoder.layer.4.attention.k_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.4.attention.attention.key.bias",
+        "runtime": "backbone.encoder.layer.4.attention.k_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.4.attention.attention.value.weight",
+        "runtime": "backbone.encoder.layer.4.attention.v_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.4.attention.attention.value.bias",
+        "runtime": "backbone.encoder.layer.4.attention.v_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.4.attention.output.dense.weight",
+        "runtime": "backbone.encoder.layer.4.attention.o_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.4.attention.output.dense.bias",
+        "runtime": "backbone.encoder.layer.4.attention.o_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.5.attention.attention.query.weight",
+        "runtime": "backbone.encoder.layer.5.attention.q_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.5.attention.attention.query.bias",
+        "runtime": "backbone.encoder.layer.5.attention.q_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.5.attention.attention.key.weight",
+        "runtime": "backbone.encoder.layer.5.attention.k_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.5.attention.attention.key.bias",
+        "runtime": "backbone.encoder.layer.5.attention.k_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.5.attention.attention.value.weight",
+        "runtime": "backbone.encoder.layer.5.attention.v_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.5.attention.attention.value.bias",
+        "runtime": "backbone.encoder.layer.5.attention.v_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.5.attention.output.dense.weight",
+        "runtime": "backbone.encoder.layer.5.attention.o_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.5.attention.output.dense.bias",
+        "runtime": "backbone.encoder.layer.5.attention.o_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.6.attention.attention.query.weight",
+        "runtime": "backbone.encoder.layer.6.attention.q_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.6.attention.attention.query.bias",
+        "runtime": "backbone.encoder.layer.6.attention.q_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.6.attention.attention.key.weight",
+        "runtime": "backbone.encoder.layer.6.attention.k_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.6.attention.attention.key.bias",
+        "runtime": "backbone.encoder.layer.6.attention.k_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.6.attention.attention.value.weight",
+        "runtime": "backbone.encoder.layer.6.attention.v_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.6.attention.attention.value.bias",
+        "runtime": "backbone.encoder.layer.6.attention.v_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.6.attention.output.dense.weight",
+        "runtime": "backbone.encoder.layer.6.attention.o_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.6.attention.output.dense.bias",
+        "runtime": "backbone.encoder.layer.6.attention.o_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.7.attention.attention.query.weight",
+        "runtime": "backbone.encoder.layer.7.attention.q_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.7.attention.attention.query.bias",
+        "runtime": "backbone.encoder.layer.7.attention.q_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.7.attention.attention.key.weight",
+        "runtime": "backbone.encoder.layer.7.attention.k_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.7.attention.attention.key.bias",
+        "runtime": "backbone.encoder.layer.7.attention.k_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.7.attention.attention.value.weight",
+        "runtime": "backbone.encoder.layer.7.attention.v_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.7.attention.attention.value.bias",
+        "runtime": "backbone.encoder.layer.7.attention.v_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.7.attention.output.dense.weight",
+        "runtime": "backbone.encoder.layer.7.attention.o_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.7.attention.output.dense.bias",
+        "runtime": "backbone.encoder.layer.7.attention.o_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.8.attention.attention.query.weight",
+        "runtime": "backbone.encoder.layer.8.attention.q_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.8.attention.attention.query.bias",
+        "runtime": "backbone.encoder.layer.8.attention.q_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.8.attention.attention.key.weight",
+        "runtime": "backbone.encoder.layer.8.attention.k_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.8.attention.attention.key.bias",
+        "runtime": "backbone.encoder.layer.8.attention.k_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.8.attention.attention.value.weight",
+        "runtime": "backbone.encoder.layer.8.attention.v_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.8.attention.attention.value.bias",
+        "runtime": "backbone.encoder.layer.8.attention.v_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.8.attention.output.dense.weight",
+        "runtime": "backbone.encoder.layer.8.attention.o_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.8.attention.output.dense.bias",
+        "runtime": "backbone.encoder.layer.8.attention.o_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.9.attention.attention.query.weight",
+        "runtime": "backbone.encoder.layer.9.attention.q_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.9.attention.attention.query.bias",
+        "runtime": "backbone.encoder.layer.9.attention.q_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.9.attention.attention.key.weight",
+        "runtime": "backbone.encoder.layer.9.attention.k_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.9.attention.attention.key.bias",
+        "runtime": "backbone.encoder.layer.9.attention.k_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.9.attention.attention.value.weight",
+        "runtime": "backbone.encoder.layer.9.attention.v_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.9.attention.attention.value.bias",
+        "runtime": "backbone.encoder.layer.9.attention.v_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.9.attention.output.dense.weight",
+        "runtime": "backbone.encoder.layer.9.attention.o_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.9.attention.output.dense.bias",
+        "runtime": "backbone.encoder.layer.9.attention.o_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.10.attention.attention.query.weight",
+        "runtime": "backbone.encoder.layer.10.attention.q_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.10.attention.attention.query.bias",
+        "runtime": "backbone.encoder.layer.10.attention.q_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.10.attention.attention.key.weight",
+        "runtime": "backbone.encoder.layer.10.attention.k_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.10.attention.attention.key.bias",
+        "runtime": "backbone.encoder.layer.10.attention.k_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.10.attention.attention.value.weight",
+        "runtime": "backbone.encoder.layer.10.attention.v_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.10.attention.attention.value.bias",
+        "runtime": "backbone.encoder.layer.10.attention.v_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.10.attention.output.dense.weight",
+        "runtime": "backbone.encoder.layer.10.attention.o_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.10.attention.output.dense.bias",
+        "runtime": "backbone.encoder.layer.10.attention.o_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.11.attention.attention.query.weight",
+        "runtime": "backbone.encoder.layer.11.attention.q_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.11.attention.attention.query.bias",
+        "runtime": "backbone.encoder.layer.11.attention.q_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.11.attention.attention.key.weight",
+        "runtime": "backbone.encoder.layer.11.attention.k_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.11.attention.attention.key.bias",
+        "runtime": "backbone.encoder.layer.11.attention.k_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.11.attention.attention.value.weight",
+        "runtime": "backbone.encoder.layer.11.attention.v_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.11.attention.attention.value.bias",
+        "runtime": "backbone.encoder.layer.11.attention.v_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.11.attention.output.dense.weight",
+        "runtime": "backbone.encoder.layer.11.attention.o_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.11.attention.output.dense.bias",
+        "runtime": "backbone.encoder.layer.11.attention.o_proj.bias"
+      }
+    ]
+  },
+  "models": [
+    {
+      "model_id": "E0",
+      "epoch": 20,
+      "checkpoint": "/work/local_huber_project_20261105/checkpoint_epoch_0020/model.safetensors",
+      "checkpoint_sha256": "52769e2e95704d0862e708e8772195b861c647dd4812058eaf698a44305c3bcb",
+      "reference_validation_json_sha256": "d0892a25f1a6467c92f6752fd3ace8ab34cfd415b28b63b45b634b9a30acb4cd",
+      "image_count": 128,
+      "absolute": {
+        "valid_pixels": 2668757375,
+        "mae_m": 0.5735048960437379,
+        "rmse_m": 0.7942392449109983,
+        "abs_rel": 0.0291856383240263,
+        "local_depth_delta_mae_m": 0.05963898850565961,
+        "local_pair_count": 5320891492,
+        "pearson_r": 0.9943680377017142,
+        "local_delta_stride_px": 14
+      },
+      "full14_local_mae_m": 0.05963898850565961,
+      "gt_ge20cm_14px": {
+        "pair_count": 1911836,
+        "absolute_error_sum_m": 642722.2062911987,
+        "local_mae_m": 0.3361806171089982,
+        "absolute_gt_delta_sum_m": 848277.3359375,
+        "absolute_pred_delta_sum_m": 282214.9637451172,
+        "amplitude_ratio": 0.3326918588874222,
+        "nonzero_gt_pair_count": 1911836,
+        "sign_match_count": 1576977,
+        "sign_match_rate": 0.8248495163811121
+      },
+      "saved_validation_comparison": {
+        "valid_pixels": {
+          "actual": 2668757375,
+          "reference": 2668757375,
+          "passed": true
+        },
+        "mae_m": {
+          "actual": 0.5735048960437379,
+          "reference": 0.5735048960437379,
+          "passed": true
+        },
+        "rmse_m": {
+          "actual": 0.7942392449109983,
+          "reference": 0.7942392449109983,
+          "passed": true
+        },
+        "abs_rel": {
+          "actual": 0.0291856383240263,
+          "reference": 0.0291856383240263,
+          "passed": true
+        },
+        "pearson_r": {
+          "actual": 0.9943680377017142,
+          "reference": 0.9943680377017142,
+          "passed": true
+        },
+        "local_pair_count": {
+          "actual": 5320891492,
+          "reference": 5320891492,
+          "passed": true
+        },
+        "local_depth_delta_mae_m": {
+          "actual": 0.05963898850565961,
+          "reference": 0.05963898850565961,
+          "passed": true
+        },
+        "gt_ge20_pair_count": {
+          "actual": 1911836,
+          "reference": 1911836,
+          "passed": true
+        },
+        "gt_ge20_local_mae_m": {
+          "actual": 0.3361806171089982,
+          "reference": 0.3361806171089982,
+          "passed": true
+        }
+      },
+      "pair_manifest_sha256": "bcb56eab03bec4a44f0626da0f4814876fae67774e536e00cd9f1ad16b1f5728"
+    },
+    {
+      "model_id": "E1",
+      "epoch": 5,
+      "checkpoint": "/work/local_huber_project_20261105/runs/E1/epoch_0005.pt",
+      "checkpoint_sha256": "d912edb89b4d42cfeabef5051d97e756210019414116f60e0961084525f3a19c",
+      "reference_validation_json_sha256": "fc4359ef916ca720ebbb9c300eee079134f38208191baf1fa5c21704f4fa2204",
+      "image_count": 128,
+      "absolute": {
+        "valid_pixels": 2668757375,
+        "mae_m": 0.5496361414682543,
+        "rmse_m": 0.7678376693733578,
+        "abs_rel": 0.027858300553109238,
+        "local_depth_delta_mae_m": 0.059500738358601354,
+        "local_pair_count": 5320891492,
+        "pearson_r": 0.9946987081217001,
+        "local_delta_stride_px": 14
+      },
+      "full14_local_mae_m": 0.059500738358601354,
+      "gt_ge20cm_14px": {
+        "pair_count": 1911836,
+        "absolute_error_sum_m": 640387.3146543503,
+        "local_mae_m": 0.33495933472031614,
+        "absolute_gt_delta_sum_m": 848277.3359375,
+        "absolute_pred_delta_sum_m": 286085.05569171906,
+        "amplitude_ratio": 0.33725415447477836,
+        "nonzero_gt_pair_count": 1911836,
+        "sign_match_count": 1581995,
+        "sign_match_rate": 0.8274742184999132
+      },
+      "saved_validation_comparison": {
+        "valid_pixels": {
+          "actual": 2668757375,
+          "reference": 2668757375,
+          "passed": true
+        },
+        "mae_m": {
+          "actual": 0.5496361414682543,
+          "reference": 0.5496361414682543,
+          "passed": true
+        },
+        "rmse_m": {
+          "actual": 0.7678376693733578,
+          "reference": 0.7678376693733578,
+          "passed": true
+        },
+        "abs_rel": {
+          "actual": 0.027858300553109238,
+          "reference": 0.027858300553109238,
+          "passed": true
+        },
+        "pearson_r": {
+          "actual": 0.9946987081217001,
+          "reference": 0.9946987081217001,
+          "passed": true
+        },
+        "local_pair_count": {
+          "actual": 5320891492,
+          "reference": 5320891492,
+          "passed": true
+        },
+        "local_depth_delta_mae_m": {
+          "actual": 0.059500738358601354,
+          "reference": 0.059500738358601354,
+          "passed": true
+        },
+        "gt_ge20_pair_count": {
+          "actual": 1911836,
+          "reference": 1911836,
+          "passed": true
+        },
+        "gt_ge20_local_mae_m": {
+          "actual": 0.33495933472031614,
+          "reference": 0.33495933472031614,
+          "passed": true
+        }
+      },
+      "pair_manifest_sha256": "bcb56eab03bec4a44f0626da0f4814876fae67774e536e00cd9f1ad16b1f5728"
+    },
+    {
+      "model_id": "E2",
+      "epoch": 5,
+      "checkpoint": "/work/local_huber_project_20261105/runs/E2/epoch_0005.pt",
+      "checkpoint_sha256": "b6875d59fd4ee32bbacce32664c493c885645acec906b074f2f615f27ef892b4",
+      "reference_validation_json_sha256": "d9034a23fcb783637b259b9c2c2180d3e0850dc373ff0ce9d441a7b33cb0565e",
+      "image_count": 128,
+      "absolute": {
+        "valid_pixels": 2668757375,
+        "mae_m": 0.5520908369984533,
+        "rmse_m": 0.7714739861831905,
+        "abs_rel": 0.0278166712659627,
+        "local_depth_delta_mae_m": 0.059063933266166296,
+        "local_pair_count": 5320891492,
+        "pearson_r": 0.9946668352007849,
+        "local_delta_stride_px": 14
+      },
+      "full14_local_mae_m": 0.059063933266166296,
+      "gt_ge20cm_14px": {
+        "pair_count": 1911836,
+        "absolute_error_sum_m": 635988.5064020157,
+        "local_mae_m": 0.33265850543771314,
+        "absolute_gt_delta_sum_m": 848277.3359375,
+        "absolute_pred_delta_sum_m": 284878.65807819366,
+        "amplitude_ratio": 0.33583198089732197,
+        "nonzero_gt_pair_count": 1911836,
+        "sign_match_count": 1588078,
+        "sign_match_rate": 0.8306559767678817
+      },
+      "saved_validation_comparison": {
+        "valid_pixels": {
+          "actual": 2668757375,
+          "reference": 2668757375,
+          "passed": true
+        },
+        "mae_m": {
+          "actual": 0.5520908369984533,
+          "reference": 0.5520908369984533,
+          "passed": true
+        },
+        "rmse_m": {
+          "actual": 0.7714739861831905,
+          "reference": 0.7714739861831905,
+          "passed": true
+        },
+        "abs_rel": {
+          "actual": 0.0278166712659627,
+          "reference": 0.0278166712659627,
+          "passed": true
+        },
+        "pearson_r": {
+          "actual": 0.9946668352007849,
+          "reference": 0.9946668352007849,
+          "passed": true
+        },
+        "local_pair_count": {
+          "actual": 5320891492,
+          "reference": 5320891492,
+          "passed": true
+        },
+        "local_depth_delta_mae_m": {
+          "actual": 0.059063933266166296,
+          "reference": 0.059063933266166296,
+          "passed": true
+        },
+        "gt_ge20_pair_count": {
+          "actual": 1911836,
+          "reference": 1911836,
+          "passed": true
+        },
+        "gt_ge20_local_mae_m": {
+          "actual": 0.33265850543771314,
+          "reference": 0.33265850543771314,
+          "passed": true
+        }
+      },
+      "pair_manifest_sha256": "bcb56eab03bec4a44f0626da0f4814876fae67774e536e00cd9f1ad16b1f5728"
+    },
+    {
+      "model_id": "E3",
+      "epoch": 5,
+      "checkpoint": "/work/local_huber_project_20261105/runs/E3/epoch_0005.pt",
+      "checkpoint_sha256": "223b75d1f5d81844bc5702565a8291270a8ae951d6e8e7c12be9f1b3ad12e886",
+      "reference_validation_json_sha256": "0dfc097a0ca134a9e854894c98fc4bf2f667510a91ad5011993446fa796795bf",
+      "image_count": 128,
+      "absolute": {
+        "valid_pixels": 2668757375,
+        "mae_m": 0.552443684374833,
+        "rmse_m": 0.7679214297253992,
+        "abs_rel": 0.028016341813040573,
+        "local_depth_delta_mae_m": 0.05859804299829913,
+        "local_pair_count": 5320891492,
+        "pearson_r": 0.9947116356512152,
+        "local_delta_stride_px": 14
+      },
+      "full14_local_mae_m": 0.05859804299829913,
+      "gt_ge20cm_14px": {
+        "pair_count": 1911836,
+        "absolute_error_sum_m": 631500.1751976013,
+        "local_mae_m": 0.33031085051102776,
+        "absolute_gt_delta_sum_m": 848277.3359375,
+        "absolute_pred_delta_sum_m": 285187.70311927795,
+        "amplitude_ratio": 0.3361963016542154,
+        "nonzero_gt_pair_count": 1911836,
+        "sign_match_count": 1596504,
+        "sign_match_rate": 0.8350632585640191
+      },
+      "saved_validation_comparison": {
+        "valid_pixels": {
+          "actual": 2668757375,
+          "reference": 2668757375,
+          "passed": true
+        },
+        "mae_m": {
+          "actual": 0.552443684374833,
+          "reference": 0.552443684374833,
+          "passed": true
+        },
+        "rmse_m": {
+          "actual": 0.7679214297253992,
+          "reference": 0.7679214297253992,
+          "passed": true
+        },
+        "abs_rel": {
+          "actual": 0.028016341813040573,
+          "reference": 0.028016341813040573,
+          "passed": true
+        },
+        "pearson_r": {
+          "actual": 0.9947116356512152,
+          "reference": 0.9947116356512152,
+          "passed": true
+        },
+        "local_pair_count": {
+          "actual": 5320891492,
+          "reference": 5320891492,
+          "passed": true
+        },
+        "local_depth_delta_mae_m": {
+          "actual": 0.05859804299829913,
+          "reference": 0.05859804299829913,
+          "passed": true
+        },
+        "gt_ge20_pair_count": {
+          "actual": 1911836,
+          "reference": 1911836,
+          "passed": true
+        },
+        "gt_ge20_local_mae_m": {
+          "actual": 0.33031085051102776,
+          "reference": 0.33031085051102776,
+          "passed": true
+        }
+      },
+      "pair_manifest_sha256": "bcb56eab03bec4a44f0626da0f4814876fae67774e536e00cd9f1ad16b1f5728"
+    }
+  ],
+  "per_image_csv_sha256": "634ce6a9a9075ad424c91f212e4d24adfb21ccc81702d7f84c4703c46e5b9b10"
+}

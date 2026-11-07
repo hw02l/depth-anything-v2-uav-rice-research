@@ -1,0 +1,28 @@
+{
+  "method": "B0全体518px; frozen preprocess/restore/valid_gt/fixed pair sampler; final model only",
+  "groups": [
+    "E0",
+    "E1",
+    "E2",
+    "E3"
+  ],
+  "validation_images": 128,
+  "scales": [
+    14,
+    28,
+    56,
+    107,
+    214
+  ],
+  "validation_manifest_sha256": "96c4eab0eb0075ac141ff9b17c22a45734f242f7cc895f8eaf064a4f14cc871e",
+  "pair_manifest_sha256": "bcb56eab03bec4a44f0626da0f4814876fae67774e536e00cd9f1ad16b1f5728",
+  "base_model_sha256": "52769e2e95704d0862e708e8772195b861c647dd4812058eaf698a44305c3bcb",
+  "base_config_sha256": "3c6ab05881e6a76edbfd33ff393fdfb082582084e9262826bb1ac0fd2b1dac7c",
+  "final_checkpoint_sha256": {
+    "E0": "52769e2e95704d0862e708e8772195b861c647dd4812058eaf698a44305c3bcb",
+    "E1": "d912edb89b4d42cfeabef5051d97e756210019414116f60e0961084525f3a19c",
+    "E2": "b6875d59fd4ee32bbacce32664c493c885645acec906b074f2f615f27ef892b4",
+    "E3": "223b75d1f5d81844bc5702565a8291270a8ae951d6e8e7c12be9f1b3ad12e886"
+  },
+  "code_sha256": "4f57ada6df1316d1e6300043d6ab4bdd9de98c742daf18cdde9f591314358fef"
+}

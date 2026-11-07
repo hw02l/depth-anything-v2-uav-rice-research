@@ -1,0 +1,7 @@
+{
+  "reason": "Strict-load value comparison now moves loaded tensors to CPU before exact equality check; evaluation definition, data, pairs, and checkpoints are unchanged.",
+  "previous_code_sha256": "4f57ada6df1316d1e6300043d6ab4bdd9de98c742daf18cdde9f591314358fef",
+  "resumed_code_sha256": "d84f2d9d8eb9c6eef274e4a427af6341e5b4915729e8b6f12c8cde04f6a1eb82",
+  "prior_signature_preserved": true,
+  "resume_authorized_by_cli_flag": true
+}

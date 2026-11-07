@@ -1,0 +1,54 @@
+{
+  "experiment_id": "local_huber_20261105",
+  "branch": "research/local-huber-20261105",
+  "base_commit": "49bdd188d9caa01cf9bacdf02f7aebec65537fcb",
+  "config_sha256": "1692ebf048a99b5624c69330b23ad67954aac7ab047e024c83da54a72b308127",
+  "train_manifest_sha256": "13ee3432515250eff50eeb5238dfc178c8853239074eb8cbbea2b510272b0602",
+  "validation_manifest_sha256": "96c4eab0eb0075ac141ff9b17c22a45734f242f7cc895f8eaf064a4f14cc871e",
+  "fixed_pair_manifest_sha256_actual": "bcb56eab03bec4a44f0626da0f4814876fae67774e536e00cd9f1ad16b1f5728",
+  "initial_model_sha256": "52769e2e95704d0862e708e8772195b861c647dd4812058eaf698a44305c3bcb",
+  "initial_config_sha256": "3c6ab05881e6a76edbfd33ff393fdfb082582084e9262826bb1ac0fd2b1dac7c",
+  "gpu": "GPGPU4 GTX 1080 8GB",
+  "container_sha256": "94a2c940d4a7e4c191b5de4df6eff0607b9d06f18e25be3004525ada518e292c",
+  "runs": {
+    "E1": {
+      "epochs": 5,
+      "global_step": 480,
+      "optimizer_updates_per_epoch": 96,
+      "amp_skips": 0,
+      "initialization": "epoch20 model weights only"
+    },
+    "E2": {
+      "epochs": 5,
+      "global_step": 480,
+      "optimizer_updates_per_epoch": 96,
+      "amp_skips": 0,
+      "lambda": 0.05,
+      "initialization": "epoch20 model weights only"
+    },
+    "E3": {
+      "epochs": 5,
+      "global_step": 480,
+      "optimizer_updates_per_epoch": 96,
+      "amp_skips": 0,
+      "lambda": 0.2,
+      "initialization": "epoch20 model weights only"
+    }
+  },
+  "nfs_backup": "/home1/eng-std/s0623003/gpu4_research_backup_local_huber_20261105_20261105T081949Z",
+  "nfs_backup_copy_hash_check": "passed using SOURCE_SHA256SUMS",
+  "validation_summary_csv_sha256": "113c5409caa1b1ee1e0f8fd7227a09886637c5e79abb785bee226a6f1ef61dee",
+  "independent_test_used": false,
+  "known_provenance_issue": "config.json manifest_sha256.fixed_pairs has 63 hex characters and differs from the actual fixed-pair manifest SHA256; runtime signature uses the actual file SHA256 and evaluation compares fixed coordinates. Original config was preserved.",
+  "local_analysis_files_sha256": {
+    "summarize_results.py": "50587c28f407ea7aa0e52ea9fad638e9823aed00ac13cddfca0e3068c3f0b0a8",
+    "selected_comparison.csv": "f177d9ba44a1302abca9b82eaefe194789cd6221c81506d1f6608a131d9297e8",
+    "summary.json": "ea82a32447622ad85c305e34495cd6035f1e9bd7807b6ca4f2fb9cb65a89136f",
+    "learning_curves.svg": "84dd64dee764a9fdcad761ee41c47eb1c33b213b391997bda4c7ec38a109c361",
+    "PLAN_JA.md": "d61f21469a5972c44f47beed29430486c6b492b8450bd1738d6ed2afb44d8ab8",
+    "report_ja.md": "24a52c0c8ad8316fb1583ed72d5f217e35b01f2839de29c18caa42c1899b4f8b",
+    "README_JA.md": "43e77de46e9c9aecf258fde3b74a2692f6972567c5a52de9cfb85af7c01c662e",
+    "NFS_AGGREGATION_COMMAND_JA.md": "9e7e4ba7a33ea90d71d6854d48b0cd7011c2f60289625a531e85423ef6df09b0",
+    "STATUS_JA.md": "1fc574bb10c378c5937baaca4e6f774bf8b971ec5f7fd3e4cd79342cad5936f7"
+  }
+}

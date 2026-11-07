@@ -1,0 +1,90 @@
+{
+  "experiment_id": "local_huber_20261105",
+  "analysis_date": "2026-11-07",
+  "branch": "research/local-huber-20261105",
+  "baseline_code_commit": "49bdd188d9caa01cf9bacdf02f7aebec65537fcb",
+  "data_split": {
+    "train": "UAV3DCrop Train384; Day019/028/040",
+    "validation": "Day047; 128 images",
+    "independent_test_319_used": false
+  },
+  "comparison": {
+    "models": [
+      "E0",
+      "E1",
+      "E2",
+      "E3"
+    ],
+    "selected_epoch": {
+      "E0": 20,
+      "E1": 5,
+      "E2": 5,
+      "E3": 5
+    },
+    "inference": "B0 full-frame 518px",
+    "local_pair_manifest_sha256_actual": "bcb56eab03bec4a44f0626da0f4814876fae67774e536e00cd9f1ad16b1f5728"
+  },
+  "known_config_issue": "Original config.json fixed_pairs SHA256 string has 63 characters. It was preserved unchanged; the actual 64-character manifest digest above was used in the runtime signature and coordinate checks.",
+  "initial_checkpoint": {
+    "sha256": "52769e2e95704d0862e708e8772195b861c647dd4812058eaf698a44305c3bcb",
+    "storage": "/home1/eng-std/s0623003/gpu4_research_backup_local_huber_20261105_20261105T081949Z/checkpoint_epoch_0020/model.safetensors",
+    "evidence": "Recorded in the E0 evaluation signature and E0 summary. The checkpoint itself is not listed in the bundled run-backup SOURCE_SHA256SUMS."
+  },
+  "final_checkpoints": {
+    "E1": {
+      "epoch": 5,
+      "sha256": "d912edb89b4d42cfeabef5051d97e756210019414116f60e0961084525f3a19c",
+      "storage": "/home1/eng-std/s0623003/gpu4_research_backup_local_huber_20261105_20261105T081949Z/runs/E1/epoch_0005.pt"
+    },
+    "E2": {
+      "epoch": 5,
+      "sha256": "b6875d59fd4ee32bbacce32664c493c885645acec906b074f2f615f27ef892b4",
+      "storage": "/home1/eng-std/s0623003/gpu4_research_backup_local_huber_20261105_20261105T081949Z/runs/E2/epoch_0005.pt"
+    },
+    "E3": {
+      "epoch": 5,
+      "sha256": "223b75d1f5d81844bc5702565a8291270a8ae951d6e8e7c12be9f1b3ad12e886",
+      "storage": "/home1/eng-std/s0623003/gpu4_research_backup_local_huber_20261105_20261105T081949Z/runs/E3/epoch_0005.pt"
+    }
+  },
+  "nfs_backup_root": "/home1/eng-std/s0623003/gpu4_research_backup_local_huber_20261105_20261105T081949Z",
+  "nfs_source_sha256sums_sha256": "9384f37c42c9057391806458333ea119e82d5b5471a7886bfad52ffdd5517cbf",
+  "nfs_derived_results_sha256sums_sha256": "0b7537dae29e99fb355b895a7401f6356a0b9a81457e6cc7252d47475106384d",
+  "analysis": {
+    "method": "No training during final analysis; the four final checkpoints were re-evaluated on the frozen validation set, then additive sufficient statistics were reaggregated locally.",
+    "bootstrap": {
+      "repeats": 10000,
+      "seed": 42,
+      "interval": "95% percentile",
+      "unit": "validation image cluster",
+      "same_draws_across_models_per_estimand": true
+    },
+    "contrasts": [
+      {
+        "candidate": "E3",
+        "baseline": "E1"
+      },
+      {
+        "candidate": "E2",
+        "baseline": "E1"
+      },
+      {
+        "candidate": "E3",
+        "baseline": "E0"
+      },
+      {
+        "candidate": "E2",
+        "baseline": "E0"
+      }
+    ],
+    "pool_reconciliation": "Passed at absolute tolerance 1e-7 for seven reported selected-checkpoint metrics; exact full14 and GT>=20 fixed pair counts checked.",
+    "input_hashes": {
+      "per_image_csv": "634ce6a9a9075ad424c91f212e4d24adfb21ccc81702d7f84c4703c46e5b9b10",
+      "condition_metrics_csv": "26cfba821ed1728f315cb52455c2e0fbe9e1a05c302f1e67802c82c40be629b8",
+      "selection_summary_json": "ea82a32447622ad85c305e34495cd6035f1e9bd7807b6ca4f2fb9cb65a89136f",
+      "condition_image_counts_csv": "104675f367dc0f14d496341811878275a28d945cae1d7a1eee116da01bae6a6e"
+    }
+  },
+  "checkpoint_files_committed_to_git": false,
+  "raw_rgb_gt_or_prediction_cache_committed_to_git": false
+}

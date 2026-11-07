@@ -1,0 +1,61 @@
+{
+  "analysis_method": "No inference or training; reaggregate frozen final-model per-image additive sufficient statistics and fixed GT-derived condition summaries.",
+  "models": [
+    "E0",
+    "E1",
+    "E2",
+    "E3"
+  ],
+  "validation_images": 128,
+  "contrasts": [
+    {
+      "candidate": "E3",
+      "baseline": "E1"
+    },
+    {
+      "candidate": "E2",
+      "baseline": "E1"
+    },
+    {
+      "candidate": "E3",
+      "baseline": "E0"
+    },
+    {
+      "candidate": "E2",
+      "baseline": "E0"
+    }
+  ],
+  "bootstrap": {
+    "repeats": 10000,
+    "seed": 42,
+    "interval": "95% percentile",
+    "unit": "validation image cluster",
+    "same_draws_across_models_per_estimand": true
+  },
+  "pool_reconciliation": "Passed at absolute tolerance 1e-7 for seven reported selected-checkpoint metrics; exact full14 and GT>=20 fixed pair counts checked.",
+  "inputs": {
+    "per_image_csv": {
+      "path": "analysis\\final_20261107\\inputs\\per_image_primary.csv",
+      "sha256": "634ce6a9a9075ad424c91f212e4d24adfb21ccc81702d7f84c4703c46e5b9b10"
+    },
+    "condition_metrics_csv": {
+      "path": "analysis\\final_20261107\\inputs\\compact_condition_metrics.csv",
+      "sha256": "26cfba821ed1728f315cb52455c2e0fbe9e1a05c302f1e67802c82c40be629b8"
+    },
+    "selection_summary_json": {
+      "path": "analysis\\summary.json",
+      "sha256": "ea82a32447622ad85c305e34495cd6035f1e9bd7807b6ca4f2fb9cb65a89136f"
+    },
+    "condition_image_counts_csv": {
+      "path": "analysis\\final_20261107\\inputs\\condition_image_counts.csv",
+      "sha256": "104675f367dc0f14d496341811878275a28d945cae1d7a1eee116da01bae6a6e"
+    }
+  },
+  "script_sha256": "08c5052f78975380ac77c5934348ce82b1490668ddf6673f84832e1f354112b2",
+  "limits": [
+    "Day047 is one flight date",
+    "Single training seed",
+    "Checkpoint selection used this validation set",
+    "Intervals do not include model-seed or selection uncertainty"
+  ]
+}
