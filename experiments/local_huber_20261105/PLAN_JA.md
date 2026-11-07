@@ -1,6 +1,6 @@
 # 局所深度差損失による追加学習：事前実験計画
 
-状態：事前条件を固定してE0再評価・E1〜E3各5 epochの学習・Validation128評価を完了した。2026-11-07に条件別解析、画像単位paired bootstrap、pool再評価照合、報告書と図表を完了した。現在は公開用commit・push・PR作成を進めている。実験IDは local_huber_20261105。既存runと固定sourceは変更しない。作業branchは research/local-huber-20261105、PR baseは research/multiscale-tile-inference-20261016である。PR #3/#4は確認時点でopenかつ未mergeである。
+状態：事前条件を固定してE0再評価・E1〜E3各5 epochの学習・Validation128評価を完了した。2026-11-07に条件別解析、画像単位paired bootstrap、pool再評価照合、報告書と図表を完了し、commit・pushおよびPR #5作成まで完了した。PR #5は research/multiscale-tile-inference-20261016 をbaseとするopenなPRである。実験IDは local_huber_20261105。既存runと固定sourceは変更しない。PR #3/#4は確認時点でopenかつ未mergeであり、変更していない。
 
 ## 問いと事前基準
 SiLog に元画像座標の局所差 Smooth L1 を加えたとき、追加学習量を揃えた SiLog のみと比べ、局所差再現が改善し、絶対精度を維持できるかを検証する。E0 比で 14px・GT差0.2m以上の固定標本 MAE を5%以上低減、振幅比を1に近づけ、絶対 RMSE と14px全有効ペア MAE の悪化を各5%以内、符号一致率の大幅悪化を避けることを目標とする。E1との比較も必須。単一指標の後付けによる選択をしない。最終epochと validation 選択 checkpoint は区別し、選択規則は学習前に固定する必要がある。

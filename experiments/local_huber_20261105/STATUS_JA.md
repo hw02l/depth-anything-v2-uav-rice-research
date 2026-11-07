@@ -223,3 +223,9 @@ H1の事前目標は達成せず、H2も振幅再現の実質的改善を確認�
 - `report_ja.md` を最終解析に合わせて更新し、`README_JA.md`、checkpoint hash記録、provenance、条件別Markdown表を整備した。E0初期checkpointのhashはE0 summary/評価signatureに記録される一方、取得済みrun backup `SOURCE_SHA256SUMS` にcheckpoint本体の行がないことを明記し、E1〜E3のmanifest照合と区別した。元の `config.json` は変更していない。
 - この最終解析中の再学習・追加GPU計算はない。既知の最終GPU再評価後の状態はcompute-appなし、15MiB使用であり、このターンでは接続済みSSHの出力を読み取ったのみでGPUジョブを起動していない。
 - 残作業は、公開対象のファイルを `experiments/local_huber_20261105` 内から個別選択して `git diff --check`、commit、remote branch/base最新状態の確認、push、新規PR作成を行うこと。根ディレクトリに残る他の未追跡ファイルはステージしない。
+
+### 2026-11-07 — GitHub公開完了
+- 最終解析一式をcommit `81cae91682df67cf438fa736a12e75a62d751f3a` として保存し、`research/local-huber-20261105` にpushした。対象は実験ディレクトリ内85ファイルのみである。
+- PR #5を作成した: https://github.com/hw02l/depth-anything-v2-uav-rice-research/pull/5 。baseは `research/multiscale-tile-inference-20261016`、headは `research/local-huber-20261105`。GitHub再確認時点でopen、未merge、mergeableである。比較実験のPR #3/#4は変更していない。
+- 公開前に解析成果物48件のSHA256を全件照合し、解析スクリプトのSHA256とmetadataの一致、`git -c core.whitespace=cr-at-eol diff --cached --check` の成功を確認した。
+- 未追跡の別資料および `analysis/nfs_inputs/` の取得用archiveはステージしていない。RGB/GT原本、巨大checkpoint、prediction cache、認証情報はPRに含めていない。
