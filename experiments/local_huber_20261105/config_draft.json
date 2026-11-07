@@ -1,0 +1,27 @@
+{
+  "status": "pretraining_draft_requires_gpu_preflight",
+  "seed": 42,
+  "train_candidate_pairs_per_axis_per_stride": 8192,
+  "train_candidate_sampling": "uniform with replacement within original image; independent SHA256-derived numpy generators for seed/image_id/epoch/stride/axis; candidates filtered by both original GT values and mapped crop pixel centers",
+  "train_strides_px": [
+    14,
+    28,
+    56
+  ],
+  "huber_beta_m": 0.1,
+  "large_difference_threshold_m": 0.2,
+  "small_difference_weight": 1,
+  "large_difference_weight": 3,
+  "lambda": {
+    "E1": 0.0,
+    "E2": 0.05,
+    "E3": 0.2
+  },
+  "empty_scale": "mean only nonempty scales; all empty returns graph-connected zero and is logged",
+  "best_epoch_rule": "among epochs with RMSE and full-pair 14px MAE <= 1.05 times E0, minimize sampled 14px MAE for abs GT difference >=0.2m; if within 0.000001m of minimum choose lower absolute RMSE, then earlier epoch; if no eligible epoch, none",
+  "bootstrap_iterations": 10000,
+  "bootstrap_seed": 42,
+  "gt_max_inclusive_m": 65.0,
+  "train_gt_min_inclusive_m": 0.001,
+  "evaluation_gt_mask": "existing B0 implementation; verify separately"
+}

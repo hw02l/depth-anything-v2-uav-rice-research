@@ -1,0 +1,145 @@
+{
+  "status": "fixed_before_training_after_gpu_and_b0_audit",
+  "seed": 42,
+  "train_candidate_pairs_per_axis_per_stride": 8192,
+  "train_candidate_sampling": "uniform with replacement within original image; independent SHA256-derived numpy generators for seed/image_id/epoch/stride/axis; candidates filtered by both original GT values and mapped crop pixel centers",
+  "train_strides_px": [
+    14,
+    28,
+    56
+  ],
+  "huber_beta_m": 0.1,
+  "large_difference_threshold_m": 0.2,
+  "small_difference_weight": 1,
+  "large_difference_weight": 3,
+  "lambda": {
+    "E1": 0.0,
+    "E2": 0.05,
+    "E3": 0.2
+  },
+  "empty_scale": "mean only nonempty scales; all empty returns graph-connected zero and is logged",
+  "best_epoch_rule": "Among epochs with absolute RMSE and full 14px-pair MAE no more than 1.05 times E0, minimize fixed-sample 14px GT>=0.2m local MAE; ties within 1e-6m choose lower absolute RMSE, then earlier epoch; if none eligible, select no best model.",
+  "bootstrap_iterations": 10000,
+  "bootstrap_seed": 42,
+  "gt_max_inclusive_m": 65.0,
+  "train_gt_min_inclusive_m": 0.001,
+  "evaluation_gt_mask": "existing B0 implementation; verify separately",
+  "experiment_id": "local_huber_20261105",
+  "model": "Depth Anything V2 Metric Outdoor Small; max_depth=80m",
+  "initial_checkpoint": {
+    "model_sha256": "52769e2e95704d0862e708e8772195b861c647dd4812058eaf698a44305c3bcb",
+    "config_sha256": "3c6ab05881e6a76edbfd33ff393fdfb082582084e9262826bb1ac0fd2b1dac7c",
+    "load": "strict_attention_state; model only, no old optimizer/scheduler state"
+  },
+  "data": {
+    "train_count": 384,
+    "train_days": [
+      "Day019",
+      "Day028",
+      "Day040"
+    ],
+    "validation_count": 128,
+    "validation_day": "Day047",
+    "independent_test_count": 319,
+    "independent_test_used": false,
+    "train_gt_min_inclusive_m": 0.001,
+    "gt_max_inclusive_m": 65.0,
+    "evaluation_gt_mask": "0 < depth <= 65m"
+  },
+  "input": {
+    "short_side_px": 518,
+    "training_crop_px": 518,
+    "batch_size": 1,
+    "gradient_accumulation": 4
+  },
+  "optimizer": {
+    "name": "AdamW",
+    "weight_decay": 0.01,
+    "encoder_lr": 2e-06,
+    "neck_head_lr": 2e-05,
+    "optimizer_state": "new for each group"
+  },
+  "scheduler": {
+    "name": "PolynomialLR",
+    "power": 0.9,
+    "epochs": 5,
+    "updates_per_epoch": 96,
+    "total_updates": 480,
+    "new_per_group": true
+  },
+  "amp": {
+    "training": "CUDA FP16 autocast with torch GradScaler",
+    "validation": "FP32",
+    "max_grad_norm": 1.0,
+    "scheduler_step_on_amp_skip": false
+  },
+  "local_pair_sampling": {
+    "candidate_pairs_per_axis_per_stride": 8192,
+    "axes": [
+      "horizontal",
+      "vertical"
+    ],
+    "strides_px": [
+      14,
+      28,
+      56
+    ],
+    "rng_seed": 42,
+    "seed_rule": "SHA256-derived from seed/image_relpath/epoch/stride/axis; E2/E3 share identical candidates",
+    "invalid_endpoint": "exclude unless both original GT values are finite and 0.001 <= depth <= 65m; both endpoints must map inside crop"
+  },
+  "groups": {
+    "E1": {
+      "lambda": 0.0,
+      "loss": "SiLog only; local sampling bypassed"
+    },
+    "E2": {
+      "lambda": 0.05,
+      "loss": "SiLog + lambda * weighted local SmoothL1"
+    },
+    "E3": {
+      "lambda": 0.2,
+      "loss": "SiLog + lambda * weighted local SmoothL1"
+    }
+  },
+  "e0_reference": {
+    "mae_m": 0.5735048960437379,
+    "rmse_m": 0.7942392449109983,
+    "abs_rel": 0.0291856383240263,
+    "pearson_r": 0.9943680377017142,
+    "full14_mae_m": 0.05963898850565961,
+    "full14_pair_count": 5320891492,
+    "valid_pixel_count": 2668757375,
+    "fixed_large_pair_count": 1911836,
+    "fixed_large_mae_m": 0.3361806171089982,
+    "fixed_large_amplitude_ratio": 0.3326918588874222,
+    "fixed_large_sign_match_rate": 0.8248495163811121,
+    "tolerance_m": 0.0001,
+    "tolerance_abs_rel": 1e-05,
+    "tolerance_pearson": 0.0001,
+    "tolerance_amplitude": 0.001,
+    "tolerance_rate": 0.001
+  },
+  "validation": {
+    "mode": "B0 whole-image 518px; FP32; fixed manifest and image order",
+    "pair_manifest": "experiments/multiscale_tile_inference_20261016/pair_manifest.json",
+    "all_validation_images_each_epoch": true
+  },
+  "stop_resume": "Atomic checkpoint after each completed epoch. Resume only with exact signature match; partial epoch is discarded and restarted from preceding durable checkpoint.",
+  "output": "Unique E0/E1/E2/E3 subdirectories under ~/gpu_work; never overwrite an existing run.",
+  "manifest_sha256": {
+    "train": "13ee3432515250eff50eeb5238dfc178c8853239074eb8cbbbea2b510272b0602",
+    "validation": "96c4eab0eb0075ac141ff9b17c22a45734f242f7cc895f8eaf064a4f14cc871e",
+    "fixed_pairs": "bcb56eab03bec4a4f0626da0f4814876fae67774e536e00cd9f1ad16b1f5728"
+  },
+  "gpu_environment": {
+    "host": "GPGPU4",
+    "gpu": "GTX 1080 8GB",
+    "os": "Debian 12",
+    "singularity": "4.2.2",
+    "sif_sha256": "94a2c940d4a7e4c191b5de4df6eff0607b9d06f18e25be3004525ada518e292c",
+    "torch": "2.11.0+cu126",
+    "transformers": "5.18.0",
+    "numpy": "2.1.3"
+  }
+}

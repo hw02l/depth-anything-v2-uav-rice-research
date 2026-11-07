@@ -1,0 +1,78 @@
+{
+  "model_id": "E2",
+  "epoch": 5,
+  "checkpoint": "/work/local_huber_project_20261105/runs/E2/epoch_0005.pt",
+  "checkpoint_sha256": "b6875d59fd4ee32bbacce32664c493c885645acec906b074f2f615f27ef892b4",
+  "reference_validation_json_sha256": "d9034a23fcb783637b259b9c2c2180d3e0850dc373ff0ce9d441a7b33cb0565e",
+  "image_count": 128,
+  "absolute": {
+    "valid_pixels": 2668757375,
+    "mae_m": 0.5520908369984533,
+    "rmse_m": 0.7714739861831905,
+    "abs_rel": 0.0278166712659627,
+    "local_depth_delta_mae_m": 0.059063933266166296,
+    "local_pair_count": 5320891492,
+    "pearson_r": 0.9946668352007849,
+    "local_delta_stride_px": 14
+  },
+  "full14_local_mae_m": 0.059063933266166296,
+  "gt_ge20cm_14px": {
+    "pair_count": 1911836,
+    "absolute_error_sum_m": 635988.5064020157,
+    "local_mae_m": 0.33265850543771314,
+    "absolute_gt_delta_sum_m": 848277.3359375,
+    "absolute_pred_delta_sum_m": 284878.65807819366,
+    "amplitude_ratio": 0.33583198089732197,
+    "nonzero_gt_pair_count": 1911836,
+    "sign_match_count": 1588078,
+    "sign_match_rate": 0.8306559767678817
+  },
+  "saved_validation_comparison": {
+    "valid_pixels": {
+      "actual": 2668757375,
+      "reference": 2668757375,
+      "passed": true
+    },
+    "mae_m": {
+      "actual": 0.5520908369984533,
+      "reference": 0.5520908369984533,
+      "passed": true
+    },
+    "rmse_m": {
+      "actual": 0.7714739861831905,
+      "reference": 0.7714739861831905,
+      "passed": true
+    },
+    "abs_rel": {
+      "actual": 0.0278166712659627,
+      "reference": 0.0278166712659627,
+      "passed": true
+    },
+    "pearson_r": {
+      "actual": 0.9946668352007849,
+      "reference": 0.9946668352007849,
+      "passed": true
+    },
+    "local_pair_count": {
+      "actual": 5320891492,
+      "reference": 5320891492,
+      "passed": true
+    },
+    "local_depth_delta_mae_m": {
+      "actual": 0.059063933266166296,
+      "reference": 0.059063933266166296,
+      "passed": true
+    },
+    "gt_ge20_pair_count": {
+      "actual": 1911836,
+      "reference": 1911836,
+      "passed": true
+    },
+    "gt_ge20_local_mae_m": {
+      "actual": 0.33265850543771314,
+      "reference": 0.33265850543771314,
+      "passed": true
+    }
+  },
+  "pair_manifest_sha256": "bcb56eab03bec4a44f0626da0f4814876fae67774e536e00cd9f1ad16b1f5728"
+}
