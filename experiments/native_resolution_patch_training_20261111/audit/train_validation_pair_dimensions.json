@@ -1,0 +1,15 @@
+{
+  "status": "pass",
+  "train_pairs": 384,
+  "validation_pairs": 128,
+  "independent_test_read": false,
+  "shape_counts_by_split": {
+    "train:3956x5280": 384,
+    "validation:3956x5280": 128
+  },
+  "pair_count": 512,
+  "rgb_gt_dimension_mismatches": 0,
+  "all_crops_support_1036px": true,
+  "elapsed_seconds": 242.91300700005377,
+  "csv": "train_validation_pair_dimensions.csv"
+}
