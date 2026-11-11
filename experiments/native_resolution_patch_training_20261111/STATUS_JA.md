@@ -21,17 +21,18 @@
 - Codex右側ターミナルでGPGPU4の読み取り専用preflightを実行した。GeForce GTX 1080、総VRAM8192MiB/空き8098MiB、compute process 0、login session 1、`~/gpu_work`実体 `/localdata/s0623003`、40GB中約14GB使用・約26GB空き、Singularity CE 4.2.2を確認した。Formal training開始直前にもfresh preflightを行う。
 - GPU上の既存epoch20 checkpoint copy `/localdata/s0623003/local_huber_project_20261105/checkpoint_epoch_0020/` の実SHA256は、model `52769e2e95704d0862e708e8772195b861c647dd4812058eaf698a44305c3bcb`、config `3c6ab05881e6a76edbfd33ff393fdfb082582084e9262826bb1ac0fd2b1dac7c`。記録値と一致した。既存checkpointは読み取りのみ。
 - GPU用SIF、既存Python拡張環境、固定source_full_v1のパスが存在することを確認した。UAV3DCrop RGB/Depthはmigration_work_20261015配下のローカル領域にあり、再ダウンロードしない。
+- GPGPU4に新規root `~/gpu_work/native_resolution_patch_training_20261111` を作成し、push済みbranchをsparse checkoutした。Independent test manifestはcheckoutされていない。
+- 初期checkpointを新rootの `initial_checkpoint/` へ複製し、model/config SHA256を再照合した。`data.py`、`losses.py`、`metrics.py`のみ既存固定sourceからコピーし、3ファイルのSHA256一致を確認した。元のcheckpoint/source/dataは変更していない。
+- fresh preflight receiptをGPU rootの `preflight/gpu_preflight_receipt.json` に保存した。SingularityコンテナでPyTorch 2.11.0+cu126、Transformers 5.18.0、NumPy 2.1.3を確認し、CUDA利用可、GeForce GTX 1080を認識した。
 
 ## 未完了
 
-1. 新規専用GPU root `~/gpu_work/native_resolution_patch_training_20261111` を作り、初期checkpointを新rootへ複製する。既存run/data/checkpointは変更しない。
-2. 実験コード・manifest・configをGPU専用rootへ配置し、train/validation/pair manifestのSHAを照合する。
-3. fresh preflight JSONを保存し、pilot画像に限定してC0/F1/F2の実モデルCUDA AMP forward/backward、data loading throughput、VRAM、checkpoint save/resumeを確認する。
-4. 固定16 validation画像でP0/P1/P2の推論速度・tile coverage・境界処理をprofileする。pilot重みは正式runへ流用しない。
-5. 事前ルールに従い予算960 updateをconfigへlockし、source/config hashesを保存する。
-6. GPUに競合がないことをfresh確認後、3群を同一初期checkpoint・共通条件で学習し、各epoch評価・checkpoint・再開情報を保存する。
-7. 全9組合せのValidation128評価、paired bootstrap、図表、改善/悪化例、日本語詳細報告、checkpoint SHA/provenanceを作成する。
-8. 大容量ファイルを含めず、専用branchをpushし、PR #5のbranchをbaseとするPRを作成してCodexへ添付する。
+1. GPGPU4でfresh preflightを取り直し、pilot画像に限定してC0/F1/F2の実モデルCUDA AMP forward/backward、data loading throughput、VRAM、checkpoint save/resumeを確認する。
+2. 固定16 validation画像でP0/P1/P2の推論速度・tile coverage・境界処理をprofileする。pilot重みは正式runへ流用しない。
+3. 事前ルールに従い予算960 updateをconfigへlockし、source/config hashesを保存する。
+4. GPUに競合がないことをfresh確認後、3群を同一初期checkpoint・共通条件で学習し、各epoch評価・checkpoint・再開情報を保存する。
+5. 全9組合せのValidation128評価、paired bootstrap、図表、改善/悪化例、日本語詳細報告、checkpoint SHA/provenanceを作成する。
+6. 大容量ファイルを含めず、専用branchをpushし、PR #5のbranchをbaseとするPRを作成してCodexへ添付する。
 
 ## 再開時の確認
 

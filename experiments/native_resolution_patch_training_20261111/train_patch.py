@@ -79,7 +79,7 @@ def check_initial_hashes(checkpoint: Path) -> dict[str, str]:
 def check_gpu_receipt(path: Path) -> dict[str, Any]:
     receipt = json.loads(path.read_text(encoding="utf-8"))
     age = time.time() - float(receipt.get("unix_time", 0))
-    if receipt.get("status") != "available" or receipt.get("hostname", "").lower() != "gpgpu4":
+    if receipt.get("status") != "available" or receipt.get("hostname", "").split(".")[0].lower() != "gpgpu4":
         raise RuntimeError("Fresh available GPGPU4 receipt is required")
     if not 0 <= age <= 300:
         raise RuntimeError(f"GPU receipt is stale ({age:.1f}s)")
