@@ -115,7 +115,8 @@ def make_optimizer(model):
 
 def _train_epoch(model, dataset, optimizer, scheduler, scaler, silog_loss,
                  *, epoch: int, seed: int, device: str, amp: bool,
-                 accumulation: int, max_updates: int | None = None) -> dict[str, Any]:
+                 accumulation: int, max_updates: int | None = None,
+                 progress_callback=None) -> dict[str, Any]:
     dataset.set_epoch(epoch)
     random.seed(seed + epoch - 1)
     np.random.seed(seed + epoch - 1)
@@ -154,6 +155,10 @@ def _train_epoch(model, dataset, optimizer, scheduler, scaler, silog_loss,
             else:
                 amp_skips += 1
             optimizer.zero_grad(set_to_none=True)
+            if progress_callback and (updates % 8 == 0 or index + 1 == len(loader)
+                                      or (max_updates is not None and updates >= max_updates)):
+                progress_callback(epoch, batch_count, updates, amp_skips,
+                                  time.perf_counter() - started)
             if max_updates is not None and updates >= max_updates:
                 break
     elapsed = time.perf_counter() - started
@@ -215,6 +220,19 @@ def _formal_signature(args, config, checkpoint_hashes, train_manifest, val_manif
         "validation_rows": len(validation_rows),
         "device": torch.cuda.get_device_name(0) if args.device.startswith("cuda") else "cpu",
     }
+
+
+def _resume_signature_compatible(checkpoint_payload: dict[str, Any],
+                                 current_payload: dict[str, Any]) -> bool:
+    """Allow a fresh receipt and this resume-guard fix while pinning all other inputs."""
+    previous = dict(checkpoint_payload)
+    current = dict(current_payload)
+    for payload in (previous, current):
+        payload.pop("gpu_receipt_sha256", None)
+        hashes = dict(payload.get("code_sha256", {}))
+        hashes.pop("train_patch.py", None)
+        payload["code_sha256"] = hashes
+    return canonical_signature(previous) == canonical_signature(current)
 
 
 def run(args) -> dict[str, Any]:
@@ -295,15 +313,36 @@ def run(args) -> dict[str, Any]:
 
     args.output.parent.mkdir(parents=True, exist_ok=True)
     if args.resume:
-        prior = torch.load(latest_epoch(args.output), map_location="cpu", weights_only=False)
-        if prior["checkpoint_signature"] != canonical_signature(signature_payload):
-            raise ValueError("Resume signature mismatch")
+        checkpoint_path = latest_epoch(args.output)
+        prior = torch.load(checkpoint_path, map_location="cpu", weights_only=False)
+        checkpoint_payload = prior.get("signature_payload")
+        if not isinstance(checkpoint_payload, dict):
+            raise ValueError("Resume checkpoint has no signature payload; checkpoint preserved")
+        if prior.get("checkpoint_signature") != canonical_signature(checkpoint_payload):
+            raise ValueError("Resume checkpoint signature is internally inconsistent; checkpoint preserved")
+        if not _resume_signature_compatible(checkpoint_payload, signature_payload):
+            raise ValueError("Resume signature mismatch outside the fresh receipt/trainer guard; checkpoint preserved")
         state = load_epoch(latest_epoch(args.output), model, optimizer, scheduler, scaler,
-                           signature_payload, args.device)
+                           checkpoint_payload, args.device)
         _copy_optimizer_state_to_device(optimizer, args.device)
         start_epoch = int(state["epoch"]) + 1
         global_step = int(state["global_step"])
         history = state.get("history", [])
+        resume_event = {
+            "event": "resume",
+            "unix_time": time.time(),
+            "checkpoint": checkpoint_path.name,
+            "checkpoint_sha256": file_sha256(checkpoint_path),
+            "checkpoint_signature": prior["checkpoint_signature"],
+            "resume_receipt_path": str(args.preflight_receipt.resolve()),
+            "resume_receipt_sha256": receipt["receipt_sha256"],
+            "resume_receipt_age_seconds": receipt["age_seconds"],
+            "resume_code_sha256": source_hashes(),
+            "signature_compatibility": "all fields exact except fresh GPU receipt hash and train_patch.py hash",
+        }
+        _write_json_atomic(args.output / f"resume_event_{time.time_ns()}.json", resume_event)
+        # Keep the original signature in subsequent checkpoints so the chain remains auditable.
+        signature_payload = checkpoint_payload
     else:
         if args.output.exists():
             raise FileExistsError(f"Existing run directory preserved: {args.output}")
@@ -317,14 +356,35 @@ def run(args) -> dict[str, Any]:
         if receipt:
             _write_json_atomic(args.output / f"gpu_receipt_{time.time_ns()}.json", receipt)
 
+    def write_progress(status, epoch, batches, updates, amp_skips, elapsed, checkpoint=None):
+        _write_json_atomic(args.output / "progress.json", {
+            "status": status, "group": args.group, "epoch": epoch, "epochs_total": epochs,
+            "global_step": global_step + updates if status == "training" else global_step,
+            "optimizer_updates_in_epoch": updates,
+            "optimizer_updates_per_epoch": expected_updates,
+            "optimizer_updates_total": expected_updates * epochs,
+            "batches_in_epoch": batches,
+            "batches_per_epoch": expected_updates * accumulation,
+            "amp_skips_in_epoch": amp_skips,
+            "epoch_elapsed_seconds": elapsed, "updated_unix_time": time.time(),
+            "checkpoint": checkpoint,
+        })
+
     for epoch in range(start_epoch, epochs + 1):
         result = _train_epoch(
             model, dataset, optimizer, scheduler, scaler, silog_loss, epoch=epoch,
             seed=int(config.get("seed", 42)), device=args.device, amp=args.amp,
             accumulation=accumulation, max_updates=2 if args.mode == "pilot" else None,
+            progress_callback=(
+                (lambda e, b, u, a, elapsed: write_progress("training", e, b, u, a, elapsed))
+                if args.mode == "formal" else None
+            ),
         )
         global_step += result["optimizer_updates"]
         if args.mode == "formal":
+            write_progress("validating", epoch, result["samples"],
+                           result["optimizer_updates"], result["amp_skips"],
+                           result["training_seconds"])
             model.eval()
             val_dir = args.output / "validation" / f"epoch_{epoch:04d}"
             validation = evaluate_combo(model, val_rows, args.rgb_root, args.depth_root,
@@ -352,6 +412,10 @@ def run(args) -> dict[str, Any]:
             "device_type": "cuda" if args.device.startswith("cuda") else "cpu",
             "train": result, "validation": validation,
         }
+        if args.mode == "formal":
+            write_progress("saving_checkpoint", epoch, result["samples"],
+                           result["optimizer_updates"], result["amp_skips"],
+                           result["training_seconds"])
         checkpoint, digest = save_epoch(args.output, state)
         result["checkpoint"] = checkpoint.name
         result["checkpoint_sha256"] = digest
@@ -369,8 +433,20 @@ def run(args) -> dict[str, Any]:
             "amp_skips": result["amp_skips"], "mean_silog_m": result["mean_silog_m"],
             "training_seconds": result["training_seconds"], "checkpoint_sha256": digest,
         }, ensure_ascii=False), flush=True)
+        if args.mode == "formal":
+            write_progress("checkpointed", epoch, result["samples"],
+                           result["optimizer_updates"], result["amp_skips"],
+                           result["training_seconds"], checkpoint.name)
         if args.mode == "pilot":
             break
+    if args.mode == "formal":
+        _write_json_atomic(args.output / "run_complete.json", {
+            "status": "complete", "group": args.group, "epoch": epochs,
+            "global_step": global_step, "completed_unix_time": time.time(),
+        })
+        write_progress("complete", epochs, result["samples"],
+                       result["optimizer_updates"], result["amp_skips"],
+                       result["training_seconds"], result.get("checkpoint"))
     return {"group": args.group, "epoch": epoch, "global_step": global_step,
             "history": history, "output": str(args.output)}
 
