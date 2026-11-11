@@ -355,6 +355,12 @@ def run(args) -> dict[str, Any]:
         checkpoint, digest = save_epoch(args.output, state)
         result["checkpoint"] = checkpoint.name
         result["checkpoint_sha256"] = digest
+        if args.mode == "pilot":
+            restored = load_epoch(checkpoint, model, optimizer, scheduler, scaler,
+                                  signature_payload, args.device)
+            if int(restored["epoch"]) != epoch or int(restored["global_step"]) != global_step:
+                raise RuntimeError("GPU pilot checkpoint resume round-trip returned the wrong epoch/step")
+            result["checkpoint_resume_roundtrip"] = "pass"
         _write_json_atomic(args.output / f"epoch_{epoch:04d}.json", result)
         _write_epoch_csv(args.output / "epoch_metrics.csv", history)
         print(json.dumps({
