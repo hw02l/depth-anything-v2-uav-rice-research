@@ -15,7 +15,7 @@ import cv2
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "src"))
 from uav_metric_research import multiscale as m
-from data_patch import load_pair
+from data_patch import load_pair, rgb_unit_float_to_uint8
 from inference import infer_depth, profile_tiles
 
 SCALES = (14, 28, 56, 107, 214)
@@ -98,7 +98,8 @@ def evaluate_one(model, row: dict[str, str], image_index: int, rgb_root: str | P
                  depth_root: str | Path, device: str, method: str,
                  expected_image_pairs: dict[str, Any]) -> tuple[dict[str, Any], list[dict[str, Any]], list[dict[str, Any]], dict[str, Any]]:
     rgb, gt = load_pair(row, rgb_root, depth_root)
-    inferred = infer_depth(model, rgb.astype(np.uint8), device, method)
+    rgb_u8 = rgb_unit_float_to_uint8(rgb)
+    inferred = infer_depth(model, rgb_u8, device, method)
     pred = inferred.prediction
     m.validate_prediction(pred, gt)
 
@@ -134,7 +135,7 @@ def evaluate_one(model, row: dict[str, str], image_index: int, rgb_root: str | P
         "nonoverlap_fraction": profile["nonoverlap_fraction"],
         "overlap_fraction": profile["overlap_fraction"],
     }
-    del rgb, gt, pred, inferred
+    del rgb, rgb_u8, gt, pred, inferred
     return image_row, local_rows, boundaries, {"sampled": pooled_local, "profile": profile}
 
 
@@ -240,3 +241,4 @@ def evaluate_combo(model, rows, rgb_root, depth_root, device, method, pair_manif
         _write_csv(output_dir / f"per_image_boundary_{group}_{method}.csv", boundary_rows)
     result_path.write_text(json.dumps(summary, ensure_ascii=False, indent=2, allow_nan=False), encoding="utf-8")
     return summary
+
