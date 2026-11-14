@@ -11,7 +11,7 @@ import torch
 import torch.nn.functional as F
 
 from uav_metric_research import multiscale as m
-from data_patch import IMAGENET_MEAN, IMAGENET_STD, round_multiple
+from data_patch import IMAGENET_MEAN, IMAGENET_STD
 
 
 @dataclass
@@ -26,11 +26,27 @@ class InferenceResult:
 
 
 def _input(rgb: np.ndarray, side: int) -> torch.Tensor:
-    h, w = rgb.shape[:2]
-    scale = side / min(h, w)
-    rh, rw = round_multiple(h * scale), round_multiple(w * scale)
-    resized = cv2.resize(rgb.astype(np.float32) / 255.0, (rw, rh), interpolation=cv2.INTER_CUBIC)
-    normalized = (resized - IMAGENET_MEAN) / IMAGENET_STD
+    validate_rgb_uint8(rgb)
+    return m.preprocess(rgb, side)
+
+
+def validate_rgb_uint8(rgb: np.ndarray) -> None:
+    """Require original RGB bytes; reject unit floats and their black uint8 casts."""
+    if not isinstance(rgb, np.ndarray):
+        raise TypeError("RGB must be a NumPy array")
+    if rgb.dtype != np.uint8:
+        raise TypeError(f"Inference RGB must be uint8 [0, 255], got {rgb.dtype}")
+    if rgb.ndim != 3 or rgb.shape[2] != 3 or min(rgb.shape[:2]) < 1:
+        raise ValueError(f"Inference RGB must have shape HxWx3, got {rgb.shape}")
+    # A unit-float image accidentally cast to uint8 becomes all 0/1. Such an
+    # array is indistinguishable from genuinely black bytes, so fail closed.
+    if int(rgb.max()) <= 1:
+        raise ValueError("RGB is all 0/1; likely a [0,1] image was cast to uint8")
+
+
+def _native_input(rgb: np.ndarray) -> torch.Tensor:
+    validate_rgb_uint8(rgb)
+    normalized = (rgb.astype(np.float32) / 255.0 - IMAGENET_MEAN) / IMAGENET_STD
     return torch.from_numpy(np.ascontiguousarray(normalized.transpose(2, 0, 1))).float()
 
 
@@ -62,6 +78,7 @@ def _seam_distance(shape: tuple[int, int], boxes: list[tuple[int, int, int, int]
 def infer_depth(model, rgb: np.ndarray, device: str, method: str) -> InferenceResult:
     if method not in ("P0", "P1", "P2"):
         raise ValueError(f"Unknown inference method {method}")
+    validate_rgb_uint8(rgb)
     h, w = rgb.shape[:2]
     if method == "P0":
         tensor = m.preprocess(rgb, 518)
@@ -97,8 +114,7 @@ def infer_depth(model, rgb: np.ndarray, device: str, method: str) -> InferenceRe
             if method == "P1":
                 tensor = _input(crop, input_size)
             else:
-                normalized = (crop.astype(np.float32) / 255.0 - IMAGENET_MEAN) / IMAGENET_STD
-                tensor = torch.from_numpy(np.ascontiguousarray(normalized.transpose(2, 0, 1))).float()
+                tensor = _native_input(crop)
             if tensor.shape[-2:] != (input_size, input_size):
                 raise ValueError(f"Tile preprocessing produced {tuple(tensor.shape[-2:])}")
             start = time.perf_counter()
@@ -138,3 +154,4 @@ def profile_tiles(result: InferenceResult) -> dict[str, Any]:
         "overlap_fraction": float((count > 1).mean()),
         "boxes_yxyx": [list(box) for box in result.boxes],
     }
+
