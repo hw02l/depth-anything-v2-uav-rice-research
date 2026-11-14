@@ -19,6 +19,12 @@ from evaluate_patch import evaluate_combo
 from patch_engine import canonical_signature, file_sha256
 from train_patch import check_initial_hashes, load_model, verify_manifest
 
+EXPECTED_EPOCH5_SHA256 = {
+    "C0": "2fd190727c7a5124c56c10e0a2dd8cb09c6cb62a0f92b34fce97ad394281b35a",
+    "F1": "ea1f74c5ff17c0b266152588b5d53f8b24611418f125f2fbf4d9cc7447e49f67",
+    "F2": "8124d72a7008c9f3a93dbcce34142d1593063fba2da6a1a58306d55aaf201538",
+}
+
 
 def atomic_json(path: Path, value):
     temporary = path.with_name("." + path.name + "." + str(os.getpid()) + ".tmp")
@@ -48,19 +54,40 @@ def run(args):
     rows = read_manifest(args.val_manifest)
     verify_manifest(rows, args.val_manifest, ROOT / "configs/uav3dcrop_verified/validation.csv", 128, "validation")
     pair_hash = file_sha256(args.pair_manifest)
-    args.output_dir.mkdir(parents=True, exist_ok=True)
+    if args.output_dir.exists():
+        raise FileExistsError(f"Fresh RGB-fix output directory required; preserving existing path: {args.output_dir}")
+    args.output_dir.parent.mkdir(parents=True, exist_ok=True)
+    args.output_dir.mkdir(exist_ok=False)
     summaries = []
     for group in ("C0", "F1", "F2"):
         checkpoint_path = args.runs_root / group / f"epoch_{config['training']['epochs']:04d}.pt"
         if not checkpoint_path.is_file():
             raise FileNotFoundError(checkpoint_path)
+        checkpoint_hash = file_sha256(checkpoint_path)
+        if checkpoint_hash != EXPECTED_EPOCH5_SHA256[group]:
+            raise ValueError(f"{group}: immutable epoch-5 checkpoint SHA256 mismatch")
         state = torch.load(checkpoint_path, map_location="cpu", weights_only=False)
         if state["epoch"] != config["training"]["epochs"]:
             raise ValueError(f"{group}: primary model must be the fixed final epoch")
         if state.get("checkpoint_signature") != canonical_signature(state["signature_payload"]):
             raise ValueError(f"{group}: checkpoint signature failed")
+        if state.get("config", {}).get("group") != group:
+            raise ValueError(f"{group}: checkpoint group/config mismatch")
         model, load_audit = load_model(args.initial_checkpoint, args.device)
-        model.load_state_dict(state["model"], strict=True)
+        target_state = model.state_dict()
+        checkpoint_state = state.get("model")
+        if not isinstance(checkpoint_state, dict) or set(checkpoint_state) != set(target_state):
+            raise ValueError(f"{group}: checkpoint state-dict keys differ")
+        for name, tensor in checkpoint_state.items():
+            if tensor.shape != target_state[name].shape or tensor.dtype != target_state[name].dtype:
+                raise ValueError(f"{group}: checkpoint tensor shape/dtype mismatch: {name}")
+            if not torch.isfinite(tensor).all():
+                raise ValueError(f"{group}: non-finite checkpoint tensor: {name}")
+        model.load_state_dict(checkpoint_state, strict=True)
+        loaded_state = model.state_dict()
+        if any(not torch.equal(tensor, loaded_state[name].detach().cpu())
+               for name, tensor in checkpoint_state.items()):
+            raise ValueError(f"{group}: loaded model weights differ from immutable checkpoint")
         model.eval()
         for method in ("P0", "P1", "P2"):
             combo_dir = args.output_dir / f"{group}_{method}"
@@ -71,10 +98,16 @@ def run(args):
                 args.pair_manifest, combo_dir, group=group,
                 epoch=config["training"]["epochs"],
             )
-            summary["checkpoint_sha256"] = file_sha256(checkpoint_path)
+            summary["checkpoint_sha256"] = checkpoint_hash
             summary["initial_checkpoint_sha256"] = initial_hashes["model.safetensors"]
             summary["pair_manifest_sha256"] = pair_hash
             summary["strict_load_audit"] = load_audit
+            summary["checkpoint_state_load_audit"] = {
+                "strict": True, "key_count": len(checkpoint_state),
+                "shape_dtype_finite_verified": True, "loaded_values_exact": True,
+            }
+            summary["rgb_input_contract"] = "load_pair_float32_0_1_roundtrip_rint_to_uint8_0_255_v1"
+            summary["evaluation_code_revision"] = "rgb_input_fix_20261114_v1"
             summary["cuda_peak_allocated_bytes"] = int(torch.cuda.max_memory_allocated())
             summary["cuda_peak_reserved_bytes"] = int(torch.cuda.max_memory_reserved())
             atomic_json(combo_dir / f"evaluation_{group}_{method}.json", summary)
@@ -104,7 +137,9 @@ def run(args):
         "train_manifest_sha256": file_sha256(args.train_manifest),
         "validation_manifest_sha256": file_sha256(args.val_manifest),
         "pair_manifest_sha256": pair_hash, "initial_checkpoint_hashes": initial_hashes,
-        "independent_test_used": False, "summaries": summaries,
+        "independent_test_used": False,
+        "rgb_input_contract": "load_pair_float32_0_1_roundtrip_rint_to_uint8_0_255_v1",
+        "evaluation_code_revision": "rgb_input_fix_20261114_v1", "summaries": summaries,
     })
 
 
@@ -126,3 +161,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
