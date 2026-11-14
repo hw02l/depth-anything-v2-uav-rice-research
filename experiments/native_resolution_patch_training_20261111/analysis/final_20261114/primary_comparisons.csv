@@ -1,0 +1,13 @@
+metric,method,candidate,baseline,baseline_value,candidate_value,candidate_minus_baseline,ci95_low,ci95_high,estimator,repeats,seed,interpretation
+delta_mae,P2,F1,C0,0.447917,0.449175,0.001258,0.001085,0.001426,pooled,10000,42,GT差20cm以上・14px固定pairの主指標（悪化）
+delta_mae,P2,F2,C0,0.447917,0.447938,0.000020,-0.000054,0.000094,pooled,10000,42,GT差20cm以上・14px固定pairの主指標（変化不明瞭）
+rmse,P2,F1,C0,8.464965,8.057899,-0.407066,-0.459889,-0.347186,pooled,10000,42,絶対RMSE（低下）
+rmse,P2,F2,C0,8.464965,7.542464,-0.922501,-1.112623,-0.704451,pooled,10000,42,絶対RMSE（低下するが絶対値は大）
+full14_mae,P2,F1,C0,0.075586,0.082972,0.007386,0.007058,0.007713,pooled,10000,42,14px全有効pair MAE（悪化）
+full14_mae,P2,F2,C0,0.075586,0.084303,0.008717,0.008352,0.009077,pooled,10000,42,14px全有効pair MAE（悪化）
+distance_from_unit_amplitude,P2,F1,C0,0.9296,0.9039,-0.0258,-0.0265,-0.0252,pooled,10000,42,固定大差分pairで1からの距離（低下）
+distance_from_unit_amplitude,P2,F2,C0,0.9296,0.9031,-0.0265,-0.0274,-0.0257,pooled,10000,42,固定大差分pairで1からの距離（低下）
+sign_match_rate,P2,F1,C0,0.4981,0.4871,-0.0110,-0.0123,-0.0096,pooled,10000,42,固定大差分pairの符号一致（悪化）
+sign_match_rate,P2,F2,C0,0.4981,0.5155,0.0174,0.0160,0.0187,pooled,10000,42,固定大差分pairの符号一致（改善）delta_mae,P2,F1,C0,0.406581,0.407363,0.000782,0.000502,0.001007,image_mean,10000,42,画像平均の主局所MAE差
+delta_mae,P2,F2,C0,0.406581,0.406397,-0.000193,-0.000783,0.000200,image_mean,10000,42,画像平均の主局所MAE差
+

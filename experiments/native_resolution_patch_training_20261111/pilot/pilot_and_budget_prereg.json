@@ -1,0 +1,66 @@
+{
+  "status": "data_only_candidate_recommendation; final config lock follows GPU pilot",
+  "seed": 42,
+  "pilot_train_selection_rule": "one image per crop x view; cycle target day in sorted order; choose minimum SHA256(seed|image_relpath) within the stratum",
+  "pilot_train_images": [
+    "2025/Day019_Corn/images/66.JPG",
+    "2025/Day028_Corn/images/1114.JPG",
+    "2025/Day040_Oat/images/286.JPG",
+    "2025/Day019_Oat/images/676.JPG",
+    "2025/Day028_soybean/images/659.JPG",
+    "2025/Day040_soybean/images/514.JPG",
+    "2025/Day019_Wheat/images/831.JPG",
+    "2025/Day028_Wheat/images/1113.JPG"
+  ],
+  "pilot_train_days": [
+    "2025/Day019",
+    "2025/Day028",
+    "2025/Day040"
+  ],
+  "pilot_validation_images": [
+    "2025/Day047_Corn/images/576.JPG",
+    "2025/Day047_Corn/images/665.JPG",
+    "2025/Day047_Corn/images/385.JPG",
+    "2025/Day047_Corn/images/1053.JPG",
+    "2025/Day047_Oat/images/32.JPG",
+    "2025/Day047_Oat/images/70.JPG",
+    "2025/Day047_Oat/images/110.JPG",
+    "2025/Day047_Oat/images/608.JPG",
+    "2025/Day047_Wheat/images/177.JPG",
+    "2025/Day047_Wheat/images/722.JPG",
+    "2025/Day047_Wheat/images/993.JPG",
+    "2025/Day047_Wheat/images/1058.JPG",
+    "2025/Day047_soybean/images/28.JPG",
+    "2025/Day047_soybean/images/46.JPG",
+    "2025/Day047_soybean/images/169.JPG",
+    "2025/Day047_soybean/images/516.JPG"
+  ],
+  "pilot_validation_selection_source": "C:\\Users\\81902\\Documents\\Codex\\2026-09-20\\depth-anything-v2-python-uav-rgb\\experiments\\multiscale_tile_inference_20261016\\pilot_selection.csv",
+  "budget_rule": "Choose 480 if F2 median unique native-pixel coverage >=10%; otherwise 960; apply equally to all groups.",
+  "coverage_candidates": {
+    "480": {
+      "images": 384,
+      "median_unique_coverage": 0.06423020651407911,
+      "p10": 0.057154044872384104,
+      "p90": 0.06423020651407911,
+      "min": 0.05007004128749579,
+      "max": 0.06423020651407911,
+      "crops_per_image": 5
+    },
+    "960": {
+      "images": 384,
+      "median_unique_coverage": 0.12081997617734473,
+      "p10": 0.11115264596163862,
+      "p90": 0.12775187095934062,
+      "min": 0.0912356949168122,
+      "max": 0.12846041302815822,
+      "crops_per_image": 10
+    }
+  },
+  "recommended_common_optimizer_updates": 960,
+  "shape_basis": [
+    3956,
+    5280
+  ],
+  "independent_test_used": false
+}
