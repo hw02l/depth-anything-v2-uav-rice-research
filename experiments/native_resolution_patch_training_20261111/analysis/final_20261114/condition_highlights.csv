@@ -1,0 +1,61 @@
+task,condition,category,training_group,metric,value,count,notes
+local,allpair_14px,Corn,C0,delta_mae,0.0951,,P2; 全有効pair
+local,allpair_14px,Corn,F1,delta_mae,0.1018,,P2; 全有効pair
+local,allpair_14px,Corn,F2,delta_mae,0.1029,,P2; 全有効pair
+local,allpair_14px,Oat,C0,delta_mae,0.0760,,P2; 全有効pair
+local,allpair_14px,Oat,F1,delta_mae,0.0834,,P2; 全有効pair
+local,allpair_14px,Oat,F2,delta_mae,0.0849,,P2; 全有効pair
+local,allpair_14px,Soybean,C0,delta_mae,0.0649,,P2; 全有効pair
+local,allpair_14px,Soybean,F1,delta_mae,0.0727,,P2; 全有効pair
+local,allpair_14px,Soybean,F2,delta_mae,0.0740,,P2; 全有効pair
+local,allpair_14px,Wheat,C0,delta_mae,0.0665,,P2; 全有効pair
+local,allpair_14px,Wheat,F1,delta_mae,0.0715,,P2; 全有効pair
+local,allpair_14px,Wheat,F2,delta_mae,0.0756,,P2; 全有効pair
+local,allpair_14px,Nadir,C0,delta_mae,0.0453,,P2; 全有効pair
+local,allpair_14px,Nadir,F1,delta_mae,0.0544,,P2; 全有効pair
+local,allpair_14px,Nadir,F2,delta_mae,0.0558,,P2; 全有効pair
+local,allpair_14px,Oblique,C0,delta_mae,0.1062,,P2; 全有効pair
+local,allpair_14px,Oblique,F1,delta_mae,0.1118,,P2; 全有効pair
+local,allpair_14px,Oblique,F2,delta_mae,0.1120,,P2; 全有効pair
+local,allpair_14px,GT depth 0-15m,C0,delta_mae,0.0408,,P2; 全有効pair
+local,allpair_14px,GT depth 0-15m,F1,delta_mae,0.0501,,P2; 全有効pair
+local,allpair_14px,GT depth 0-15m,F2,delta_mae,0.0518,,P2; 全有効pair
+local,allpair_14px,GT depth 30-65m,C0,delta_mae,0.1986,,P2; 全有効pair
+local,allpair_14px,GT depth 30-65m,F1,delta_mae,0.2026,,P2; 全有効pair
+local,allpair_14px,GT depth 30-65m,F2,delta_mae,0.2034,,P2; 全有効pair
+local,allpair_14px,edge <128px,C0,delta_mae,0.0945,,P2; 全有効pair
+local,allpair_14px,edge <128px,F1,delta_mae,0.1037,,P2; 全有効pair
+local,allpair_14px,edge <128px,F2,delta_mae,0.1067,,P2; 全有効pair
+local,allpair_14px,interior >=512px,C0,delta_mae,0.0703,,P2; 全有効pair
+local,allpair_14px,interior >=512px,F1,delta_mae,0.0774,,P2; 全有効pair
+local,allpair_14px,interior >=512px,F2,delta_mae,0.0786,,P2; 全有効pair
+boundary,GT |Δ|>=0.20m,both_nonoverlap,C0,delta_mae,0.4611,834764,P2 14px; pooled
+boundary,GT |Δ|>=0.20m,both_nonoverlap,F1,delta_mae,0.4664,834764,P2 14px; pooled
+boundary,GT |Δ|>=0.20m,both_nonoverlap,F2,delta_mae,0.4604,834764,P2 14px; pooled
+boundary,GT |Δ|>=0.20m,both_overlap,C0,delta_mae,0.4387,1003479,P2 14px; pooled
+boundary,GT |Δ|>=0.20m,both_overlap,F1,delta_mae,0.4360,1003479,P2 14px; pooled
+boundary,GT |Δ|>=0.20m,both_overlap,F2,delta_mae,0.4389,1003479,P2 14px; pooled
+boundary,GT |Δ|>=0.20m,seam_lt14px,C0,delta_mae,0.4318,543018,P2 14px; pooled
+boundary,GT |Δ|>=0.20m,seam_lt14px,F1,delta_mae,0.4361,543018,P2 14px; pooled
+boundary,GT |Δ|>=0.20m,seam_lt14px,F2,delta_mae,0.4338,543018,P2 14px; pooled
+boundary,GT |Δ|>=0.20m,seam_14_56px,C0,delta_mae,0.4432,945447,P2 14px; pooled
+boundary,GT |Δ|>=0.20m,seam_14_56px,F1,delta_mae,0.4422,945447,P2 14px; pooled
+boundary,GT |Δ|>=0.20m,seam_14_56px,F2,delta_mae,0.4436,945447,P2 14px; pooled
+boundary,GT |Δ|>=0.20m,seam_56_107px,C0,delta_mae,0.4033,343037,P2 14px; pooled
+boundary,GT |Δ|>=0.20m,seam_56_107px,F1,delta_mae,0.4065,343037,P2 14px; pooled
+boundary,GT |Δ|>=0.20m,seam_56_107px,F2,delta_mae,0.4595,343037,P2 14px; pooled
+boundary,GT |Δ|>=0.20m,seam_ge107px,C0,delta_mae,0.4655,330337,P2 14px; pooled
+boundary,GT |Δ|>=0.20m,seam_ge107px,F1,delta_mae,0.4665,330337,P2 14px; pooled
+boundary,GT |Δ|>=0.20m,seam_ge107px,F2,delta_mae,0.4595,330337,P2 14px; pooled
+boundary,GT |Δ|>=0.20m,touches_overlap,C0,delta_mae,0.4377,10770772,P2 14px; pooled
+boundary,GT |Δ|>=0.20m,touches_overlap,F1,delta_mae,0.4358,10770772,P2 14px; pooled
+boundary,GT |Δ|>=0.20m,touches_overlap,F2,delta_mae,0.4383,10770772,P2 14px; pooled
+local,allpair_14px,all pairs,C0,amplitude_ratio,0.4239,25552938,P2; pooled
+local,allpair_14px,all pairs,F1,amplitude_ratio,0.5966,25552938,P2; pooled
+local,allpair_14px,all pairs,F2,amplitude_ratio,0.6265,25552938,P2; pooled
+local,gt_ge20cm_14px,|GT delta|>=0.20m,C0,amplitude_ratio,0.0704,1911836,P2; pooled full pairs
+local,gt_ge20cm_14px,|GT delta|>=0.20m,F1,amplitude_ratio,0.0961,1911836,P2; pooled full pairs
+local,gt_ge20cm_14px,|GT delta|>=0.20m,F2,amplitude_ratio,0.0909,1911836,P2; pooled full pairs
+local,gt_ge20cm_14px,|GT delta|>=0.20m,C0,sign_match_rate,0.4981,1911836,P2; pooled full pairs
+local,gt_ge20cm_14px,|GT delta|>=0.20m,F1,sign_match_rate,0.4871,1911836,P2; pooled full pairs
+local,gt_ge20cm_14px,|GT delta|>=0.20m,F2,sign_match_rate,0.5155,1911836,P2; pooled full pairs
