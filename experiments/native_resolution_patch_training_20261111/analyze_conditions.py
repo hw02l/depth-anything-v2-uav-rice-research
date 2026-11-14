@@ -61,6 +61,12 @@ def abs_value(rows: list[dict[str, str]], metric: str, estimator: str) -> float:
 
 def local_value(rows: list[dict[str, str]], metric: str, estimator: str) -> float:
     if estimator == "pooled":
+        if metric in ("delta_mae", "delta_rmse") and sum(num(r, "pair_count") for r in rows) <= 0:
+            return float("nan")
+        if metric == "amplitude_ratio" and sum(num(r, "abs_gt_delta_sum") for r in rows) <= 0:
+            return float("nan")
+        if metric == "sign_match_rate" and sum(num(r, "nonzero_gt_pair_count") for r in rows) <= 0:
+            return float("nan")
         return core._pool_local(rows, metric)
     values = core._local_metric(rows, metric)
     values = values[np.isfinite(values)]
