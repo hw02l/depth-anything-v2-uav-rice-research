@@ -1,51 +1,36 @@
-# 作業状況
+# 作業状況（最終）
 
 | 項目 | 値 |
 |---|---|
-| 最終更新 | 2026-11-11（GPU pilot後） |
+| 最終更新 | 2026-11-14 |
 | 実験ID | `native_resolution_patch_training_20261111` |
 | branch | `research/native-resolution-patch-training-20261111` |
-| 基点 | PR #5 head `4369cf2` |
-| 状態 | 実装・CPU検証・GPU pilot完了、予算config lock済み。正式学習・正式評価は未実施。 |
+| PR base | `research/local-huber-20261105`（PR #5のhead） |
+| 状態 | C0/F1/F2の各5 epoch学習、固定epoch5のValidation128全9条件評価、解析、報告、NFSバックアップが完了。 |
 
-## 完了
+## 完了内容
 
-- PR #5を基点とした新規branchと専用実験ディレクトリを確認した。既存untrackedファイルは変更・stageしていない。
-- C0/F1/F2対応crop loader、SiLog training/checkpoint、P0/P1/P2 tiled inference、共通Validation128評価、image-paired bootstrapを追加した。
-- 8件のCPU統合テストがpassした。実画像 `2025/Day019_Corn/images/8.JPG` について、3群のRGB/GT crop、SiLog forward/backward、optimizer更新、保存・再読込を確認した。toy modelによるsmokeであり、研究結果ではない。
-- 追加したpaired-bootstrap合成入力テスト1件もpassした。
-- 実画像寸法監査はTrain384/Validation128の計512組すべてでpassした。全組3956×5280、RGB/GT寸法不一致0、Independent testを読み込んでいない。
-- seed42で固定されたpilot Train8画像（crop×view各1画像）と、過去実験の固定Validation16画像をmanifest化した。
-- F2 cropのTrain384 native-pixel unique coverageを事前計算した。480-update候補は中央値6.423%で10%未満、960-update候補は中央値12.082%。事前登録規則に従い、全群960 optimizer updates（5 epoch、2 crops/image/epoch、各192 updates/epoch）を `config.json` にlockした。validation性能は予算選択に使っていない。
-- 480/960候補のcrop座標を3群共通の乱数から展開し、sampling manifestを生成した。
-- Codex右側ターミナルでGPGPU4の読み取り専用preflightを実行した。GeForce GTX 1080、総VRAM8192MiB/空き8098MiB、compute process 0、login session 1、`~/gpu_work`実体 `/localdata/s0623003`、40GB中約14GB使用・約26GB空き、Singularity CE 4.2.2を確認した。Formal training開始直前にもfresh preflightを行う。
-- GPU上の既存epoch20 checkpoint copy `/localdata/s0623003/local_huber_project_20261105/checkpoint_epoch_0020/` の実SHA256は、model `52769e2e95704d0862e708e8772195b861c647dd4812058eaf698a44305c3bcb`、config `3c6ab05881e6a76edbfd33ff393fdfb082582084e9262826bb1ac0fd2b1dac7c`。記録値と一致した。既存checkpointは読み取りのみ。
-- GPU用SIF、既存Python拡張環境、固定source_full_v1のパスが存在することを確認した。UAV3DCrop RGB/Depthはmigration_work_20261015配下のローカル領域にあり、再ダウンロードしない。
-- GPGPU4に新規root `~/gpu_work/native_resolution_patch_training_20261111` を作成し、push済みbranchをsparse checkoutした。Independent test manifestはcheckoutされていない。
-- 初期checkpointを新rootの `initial_checkpoint/` へ複製し、model/config SHA256を再照合した。`data.py`、`losses.py`、`metrics.py`のみ既存固定sourceからコピーし、3ファイルのSHA256一致を確認した。pilot時に欠落していたsource配置を同じ新root内で直し、再検証後に学習した。元のcheckpoint/source/dataは変更していない。
-- C0/F1/F2の各GPU pilotが2 optimizer updatesで完了した。3群すべてでCUDA FP16 forward/backward、AMP skipなし、checkpoint保存とmodel/optimizer/scheduler/scaler/RNGのresume round-tripがpassした。pilot weightsは正式runに使わない。
-- 固定Validation16上の推論profileが完了した。GTX 1080でP0/P1/P2のtile数は16/560/2240。中央値時間は概ね0.052/1.68/5.63秒/画像。GT指標を計算せず、予算選択にも使っていない。
-- 各pilot群と推論profileの直前にfresh GPGPU4 preflightを保存した。SingularityコンテナはPyTorch 2.11.0+cu126、Transformers 5.18.0、NumPy 2.1.3、CUDA利用可である。
+- C0/F1/F2を共通のepoch20初期重みから各5 epoch学習した。C0は960 successful updates、F1/F2は各958（AMP skipによる2回差）。追加学習は行っていない。
+- 固定epoch5 checkpointを用いて、全3学習群×P0/P1/P2の9組合せをValidation128で評価した。Independent test319は一度も読み込んでいない。
+- 主比較F2-P2対C0-P2の14px・GT差20cm以上のpair MAEは0.447917→0.447938m（差+0.000020m、画像単位bootstrap 95% CI [-0.000054,+0.000094]）。事前登録した5%改善基準を満たさなかった。
+- F2-P2 RMSEはC0-P2より0.923m低い一方、F2自体も7.542mである。全条件RMSE 7.542〜8.651mは過去の同一初期epoch20評価0.794239mと大きく食い違う。初期重みSHAとstrict loadは一致したが、差の原因は未解決であり、実用性や解像度変更の因果効果を確証できない。
+- 報告書、集計CSV、3枚のSVG図を本実験ディレクトリに掲載した。完全な画像別評価・bootstrap・条件別結果・学習ログ・provenanceはNFSバックアップに含めた。
+- 条件別解析では有効pair数0の層を未定義値として扱う修正を加え、全条件を別出力先へ再実行した。図の生成はmatplotlib依存を外し、標準ライブラリだけでSVGを作成した。
+- 最終epoch5 checkpoint SHA256はC0 `2fd190727c7a5124c56c10e0a2dd8cb09c6cb62a0f92b34fce97ad394281b35a`、F1 `ea1f74c5ff17c0b266152588b5d53f8b24611418f125f2fbf4d9cc7447e49f67`、F2 `8124d72a7008c9f3a93dbcce34142d1593063fba2da6a1a58306d55aaf201538`。
+- NFS最終バックアップ：`/home1/eng-std/s0623003/gpu4_research_backup_native_resolution_patch_training_20261114_final`。サイズ4.3 GiB、218ファイル。SHA256SUMS 217件すべて検証PASS。保管したブランチsnapshotはcommit `b24ecfeaebf076cad3df4fe3f3cd8f6265e6d8`。epoch5 checkpoint 3件のコピー後SHAも実行元と一致した。raw RGB/GTおよび予測画像cacheは含まない。
+- 最終確認でGPGPU4のGPU utilization 0%、メモリ15 MiB使用 / 8098 MiB空き。ユーザー所有の学習・評価プロセスは残っていない。
 
-## 未完了
+## 成果物
 
-1. GPU側にlock済みconfigと最新コードを反映し、source/config hashesを記録する。
-2. 群ごとにfresh GPU preflightを取得してから、共通初期checkpoint・960 updatesでC0/F1/F2を独立学習する。各epochでValidation128 P0を評価し、checkpointと再開情報を保存する。
-3. 全9組合せのValidation128評価、paired bootstrap、図表、改善/悪化例、日本語詳細報告、checkpoint SHA/provenanceを作成する。
-4. checkpoint・結果を新規NFS backupへ退避してSHA256を照合する。
-5. 大容量ファイルを含めず、専用branchをpushし、PR #5のbranchをbaseとするPRを作成してCodexへ添付する。
+- `report_ja.md`：手法、結果、bootstrap、条件別結果、重大な再現性留保、成功基準判定。
+- `analysis/final_20261114/`：summary、primary comparisons、training history、P0 history、尺度別MAE、条件ハイライト、画像例、checkpoint SHA、SVG図3点。
+- `analyze_conditions.py`：空層を安全に扱う修正済み。
+- `plot_results.py`：外部描画ライブラリ不要のSVG生成。
 
-## 再開時の確認
+## 再現性・運用上の確認
 
-- GPGPU4の接続はCodex右側ターミナルの `s0623003@GPGPU4` promptで確認する。接続済みのこのターミナルをComputer Useで操作する。
-- GPU状態はtraining開始直前に再度確認する。過去のpreflightは開始許可の代用にしない。
-- `/home1/eng-std/s0623003/gpu4_research_backup_local_huber_20261105_20261105T081949Z/checkpoint_epoch_0020/` は現在の確認では見つからなかった。利用する初期重みは上記localdata上の実体であり、SHA256は一致済み。正式結果のNFS backup rootは別の新規名を使う。
-- ここまで正式trainingは一切開始していない。Independent test319も読み込んでいない。
-
-## CPU確認コマンド
-
-```powershell
-& .\.venv\Scripts\python.exe -m compileall -q experiments\native_resolution_patch_training_20261111
-& .\.venv\Scripts\python.exe experiments\native_resolution_patch_training_20261111\test_native_patch.py
-& .\.venv\Scripts\python.exe experiments\native_resolution_patch_training_20261111\test_analysis.py
-```
+- 初期model SHA256: `52769e2e95704d0862e708e8772195b861c647dd4812058eaf698a44305c3bcb`
+- 初期config SHA256: `3c6ab05881e6a76edbfd33ff393fdfb082582084e9262826bb1ac0fd2b1dac7c`
+- 学習manifestはTrain384、評価はValidation128。test319は未使用。
+- GPU作業はCodex右側の接続済みGPGPU4端末から実施し、研究室のGPU利用ルールに従った。学習・評価後にGPUを解放した。
+- 再学習、test評価、GTを使った予測補正、fusionは実施していない。
