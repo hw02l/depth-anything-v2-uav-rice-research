@@ -133,7 +133,8 @@ class NativePatchTests(unittest.TestCase):
         self.assertAlmostEqual(coverage_fraction((100, 100), [(0, 0, 50, 50), (25, 25, 75, 75)]), 0.4375)
 
     def test_p0_p1_p2_stitching_and_coverage(self):
-        rgb = np.zeros((1300, 1500, 3), np.uint8)
+        yy, xx = np.indices((1300, 1500))
+        rgb = np.stack((xx % 256, yy % 256, (xx + yy) % 256), axis=-1).astype(np.uint8)
         model = ConstantModel().eval()
         for method in ("P0", "P1", "P2"):
             result = infer_depth(model, rgb, "cpu", method)
@@ -201,3 +202,4 @@ class NativePatchTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
