@@ -1,0 +1,3 @@
+method,candidate,case,image_relpath,crop,view,pair_count,baseline_delta_mae_m,candidate_delta_mae_m,candidate_minus_baseline_m
+P2,F2,largest_improvement,2025/Day047/Corn/images/55.JPG,Corn,Nadir,4,0.1542,0.1240,-0.0302
+P2,F2,largest_worsening,2025/Day047/Soybean/images/137.JPG,Soybean,Nadir,463,0.2606,0.2652,0.0046
