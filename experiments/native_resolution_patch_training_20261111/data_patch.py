@@ -98,6 +98,24 @@ def load_pair(row: dict[str, str], rgb_root: str | Path,
     return rgb, depth
 
 
+def rgb_unit_float_to_uint8(rgb: np.ndarray) -> np.ndarray:
+    """Recover the exact source RGB bytes from load_pair's float32 [0, 1] output.
+
+    Training keeps the established unit-float interface. Inference accepts only
+    uint8 [0, 255], matching the frozen B0 preprocessing contract.
+    """
+    if not isinstance(rgb, np.ndarray) or rgb.ndim != 3 or rgb.shape[2] != 3:
+        raise ValueError("Expected an HxWx3 RGB array")
+    if not np.issubdtype(rgb.dtype, np.floating):
+        raise TypeError(f"Expected unit-range floating RGB, got {rgb.dtype}")
+    if rgb.size == 0 or not np.isfinite(rgb).all():
+        raise ValueError("RGB input is empty or contains non-finite values")
+    minimum, maximum = float(rgb.min()), float(rgb.max())
+    if minimum < 0.0 or maximum > 1.0:
+        raise ValueError(f"Expected RGB in [0, 1], got [{minimum}, {maximum}]")
+    return np.rint(rgb.astype(np.float32, copy=False) * 255.0).astype(np.uint8)
+
+
 class NativePatchDataset(Dataset):
     """C0/F1/F2 aligned crop loader; only F1 resizes after its native crop."""
     def __init__(self, rows: list[dict[str, str]], rgb_root: str | Path,
@@ -181,3 +199,4 @@ def coverage_report(rows: list[dict[str, str]], *, shape=(3956, 5280),
             "unique_coverage_fraction": coverage_fraction(shape, boxes),
         })
     return reports
+
