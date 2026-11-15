@@ -1,0 +1,60 @@
+{
+  "status": "fresh_reproduction_verified",
+  "recorded_at_utc": "2026-11-15T10:34:45Z",
+  "fresh_run": {
+    "audit_root": "/localdata/s0623003/native_resolution_patch_training_20261111/analysis/checkpoint_audit_20261115T085704Z",
+    "evaluation_output": "/localdata/s0623003/native_resolution_patch_training_20261111/analysis/checkpoint_audit_20261115T085704Z/corrected_all9_20261115",
+    "completion_status": "complete",
+    "evaluation_json_count": 9,
+    "validation_images_per_condition": 128,
+    "evaluation_code_revision": "e67a6338+checkpoint_hash_registry_correction_v1",
+    "evaluation_code_sha256": "76b87c884c2bbbb650b9a3a492e56989cc27b42674863b03d6daf113e2907275",
+    "rgb_input_contract": "load_pair_float32_0_1_roundtrip_rint_to_uint8_0_255_v1",
+    "checkpoint_state_load_audit_present_in_all_json": true,
+    "checkpoint_sha256_by_group": {
+      "C0": "2fd190727c7a5124c56c1e0ea2dd8cb09c6cb62a0f92b34fce97ad394281b35a",
+      "F1": "ae1f74c5ff17cb0266152588b5d53fb824611418712152fbf4d9cc7447e49f67",
+      "F2": "8124d72a7008c9f3a93dbce934142d1593065fba2da61a51838e055aaf201538"
+    },
+    "checkpoint_global_step_by_group": {
+      "C0": 960,
+      "F1": 958,
+      "F2": 958
+    },
+    "retraining_performed": false,
+    "independent_test319_used": false
+  },
+  "b0_gate": {
+    "status": "pass",
+    "checkpoint_sha256": "52769e2e95704d0862e708e8772195b861c647dd4812058eaf698a44305c3bcb",
+    "validation_images": 128,
+    "absolute_mae_m": 0.5735048960,
+    "absolute_rmse_m": 0.7942392449,
+    "abs_rel": 0.0291856383,
+    "pearson_r": 0.9943680377,
+    "full14_local_mae_m": 0.0596389885,
+    "gt_delta_ge_0_2m_14px_mae_m": 0.3361806171,
+    "amplitude_ratio": 0.3326918589,
+    "sign_match_rate": 0.8248495164,
+    "maximum_absolute_metric_tolerance": 1e-5
+  },
+  "fresh_vs_historical_corrected_outputs": {
+    "historical_bundle": "/home1/eng-std/s0623003/gpu4_research_backup_native_resolution_patch_training_20261115_rgb_input_fix/results/rgb_input_fix_20261114",
+    "fresh_grid_status": "complete",
+    "fresh_analysis_repeats": 10000,
+    "bootstrap_seed": 42,
+    "condition_summary_csv": "byte-identical",
+    "paired_condition_bootstrap_csv": "byte-identical",
+    "per_image_absolute_sufficient_statistics": "exact for all 9 conditions after excluding runtime-only columns",
+    "per_image_local_statistics": "exact for all 9 conditions",
+    "per_image_boundary_statistics": "exact for all 6 P1/P2 conditions",
+    "historical_json_provenance_backfilled": false
+  },
+  "nfs_archive": {
+    "path": "/home1/eng-std/s0623003/gpu4_research_backup_native_resolution_patch_training_20261115_checkpoint_audit_reproduced",
+    "file_count_in_sha256sums": 94,
+    "reported_size": "438M (readback; initial copy output rounded to 437M)",
+    "sha256_manifest_generated_and_readback_verified": true,
+    "checkpoint_binaries_and_rgb_gt_source_data_included": false
+  }
+}

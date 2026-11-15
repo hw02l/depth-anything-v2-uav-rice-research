@@ -20,9 +20,9 @@ from patch_engine import canonical_signature, file_sha256
 from train_patch import check_initial_hashes, load_model, verify_manifest
 
 EXPECTED_EPOCH5_SHA256 = {
-    "C0": "2fd190727c7a5124c56c10e0a2dd8cb09c6cb62a0f92b34fce97ad394281b35a",
-    "F1": "ea1f74c5ff17c0b266152588b5d53f8b24611418f125f2fbf4d9cc7447e49f67",
-    "F2": "8124d72a7008c9f3a93dbcce34142d1593063fba2da6a1a58306d55aaf201538",
+    "C0": "2fd190727c7a5124c56c1e0ea2dd8cb09c6cb62a0f92b34fce97ad394281b35a",
+    "F1": "ae1f74c5ff17cb0266152588b5d53fb824611418712152fbf4d9cc7447e49f67",
+    "F2": "8124d72a7008c9f3a93dbce934142d1593065fba2da61a51838e055aaf201538",
 }
 
 
@@ -71,7 +71,7 @@ def run(args):
             raise ValueError(f"{group}: primary model must be the fixed final epoch")
         if state.get("checkpoint_signature") != canonical_signature(state["signature_payload"]):
             raise ValueError(f"{group}: checkpoint signature failed")
-        if state.get("config", {}).get("group") != group:
+        if state.get("signature_payload", {}).get("group") != group:
             raise ValueError(f"{group}: checkpoint group/config mismatch")
         model, load_audit = load_model(args.initial_checkpoint, args.device)
         target_state = model.state_dict()
@@ -99,6 +99,8 @@ def run(args):
                 epoch=config["training"]["epochs"],
             )
             summary["checkpoint_sha256"] = checkpoint_hash
+            summary["checkpoint_signature"] = state["checkpoint_signature"]
+            summary["checkpoint_global_step"] = int(state["global_step"])
             summary["initial_checkpoint_sha256"] = initial_hashes["model.safetensors"]
             summary["pair_manifest_sha256"] = pair_hash
             summary["strict_load_audit"] = load_audit
@@ -107,7 +109,8 @@ def run(args):
                 "shape_dtype_finite_verified": True, "loaded_values_exact": True,
             }
             summary["rgb_input_contract"] = "load_pair_float32_0_1_roundtrip_rint_to_uint8_0_255_v1"
-            summary["evaluation_code_revision"] = "rgb_input_fix_20261114_v1"
+            summary["evaluation_code_revision"] = "e67a6338+checkpoint_hash_registry_correction_v1"
+            summary["evaluation_code_sha256"] = file_sha256(Path(__file__).resolve())
             summary["cuda_peak_allocated_bytes"] = int(torch.cuda.max_memory_allocated())
             summary["cuda_peak_reserved_bytes"] = int(torch.cuda.max_memory_reserved())
             atomic_json(combo_dir / f"evaluation_{group}_{method}.json", summary)
@@ -121,6 +124,8 @@ def run(args):
                 "cuda_peak_allocated_bytes": summary["cuda_peak_allocated_bytes"],
                 "cuda_peak_reserved_bytes": summary["cuda_peak_reserved_bytes"],
                 "checkpoint_sha256": summary["checkpoint_sha256"],
+                "checkpoint_signature": summary["checkpoint_signature"],
+                "checkpoint_global_step": summary["checkpoint_global_step"],
             })
             print(json.dumps({
                 "group": group, "method": method, "rmse_m": summary["absolute"]["rmse_m"],
@@ -139,7 +144,8 @@ def run(args):
         "pair_manifest_sha256": pair_hash, "initial_checkpoint_hashes": initial_hashes,
         "independent_test_used": False,
         "rgb_input_contract": "load_pair_float32_0_1_roundtrip_rint_to_uint8_0_255_v1",
-        "evaluation_code_revision": "rgb_input_fix_20261114_v1", "summaries": summaries,
+        "evaluation_code_revision": "e67a6338+checkpoint_hash_registry_correction_v1",
+        "evaluation_code_sha256": file_sha256(Path(__file__).resolve()), "summaries": summaries,
     })
 
 

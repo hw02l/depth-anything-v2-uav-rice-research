@@ -3,8 +3,8 @@
 更新日：2026-11-15<br>
 実験ID：native_resolution_patch_training_20261111<br>
 検証データ：UAV3DCrop Validation128（2025/Day047）<br>
-評価一式：[analysis/rgb_input_fix_20261114/](analysis/rgb_input_fix_20261114/)<br>
-状態：**B0再現とRGB修正は確認済み。全9条件の出力は得られたが、C0/F1/F2すべてでepoch5 checkpointのファイル同一性と評価provenanceに不一致があるため、9条件の数値は暫定値であり、正式な最終結果として確定できない。**
+評価一式：[analysis/corrected_release_20261115/](analysis/corrected_release_20261115/)<br>
+状態：**B0基準再現、checkpoint3件の同一性監査、修正済みコードによる全9条件の独立再推論、再解析、NFS保全を完了した。fresh runと従来の訂正後出力は十分統計・bootstrapまで一致した。**
 
 ## 1. 要旨
 
@@ -12,11 +12,11 @@
 
 修正コードで既存epoch20 B0のValidation128評価を再実行した結果、MAE、RMSE、AbsRel、Pearson、全14px局所MAE、GT差20cm以上14px局所MAE、振幅比、符号一致率の8指標すべてが基準値と許容誤差1e-5以内で一致した。これはRGB復元と従来P0評価経路が正常であることを支持する。
 
-訂正後の9条件出力では、事前登録された主要比較F2-P2対C0-P2のGT差20cm以上・元画像14px固定pair MAEは、pooled推定で0.415271mから0.384910mへ7.31%低下した（差-0.030361m、画像単位paired bootstrap 95% CI [-0.037702, -0.022933]m、有効画像126）。画像平均推定では0.370191mから0.355550mへ3.95%低下し、5%目標の点推定には達しない。全有効pairの副次指標は0.116935mから0.102251mへ12.56%低下した。PR本文に従来記載された12.53%は全有効pair副次指標のimage_mean推定に由来する数値であり、事前登録されたGT差20cm以上の主要指標ではない。
+修正済みコードによる独立fresh再推論と10,000回・seed 42の画像単位paired bootstrapで、事前登録された主要比較F2-P2対C0-P2のGT差20cm以上・元画像14px固定pair MAEを確認した。pooled推定では0.415271mから0.384910mへ7.31%低下した（差-0.030361m、95% CI [-0.037702, -0.022933]m、有効画像126）。画像平均推定では0.370191mから0.355550mへ3.95%低下し、5%目標の点推定には達しない。全有効pairの副次指標は0.116935mから0.102251mへ12.56%低下した。PR本文に従来記載された12.53%は全有効pair副次指標のimage_mean推定に由来し、事前登録されたGT差20cm以上の主要指標ではない。fresh出力の全9条件について画像別十分統計・集計・bootstrapを旧訂正後出力と照合し、科学指標は完全一致した。
 
-F2-P2の絶対RMSEは3.084mで、同じP2推論を使うC0-P2の8.235mより低い。一方、最良のC0-P0の0.744mに比べると約4.14倍大きい。局所差分に関するP2内の改善と、全体の絶対深度精度は分けて解釈する必要がある。
+fresh再推論で確認したF2-P2の絶対RMSEは3.084mで、同じP2推論を使うC0-P2の8.235mより低い。一方、C0-P0の0.744mに比べると約4.14倍大きい。局所差分に関するP2内の改善と、全体の絶対深度精度は分けて解釈する必要がある。
 
-ただし、訂正評価JSONが記録するC0/F1/F2 checkpoint SHA256は、依頼時に固定したSHA256と一致しない。さらにJSONに評価ソースが出力するはずのRGB契約・評価コード版・checkpoint状態ロード監査が存在しない。結果パッケージの内部SHA256照合は43項目すべて成功したが、それはパッケージ内整合性の確認であって、評価に使われたcheckpointが指定済みcheckpointそのものである証明ではない。この不一致が解消されるまで、以下の9条件の値は確認用の暫定結果として扱う。
+監査で読み取った実checkpointのSHA256は依頼時の文字列とは異なった。一方、実ファイル・epoch5記録・既存の11月14日NFS checkpointのハッシュは群ごとに一致し、内部checkpoint署名もrun_signatureと一致した。差の原因はcheckpoint個体の取り違えではなく、依頼・旧監査文書に記載されたハッシュ文字列の転記誤りである。過去の評価JSONに評価コード版、RGB契約、epoch5 state_dictロード監査がない問題は別のprovenance欠落である。当時の情報を後付けせず、新しい一意の出力先へ再評価して完全なprovenanceを記録する。
 
 ## 2. 目的と事前登録条件
 
@@ -76,9 +76,9 @@ GPGPU4の実画像GPU smokeは2025/Day047_Corn/images/7.JPG、3956×5280 RGBでp
 
 このゲートは評価入力とP0経路を検証するものであり、C0/F1/F2 checkpointの個体識別を代替しない。
 
-## 6. 訂正後の全9条件（暫定値）
+## 6. 訂正後の全9条件（fresh再推論で確認済み）
 
-以下はanalysis/rgb_input_fix_20261114/per_condition/grid_summary.csvと一致する。ただしC0/F1/F2 checkpointすべてのSHA256が一致しないため、正式確定前の暫定値である。
+以下は修正済みコードの独立fresh再推論で得た値であり、analysis/rgb_input_fix_20261114/per_condition/grid_summary.csv由来の集計と一致した。fresh runは一意の出力先でキャッシュを再利用せずに実行し、各JSONのcheckpoint SHA256、RGB契約、評価コードrevision、strict state load監査を確認した。評価時の一部runtime値は再実行間で変動するため、release CSVからは除外した。
 
 | 学習群 | 推論 | MAE (m) | RMSE (m) | AbsRel | Bias (m) | Pearson | 全14px局所MAE (m) |
 |---|---|---:|---:|---:|---:|---:|---:|
@@ -94,7 +94,7 @@ GPGPU4の実画像GPU smokeは2025/Day047_Corn/images/7.JPG、3956×5280 RGBでp
 
 P0/P1/P2間の絶対精度差は学習群で異なる。C0ではP0がRMSE最小、F1ではP1、F2ではP2が最小である。推論タイル解像度単独または学習crop解像度単独の一方向の効果として要約できず、学習×推論の相互作用が大きい。
 
-## 7. paired bootstrapと主要比較（暫定値）
+## 7. paired bootstrapと主要比較（fresh再解析で確認済み）
 
 画像IDを対応させるpaired bootstrapを10,000回、seed 42で実施した。pooled推定と画像平均推定は別の推定量である。主要固定標本はGT差20cm以上の14px pairであり、全有効pairの指標と混同しない。
 
@@ -177,30 +177,31 @@ F2-P2の3.084m RMSEはC0-P2より低いが、C0-P0の0.744mより大幅に大き
 - checkpoint選択は最終epoch 5固定であり、Validation性能による最良epoch選択は行っていない。
 - 作物・撮影方向・深度・端距離・tile境界の層別比較は探索的で、相関を考慮した多重比較補正をしていない。
 - GTは写真測量に基づくカメラ座標系Z-depthであり、葉や茎の境界、再構成ずれ、鉛直作物高の真値に関する誤差が残る。
-- C0/F1/F2すべてのcheckpoint SHA256と評価JSON provenanceが指定・実行ソースの記録と一致しておらず、結果のモデル同一性が未確認である。
+- 実checkpoint3件の個体性は、ファイルSHA256、epoch5記録、旧NFSコピー、内部署名、run_signatureの照合で確認した。旧評価JSONは当時の評価コードrevision・RGB契約・checkpoint state_dictロード監査を欠くため、旧JSONだけでは評価実行の来歴を完全には証明できない。現在、同一性を確認したcheckpointを用いたfresh再推論でこのprovenance欠落を補っている。
 
-## 9. checkpointとprovenance監査（確定保留の理由）
+## 9. checkpointとprovenance監査
 
-依頼時の指定値と、修正後評価JSONの記録値は次のとおりである。
+依頼時の文字列、実checkpoint、旧評価JSONの記録値は次のとおりである。実ファイルのSHA256は、旧NFS `gpu4_research_backup_native_resolution_patch_training_20261114_final` のcheckpointとepoch5記録の値にも一致した。
 
-| 群 | 指定・旧監査記録SHA256 | 評価JSON/集計CSVのSHA256 | 照合 |
+| 群 | 依頼時の誤記SHA256 | 実checkpoint・NFS・epoch5記録SHA256 | 旧評価JSON記録SHA256 |
 |---|---|---|---|
-| C0 | 2fd190727c7a5124c56c10e0a2dd8cb09c6cb62a0f92b34fce97ad394281b35a | 2fd190727c7a5124c56c1e0ea2dd8cb09c6cb62a0f92b34fce97ad394281b35a | 不一致 |
-| F1 | ea1f74c5ff17c0b266152588b5d53f8b24611418f125f2fbf4d9cc7447e49f67 | ae1f74c5ff17cb0266152588b5d53fb824611418712152fbf4d9cc7447e49f67 | 不一致 |
-| F2 | 8124d72a7008c9f3a93dbcce34142d1593063fba2da6a1a58306d55aaf201538 | 8124d72a7008c9f3a93dbce934142d1593065fba2da61a51838e055aaf201538 | 不一致 |
+| C0 | 2fd190727c7a5124c56c10e0a2dd8cb09c6cb62a0f92b34fce97ad394281b35a | 2fd190727c7a5124c56c1e0ea2dd8cb09c6cb62a0f92b34fce97ad394281b35a | 2fd190727c7a5124c56c1e0ea2dd8cb09c6cb62a0f92b34fce97ad394281b35a |
+| F1 | ea1f74c5ff17c0b266152588b5d53f8b24611418f125f2fbf4d9cc7447e49f67 | ae1f74c5ff17cb0266152588b5d53fb824611418712152fbf4d9cc7447e49f67 | ae1f74c5ff17cb0266152588b5d53fb824611418712152fbf4d9cc7447e49f67 |
+| F2 | 8124d72a7008c9f3a93dbcce34142d1593063fba2da6a1a58306d55aaf201538 | 8124d72a7008c9f3a93dbce934142d1593065fba2da61a51838e055aaf201538 | 8124d72a7008c9f3a93dbce934142d1593065fba2da61a51838e055aaf201538 |
 
-現行evaluate_all.pyは指定SHA256が一致しなければ評価を停止する設計であり、評価JSONにはrgb_input_contract、evaluation_code_revision、checkpoint_state_load_auditを書き出す。しかし保存済み評価JSONにはこれらの項目がなく、記録された全3群のhashが期待値と違う。strict_load_auditは初期モデルのattention key mappingとロードを示すもので、epoch5 checkpointファイルの指定個体性を証明しない。原因は未解明であり、数値を改変して整合させない。
+checkpointは全群でepoch 5、C0 global step 960、F1/F2 global step 958、state_dictは各287 keysである。canonical signatureとrun_signatureは一致し、全tensorのshape・dtype・有限値・strict load後の値一致を確認した。提示済みSHA256の誤りを修正した評価ソースは [evaluate_all.py](evaluate_all.py) に反映した。
 
-次の確認が完了するまで、9条件表、bootstrap、図表は「修正後コードで計算された出力」として保管するが、指定済みepoch5モデルの正式評価とは確定しない。GPUでの再学習は不要であり、まずGPGPU4に保存されたC0/F1/F2のepoch5ファイルとNFSバックアップのSHA256を読み取り専用で照合し、評価時に用いたsource revision・command・JSON provenanceの生成元を特定する。結果に手を加えず、同一性が確認できない場合はこの制限を保ったまま報告する。
+旧評価JSONには `rgb_input_contract`、`evaluation_code_revision`、`checkpoint_state_load_audit` がない。当時のJSONを生成した正確なdirty source revisionは復元できないため、旧JSONへprovenanceを後付けしていない。新しい再推論JSONには評価コードSHA256 `76b87c884c2bbbb650b9a3a492e56989cc27b42674863b03d6daf113e2907275`、評価コードrevision `e67a6338+checkpoint_hash_registry_correction_v1`、checkpoint署名/global step、strict state load監査、RGB契約 `load_pair_float32_0_1_roundtrip_rint_to_uint8_0_255_v1`、manifest hashを記録した。9条件すべてで必須provenance項目が存在し、実checkpoint SHA256は群ごとに一致した。
 
+9条件の再推論は `/localdata/s0623003/native_resolution_patch_training_20261111/analysis/checkpoint_audit_20261115T085704Z/corrected_all9_20261115/` に、旧結果キャッシュを使わない別出力として実行し、完了を確認した。C0/F1/F2の全条件でValidation128を再推論し、全9 JSONのprovenanceとcheckpointロード監査が揃っていることを確認した。条件別集計CSVとpaired bootstrap CSVは旧訂正後出力とbyte-identicalであった。画像別絶対誤差の十分統計列は全9条件、画像別局所統計は全9条件、境界統計はP1/P2の6条件で完全一致した。画像別絶対CSVの実行時間列は比較から除外した。これにより旧評価JSONのprovenance欠落はfresh runで補われ、旧JSONそのものは履歴資料のまま保持されている。再学習は行っていない。
 ## 10. 成果物と再現
 
-- 訂正後のB0 gate、単一画像GPU smoke、43項目のSHA256 manifest、全9条件のJSON/CSV、画像別十分統計、局所・境界・bootstrapは[analysis/rgb_input_fix_20261114/](analysis/rgb_input_fix_20261114/)に保存した。manifest内43項目はローカル抽出後にすべて照合した。原結果ファイルは変更していない。
-- 比較用CSV、図表、provenance監査の再集計版は[analysis/corrected_release_20261115/](analysis/corrected_release_20261115/)に保存する。
+- 旧訂正後のB0 gate、単一画像GPU smoke、43項目のSHA256 manifest、全9条件のJSON/CSV、画像別十分統計、局所・境界・bootstrapは[analysis/rgb_input_fix_20261114/](analysis/rgb_input_fix_20261114/)に保存した。旧JSONは評価コードprovenanceを欠くため履歴資料として保持し、fresh再評価の証拠とは区別する。
+- 再推論のprovenance、B0再現、checkpoint照合、全9条件の比較結果、再集計CSVと図表は[analysis/corrected_release_20261115/](analysis/corrected_release_20261115/)に保存した。fresh raw runはNFS `/home1/eng-std/s0623003/gpu4_research_backup_native_resolution_patch_training_20261115_checkpoint_audit_reproduced/` に保存し、94項目のSHA256SUMSをコピー後に全件照合した。
 - 修正前の指標は[analysis/final_20261114/](analysis/final_20261114/)に監査履歴として保持する。READMEでinvalid_pre_fixと明示し、訂正後結果への参照を付す。
 - B0 gateはb0-baseline-gate-pass-20261114-v2.json、実画像GPU smokeはsingle_image_gpu_smoke.json、主要推論・統計はper_condition/とpaired_condition_bootstrap.csvに記録した。
 - 学習済みcheckpoint、RGB/GT原画像、prediction cacheは今回の訂正作業で変更・削除していない。
-- 現在のbranch上ではPR #6へのcommit/pushは確認できる。一方、訂正済み成果のNFS退避はPR本文に完了記述があるが、同じbranchのSTATUS_JA.mdに未完了記述が残り、現ローカル環境からNFS実体のreceiptを再照合できていない。NFS状態は独立確認まで「記録不整合・未検証」とする。
+- 旧NFS最終バックアップは217 checksum項目がすべてPASSし、checkpoint3件も実ファイルと一致した。11月15日の従来訂正結果バックアップはroot manifest 68項目と移設後結果manifest 43項目がすべてPASSした。今回のfresh runを含む独立NFSアーカイブは94項目、437 MiBであり、コピー後のSHA256照合がPASSした。checkpoint本体、RGB/GT原画像、prediction cacheは含めていない。
 
 統計解析はpaired_condition_bootstrap.csvの10,000反復・seed 42を用いる。RGB回帰テストの再現コマンドは次のとおりである。
 
@@ -208,4 +209,4 @@ F2-P2の3.084m RMSEはC0-P2より低いが、C0-P0の0.744mより大幅に大き
 .\.venv\Scripts\python.exe experiments\native_resolution_patch_training_20261111\test_rgb_input_contract.py
 ```
 
-最終判定は、B0再現とRGB修正の成功を確認したうえで、epoch5 checkpoint同一性およびNFS保全記録を照合後に行う。今回の文書訂正を理由とした学習・GPU再評価は実施していない。
+評価結果を正式な研究成果として確定した。これは、B0再現、checkpoint同一性、fresh 9条件再推論、画像単位bootstrap、全条件の十分統計比較、NFS退避の照合が完了したためである。旧訂正後結果とfresh runが一致したことは同じ固定評価標本における再現性を支持するが、単一seed・単一撮影日・固定epoch5の限界は残る。今回のprovenance監査と再評価では再学習を行っていない。

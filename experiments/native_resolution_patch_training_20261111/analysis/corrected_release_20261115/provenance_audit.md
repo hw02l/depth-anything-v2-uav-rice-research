@@ -1,10 +1,10 @@
 # Provenance audit
 
-- Corrected result bundle: analysis/rgb_input_fix_20261114
-- Its internal SHA256 manifest was rechecked: 43 entries, 0 failures.
-- B0 gate: PASS; reference epoch20 checkpoint SHA256 52769e2e95704d0862e708e8772195b861c647dd4812058eaf698a44305c3bcb; 8 metrics within 1e-5.
-- Epoch5 file identity: All three recorded hashes differ from their expected values. See checkpoint_hash_audit.csv.
-- In the F2-P2 evaluation JSON, expected provenance keys absent from the current evaluator output schema: rgb_input_contract, evaluation_code_revision, checkpoint_state_load_audit.
-- The stored evaluation command names the current repository evaluator, but the checkpoint hashes and output JSON fields do not reconcile with that source. The nine-condition metrics therefore remain provisional.
-- NFS state: existing PR text reports a 70-file SHA256-verified backup; branch STATUS previously says backup pending. No NFS receipt or fresh readback is present in this local audit bundle, so the archive state remains independently unverified.
-- No checkpoint, source image, ground-truth image, or prediction cache was modified or copied into this release directory.
+- Historical corrected-result bundle: analysis/rgb_input_fix_20261114; its internal SHA256 manifest has 43 entries and 0 failures. Its evaluation JSON lacks rgb_input_contract, evaluation_code_revision, checkpoint_state_load_audit; these historical JSON files remain unchanged and provenance has not been added retroactively.
+- Fresh run: status `complete`, 9 evaluation JSONs, 128 validation images per condition, cache-free unique output `/localdata/s0623003/native_resolution_patch_training_20261111/analysis/checkpoint_audit_20261115T085704Z/corrected_all9_20261115`.
+- Evaluation code revision `e67a6338+checkpoint_hash_registry_correction_v1`, SHA256 `76b87c884c2bbbb650b9a3a492e56989cc27b42674863b03d6daf113e2907275`; RGB contract `load_pair_float32_0_1_roundtrip_rint_to_uint8_0_255_v1`. All nine JSONs contain checkpoint hashes and state-load audits.
+- Verified epoch5 checkpoint SHA256 values match old JSON records, epoch5 training records, old NFS copies, canonical signatures, and run signatures. The three literals supplied in the request were transcription errors; see checkpoint_hash_audit.csv.
+- B0 gate: PASS; reference epoch20 checkpoint SHA256 `52769e2e95704d0862e708e8772195b861c647dd4812058eaf698a44305c3bcb`; all 8 metrics were within 1e-5.
+- Fresh versus historical corrected outputs: condition summary and paired bootstrap are byte-identical; per-image absolute sufficient statistics match in all nine conditions excluding runtime-only fields; per-image local statistics match all nine; tile-boundary statistics match all six P1/P2 conditions. Bootstrap used 10,000 paired image resamples and seed 42.
+- NFS fresh audit snapshot `/home1/eng-std/s0623003/gpu4_research_backup_native_resolution_patch_training_20261115_checkpoint_audit_reproduced` contains 94 SHA256 entries (438M (readback; initial copy output rounded to 437M)); copy readback verification passed. It excludes checkpoint binaries and RGB/GT source data.
+- No checkpoint, source image, ground-truth image, or prediction cache was modified or included in this release directory; no retraining was performed and Independent test319 was not used.

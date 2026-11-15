@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1120" height="650" viewBox="0 0 1120 650">
 <rect width="100%" height="100%" fill="#ffffff"/>
 <text x="100" y="36" font-family="Arial,sans-serif" font-size="25" font-weight="700">Absolute depth RMSE by training and inference condition</text>
-<text x="100" y="66" font-family="Arial,sans-serif" font-size="15" fill="#555">Validation128, GT mask 0 &lt; depth &lt;= 65 m; all values are provisional</text>
-<text x="100" y="92" font-family="Arial,sans-serif" font-size="13" fill="#9b1c1c">暫定：C0/F1/F2 checkpoint SHA256と評価provenanceの照合待ち</text>
+<text x="100" y="66" font-family="Arial,sans-serif" font-size="15" fill="#555">Validation128, GT mask 0 &lt; depth &lt;= 65 m; independently reproduced</text>
+<text x="100" y="92" font-family="Arial,sans-serif" font-size="13" fill="#1b5e20">fresh再推論と科学指標・十分統計の照合済み</text>
 <line x1="100" y1="535.0" x2="1060" y2="535.0" stroke="#ddd"/>
 <text x="88" y="540.0" text-anchor="end" font-family="Arial,sans-serif" font-size="12" fill="#444">0</text>
 <line x1="100" y1="450.0" x2="1060" y2="450.0" stroke="#ddd"/>

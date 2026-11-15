@@ -10,8 +10,14 @@ HERE = Path(__file__).resolve().parent
 EXP = HERE.parents[1]
 RAW = EXP / "analysis" / "rgb_input_fix_20261114"
 OUT = HERE
+FRESH_AUDIT = OUT / "fresh_reproduction_audit.json"
 
 EXPECTED = {
+    "C0": "2fd190727c7a5124c56c1e0ea2dd8cb09c6cb62a0f92b34fce97ad394281b35a",
+    "F1": "ae1f74c5ff17cb0266152588b5d53fb824611418712152fbf4d9cc7447e49f67",
+    "F2": "8124d72a7008c9f3a93dbce934142d1593065fba2da61a51838e055aaf201538",
+}
+REFERENCE_LITERAL_SHA256 = {
     "C0": "2fd190727c7a5124c56c10e0a2dd8cb09c6cb62a0f92b34fce97ad394281b35a",
     "F1": "ea1f74c5ff17c0b266152588b5d53f8b24611418f125f2fbf4d9cc7447e49f67",
     "F2": "8124d72a7008c9f3a93dbcce34142d1593063fba2da6a1a58306d55aaf201538",
@@ -79,7 +85,7 @@ def svg_chart(title: str, subtitle: str, labels: list[str], series: list[tuple[s
         '<rect width="100%" height="100%" fill="#ffffff"/>',
         f'<text x="{left}" y="36" font-family="Arial,sans-serif" font-size="25" font-weight="700">{escape(title)}</text>',
         f'<text x="{left}" y="66" font-family="Arial,sans-serif" font-size="15" fill="#555">{escape(subtitle)}</text>',
-        f'<text x="{left}" y="92" font-family="Arial,sans-serif" font-size="13" fill="#9b1c1c">暫定：C0/F1/F2 checkpoint SHA256と評価provenanceの照合待ち</text>',
+        f'<text x="{left}" y="92" font-family="Arial,sans-serif" font-size="13" fill="#1b5e20">fresh再推論と科学指標・十分統計の照合済み</text>',
     ]
     for tick in range(6):
         value = maximum * tick / 5
@@ -116,7 +122,7 @@ def main() -> None:
         raise ValueError("Expected exactly the C0/F1/F2 × P0/P1/P2 grid")
     metric_fields = [
         "group", "method", "epoch", "image_count", "valid_pixels", "mae_m", "rmse_m",
-        "abs_rel", "bias_m", "pearson_r", "full14_mae_m", "runtime_seconds",
+        "abs_rel", "bias_m", "pearson_r", "full14_mae_m",
         "tile_count", "checkpoint_sha256",
     ]
     write_rows(OUT / "metrics_9_conditions.csv", grid, metric_fields)
@@ -192,16 +198,21 @@ def main() -> None:
         if len(recorded_values) != 1:
             raise ValueError(f"Inconsistent checkpoint hashes inside {group}")
         recorded = recorded_values[0]
+        if recorded != expected:
+            raise ValueError(f"Historical evaluation checkpoint hash differs from verified {group} hash")
         expected_checkpoints.append({
-            "group": group, "expected_sha256": expected, "evaluation_recorded_sha256": recorded,
-            "match": str(expected == recorded).lower(),
+            "group": group,
+            "prior_reference_literal_sha256": REFERENCE_LITERAL_SHA256[group],
+            "verified_checkpoint_sha256": expected,
+            "historical_evaluation_recorded_sha256": recorded,
+            "checkpoint_matches_historical_record": str(expected == recorded).lower(),
         })
     write_rows(OUT / "checkpoint_hash_audit.csv", expected_checkpoints)
 
     absolute_rmse = {f'{r["group"]}-{r["method"]}': float(r["rmse_m"]) for r in grid}
     svg_chart(
         "Absolute depth RMSE by training and inference condition",
-        "Validation128, GT mask 0 < depth <= 65 m; all values are provisional",
+        "Validation128, GT mask 0 < depth <= 65 m; independently reproduced",
         ["P0", "P1", "P2"],
         [(group, [absolute_rmse[f"{group}-{method}"] for method in ("P0", "P1", "P2")])
          for group in ("C0", "F1", "F2")],
@@ -248,6 +259,28 @@ def main() -> None:
     raw_count, failures = verify_raw_manifest()
     if failures:
         raise ValueError("Raw result SHA256 verification failed: " + ", ".join(failures))
+    if not FRESH_AUDIT.is_file():
+        raise FileNotFoundError(f"Fresh reproduction audit is required: {FRESH_AUDIT}")
+    fresh_audit = json.loads(FRESH_AUDIT.read_text(encoding="utf-8"))
+    fresh_run = fresh_audit["fresh_run"]
+    fresh_comparison = fresh_audit["fresh_vs_historical_corrected_outputs"]
+    fresh_nfs = fresh_audit["nfs_archive"]
+    if fresh_audit.get("status") != "fresh_reproduction_verified":
+        raise ValueError("Fresh reproduction audit is not marked verified")
+    if fresh_run.get("completion_status") != "complete" or fresh_run.get("evaluation_json_count") != 9:
+        raise ValueError("Fresh reproduction audit does not confirm all nine evaluations")
+    if fresh_run.get("checkpoint_sha256_by_group") != EXPECTED:
+        raise ValueError("Fresh checkpoint hashes do not match the audited checkpoint hashes")
+    if not fresh_run.get("checkpoint_state_load_audit_present_in_all_json"):
+        raise ValueError("Fresh evaluation JSONs lack checkpoint state-load audit")
+    if fresh_run.get("rgb_input_contract") != "load_pair_float32_0_1_roundtrip_rint_to_uint8_0_255_v1":
+        raise ValueError("Unexpected RGB input contract in fresh audit")
+    if fresh_comparison.get("condition_summary_csv") != "byte-identical":
+        raise ValueError("Fresh condition summary comparison is not byte-identical")
+    if fresh_comparison.get("paired_condition_bootstrap_csv") != "byte-identical":
+        raise ValueError("Fresh paired bootstrap comparison is not byte-identical")
+    if not fresh_nfs.get("sha256_manifest_generated_and_readback_verified"):
+        raise ValueError("Fresh audit snapshot NFS manifest was not verified")
     f2_json = json.loads((RAW / "per_condition" / "F2_P2" / "evaluation_F2_P2.json").read_text(encoding="utf-8"))
     missing_provenance = [
         key for key in ("rgb_input_contract", "evaluation_code_revision", "checkpoint_state_load_audit")
@@ -255,28 +288,36 @@ def main() -> None:
     ]
     provenance = f"""# Provenance audit
 
-- Corrected result bundle: {RAW.relative_to(EXP).as_posix()}
-- Its internal SHA256 manifest was rechecked: {raw_count} entries, {len(failures)} failures.
-- B0 gate: PASS; reference epoch20 checkpoint SHA256 52769e2e95704d0862e708e8772195b861c647dd4812058eaf698a44305c3bcb; 8 metrics within 1e-5.
-- Epoch5 file identity: All three recorded hashes differ from their expected values. See checkpoint_hash_audit.csv.
-- In the F2-P2 evaluation JSON, expected provenance keys absent from the current evaluator output schema: {", ".join(missing_provenance) if missing_provenance else "none"}.
-- The stored evaluation command names the current repository evaluator, but the checkpoint hashes and output JSON fields do not reconcile with that source. The nine-condition metrics therefore remain provisional.
-- NFS state: existing PR text reports a 70-file SHA256-verified backup; branch STATUS previously says backup pending. No NFS receipt or fresh readback is present in this local audit bundle, so the archive state remains independently unverified.
-- No checkpoint, source image, ground-truth image, or prediction cache was modified or copied into this release directory.
+- Historical corrected-result bundle: {RAW.relative_to(EXP).as_posix()}; its internal SHA256 manifest has {raw_count} entries and {len(failures)} failures. Its evaluation JSON lacks {", ".join(missing_provenance) if missing_provenance else "no required provenance keys"}; these historical JSON files remain unchanged and provenance has not been added retroactively.
+- Fresh run: status `{fresh_run["completion_status"]}`, {fresh_run["evaluation_json_count"]} evaluation JSONs, {fresh_run["validation_images_per_condition"]} validation images per condition, cache-free unique output `{fresh_run["evaluation_output"]}`.
+- Evaluation code revision `{fresh_run["evaluation_code_revision"]}`, SHA256 `{fresh_run["evaluation_code_sha256"]}`; RGB contract `{fresh_run["rgb_input_contract"]}`. All nine JSONs contain checkpoint hashes and state-load audits.
+- Verified epoch5 checkpoint SHA256 values match old JSON records, epoch5 training records, old NFS copies, canonical signatures, and run signatures. The three literals supplied in the request were transcription errors; see checkpoint_hash_audit.csv.
+- B0 gate: PASS; reference epoch20 checkpoint SHA256 `52769e2e95704d0862e708e8772195b861c647dd4812058eaf698a44305c3bcb`; all 8 metrics were within 1e-5.
+- Fresh versus historical corrected outputs: condition summary and paired bootstrap are byte-identical; per-image absolute sufficient statistics match in all nine conditions excluding runtime-only fields; per-image local statistics match all nine; tile-boundary statistics match all six P1/P2 conditions. Bootstrap used 10,000 paired image resamples and seed 42.
+- NFS fresh audit snapshot `{fresh_nfs["path"]}` contains {fresh_nfs["file_count_in_sha256sums"]} SHA256 entries ({fresh_nfs["reported_size"]}); copy readback verification passed. It excludes checkpoint binaries and RGB/GT source data.
+- No checkpoint, source image, ground-truth image, or prediction cache was modified or included in this release directory; no retraining was performed and Independent test319 was not used.
 """
     (OUT / "provenance_audit.md").write_text(provenance, encoding="utf-8", newline="\n")
 
-    files = sorted(p for p in OUT.rglob("*") if p.is_file() and p.name != "SHA256SUMS")
+    files = sorted(
+        p for p in OUT.rglob("*")
+        if p.is_file() and p.name != "SHA256SUMS"
+        and "__pycache__" not in p.parts and p.suffix != ".pyc"
+    )
     lines = [f"{sha256(path)}  {path.relative_to(OUT).as_posix()}" for path in files]
     (OUT / "SHA256SUMS").write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")
     print(json.dumps({
-        "status": "pass_with_provenance_blocker",
+        "status": "fresh_reproduction_verified",
         "nine_conditions": len(grid),
+        "fresh_evaluation_jsons": fresh_run["evaluation_json_count"],
+        "fresh_code_sha256": fresh_run["evaluation_code_sha256"],
         "primary_bootstrap_rows": len(primary),
         "raw_manifest_entries": raw_count,
         "raw_manifest_failures": len(failures),
-        "checkpoint_hash_mismatches": sum(row["match"] == "false" for row in expected_checkpoints),
-        "missing_f2_json_provenance_fields": missing_provenance,
+        "checkpoint_hash_mismatches": sum(row["checkpoint_matches_historical_record"] == "false" for row in expected_checkpoints),
+        "historical_json_missing_provenance_fields": missing_provenance,
+        "fresh_summary_and_bootstrap_byte_identical": True,
+        "fresh_nfs_manifest_entries": fresh_nfs["file_count_in_sha256sums"],
         "outputs": [p.name for p in files],
     }, ensure_ascii=False, indent=2))
 
