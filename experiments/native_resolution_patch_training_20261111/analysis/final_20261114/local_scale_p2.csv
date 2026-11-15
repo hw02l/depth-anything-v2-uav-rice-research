@@ -1,0 +1,6 @@
+method,stride_px,C0_mae_m,F1_mae_m,F2_mae_m,estimator
+P2,14,0.075643,0.083020,0.084834,pooled_all_valid_pairs
+P2,28,0.134682,0.146625,0.147180,pooled_all_valid_pairs
+P2,56,0.222357,0.235464,0.228278,pooled_all_valid_pairs
+P2,107,0.355039,0.367344,0.350062,pooled_all_valid_pairs
+P2,214,0.586442,0.660080,0.572584,pooled_all_valid_pairs

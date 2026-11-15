@@ -1,0 +1,4 @@
+mode,group,image_relpath,original_hw,input_hw,crop_box_yxyx,crop_space,native_px_per_input_px_yx,flipped_horizontal,valid_gt_fraction,valid_gt_median_m,loss_m,optimizer_updates,amp_skips,training_seconds,research_result
+real_data_cpu_smoke,C0,2025/Day019_Corn/images/8.JPG,3956x5280,518x518,"[0, 139, 518, 657]",global_resized_image,"[7.637065637065637, 7.696793002915452]",False,1.0,18.390625,1.5829648971557617,1,0,0.9808619999676012,False
+real_data_cpu_smoke,F1,2025/Day019_Corn/images/8.JPG,3956x5280,518x518,"[429, 3498, 1465, 4534]",original_image,"[2.0, 2.0]",False,1.0,18.4375,1.6531226634979248,1,0,0.7705197000177577,False
+real_data_cpu_smoke,F2,2025/Day019_Corn/images/8.JPG,3956x5280,518x518,"[505, 3925, 1023, 4443]",original_image,"[1.0, 1.0]",False,1.0,18.453125,1.6746313571929932,1,0,0.7480832999572158,False

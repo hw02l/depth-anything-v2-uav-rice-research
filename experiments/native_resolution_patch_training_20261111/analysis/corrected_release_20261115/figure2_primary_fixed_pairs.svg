@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="650" viewBox="0 0 1120 650">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="100" y="36" font-family="Arial,sans-serif" font-size="25" font-weight="700">Primary local MAE: GT delta ≥ 0.20 m, 14 px fixed pairs</text>
+<text x="100" y="66" font-family="Arial,sans-serif" font-size="15" fill="#555">Pooled estimate; C0/F1/F2 training compared within each inference method</text>
+<text x="100" y="92" font-family="Arial,sans-serif" font-size="13" fill="#1b5e20">fresh再推論と科学指標・十分統計の照合済み</text>
+<line x1="100" y1="535.0" x2="1060" y2="535.0" stroke="#ddd"/>
+<text x="88" y="540.0" text-anchor="end" font-family="Arial,sans-serif" font-size="12" fill="#444">0</text>
+<line x1="100" y1="450.0" x2="1060" y2="450.0" stroke="#ddd"/>
+<text x="88" y="455.0" text-anchor="end" font-family="Arial,sans-serif" font-size="12" fill="#444">0.1</text>
+<line x1="100" y1="365.0" x2="1060" y2="365.0" stroke="#ddd"/>
+<text x="88" y="370.0" text-anchor="end" font-family="Arial,sans-serif" font-size="12" fill="#444">0.2</text>
+<line x1="100" y1="280.0" x2="1060" y2="280.0" stroke="#ddd"/>
+<text x="88" y="285.0" text-anchor="end" font-family="Arial,sans-serif" font-size="12" fill="#444">0.3</text>
+<line x1="100" y1="195.0" x2="1060" y2="195.0" stroke="#ddd"/>
+<text x="88" y="200.0" text-anchor="end" font-family="Arial,sans-serif" font-size="12" fill="#444">0.4</text>
+<line x1="100" y1="110.0" x2="1060" y2="110.0" stroke="#ddd"/>
+<text x="88" y="115.0" text-anchor="end" font-family="Arial,sans-serif" font-size="12" fill="#444">0.5</text>
+<rect x="179.0" y="250.3" width="51.0" height="284.7" fill="#4C78A8"/>
+<text x="204.5" y="245.3" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#333">0.335</text>
+<rect x="233.0" y="195.6" width="51.0" height="339.4" fill="#F58518"/>
+<text x="258.5" y="190.6" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#333">0.399</text>
+<rect x="287.0" y="190.1" width="51.0" height="344.9" fill="#54A24B"/>
+<text x="312.5" y="185.1" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#333">0.406</text>
+<text x="260.0" y="563" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#333">P0</text>
+<rect x="499.0" y="211.7" width="51.0" height="323.3" fill="#4C78A8"/>
+<text x="524.5" y="206.7" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#333">0.380</text>
+<rect x="553.0" y="236.8" width="51.0" height="298.2" fill="#F58518"/>
+<text x="578.5" y="231.8" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#333">0.351</text>
+<rect x="607.0" y="214.3" width="51.0" height="320.7" fill="#54A24B"/>
+<text x="632.5" y="209.3" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#333">0.377</text>
+<text x="580.0" y="563" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#333">P1</text>
+<rect x="819.0" y="182.0" width="51.0" height="353.0" fill="#4C78A8"/>
+<text x="844.5" y="177.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#333">0.415</text>
+<rect x="873.0" y="209.8" width="51.0" height="325.2" fill="#F58518"/>
+<text x="898.5" y="204.8" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#333">0.383</text>
+<rect x="927.0" y="207.8" width="51.0" height="327.2" fill="#54A24B"/>
+<text x="952.5" y="202.8" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#333">0.385</text>
+<text x="900.0" y="563" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#333">P2</text>
+<text x="24" y="322.5" transform="rotate(-90 24 322.5)" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" fill="#333">Fixed-pair MAE (m)</text>
+<rect x="100" y="608" width="14" height="14" fill="#4C78A8"/>
+<text x="120" y="620" font-family="Arial,sans-serif" font-size="13" fill="#333">C0</text>
+<rect x="190" y="608" width="14" height="14" fill="#F58518"/>
+<text x="210" y="620" font-family="Arial,sans-serif" font-size="13" fill="#333">F1</text>
+<rect x="280" y="608" width="14" height="14" fill="#54A24B"/>
+<text x="300" y="620" font-family="Arial,sans-serif" font-size="13" fill="#333">F2</text>
+</svg>

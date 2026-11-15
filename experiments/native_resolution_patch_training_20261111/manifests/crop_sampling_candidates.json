@@ -1,0 +1,25 @@
+{
+  "experiment_id": "native_resolution_patch_training_20261111",
+  "seed": 42,
+  "train_manifest_sha256": "13ee3432515250eff50eeb5238dfc178c8853239074eb8cbbea2b510272b0602",
+  "audit_json_sha256": "27398e02ceba98c852e2491db9c85778ef9b68a948cc6f983d1f4d59c9655d97",
+  "shape_yx": [
+    3956,
+    5280
+  ],
+  "budgets": {
+    "480": {
+      "crops_per_group": 1920,
+      "crops_per_image": 5,
+      "csv": "crop_sampling_candidate_480.csv",
+      "csv_sha256": "d489e37f5374a146f9b2223e37d5ba6c11f5af98e4a7673aa14d1fe0ad7e0373"
+    },
+    "960": {
+      "crops_per_group": 3840,
+      "crops_per_image": 10,
+      "csv": "crop_sampling_candidate_960.csv",
+      "csv_sha256": "20799c7513fe17d2ff0a5b5ae809713eb476f878cb6dc772b3f614ccebbf2469"
+    }
+  },
+  "independent_test_used": false
+}

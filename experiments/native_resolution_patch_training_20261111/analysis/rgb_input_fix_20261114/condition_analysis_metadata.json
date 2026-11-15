@@ -1,0 +1,21 @@
+{
+  "repeats": 10000,
+  "seed": 42,
+  "unit": "Validation image, paired",
+  "image_count": 128,
+  "day": "2025/Day047",
+  "independent_test_used": false,
+  "scopes": [
+    "all",
+    "crop",
+    "view",
+    "crop_view"
+  ],
+  "local_conditions": "GT delta bins, GT depth bins, image-edge distance zones, endpoint zones",
+  "boundary_conditions": "tile-seam distance and overlap coverage",
+  "estimators": [
+    "pooled",
+    "image_mean"
+  ],
+  "scope": "Day047 descriptive uncertainty only; no between-day inference"
+}

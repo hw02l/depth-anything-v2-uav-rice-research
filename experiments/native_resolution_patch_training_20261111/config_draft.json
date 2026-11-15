@@ -1,0 +1,46 @@
+{
+  "experiment_id": "native_resolution_patch_training_20261111",
+  "branch": "research/native-resolution-patch-training-20261111",
+  "base_branch": "research/local-huber-20261105",
+  "status": "draft_pending_gpu_pilot",
+  "seed": 42,
+  "initial_checkpoint": {
+    "model_sha256": "52769e2e95704d0862e708e8772195b861c647dd4812058eaf698a44305c3bcb",
+    "config_sha256": "3c6ab05881e6a76edbfd33ff393fdfb082582084e9262826bb1ac0fd2b1dac7c",
+    "load": "strict model-only; optimizer and scheduler are new"
+  },
+  "splits": {
+    "train": 384,
+    "validation": 128,
+    "independent_test": 319,
+    "independent_test_used": false,
+    "train_gt_min_inclusive_m": 0.001,
+    "gt_max_inclusive_m": 65.0,
+    "evaluation_mask": "finite and 0 < depth <= 65m"
+  },
+  "groups": {
+    "C0": {"global_short_side_px": 518, "crop_px": 518, "rgb_resize": "opencv_cubic", "depth_resize": "nearest"},
+    "F1": {"original_crop_px": 1036, "input_px": 518, "rgb_resize": "opencv_cubic", "depth_resize": "nearest"},
+    "F2": {"original_crop_px": 518, "input_px": 518, "resize": "none"}
+  },
+  "loss": "SiLog only",
+  "optimizer": {"name": "AdamW", "weight_decay": 0.01, "encoder_lr": 2e-6, "neck_head_lr": 2e-5, "batch_size": 1, "gradient_accumulation": 4},
+  "scheduler": {"name": "PolynomialLR", "power": 0.9, "epochs": 5},
+  "training_budget_candidates": [
+    {"optimizer_updates": 480, "crops_per_image_total": 5, "crops_per_image_per_epoch": 1},
+    {"optimizer_updates": 960, "crops_per_image_total": 10, "crops_per_image_per_epoch": 2}
+  ],
+  "budget_lock_rule": "Choose 480 if median F2 unique native-pixel crop coverage on Train384 is at least 10%; otherwise choose 960. Apply equally to all groups. Record the selected value after the GPU pilot and before formal training. GPU-pilot validation performance cannot affect the choice.",
+  "inference": {
+    "P0": {"type": "whole_image", "short_side_px": 518},
+    "P1": {"type": "tile", "tile_original_px": 1036, "input_px": 518, "overlap": 0.25},
+    "P2": {"type": "tile", "tile_original_px": 518, "input_px": 518, "overlap": 0.25},
+    "tile_grid": "last tile anchored to far edge; no padding",
+    "tile_blend": "positive Hann max(hann,1e-3), normalized weighted average"
+  },
+  "primary_comparison": "F2-P2 vs C0-P2; fixed-sample 14px GT-delta >=0.2m MAE",
+  "success_target": {"primary_mae_relative_reduction": 0.05, "absolute_rmse_ratio_max": 1.05},
+  "validation": {"epochs": "P0 all 128 each epoch; primary checkpoint is fixed final epoch", "final_cross_inference": "all 9 group x inference combinations"},
+  "bootstrap": {"unit": "image, paired", "repeats": 10000, "seed": 42},
+  "gpu": {"priority": "GPGPU4", "work_root": "~/gpu_work", "checkpoint_reuse": "verify recorded SHA256 before use"}
+}

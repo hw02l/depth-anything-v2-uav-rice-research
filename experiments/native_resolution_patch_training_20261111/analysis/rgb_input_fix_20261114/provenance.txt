@@ -1,0 +1,7 @@
+scope=corrected_rgb_evaluation
+created_utc=2026-11-15T01:07:46+00:00
+branch=research/native-resolution-patch-training-20261111
+commit=d937ab93b0079004969c4008d5399964c521b365
+name, utilization.gpu [%], memory.used [MiB], memory.free [MiB]
+NVIDIA GeForce GTX 1080, 0 %, 15 MiB, 8098 MiB
+Python 3.11.2
