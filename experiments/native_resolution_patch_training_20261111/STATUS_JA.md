@@ -34,4 +34,4 @@ PR：[#6](https://github.com/hw02l/depth-anything-v2-uav-rice-research/pull/6)<b
 
 ## 公開状態
 
-変更は既存PR #6のブランチ `research/native-resolution-patch-training-20261111` へ反映する。PR #3/#4/#5は変更していない。公開対象からcheckpoint、RGB/GT原画像、prediction cache、認証情報を除外した。
+最終報告・監査成果物は既存PR #6のブランチ `research/native-resolution-patch-training-20261111` に反映済みである。PR #3/#4/#5は変更していない。公開対象からcheckpoint、RGB/GT原画像、prediction cache、認証情報を除外した。
