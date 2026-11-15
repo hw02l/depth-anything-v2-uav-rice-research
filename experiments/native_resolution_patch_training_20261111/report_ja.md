@@ -221,3 +221,56 @@ GPGPU4はGeForce GTX1080 8GB、Singularity CE 4.2.2、PyTorch 2.11.0+cu126、Tra
 - [9条件の全体指標](analysis/final_20261114/figures/figure1_final_metrics.svg)
 - [主比較のpaired bootstrap](analysis/final_20261114/figures/figure2_primary_effects.svg)
 - [P2距離別局所MAE](analysis/final_20261114/figures/figure3_local_scale.svg)
+
+
+
+## 訂正追補：RGB入力不具合の修正と再評価（2026-11-14）
+
+### 初回評価の訂正
+
+2026年11月14日の初回評価にはRGB値域の重大な不具合があった。data_patch.py の load_pair() はRGBをfloat32の0〜1で返す一方、旧 evaluate_patch.py は配列を直接uint8へ変換して推論へ渡していた。多くの画素値が0に切り捨てられ、実質的に黒い入力になっていた。C0・F1・F2のP0/P1/P2、全9条件の初回値と初回結論は無効であり、旧JSONはinvalid_pre_fixの検証履歴として保持する。
+
+### 修正と回帰確認
+
+評価RGBを0〜255のuint8 RGBに統一し、推論前処理でfloat32化、0〜1化、ImageNet正規化を一度だけ行うよう修正した。0〜1 floatの直接uint8化を防ぎ、想定外のdtype・値域を拒否する。実UAV画像のRGB画素・チャンネル順・サイズ一致、B0/P0前処理、P1/P2タイル値保持、入力型・値域の回帰確認を追加した。単一画像のGPU forward smoke testも完了した。
+
+### epoch20 B0再現ゲート
+
+初期checkpoint SHA256 52769e2e95704d0862e708e8772195b861c647dd4812058eaf698a44305c3bcbのepoch20モデルを、固定Validation128・固定ペアmanifest・同一GTマスク・P0で評価した。許容誤差1e-5以内で過去基準を再現した。
+
+| 指標 | 既存基準 | 修正後 |
+|---|---:|---:|
+| 絶対MAE (m) | 0.573505 | 0.5735048960 |
+| 絶対RMSE (m) | 0.794239 | 0.7942392449 |
+| AbsRel | 0.029186 | 0.0291856383 |
+| Pearson | 0.994368 | 0.9943680370 |
+| 全14px局所MAE (m) | 0.059639 | 0.0596389851 |
+| GT差20cm以上14px局所MAE (m) | 0.336181 | 0.3361806171 |
+
+### epoch5 checkpointによる全9条件の訂正評価
+
+学習条件は変更せず、保存済みC0/F1/F2 epoch5 checkpointを再利用した。再学習は行っていない。SHA256はC0 2fd190727c7a5124c56c10e0a2dd8cb09c6cb62a0f92b34fce97ad394281b35a、F1 ea1f74c5ff17c0b266152588b5d53f8b24611418f125f2fbf4d9cc7447e49f67、F2 8124d72a7008c9f3a93dbcce34142d1593063fba2da6a1a58306d55aaf201538である。全条件をValidation128、0 < depth <= 65mのマスクで修正版コードから再推論した。
+
+| 学習群 | 推論法 | MAE (m) | RMSE (m) | AbsRel | Pearson |
+|---|---|---:|---:|---:|---:|
+| C0 | P0 | 0.531744 | 0.744069 | 0.026789 | 0.995057 |
+| C0 | P1 | 3.853017 | 6.291784 | 0.152180 | 0.745212 |
+| C0 | P2 | 4.849274 | 8.234547 | 0.182571 | 0.456693 |
+| F1 | P0 | 5.160479 | 6.849527 | 0.271510 | 0.828803 |
+| F1 | P1 | 1.633674 | 2.616582 | 0.074992 | 0.948336 |
+| F1 | P2 | 3.437600 | 5.752736 | 0.135907 | 0.820291 |
+| F2 | P0 | 5.533312 | 7.409495 | 0.291858 | 0.806006 |
+| F2 | P1 | 3.035406 | 4.020536 | 0.160179 | 0.892054 |
+| F2 | P2 | 1.882250 | 3.083992 | 0.086000 | 0.923088 |
+
+### paired bootstrapと解像度仮説
+
+主要比較F2-P2対C0-P2のGT差20cm以上・元画像14px固定ペアMAEは0.11699068mから0.10233383mへ低下した（差−0.01465685m、相対改善12.53%）。画像ID単位、10,000反復、seed 42、128画像のpaired bootstrapを実施した。比較別の推定量・信頼区間、pooledと画像平均の区別はanalysis/rgb_input_fix_20261114/paired_condition_bootstrap.csvに保存し、条件要約はcondition_summary.csvに保存した。
+
+主要局所MAEは事前登録の5%改善基準を満たし、RMSEもC0-P2より悪化しなかった。一方、P0/P1/P2と学習群の交互作用が大きく、絶対RMSEは条件により0.744〜8.235mである。高解像度クロップ学習単独が一般に局所深度差を改善するとは結論できない。結果は評価法との組合せ依存を示す限定的証拠であり、外部データへの一般化、撮影条件別の因果効果、実運用性能は未確立である。
+
+### 旧値との関係と保全
+
+初回評価RMSE 7.542〜8.651m、Pearson負値、局所指標および初回結論はRGB破損入力によるためinvalid_pre_fixとする。訂正値で黙って上書きせず、不具合を明記した。Independent test319は未使用であり、GTによる推論後補正やfusionも行っていない。GPU評価プロセスは停止しGPUを解放した。
+
+修正コード・回帰テストはPR #6の作業ブランチに含まれる。訂正出力はanalysis/rgb_input_fix_20261114/、NFS退避先は/home1/eng-std/s0623003/gpu4_research_backup_native_resolution_patch_training_20261114_rgb_input_fixである。バックアップSHA256SUMSはPASSである。

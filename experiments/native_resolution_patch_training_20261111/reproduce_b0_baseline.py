@@ -127,6 +127,7 @@ def run(args) -> None:
     if reference.get("model_id") != "E0" or int(reference.get("epoch", -1)) != 20:
         raise ValueError("Reference must be the saved epoch-20 E0/B0 baseline")
     reference_rows = list(csv.DictReader(args.reference_per_image.open("r", encoding="utf-8", newline="")))
+    reference_rows = [{**row, **{key.replace("_", " "): value for key, value in row.items()}} for row in reference_rows]
     if len(reference_rows) != 128:
         raise ValueError("Saved E0 baseline must contain exactly 128 image rows")
     expected_images = json.loads(args.pair_manifest.read_text(encoding="utf-8"))["images"]
@@ -166,14 +167,33 @@ def run(args) -> None:
     }
     comparison = compare(actual, reference)
     per_image_comparisons = []
-    for actual_row, expected_row in zip(absolute_rows, reference_rows):
-        if actual_row["image_index"] != int(expected_row["image_index"]):
-            raise ValueError("Per-image reference order differs")
-        if actual_row["image_relpath"] != expected_row["image_relpath"]:
-            raise ValueError("Per-image reference identity differs")
-        large_rows = [r for r in local_rows if r["image_index"] == actual_row["image_index"]
-                      and r["stride_px"] == 14 and r["group"] == "gt_ge20cm"]
+    write_csv(out / "b0 per image absolute pre-gate.csv", absolute_rows)
+    local_rows = [{str(key).replace(chr(95), chr(32)).strip(): value for key, value in row.items()} for row in local_rows]
+    write_csv(out / "b0 local rows pre-gate.csv", local_rows)
+    for row_position, (actual_row, expected_row) in enumerate(zip(absolute_rows, reference_rows)):
+        actual_row = {str(key).replace(chr(95), chr(32)).strip(): value for key, value in actual_row.items()}
+        if "valid pixels" not in actual_row and "valid pixel count" in actual_row: actual_row["valid pixels"] = actual_row["valid pixel count"]
+        expected_row = {str(key).replace("_", " ").strip(): value for key, value in expected_row.items()}
+        actual_index = actual_row.get("image index")
+        expected_index = expected_row.get("image index")
+        if actual_index is not None and expected_index is not None and int(actual_index) != int(expected_index):
+            raise ValueError("Per-image reference order differs at row " + str(row_position))
+        actual_relpath = actual_row.get("image relpath")
+        expected_relpath = expected_row.get("image relpath")
+        if actual_relpath is None or expected_relpath is None:
+            raise ValueError("Missing per-image identity fields; actual keys=" + str(sorted(actual_row.keys())) + " reference keys=" + str(sorted(expected_row.keys())))
+        if actual_relpath != expected_relpath:
+            raise ValueError("Per-image reference identity differs at row " + str(row_position))
+        image_index = actual_index if actual_index is not None else expected_index
+        large_rows = [r for r in local_rows if str(r.get("image index", r.get("image_index", ""))) == str(image_index) and int(r.get("stride px", r.get("stride_px", -1))) == 14 and r.get("group") == "gt ge20cm"]
         large_count = sum(int(r["pair_count"]) for r in large_rows)
+        # The absolute accumulator holds dense full-resolution 14px statistics; fixed-manifest rows are sampled for GT>=20cm only.
+        full14_count = int(actual_row["full14 pair count"])
+        full14_error = float(actual_row["full14 abs delta error sum"])
+        if full14_count != int(expected_row["full14 pair count"]):
+            raise ValueError("dense 14px pair count mismatch actual=" + str(full14_count) + " expected=" + str(expected_row["full14 pair count"]) + " image=" + str(actual_row.get("image index", actual_row.get("image_index", "unknown"))))
+        full14_mae = full14_error / full14_count if full14_count else float("nan")
+        actual_row["full14 local mae m"] = full14_mae
         large_error = sum(float(r["abs_delta_error_sum"]) for r in large_rows)
         large_gt = sum(float(r["abs_gt_delta_sum"]) for r in large_rows)
         large_pred = sum(float(r["abs_prediction_delta_sum"]) for r in large_rows)
@@ -186,7 +206,7 @@ def run(args) -> None:
             "mae_m": (float(actual_row["mae_m"]), float(expected_row["mae_m"]), ABSOLUTE_TOLERANCE),
             "rmse_m": (float(actual_row["rmse_m"]), float(expected_row["rmse_m"]), ABSOLUTE_TOLERANCE),
             "abs_rel": (float(actual_row["abs_rel"]), float(expected_row["abs_rel"]), ABSOLUTE_TOLERANCE),
-            "full14_local_mae_m": (float(actual_row["full14_mae_m"]), float(expected_row["full14_local_mae_m"]), ABSOLUTE_TOLERANCE),
+            "full14_local_mae_m": (full14_mae, float(expected_row["full14_local_mae_m"]), ABSOLUTE_TOLERANCE),
             "gt_ge20_local_mae_m": (large_error / large_count, float(expected_row["gt_ge20_local_mae_m"]), ABSOLUTE_TOLERANCE),
             "gt_ge20_amplitude_ratio": (large_pred / large_gt, float(expected_row["gt_ge20_amplitude_ratio"]), ABSOLUTE_TOLERANCE),
             "gt_ge20_sign_match_rate": (large_sign / large_nonzero, float(expected_row["gt_ge20_sign_match_rate"]), ABSOLUTE_TOLERANCE),
@@ -196,7 +216,7 @@ def run(args) -> None:
             passed = int(value) == int(reference_value) if tolerance == 0 else abs(value - reference_value) <= tolerance
             checks[name] = {"actual": value, "reference": reference_value,
                             "tolerance": tolerance, "passed": bool(passed)}
-        per_image_comparisons.append({"image_index": actual_row["image_index"],
+        per_image_comparisons.append({"image_index": image_index,
                                       "image_relpath": actual_row["image_relpath"],
                                       "checks": checks,
                                       "passed": all(v["passed"] for v in checks.values())})

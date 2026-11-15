@@ -1,0 +1,423 @@
+{
+  "status": "PASS",
+  "device": "cuda",
+  "method": "P0",
+  "image_index": null,
+  "image_relpath": "2025/Day047_Corn/images/7.JPG",
+  "rgb_shape": [
+    3956,
+    5280,
+    3
+  ],
+  "rgb_dtype": "uint8",
+  "rgb_min": 0,
+  "rgb_max": 255,
+  "rgb_pixel_exact": true,
+  "gt_shape": [
+    3956,
+    5280
+  ],
+  "prediction_shape": [
+    3956,
+    5280
+  ],
+  "prediction_min_m": 15.946575164794922,
+  "prediction_max_m": 21.354656219482422,
+  "prediction_finite": true,
+  "tile_count": 1,
+  "forward_seconds": 0.6344281260389835,
+  "checkpoint_model_sha256": "52769e2e95704d0862e708e8772195b861c647dd4812058eaf698a44305c3bcb",
+  "load_audit": {
+    "mode": "legacy_serialized_attention_to_runtime",
+    "renamed_tensors": 96,
+    "verified_tensors": 287,
+    "strict_load": true,
+    "loaded_values_exact": true,
+    "mapping": [
+      {
+        "stored": "backbone.encoder.layer.0.attention.attention.query.weight",
+        "runtime": "backbone.encoder.layer.0.attention.q_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.0.attention.attention.query.bias",
+        "runtime": "backbone.encoder.layer.0.attention.q_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.0.attention.attention.key.weight",
+        "runtime": "backbone.encoder.layer.0.attention.k_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.0.attention.attention.key.bias",
+        "runtime": "backbone.encoder.layer.0.attention.k_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.0.attention.attention.value.weight",
+        "runtime": "backbone.encoder.layer.0.attention.v_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.0.attention.attention.value.bias",
+        "runtime": "backbone.encoder.layer.0.attention.v_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.0.attention.output.dense.weight",
+        "runtime": "backbone.encoder.layer.0.attention.o_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.0.attention.output.dense.bias",
+        "runtime": "backbone.encoder.layer.0.attention.o_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.1.attention.attention.query.weight",
+        "runtime": "backbone.encoder.layer.1.attention.q_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.1.attention.attention.query.bias",
+        "runtime": "backbone.encoder.layer.1.attention.q_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.1.attention.attention.key.weight",
+        "runtime": "backbone.encoder.layer.1.attention.k_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.1.attention.attention.key.bias",
+        "runtime": "backbone.encoder.layer.1.attention.k_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.1.attention.attention.value.weight",
+        "runtime": "backbone.encoder.layer.1.attention.v_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.1.attention.attention.value.bias",
+        "runtime": "backbone.encoder.layer.1.attention.v_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.1.attention.output.dense.weight",
+        "runtime": "backbone.encoder.layer.1.attention.o_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.1.attention.output.dense.bias",
+        "runtime": "backbone.encoder.layer.1.attention.o_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.2.attention.attention.query.weight",
+        "runtime": "backbone.encoder.layer.2.attention.q_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.2.attention.attention.query.bias",
+        "runtime": "backbone.encoder.layer.2.attention.q_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.2.attention.attention.key.weight",
+        "runtime": "backbone.encoder.layer.2.attention.k_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.2.attention.attention.key.bias",
+        "runtime": "backbone.encoder.layer.2.attention.k_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.2.attention.attention.value.weight",
+        "runtime": "backbone.encoder.layer.2.attention.v_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.2.attention.attention.value.bias",
+        "runtime": "backbone.encoder.layer.2.attention.v_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.2.attention.output.dense.weight",
+        "runtime": "backbone.encoder.layer.2.attention.o_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.2.attention.output.dense.bias",
+        "runtime": "backbone.encoder.layer.2.attention.o_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.3.attention.attention.query.weight",
+        "runtime": "backbone.encoder.layer.3.attention.q_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.3.attention.attention.query.bias",
+        "runtime": "backbone.encoder.layer.3.attention.q_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.3.attention.attention.key.weight",
+        "runtime": "backbone.encoder.layer.3.attention.k_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.3.attention.attention.key.bias",
+        "runtime": "backbone.encoder.layer.3.attention.k_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.3.attention.attention.value.weight",
+        "runtime": "backbone.encoder.layer.3.attention.v_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.3.attention.attention.value.bias",
+        "runtime": "backbone.encoder.layer.3.attention.v_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.3.attention.output.dense.weight",
+        "runtime": "backbone.encoder.layer.3.attention.o_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.3.attention.output.dense.bias",
+        "runtime": "backbone.encoder.layer.3.attention.o_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.4.attention.attention.query.weight",
+        "runtime": "backbone.encoder.layer.4.attention.q_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.4.attention.attention.query.bias",
+        "runtime": "backbone.encoder.layer.4.attention.q_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.4.attention.attention.key.weight",
+        "runtime": "backbone.encoder.layer.4.attention.k_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.4.attention.attention.key.bias",
+        "runtime": "backbone.encoder.layer.4.attention.k_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.4.attention.attention.value.weight",
+        "runtime": "backbone.encoder.layer.4.attention.v_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.4.attention.attention.value.bias",
+        "runtime": "backbone.encoder.layer.4.attention.v_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.4.attention.output.dense.weight",
+        "runtime": "backbone.encoder.layer.4.attention.o_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.4.attention.output.dense.bias",
+        "runtime": "backbone.encoder.layer.4.attention.o_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.5.attention.attention.query.weight",
+        "runtime": "backbone.encoder.layer.5.attention.q_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.5.attention.attention.query.bias",
+        "runtime": "backbone.encoder.layer.5.attention.q_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.5.attention.attention.key.weight",
+        "runtime": "backbone.encoder.layer.5.attention.k_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.5.attention.attention.key.bias",
+        "runtime": "backbone.encoder.layer.5.attention.k_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.5.attention.attention.value.weight",
+        "runtime": "backbone.encoder.layer.5.attention.v_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.5.attention.attention.value.bias",
+        "runtime": "backbone.encoder.layer.5.attention.v_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.5.attention.output.dense.weight",
+        "runtime": "backbone.encoder.layer.5.attention.o_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.5.attention.output.dense.bias",
+        "runtime": "backbone.encoder.layer.5.attention.o_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.6.attention.attention.query.weight",
+        "runtime": "backbone.encoder.layer.6.attention.q_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.6.attention.attention.query.bias",
+        "runtime": "backbone.encoder.layer.6.attention.q_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.6.attention.attention.key.weight",
+        "runtime": "backbone.encoder.layer.6.attention.k_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.6.attention.attention.key.bias",
+        "runtime": "backbone.encoder.layer.6.attention.k_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.6.attention.attention.value.weight",
+        "runtime": "backbone.encoder.layer.6.attention.v_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.6.attention.attention.value.bias",
+        "runtime": "backbone.encoder.layer.6.attention.v_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.6.attention.output.dense.weight",
+        "runtime": "backbone.encoder.layer.6.attention.o_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.6.attention.output.dense.bias",
+        "runtime": "backbone.encoder.layer.6.attention.o_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.7.attention.attention.query.weight",
+        "runtime": "backbone.encoder.layer.7.attention.q_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.7.attention.attention.query.bias",
+        "runtime": "backbone.encoder.layer.7.attention.q_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.7.attention.attention.key.weight",
+        "runtime": "backbone.encoder.layer.7.attention.k_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.7.attention.attention.key.bias",
+        "runtime": "backbone.encoder.layer.7.attention.k_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.7.attention.attention.value.weight",
+        "runtime": "backbone.encoder.layer.7.attention.v_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.7.attention.attention.value.bias",
+        "runtime": "backbone.encoder.layer.7.attention.v_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.7.attention.output.dense.weight",
+        "runtime": "backbone.encoder.layer.7.attention.o_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.7.attention.output.dense.bias",
+        "runtime": "backbone.encoder.layer.7.attention.o_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.8.attention.attention.query.weight",
+        "runtime": "backbone.encoder.layer.8.attention.q_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.8.attention.attention.query.bias",
+        "runtime": "backbone.encoder.layer.8.attention.q_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.8.attention.attention.key.weight",
+        "runtime": "backbone.encoder.layer.8.attention.k_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.8.attention.attention.key.bias",
+        "runtime": "backbone.encoder.layer.8.attention.k_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.8.attention.attention.value.weight",
+        "runtime": "backbone.encoder.layer.8.attention.v_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.8.attention.attention.value.bias",
+        "runtime": "backbone.encoder.layer.8.attention.v_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.8.attention.output.dense.weight",
+        "runtime": "backbone.encoder.layer.8.attention.o_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.8.attention.output.dense.bias",
+        "runtime": "backbone.encoder.layer.8.attention.o_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.9.attention.attention.query.weight",
+        "runtime": "backbone.encoder.layer.9.attention.q_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.9.attention.attention.query.bias",
+        "runtime": "backbone.encoder.layer.9.attention.q_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.9.attention.attention.key.weight",
+        "runtime": "backbone.encoder.layer.9.attention.k_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.9.attention.attention.key.bias",
+        "runtime": "backbone.encoder.layer.9.attention.k_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.9.attention.attention.value.weight",
+        "runtime": "backbone.encoder.layer.9.attention.v_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.9.attention.attention.value.bias",
+        "runtime": "backbone.encoder.layer.9.attention.v_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.9.attention.output.dense.weight",
+        "runtime": "backbone.encoder.layer.9.attention.o_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.9.attention.output.dense.bias",
+        "runtime": "backbone.encoder.layer.9.attention.o_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.10.attention.attention.query.weight",
+        "runtime": "backbone.encoder.layer.10.attention.q_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.10.attention.attention.query.bias",
+        "runtime": "backbone.encoder.layer.10.attention.q_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.10.attention.attention.key.weight",
+        "runtime": "backbone.encoder.layer.10.attention.k_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.10.attention.attention.key.bias",
+        "runtime": "backbone.encoder.layer.10.attention.k_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.10.attention.attention.value.weight",
+        "runtime": "backbone.encoder.layer.10.attention.v_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.10.attention.attention.value.bias",
+        "runtime": "backbone.encoder.layer.10.attention.v_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.10.attention.output.dense.weight",
+        "runtime": "backbone.encoder.layer.10.attention.o_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.10.attention.output.dense.bias",
+        "runtime": "backbone.encoder.layer.10.attention.o_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.11.attention.attention.query.weight",
+        "runtime": "backbone.encoder.layer.11.attention.q_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.11.attention.attention.query.bias",
+        "runtime": "backbone.encoder.layer.11.attention.q_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.11.attention.attention.key.weight",
+        "runtime": "backbone.encoder.layer.11.attention.k_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.11.attention.attention.key.bias",
+        "runtime": "backbone.encoder.layer.11.attention.k_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.11.attention.attention.value.weight",
+        "runtime": "backbone.encoder.layer.11.attention.v_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.11.attention.attention.value.bias",
+        "runtime": "backbone.encoder.layer.11.attention.v_proj.bias"
+      },
+      {
+        "stored": "backbone.encoder.layer.11.attention.output.dense.weight",
+        "runtime": "backbone.encoder.layer.11.attention.o_proj.weight"
+      },
+      {
+        "stored": "backbone.encoder.layer.11.attention.output.dense.bias",
+        "runtime": "backbone.encoder.layer.11.attention.o_proj.bias"
+      }
+    ]
+  }
+}

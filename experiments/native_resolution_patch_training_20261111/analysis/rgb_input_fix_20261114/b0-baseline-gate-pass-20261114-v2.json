@@ -1,0 +1,105 @@
+{
+  "status": "PASS",
+  "gate": "existing epoch20 E0 B0 P0 baseline reproduction",
+  "images": 128,
+  "image_ids_and_paths_match": true,
+  "valid_pixels": 2668757375,
+  "gt_ge20cm_14px_pairs": 1911836,
+  "gt_ge20cm_nonzero_pairs": 1911836,
+  "full14_pairs": 5320891492,
+  "tolerance": 1e-05,
+  "comparisons": {
+    "absolute mae m": {
+      "actual": 0.5735048960437379,
+      "reference": 0.5735048960437379,
+      "abs_diff": 0.0,
+      "tolerance": 1e-05,
+      "passed": true
+    },
+    "absolute rmse m": {
+      "actual": 0.7942392449109983,
+      "reference": 0.7942392449109983,
+      "abs_diff": 0.0,
+      "tolerance": 1e-05,
+      "passed": true
+    },
+    "abs rel": {
+      "actual": 0.0291856383240263,
+      "reference": 0.0291856383240263,
+      "abs_diff": 0.0,
+      "tolerance": 1e-05,
+      "passed": true
+    },
+    "pearson r": {
+      "actual": 0.9943680377017144,
+      "reference": 0.9943680377017142,
+      "abs_diff": 2.220446049250313e-16,
+      "tolerance": 1e-05,
+      "passed": true
+    },
+    "full14 local mae m": {
+      "actual": 0.05963898850565961,
+      "reference": 0.05963898850565961,
+      "abs_diff": 0.0,
+      "tolerance": 1e-05,
+      "passed": true
+    },
+    "gt ge20cm 14px local mae m": {
+      "actual": 0.3361806171089982,
+      "reference": 0.3361806171089982,
+      "abs_diff": 0.0,
+      "tolerance": 1e-05,
+      "passed": true
+    },
+    "gt ge20cm amplitude ratio": {
+      "actual": 0.3326918588874222,
+      "reference": 0.3326918588874222,
+      "abs_diff": 0.0,
+      "tolerance": 1e-05,
+      "passed": true
+    },
+    "gt ge20cm sign match rate": {
+      "actual": 0.8248495163811121,
+      "reference": 0.8248495163811121,
+      "abs_diff": 0.0,
+      "tolerance": 1e-05,
+      "passed": true
+    }
+  },
+  "actual_metrics": {
+    "absolute mae m": 0.5735048960437379,
+    "absolute rmse m": 0.7942392449109983,
+    "abs rel": 0.0291856383240263,
+    "pearson r": 0.9943680377017144,
+    "full14 local mae m": 0.05963898850565961,
+    "gt ge20cm 14px local mae m": 0.3361806171089982,
+    "gt ge20cm amplitude ratio": 0.3326918588874222,
+    "gt ge20cm sign match rate": 0.8248495163811121
+  },
+  "reference_metrics": {
+    "absolute mae m": 0.5735048960437379,
+    "absolute rmse m": 0.7942392449109983,
+    "abs rel": 0.0291856383240263,
+    "pearson r": 0.9943680377017142,
+    "full14 local mae m": 0.05963898850565961,
+    "gt ge20cm 14px local mae m": 0.3361806171089982,
+    "gt ge20cm amplitude ratio": 0.3326918588874222,
+    "gt ge20cm sign match rate": 0.8248495163811121
+  },
+  "reference_checkpoint_sha256": "52769e2e95704d0862e708e8772195b861c647dd4812058eaf698a44305c3bcb",
+  "reference_pair_manifest_sha256": "bcb56eab03bec4a44f0626da0f4814876fae67774e536e00cd9f1ad16b1f5728",
+  "input_csv_sha256": {
+    "per_image": "f10549e5a4a358d6e87ca559fdb085cfeb1763ae1fee2339864a638592b30455",
+    "local_rows": "95b9918d7c6628a85cf66dcf756a55775fc7bece032018e02627f696728e8695",
+    "reference_per_image": "560a8f41f5f80bdc2bd03dbe8998a6fe5898db92a3b2b46adacd6301a04ec8ed",
+    "reference_summary": "f354afb8dfb4e778dd801219ed927e9a30a8eb44146fbc227abeea7db1f02a3c"
+  },
+  "source_sha256": "ad0a849f6e98a33957fee7254bd6bb16175d73cc6a8d537abba97984881acef5",
+  "input_paths": {
+    "per_image": "/localdata/s0623003/native_resolution_patch_training_20261111/analysis/rgb-input-fix-20261114-run2/b0-baseline-gatefix-verified-20261114-183740/b0 per image absolute pre-gate.csv",
+    "local_rows": "/localdata/s0623003/native_resolution_patch_training_20261111/analysis/rgb-input-fix-20261114-run2/b0-baseline-gatefix-verified-20261114-183740/b0 local rows pre-gate.csv",
+    "reference_summary": "/localdata/s0623003/native_resolution_patch_training_20261111/analysis/rgb-input-fix-20261114-run2/source/experiments/local_huber_20261105/analysis/final_20261107/inputs/E0_summary.json",
+    "reference_per_image": "/localdata/s0623003/native_resolution_patch_training_20261111/analysis/rgb-input-fix-20261114-run2/source/experiments/local_huber_20261105/analysis/final_20261107/inputs/E0_per_image.csv",
+    "source": "/localdata/s0623003/native_resolution_patch_training_20261111/analysis/rgb-input-fix-20261114-run2/source/experiments/native_resolution_patch_training_20261111/reproduce_b0_baseline.py"
+  }
+}
