@@ -12,8 +12,8 @@ import cv2
 import numpy as np
 import torch
 
-ROOT = Path(__file__).resolve().parents[2]
 HERE = Path(__file__).resolve().parent
+ROOT = HERE.parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 sys.path.insert(0, str(HERE))
 
@@ -183,4 +183,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

@@ -11,7 +11,7 @@ import numpy as np
 import torch
 
 HERE = Path(__file__).resolve().parent
-ROOT = HERE.parents[2]
+ROOT = HERE.parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 sys.path.insert(0, str(HERE))
 
@@ -116,4 +116,3 @@ class RGBInputContractTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-

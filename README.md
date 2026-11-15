@@ -89,3 +89,9 @@ RGB/GT、学習重み、optimizer state、全予測cacheはGitへ含めない。
 20 epoch計画は完了した。今後は独立testをモデルと評価手順を固定した後に一度だけ使用し、複数seed、局所差分損失、高解像度tile、画像端歪み対策、未知撮影日の汎化、稲のMetric Depth／垂直草丈GTとの比較を別実験として検討する。D-17（RMSE最良）とD-20（大局所差MAE最良）を目的に応じて保持し、単一指標だけでcheckpointを選ばない。
 
 データ出典：UAV3DCrop／UAV3DCrop Depth, Link-Dev（[RGB](https://huggingface.co/datasets/Link-Dev/UAV3DCrop)、[Depth](https://huggingface.co/datasets/Link-Dev/UAV3DCrop_depth)、CC BY 4.0）。図はこれらのRGB/深度を加工した研究用比較図である。[出典・改変表示](figures/ATTRIBUTION.md)を参照。
+
+## 高解像度クロップ実験の訂正状況
+
+2026-11-14の初回評価では、0〜1のfloat RGBをuint8へ直接変換したため、評価入力の画像情報が失われていた。初回評価の数値と、それに基づく結論は無効であり、監査用履歴として区別している。修正後の評価コードでは既存epoch20 B0のValidation128指標8項目を許容誤差1e-5以内で再現した。全9条件の再評価結果と詳細な数値は[訂正後報告](experiments/native_resolution_patch_training_20261111/report_ja.md)を参照。
+
+再評価出力上では、F2-P2対C0-P2のGT差20cm以上14px固定pair MAEはpooled推定で7.31%低下した一方、画像平均推定では3.95%低下であり、全有効pairの副次指標の12.56%低下とは区別する。F2-P2のRMSE 3.084mはC0-P0の0.744mより大きい。さらにC0/F1/F2すべてのepoch5 checkpoint SHA256と評価provenanceが固定記録と一致しないため、9条件値は暫定であり、研究上の最終結論として確定していない。状態は[STATUS_JA.md](experiments/native_resolution_patch_training_20261111/STATUS_JA.md)に記録する。
