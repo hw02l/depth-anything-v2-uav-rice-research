@@ -50,6 +50,16 @@
     "per_image_boundary_statistics": "exact for all 6 P1/P2 conditions",
     "historical_json_provenance_backfilled": false
   },
+  "historical_provenance_audit": {
+    "observed_missing_keys": [
+      "rgb_input_contract",
+      "evaluation_code_revision",
+      "checkpoint_state_load_audit"
+    ],
+    "available_legacy_evaluate_patch_behavior": "returns an existing complete evaluation JSON without rerunning inference or refreshing metadata",
+    "whether_that_cache_path_was_used_for_these_jsons": "not provable; exact dirty source revision and full historical command were not retained",
+    "retroactive_provenance_added": false
+  },
   "nfs_archive": {
     "path": "/home1/eng-std/s0623003/gpu4_research_backup_native_resolution_patch_training_20261115_checkpoint_audit_reproduced",
     "file_count_in_sha256sums": 94,

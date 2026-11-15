@@ -1,6 +1,7 @@
 # Provenance audit
 
 - Historical corrected-result bundle: analysis/rgb_input_fix_20261114; its internal SHA256 manifest has 43 entries and 0 failures. Its evaluation JSON lacks rgb_input_contract, evaluation_code_revision, checkpoint_state_load_audit; these historical JSON files remain unchanged and provenance has not been added retroactively.
+- The available legacy `evaluate_patch.py` returns an existing complete evaluation JSON without rerunning inference or refreshing metadata, so this cache path could explain the missing provenance. The exact historical dirty source revision and full run command were not retained; whether this path generated or reused these specific JSON files cannot be proven.
 - Fresh run: status `complete`, 9 evaluation JSONs, 128 validation images per condition, cache-free unique output `/localdata/s0623003/native_resolution_patch_training_20261111/analysis/checkpoint_audit_20261115T085704Z/corrected_all9_20261115`.
 - Evaluation code revision `e67a6338+checkpoint_hash_registry_correction_v1`, SHA256 `76b87c884c2bbbb650b9a3a492e56989cc27b42674863b03d6daf113e2907275`; RGB contract `load_pair_float32_0_1_roundtrip_rint_to_uint8_0_255_v1`. All nine JSONs contain checkpoint hashes and state-load audits.
 - Verified epoch5 checkpoint SHA256 values match old JSON records, epoch5 training records, old NFS copies, canonical signatures, and run signatures. The three literals supplied in the request were transcription errors; see checkpoint_hash_audit.csv.

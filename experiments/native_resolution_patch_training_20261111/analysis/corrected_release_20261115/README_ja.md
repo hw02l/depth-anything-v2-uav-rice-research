@@ -22,7 +22,7 @@
 - `prepare_release.py`: 集計CSV・図表・provenance・SHA256SUMSの再生成スクリプト。過去の評価JSONにprovenanceを後付けしない。
 - `SHA256SUMS`: 公開用成果物のSHA256。
 
-修正前に誤ったRGB値域で実施した結果は `analysis/final_20261114/` に監査履歴として残し、正式値として扱わない。修正後旧JSONのprovenance欠落は過去に遡って埋めず、修正コードによるfresh runを独立した根拠として記録した。
+修正前に誤ったRGB値域で実施した結果は `analysis/final_20261114/` に監査履歴として残し、正式値として扱わない。旧訂正後JSONにprovenanceがない理由として、利用可能な旧 `evaluate_patch.py` の完了JSON cache経路が、既存出力をメタデータ更新なしで返すことを確認した。ただし当時の完全な実行コマンドとdirty source revisionが残っていないため、その経路が実際に当該JSONへ使われたとは断定できない。欠落項目を過去に遡って補わず、修正コードによるfresh runを独立した根拠として記録した。
 
 fresh raw runはNFS `/home1/eng-std/s0623003/gpu4_research_backup_native_resolution_patch_training_20261115_checkpoint_audit_reproduced/` に退避し、94項目のmanifestをコピー後に照合した。学習済みcheckpoint、RGB/GT原画像、prediction cacheはこの公開releaseに含めない。
 

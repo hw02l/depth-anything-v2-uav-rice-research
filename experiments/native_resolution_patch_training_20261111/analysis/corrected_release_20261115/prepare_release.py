@@ -264,6 +264,7 @@ def main() -> None:
     fresh_audit = json.loads(FRESH_AUDIT.read_text(encoding="utf-8"))
     fresh_run = fresh_audit["fresh_run"]
     fresh_comparison = fresh_audit["fresh_vs_historical_corrected_outputs"]
+    historical_audit = fresh_audit["historical_provenance_audit"]
     fresh_nfs = fresh_audit["nfs_archive"]
     if fresh_audit.get("status") != "fresh_reproduction_verified":
         raise ValueError("Fresh reproduction audit is not marked verified")
@@ -281,6 +282,8 @@ def main() -> None:
         raise ValueError("Fresh paired bootstrap comparison is not byte-identical")
     if not fresh_nfs.get("sha256_manifest_generated_and_readback_verified"):
         raise ValueError("Fresh audit snapshot NFS manifest was not verified")
+    if historical_audit.get("retroactive_provenance_added") is not False:
+        raise ValueError("Historical JSON provenance must remain unchanged")
     f2_json = json.loads((RAW / "per_condition" / "F2_P2" / "evaluation_F2_P2.json").read_text(encoding="utf-8"))
     missing_provenance = [
         key for key in ("rgb_input_contract", "evaluation_code_revision", "checkpoint_state_load_audit")
@@ -289,6 +292,7 @@ def main() -> None:
     provenance = f"""# Provenance audit
 
 - Historical corrected-result bundle: {RAW.relative_to(EXP).as_posix()}; its internal SHA256 manifest has {raw_count} entries and {len(failures)} failures. Its evaluation JSON lacks {", ".join(missing_provenance) if missing_provenance else "no required provenance keys"}; these historical JSON files remain unchanged and provenance has not been added retroactively.
+- The available legacy `evaluate_patch.py` returns an existing complete evaluation JSON without rerunning inference or refreshing metadata, so this cache path could explain the missing provenance. The exact historical dirty source revision and full run command were not retained; whether this path generated or reused these specific JSON files cannot be proven.
 - Fresh run: status `{fresh_run["completion_status"]}`, {fresh_run["evaluation_json_count"]} evaluation JSONs, {fresh_run["validation_images_per_condition"]} validation images per condition, cache-free unique output `{fresh_run["evaluation_output"]}`.
 - Evaluation code revision `{fresh_run["evaluation_code_revision"]}`, SHA256 `{fresh_run["evaluation_code_sha256"]}`; RGB contract `{fresh_run["rgb_input_contract"]}`. All nine JSONs contain checkpoint hashes and state-load audits.
 - Verified epoch5 checkpoint SHA256 values match old JSON records, epoch5 training records, old NFS copies, canonical signatures, and run signatures. The three literals supplied in the request were transcription errors; see checkpoint_hash_audit.csv.
