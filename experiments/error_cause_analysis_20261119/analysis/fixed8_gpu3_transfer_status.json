@@ -1,0 +1,39 @@
+{
+  "analysis": "fixed8_diagnostic_results_20261119_v3",
+  "status": "inference_and_cpu_aggregation_completed_on_gpu3; raw_artifacts_not_transferred_or_hash_verified_in_this_workspace",
+  "host": "GPGPU3",
+  "reported_gpu": "NVIDIA RTX 2080, 8 GiB",
+  "result_directory_on_gpu3": "$GPU3_ROOT/analysis/fixed8_diagnostic_results_20261119_v3",
+  "run_date": "2026-11-19",
+  "conditions": ["C0-P0", "C0-P2", "F1-P1", "F2-P0", "F2-P2"],
+  "fixed_images": 8,
+  "validation_split_only": true,
+  "independent_test319_used": false,
+  "training_or_optimizer_step": false,
+  "reported_output_row_counts": {
+    "absolute_metrics": 40,
+    "signed_local_metrics": 800,
+    "tile_overlap_metrics": 24,
+    "per_tile_gt_fit": 2520,
+    "rgb_gt_integrity": 8,
+    "shared_pair_coordinate_manifest": 80
+  },
+  "reported_checks": {
+    "shared_pair_coordinate_hashes_match_across_conditions": true,
+    "fusion_reconstruction_max_abs_difference_m": 0.03125,
+    "gpu_after_work_utilization_percent": 0,
+    "gpu_after_work_memory_mib": 15,
+    "gpu_total_memory_mib": 8192
+  },
+  "checkpoint_sha256_by_group": {
+    "C0": null,
+    "F1": null,
+    "F2": null
+  },
+  "source_revision": null,
+  "inference_source_sha256": null,
+  "raw_csv_sha256_verified": false,
+  "nfs_backup_verified": false,
+  "public_release_ready": false,
+  "evidence_note": "Counts and rounded aggregate values were observed in the prior GPU3 terminal output. The source outputs and runtime provenance are not available in the current Windows workspace, so this record deliberately does not claim cryptographic verification or final release readiness."
+}
