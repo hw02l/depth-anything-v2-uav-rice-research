@@ -301,8 +301,8 @@ tile間の重複差はゼロではなく、条件ごとに分布幅がある。t
 
 ## 13. 再現性・使用データ
 
-- 入力はValidation128の保存済み画像別十分統計、訂正済み条件集計、B系列・E系列の既存報告用集計である。
-- C0/F1/F2 checkpoint SHA256、B0 epoch20基準再現状態、strict state-load監査はPR #6から保存した監査記録に基づく。今回checkpoint自体はロードしていない。
+- Validation128の主解析には保存済み画像別十分統計、訂正済み条件集計、B系列・E系列の既存報告用集計を用いた。固定8画像の追加診断ではGPU3上で既存C0/F1/F2モデルの推論を行った。
+- PR #6から保存したcheckpoint SHA256、B0 epoch20基準再現状態、strict state-load監査はValidation128の訂正済み正式評価に関する記録である。固定8追加推論時の実ファイルSHA256・strict load auditは本作業コピーで未確認であり、同じcheckpointを使用した証拠として流用しない。
 - 分析コードは [`analyze_error_causes.py`](analyze_error_causes.py)、設定は [`config.json`](config.json)、入力ハッシュ・環境・GitHub source revisionは [`analysis/provenance.json`](analysis/provenance.json) に記録した。
 - 画像別絶対十分統計は `analysis/per_image_absolute_diagnostics.csv`、画像別局所十分統計は公開版の [`analysis/per_image_local_diagnostics.csv.gz`](analysis/per_image_local_diagnostics.csv.gz) にある。14px層別集計も [`analysis/local_stratified_14px_diagnostics.csv.gz`](analysis/local_stratified_14px_diagnostics.csv.gz) として公開する。ローカル解析ディレクトリには非圧縮CSVを保持している。対応付きbootstrapは `analysis/paired_image_bootstrap.csv` にある。検算記録は [`analysis/validation.txt`](analysis/validation.txt)、他の集計表・図表は [`analysis/`](analysis/) にある。
 - 再現コマンド：
