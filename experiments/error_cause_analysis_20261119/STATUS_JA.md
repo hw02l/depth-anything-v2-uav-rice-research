@@ -30,4 +30,7 @@
 
 ## 公開
 
-解析成果をGitHubへ公開する前に、最終差分・テスト・SHA256SUMSを確認する。RGB原画像を含む確認図は生画像保護のため公開成果物から除外する。
+- GitHubブランチ `research/error-cause-analysis-20261119` に解析成果48ファイルを登録した。
+- [PR #7](https://github.com/hw02l/depth-anything-v2-uav-rice-research/pull/7) はPR #6のheadをbaseとするopen状態である。未mergeであり、PR #6およびPR #3〜#5は変更していない。
+- 公開用 `SHA256SUMS` は47ファイルを記録する（manifest自身を除く）。gzip CSVは展開後の元CSVとbyte-identicalである。
+- RGB/GT原画像を含む確認図、checkpoint、prediction cacheは公開成果から除外した。ローカル解析と検算は完了している。

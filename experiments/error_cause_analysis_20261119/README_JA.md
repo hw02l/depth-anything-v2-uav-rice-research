@@ -2,6 +2,8 @@
 
 このディレクトリは、Depth Anything V2によるUAV農作物深度推定で観測された絶対深度誤差と局所深度差の過小推定を、保存済みの検証統計から分析する独立成果物である。学習と推論は実施していない。
 
+公開PR：[PR #7](https://github.com/hw02l/depth-anything-v2-uav-rice-research/pull/7)。PR #6のブランチをbaseとしている。
+
 ## 主な結果
 
 - C0-P0の絶対RMSEは0.7441 mであり、9条件中で最小である。
