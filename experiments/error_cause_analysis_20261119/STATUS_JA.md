@@ -41,7 +41,7 @@ GPGPU3で固定8画像の推論を実施した。最終確認時はGPU利用率0
 
 ## 公開
 
-- PR #7はopen・未mergeであり、baseはPR #6のブランチである。今回のcheckpoint・provenance・NFS監査、固定8集計表・公開図、訂正済み報告書を既存の `research/error-cause-analysis-20261119` ブランチへ追加する。PR #3〜#6は変更していない。
+- PR #7はopen・未mergeであり、baseはPR #6のブランチである。今回のcheckpoint・provenance・NFS監査、固定8集計表・公開図、訂正済み報告書を既存の `research/error-cause-analysis-20261119` ブランチへ追加した。PR #3〜#6は変更していない。
 - 配布用 `SHA256SUMS` は61ファイルを収録し、全項目の照合を完了した。公開リリース準備スクリプトのgzip往復検証もpassした。GPU3のprivate raw出力は含まない。
 - 集約・解析の単体テストは5件すべてpassした。公開図2組（PNG/SVG）は集約値から再生成し、RGB/GT画像を含まないことを確認した。内部GPU/NFS保存先は公開ファイルから伏せた。
 - RGB/GT原画像を含む予測図、checkpoint、prediction cacheはGitHubへアップロードしない。
