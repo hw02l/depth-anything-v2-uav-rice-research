@@ -37,7 +37,7 @@ GPGPU3で固定8画像の推論を実施した。処理後の端末表示はGPU�
 
 ## 公開
 
-- PR #7はopen状態、headは `85cfbf32be1159d960786a02adca373c480efa19` とGitHub APIで確認した。PR #6およびPR #3〜#5は変更していない。
-- GPU3追加診断の修正版report/status/readmeはこの作業コピーへ反映したが、GitHubへのcommit・push・PR本文更新はまだ行っていない。
+- GPU3追加診断の修正版report/status/readme、集約コード、テスト、provenance不足記録をPR #7の既存ブランチへfast-forwardで追加した。PR本文も固定8診断の値と未完了監査を明記する内容へ更新した。
+- PR #7はopen・未mergeであり、baseはPR #6のブランチである。PR #3〜#6は変更していない。
 - 現在の公開対象コード・文書・provenance 50ファイル（SHA256SUMS自身を除く）についてmanifestを再生成し、全項目をローカル照合した。GPU3のraw出力は含まない。
 - RGB/GT原画像を含む予測図、checkpoint、prediction cacheはGitHubへアップロードしない。
