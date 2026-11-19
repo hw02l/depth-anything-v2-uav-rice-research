@@ -1,0 +1,55 @@
+{
+  "audit_date": "2026-11-19",
+  "scope": {
+    "fixed_validation_images": [7, 20, 34, 48, 71, 89, 97, 112],
+    "conditions": ["C0-P0", "C0-P2", "F1-P1", "F2-P0", "F2-P2"],
+    "prediction_metadata_records": 40,
+    "training_or_optimizer_steps": 0,
+    "independent_test319_used": false
+  },
+  "checkpoint_audit": {
+    "unique_checkpoint_files": 3,
+    "all_files_sha256_match_corrected_reference_and_evaluation_record": true,
+    "epoch": 5,
+    "state_dict_key_count": 287,
+    "strict_load": true,
+    "missing_keys": 0,
+    "unexpected_keys": 0,
+    "shape_mismatches": 0,
+    "all_40_records_have_load_audit": true,
+    "all_predictions_finite": true,
+    "all_rgb_exactly_match_uint8_opencv_rgb": true,
+    "device": "NVIDIA GeForce RTX 2080",
+    "details_csv": "../source_evidence/gpu3_checkpoint_load_audit.csv"
+  },
+  "source_audit": {
+    "source_git_revision": null,
+    "reason": "The transferred source snapshot has no .git directory. The prior PR head is not evidence of the exact transferred source revision.",
+    "exact_full_execution_command_recorded": false,
+    "command_record_reason": "The saved provenance JSON omits argv, and the preserved run logs do not contain the full invocation; they contain output and one error traceback.",
+    "source_file_sha256": {
+      "inference.py": "1d2df4a2b477b4d46103f01c6e33a7872f1e8f333ed2e0486d731fc35400a8668",
+      "data_patch.py": "c15b591dcfce03743cf464d810c36167f7da1bc6a48e19880d2505e2cf581c11",
+      "multiscale.py": "56cee2a125980f73016bd45cccd89d8d4536a7fd1a803e324782e05453fbd1a1d",
+      "run_diagnostic_forward.py": "9aa1aa949e244fb8cba7fd27e9841f9609f24cda67af9a730c77650fc51c44f0f",
+      "analyze_fixed8_predictions_v3.py": "17eba8258a78a0f3a3853db990206825339d041dc7aeb9598aba6eeeb30c448ac"
+    },
+    "note": "These hashes identify file contents and are recorded in the original GPU3 provenance. They do not reconstruct a missing Git commit or exact shell argv."
+  },
+  "nfs_backup": {
+    "location": "private research NFS; exact directory withheld from public provenance",
+    "total_files_including_two_SHA256SUMS_files": 151,
+    "outer_manifest_entries": 149,
+    "outer_manifest_sha256": "22c32bb00df24109c611c9cc402d2a033fa0378dc47e394a95df41ee44bfeaf7",
+    "sha256sum_check": "PASS",
+    "source_to_destination_diff_check": "PASS",
+    "size": "31M",
+    "included": ["fixed8_diagnostic_results_20261119_v3", "one_forward_20261119T164427", "run logs", "source snapshot", "run_diagnostic_forward.py", "analyze_fixed8_predictions_v3.py"],
+    "excluded": ["original RGB/GT dataset files", "C0/F1/F2 checkpoints", "full prediction cache"],
+    "privacy": "RGB/GT-containing diagnostic figures remain in private NFS and are not for GitHub upload."
+  },
+  "interpretation": {
+    "checkpoint_reference_discrepancy": "The SHA strings supplied in the earlier prompt were mistyped; the three real GPU3 checkpoint files match the corrected PR #6 hashes and historical evaluation-record strings. No checkpoint corruption or model substitution was found.",
+    "result_scope": "The GPU3 results are verified fixed-eight descriptive diagnostics, not Validation128 population estimates."
+  }
+}

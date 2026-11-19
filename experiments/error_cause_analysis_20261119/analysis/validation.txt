@@ -1,0 +1,15 @@
+PASS
+nine conditions: 128 unique image IDs and identical ordered image_relpath verified
+per-image local sufficient statistics exported: 11520 unique condition/image/distance/group rows
+C0-P0: pooled stats reconcile to corrected release; max_abs_diff=4.44e-16
+C0-P1: pooled stats reconcile to corrected release; max_abs_diff=4.44e-16
+C0-P2: pooled stats reconcile to corrected release; max_abs_diff=5e-15
+F1-P0: pooled stats reconcile to corrected release; max_abs_diff=3.33e-16
+F1-P1: pooled stats reconcile to corrected release; max_abs_diff=9.99e-16
+F1-P2: pooled stats reconcile to corrected release; max_abs_diff=1.89e-15
+F2-P0: pooled stats reconcile to corrected release; max_abs_diff=4.44e-16
+F2-P1: pooled stats reconcile to corrected release; max_abs_diff=1.11e-15
+F2-P2: pooled stats reconcile to corrected release; max_abs_diff=7.77e-16
+local per-image sufficient statistics reconcile to condition_summary for all distances/groups
+paired image bootstrap computed with shared image IDs, 10000 resamples and seed 42
+24 paired bootstrap rows reconcile to corrected release within 1e-8

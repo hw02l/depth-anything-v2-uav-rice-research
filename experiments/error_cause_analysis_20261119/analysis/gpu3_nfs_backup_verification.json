@@ -1,0 +1,25 @@
+{
+  "backup_location": "private research NFS; exact directory withheld from public provenance",
+  "created": "2026-11-19",
+  "copied_from": "GPU3 user-local experiment directory; absolute path withheld",
+  "total_files": 151,
+  "outer_sha256_manifest_entries": 149,
+  "outer_sha256_manifest_sha256": "22c32bb00df24109c611c9cc402d2a033fa0378dc47e394a95df41ee44bfeaf7",
+  "sha256sum_check": "PASS",
+  "source_destination_diff": "PASS",
+  "size": "31M",
+  "backup_scope": [
+    "fixed8 aggregate CSVs and validation records",
+    "fixed-eight prediction maps, sections, signed-delta and tile-disagreement figures",
+    "one-image C0-P0 forward metadata and prediction archive",
+    "fixed-eight execution logs",
+    "source snapshot",
+    "diagnostic forward and aggregation scripts"
+  ],
+  "not_copied": [
+    "original RGB and GT files",
+    "C0/F1/F2 checkpoint files",
+    "complete prediction cache"
+  ],
+  "privacy_note": "The backed-up maps include RGB/GT and remain private on the research NFS; they are excluded from GitHub."
+}

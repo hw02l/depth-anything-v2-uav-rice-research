@@ -1,0 +1,7 @@
+stage,condition,model_input_px_for_original_14px,interpretation,input_px_min,input_px_max,input_px_mean_x
+training,C0,1.83316481294,full image resized to short side 518; x/y per-image values are in image_inventory.csv,1.83316481294,1.83316481294,1.81893939394
+training,F1,7,1036px crop resized to 518px,7,7,7
+training,F2,14,native 518px crop fed at the same size,14,14,14
+inference,P0,1.83316481294,full image short-side resize to 518px; average of image_inventory.csv y scale,1.83316481294,1.83316481294,1.81893939394
+inference,P1,7,1036px tile resized to 518px,7,7,7
+inference,P2,14,518px tile fed without scale change,14,14,14
