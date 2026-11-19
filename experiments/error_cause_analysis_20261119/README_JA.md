@@ -18,7 +18,7 @@
 
 ## ディレクトリ
 
-- `analysis/`：Validation128再集計CSV、図表、検算記録、解析provenance。固定8 GPU3出力は現在GPU3側の `analysis/fixed8_diagnostic_results_20261119_v3/` にあり、この公開ディレクトリにはまだ転送していない。
+- `analysis/`：Validation128再集計CSV、図表、検算記録、解析provenance。GPU3固定8の全出力・ログ・ソースは研究室のprivate NFSへ退避し、外側SHA256SUMS 149項目の照合を完了した。公開記録ではNFSの実ディレクトリを伏せる。RGB/GTを含む図は公開しない。
 - `analysis/per_image_absolute_diagnostics.csv` と `analysis/per_image_local_diagnostics.csv.gz`：bootstrap・層別に利用した画像別十分統計。局所統計は公開時にgzip圧縮してある。元のCSVはローカル解析ディレクトリに保持している。
 - `analysis/local_stratified_14px_diagnostics.csv.gz`：14px局所差の層別集計。大容量のため公開版はgzip形式である。
 - `source_evidence/`：PR #6上の検証済みB0再現監査とepoch5 checkpoint監査の控え。
@@ -27,9 +27,12 @@
 - `analyze_error_causes.py`：CSV/JSONから結果を再生成するCPU解析コード。
 - `prepare_public_release.py` と `SHA256SUMS`：gzip公開コピーと配布対象ファイルのハッシュ一覧を再生成・検証する。
 - `make_fixed_rgb_gt_figure.py`：既存の固定代表画像をRGB・GTだけで描くコード。推論図ではない。
-- `analysis/fixed8_gpu3_transfer_status.json`：GPU3追加診断の実行・検算状況と、未転送のprovenance項目を区別した記録。
+- `analysis/fixed8_gpu3_transfer_status.json`：GPU3追加診断、checkpoint・strict load監査、NFS保全結果、残るprovenance限界を記録する。
+- `analysis/gpu3_fixed8_grouped_summary.csv` と `analysis/gpu3_fixed8_tile_summary.csv`：固定8画像の公開可能な丸め済み集約表。元のRGB/GT画像と予測マップを含まない。
+- `analysis/gpu3_fixed8_diagnostics_summary.png/.svg` と `analysis/gpu3_fixed8_tile_disagreement_summary.png/.svg`：上記集約値から再生成する公開用のRGB/GT非含有図。
+- `analysis/gpu3_provenance_reconciliation.json`、`analysis/gpu3_nfs_backup_verification.json`、`source_evidence/gpu3_checkpoint_load_audit.csv`：checkpoint実体・内部ロード・ソースハッシュ・NFS退避の照合記録。
 
-GPU3追加診断の固定8結果は記述的な補助標本であり、Validation128正式評価の値と混同しない。現時点ではGPU3側のraw CSV・図・完全な実行provenanceがこの作業コピーとGitHubへ転送されていないため、追加診断は監査・公開完了前の状態である。詳細は [`STATUS_JA.md`](STATUS_JA.md) と `report_ja.md` の8.6節を参照する。
+GPU3追加診断の固定8結果は記述的な補助標本であり、Validation128正式評価の値と混同しない。チェックポイント実体のSHA256・epoch・global step・内部signature・strict loadを40件の推論記録から照合した。完全なGit source revisionと実行時の完全なargvは保存されておらず、その制約は `analysis/gpu3_provenance_reconciliation.json` に明記した。図表はprivate NFSに退避し、公開図からはRGB/GTを除外する。詳細は [`STATUS_JA.md`](STATUS_JA.md) と `report_ja.md` の8.6–8.7節を参照する。
 
 公開版のgzip CSVは一般的な `gzip -d` で展開できる。再解析で出力される非圧縮CSVはローカル解析ディレクトリに保持している。
 

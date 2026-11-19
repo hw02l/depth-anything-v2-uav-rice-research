@@ -17,14 +17,18 @@
 - GPU3のRTX 2080で固定8画像・5条件（C0-P0、C0-P2、F1-P1、F2-P0、F2-P2）の推論と可視化を実施した。Validation128全体の再推論・新規学習は行っていない。
 - GPU3のv3出力で絶対指標40行、符号付き局所差800行、tile重複24行、tile別GT回帰2,520行、RGB/GT integrity 8行、共有pair manifest 80座標セットを検算した。
 - GPU3上のCPU集約検証で、固定8画像の14px `|ΔGT|>=0.20m` は条件あたり23,978ペア。共有座標hashの一致と融合再構成最大差0.03125mを確認した。
+- GPU3の実checkpoint3件のSHA256を照合し、修正済みPR #6評価記録と一致することを確認した。40件すべての推論メタデータでepoch 5、state_dict 287キー、strict load、missing/unexpected/shape mismatch 0件を確認した。global stepはC0 960、F1/F2 958である。
+- 40件の出力でRGB完全一致と有限予測を確認し、すべてNVIDIA RTX 2080で生成されたことを確認した。checkpoint別の内部signatureは `source_evidence/gpu3_checkpoint_load_audit.csv` に記録した。
+- GPU3の固定8成果、1画像forward記録、実行ログ、ソース、推論・集約スクリプトを研究室のprivate NFSへ退避した。保存先は151ファイル・31MBである。149項目の外側SHA256SUMSがPASSし、コピー元／先のdiffもPASSした。公開記録ではNFSの実ディレクトリを伏せた。
+- source snapshotの5ファイルSHA256は実ファイルと一致した。完全なGit revisionと完全な実行argvが記録されていない理由を `analysis/gpu3_provenance_reconciliation.json` に明記した。
+- 固定8画像の丸め済み集約CSV2件と、RGB/GTを含まない要約図（PNG/SVG各2件）を作成した。図表はCSVと生成コードから再現でき、SHA256SUMSに含めた。
 - 正本Python 3.12環境で既存解析と固定8集約コードの単体テスト5件がpassした。
 - 新規学習とIndependent test319の使用はない。
 
 ## 制限・未実施
 
-- GPU3上に固定8画像の予測マップ、断面、符号付き散布図、tile重複図が生成されているが、元CSV・図・実行provenanceをこのWindows作業コピーへ転送できていない。成果は現状GPU3ローカルのみで、NFS退避とコピー後SHA256照合は未実施である。
-- 現在の作業フォルダーはGit管理されておらず、こちらのSSH実行経路からGPU3への接続も拒否される。既存のCodex端末画面はGPU3へ接続済みだが、Computer Useの端末入力禁止規則により、その画面からコマンドを投入できない。
-- GPU3上の実推論checkpoint SHA256、実行時source revision、完全なコマンドラインを収録したprovenanceを本作業コピーで確認できていない。固定8結果は数値を報告できるが、完全な再現性監査・正式公開は未完了である。
+- source snapshotに `.git` が含まれないため、GPU3推論のGit commit revisionを特定できない。保存済みprovenanceとログにも完全な実行コマンドラインがない。5つのソースSHA256とcheckpoint・ロード・画像入力記録は照合済みであるが、commit単位のsource同一性と完全なargv再現性は未確認である。
+- マップ・断面・差分・tile図はprivate NFSへ保全したが、Windows作業コピー上での目視確認は未実施である。図の形状については断定せず、記載した数値と検算結果の範囲に限って解釈する。
 - 保存済み十分統計に符号付きの全ペア `ΔGT`・`ΔPred` とその積和がなく、符号付き散布図や差分回帰傾きを厳密に復元できない。
 - 符号付き差分図は固定8画像に限る。Validation128全体の符号付き差分回帰・全条件tile重複診断ではない。
 - 既存絶対誤差十分統計にGT深度帯ごとの二乗誤差和がないため、絶対RMSEのGT深度別層別値は算出していない。GT深度帯別の局所差MAEは算出した。
@@ -33,11 +37,11 @@
 
 ## GPU
 
-GPGPU3で固定8画像の推論を実施した。処理後の端末表示はGPU利用率0%、VRAM使用量15 MiB/8192 MiBであった。推論終了後にGPU上で自分のプロセスが残っていない状態を確認している。ユーザーのSSH端末は切断していない。
+GPGPU3で固定8画像の推論を実施した。最終確認時はGPU利用率0%、VRAM使用量15 MiB/8192 MiBで、compute applicationと自身のPython/Singularityプロセスは残っていなかった。GPU資源は解放済みである。追加図の任意プレビュー時、GPU3側PythonでOpenCVがnumpyを読み込めず、SSHセッションがrelay shellへ戻った。推論処理は既に終了しており、再接続や追加GPU処理は不要である。
 
 ## 公開
 
-- GPU3追加診断の修正版report/status/readme、集約コード、テスト、provenance不足記録をPR #7の既存ブランチへfast-forwardで追加した。PR本文も固定8診断の値と未完了監査を明記する内容へ更新した。
-- PR #7はopen・未mergeであり、baseはPR #6のブランチである。PR #3〜#6は変更していない。
-- 現在の公開対象コード・文書・provenance 50ファイル（SHA256SUMS自身を除く）についてmanifestを再生成し、全項目をローカル照合した。GPU3のraw出力は含まない。
+- PR #7はopen・未mergeであり、baseはPR #6のブランチである。今回のcheckpoint・provenance・NFS監査、固定8集計表・公開図、訂正済み報告書を既存の `research/error-cause-analysis-20261119` ブランチへ追加する。PR #3〜#6は変更していない。
+- 配布用 `SHA256SUMS` は61ファイルを収録し、全項目の照合を完了した。公開リリース準備スクリプトのgzip往復検証もpassした。GPU3のprivate raw出力は含まない。
+- 集約・解析の単体テストは5件すべてpassした。公開図2組（PNG/SVG）は集約値から再生成し、RGB/GT画像を含まないことを確認した。内部GPU/NFS保存先は公開ファイルから伏せた。
 - RGB/GT原画像を含む予測図、checkpoint、prediction cacheはGitHubへアップロードしない。

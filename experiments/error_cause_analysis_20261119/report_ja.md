@@ -240,7 +240,25 @@ Validation128全体の正式集計を置き換える再評価ではなく、既�
 
 tile間の重複差はゼロではなく、条件ごとに分布幅がある。tile別のGT回帰傾き・Biasも広く散らばり、オフセットと倍率の両方が局所tile間で変動しうる。ただし、融合前RMSEは重複を含むtile画素集合、融合後RMSEは画像上の画素集合で計算されているため、両者の差を融合による改善・悪化量として解釈してはならない。これら8画像は固定された少数標本であり、tile不一致がValidation128全体のRMSEを因果的に生む割合は未判定である。
 
-出力一式はGPU3上の `analysis/fixed8_diagnostic_results_20261119_v3/` に保存されている。現時点でこの作業コピーへ元CSV、図表、実行時provenanceを転送できていないため、本節は先行端末上で確認した集計値に基づく追加記録である。公開・最終確定に先立ち、元CSVとSHA256、checkpoint hash、当時のソースrevisionを照合する必要がある。RGB/GTを含む画像図は権限確認なしにGitHubへ公開しない。
+公開用には、表に示した丸め済みの固定8集約を `analysis/gpu3_fixed8_grouped_summary.csv` と `analysis/gpu3_fixed8_tile_summary.csv` に整理した。対応するPNG/SVG集約図 `analysis/gpu3_fixed8_diagnostics_summary`、`analysis/gpu3_fixed8_tile_disagreement_summary` はRGB・GTを含まず、個別の予測図・断面・符号付き散布図はprivate NFSに限定した。
+
+固定8診断のCSV・図・実行ログ・ソーススナップショットはGPU3から研究室の非公開NFSへ退避した。保存先は151ファイル、31MBであり、外側のSHA256SUMSは149項目を収録する。コピー後の sha256sum -c と、出力・ログ・ソースのコピー元／保存先 diff -qr はすべてPASSである。RGB/GTを含む診断図はこの非公開NFSに保管し、GitHubには含めない。公開記録ではNFSの実ディレクトリを伏せる。
+
+### 8.7 チェックポイントと実行provenanceの監査
+
+GPU3上の実チェックポイント3件をSHA256で再計算したところ、いずれもPR #6の訂正後監査値および過去評価記録と一致した。依頼文に記された旧ハッシュは文字列の転記誤りであり、checkpointの破損や別モデルへの置換を示す証拠はなかった。実測値と内部ロード記録は次のとおりである。
+
+| 群 | 実checkpoint SHA256 | epoch | global step | 内部signature | state_dict key数 | strict load |
+|---|---|---:|---:|---|---:|---|
+| C0 | `2fd190727c7a5124c56c1e0ea2dd8cb09c6cb62a0f92b34fce97ad394281b35a` | 5 | 960 | `10d5da25210e0a0993a6c72268a7822c14db27dc5620c11a2baf770c03dea28b` | 287 | 成功、欠落・余分・形状不一致0 |
+| F1 | `ae1f74c5ff17cb0266152588b5d53fb824611418f125f2fbf4d9cc7447e49f67` | 5 | 958 | `7e27d354a9c4ea38fd507f667250eb477e5e0b617d8da86726aa15cd7544971c7` | 287 | 成功、欠落・余分・形状不一致0 |
+| F2 | `8124d72a7008c9f3a93dbce934142d1593063fba2da61a51838e055aaf201538` | 5 | 958 | `a96a68cebab899002384cc8726dc7e84461a1afc88e855c3b469f1a52bb21116e` | 287 | 成功、欠落・余分・形状不一致0 |
+
+5条件×8画像の40件すべてに推論メタデータがあり、load監査の欠落は0件である。各出力はRTX 2080で生成され、予測にNaN/Infはなく、入力RGBは固定inventoryのOpenCV BGR→RGB uint8画像と完全一致した。個別の集約表は [source_evidence/gpu3_checkpoint_load_audit.csv](source_evidence/gpu3_checkpoint_load_audit.csv)、監査の統合記録は [analysis/gpu3_provenance_reconciliation.json](analysis/gpu3_provenance_reconciliation.json) にある。
+
+一方、転送されたsource snapshotに .git がなく、保存済みprovenanceの source_git_revision はnullである。PR #7の当時のheadを転送元revisionとみなすことはできない。5つの推論・集約ソースファイルについてSHA256はprovenance記録と一致し、NFSにもソースを保存したが、実行時の完全なコマンドラインはprovenanceとログに残っていない。したがって、ファイル内容とモデル重みの同一性は監査できた一方、Git commit単位のsource同一性と完全なargv再現は未確認である。過去のJSONへ後付けで値を書き足すことはせず、今回の照合を別の監査記録に分離した。provenance.json の device: CPU analysis は集約工程を指し、各推論メタデータと実行ログはGPU forwardを記録している。
+
+初回のハッシュ不一致の原因は、checkpointの実体ではなく依頼文中の旧参照文字列の転記であった。C0/F1/F2の実ファイルSHA256はすべて訂正済みの評価記録と一致する。PR #6由来の比較表は [source_evidence/checkpoint_hash_audit_verified.csv](source_evidence/checkpoint_hash_audit_verified.csv)、GPU3実行の内部署名・step・strict load結果は上記の新規CSVで照合できる。
 
 ## 9. 仮説の判定
 
@@ -273,7 +291,7 @@ tile間の重複差はゼロではなく、条件ごとに分布幅がある。t
 
 最も直接的な観測は、入力尺度の切替が同一モデルの出力校正を大きく変えること、そして尺度整合を試みてもC0-P0の絶対性能に届かないことである。大きな絶対RMSEは条件によって異なる形で生じる。C0-P1/P2では負のBiasと傾き低下が目立ち、F1/F2-P0では大きな正Biasが目立つ。F1-P1/F2-P2では平均Biasを抑えても、低い傾き・大きな残差分散が残る。したがって一つの平均オフセットや境界補正では説明できない。
 
-局所差については、符号一致が一定程度保たれる一方、`|ΔGT|>=0.20m`の振幅比が0.15–0.53にある条件が多い。固定8画像でも条件別の符号一致率は0.576–0.776であり、画像軸別回帰とtile重複予測の不一致を新たに測定した。ただし、マップ・断面・散布図の元ファイルをこの作業コピーへ転送できておらず、視覚上の特徴を独立に確認していない。F2-P2対C0-P2のValidation128 pooled局所MAE改善は認められるが画像平均では5%未満であり、C0-P0と比べると局所MAEも絶対RMSEも悪い。従って、元解像度crop学習の一般的な有効性は示されていない。
+局所差については、符号一致が一定程度保たれる一方、`|ΔGT|>=0.20m`の振幅比が0.15–0.53にある条件が多い。固定8画像でも条件別の符号一致率は0.576–0.776であり、画像軸別回帰とtile重複予測の不一致を新たに測定した。マップ・断面・散布図の成果物はNFSへ退避済みであるが、このWindows作業コピー上で画像を目視再確認していないため、数値指標を超える形状解釈は限定する。F2-P2対C0-P2のValidation128 pooled局所MAE改善は認められるが画像平均では5%未満であり、C0-P0と比べると局所MAEも絶対RMSEも悪い。従って、元解像度crop学習の一般的な有効性は示されていない。
 
 ## 11. 研究の限界
 
@@ -281,8 +299,8 @@ tile間の重複差はゼロではなく、条件ごとに分布幅がある。t
 2. checkpointは各条件1 seedである。モデル選択、epoch選択、学習乱数の不確実性を区間に含めていない。
 3. 作物・視点・距離層はGT分布や画像構成が異なる記述比較である。
 4. Validation128の保存済み十分統計から符号付き全ペア散布図と回帰傾きを再構築することはできない。符号付き散布図・回帰はGPU3固定8画像の追加診断に限られる。
-5. C0/F1/F2の新規予測マップ・断面・融合前tile出力はGPU3ローカルに生成済みだが、本作業コピー・NFSバックアップへの転送とハッシュ照合が未完了である。固定8画像の定量値もValidation128の正式値へ一般化できない。
-6. 固定8画像のPNGをこの作業コピーで開いていないため、予測マップ・断面に関する視覚的解釈は未記載である。数値指標と端末出力だけで形状の平滑化や誤差位置を断定しない。
+5. C0/F1/F2の固定8予測マップ・断面・符号付き差分・tile診断CSVはGPU3からprivate NFSへ退避し、149項目の外側SHA256SUMSとコピー後照合を完了した。これら8画像の記述値はValidation128の正式値へ一般化できない。
+6. 固定8画像のPNGはNFSへ保全したが、このWindows作業コピー上でまだ目視していない。視覚的解釈は限定し、数値指標だけから形状の平滑化や誤差位置を断定しない。
 7. 絶対誤差のGT深度帯別十分統計がないため、絶対RMSEを深度別には算出していない。
 8. 写真測量GTの不確かさは独立真値なしに定量化できない。
 9. oracle offset/affineはGTを使う診断値であり、性能改善の主張に使えない。
@@ -302,7 +320,7 @@ tile間の重複差はゼロではなく、条件ごとに分布幅がある。t
 ## 13. 再現性・使用データ
 
 - Validation128の主解析には保存済み画像別十分統計、訂正済み条件集計、B系列・E系列の既存報告用集計を用いた。固定8画像の追加診断ではGPU3上で既存C0/F1/F2モデルの推論を行った。
-- PR #6から保存したcheckpoint SHA256、B0 epoch20基準再現状態、strict state-load監査はValidation128の訂正済み正式評価に関する記録である。固定8追加推論時の実ファイルSHA256・strict load auditは本作業コピーで未確認であり、同じcheckpointを使用した証拠として流用しない。
+- 固定8推論に使用したcheckpoint3件はGPU3上でSHA256を再計算し、訂正済みPR #6監査値と一致することを確認した。40件すべてのロード記録でstate_dict 287キー、strict load、missing/unexpected/shape mismatch 0件を確認した。B0 epoch20基準再現の監査はPR #6のValidation128評価を指すものであり、本GPU3追加診断とは区別する。
 - 分析コードは [`analyze_error_causes.py`](analyze_error_causes.py)、設定は [`config.json`](config.json)、入力ハッシュ・環境・GitHub source revisionは [`analysis/provenance.json`](analysis/provenance.json) に記録した。
 - 画像別絶対十分統計は `analysis/per_image_absolute_diagnostics.csv`、画像別局所十分統計は公開版の [`analysis/per_image_local_diagnostics.csv.gz`](analysis/per_image_local_diagnostics.csv.gz) にある。14px層別集計も [`analysis/local_stratified_14px_diagnostics.csv.gz`](analysis/local_stratified_14px_diagnostics.csv.gz) として公開する。ローカル解析ディレクトリには非圧縮CSVを保持している。対応付きbootstrapは `analysis/paired_image_bootstrap.csv` にある。検算記録は [`analysis/validation.txt`](analysis/validation.txt)、他の集計表・図表は [`analysis/`](analysis/) にある。
 - 再現コマンド：
@@ -317,6 +335,7 @@ python analyze_error_causes.py `
 python -m unittest discover -s tests -v
 ```
 
-- 元のValidation128集計環境：Python 3.12.14、NumPy 2.5.3、Matplotlib 3.11.2。今回の固定8画像推論はGPGPU3上のRTX 2080で実施し、CPU集約コードはPython 3.11標準ライブラリで動作確認した。GPU3上の分析ファイル一式とprovenanceは未転送であり、当時の完全な再現コマンド・checkpoint hash・ソースrevisionは本作業コピーから独立照合できていない。
-- 推論終了時のGPGPU3は利用率0%、使用VRAM 15 MiB/8192 MiBであり、GPU推論プロセスは残っていないことを端末表示で確認した。現在のSSH接続はユーザーが維持している。
+- 元のValidation128集計環境はPython 3.12.14、NumPy 2.5.3、Matplotlib 3.11.2である。固定8画像推論はGPGPU3のRTX 2080で実施した。推論・集約ソースとログを含む成果物はprivate NFSへ退避し、151ファイル（31 MB）、149項目の外側SHA256SUMS照合とコピー元／先のdiffがPASSした。3件の実checkpoint SHA256、40件のepoch 5 strict-load記録、画像RGB一致・有限出力を実ファイルと照合した。
+- source snapshotに .git がなく、保存ログにも完全な実行argvがないため、実行時のGit revisionと完全なコマンドラインは未確定である。5つのソースファイルSHA256は元provenanceの記録と一致する。これらの制約と過去provenanceを後付けで補わなかった理由は [`analysis/gpu3_provenance_reconciliation.json`](analysis/gpu3_provenance_reconciliation.json) に記録した。
+- 最終GPU確認時のGPGPU3は利用率0%、VRAM 15 MiB/8192 MiBで、compute applicationおよび自身のPython/Singularityプロセスは残っていなかった。その後の任意プレビューはGPU3側PythonでOpenCVがnumpyを読み込めず終了し、SSHはrelay shellへ戻った。追加推論は不要であり、GPU資源は解放済みである。
 - Independent test319は使用していない。checkpoint学習・再学習は行っていない。
