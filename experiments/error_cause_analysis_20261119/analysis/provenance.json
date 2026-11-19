@@ -1,0 +1,202 @@
+{
+  "analysis_id": "error_cause_analysis_20261119",
+  "created_utc": "2026-11-19T02:19:49.695854+00:00",
+  "analysis_mode": "CPU-only aggregation of saved validation sufficient statistics; no model inference or training",
+  "validation_images": 128,
+  "independent_test319_used": false,
+  "bootstrap_reps": 10000,
+  "bootstrap_seed": 42,
+  "input_root": "repository checkout (relative paths recorded below)",
+  "upstream_corrected_pr6_head": "f8a9530a4c618c72a54abd52eba47eecfc4e5179",
+  "checkpoint_source": "PR #6 checkpoint audit and corrected-release evaluation JSON; checkpoints not loaded in this analysis",
+  "checkpoint_sha256_verified_by_upstream_audit": {
+    "C0": "2fd190727c7a5124c56c1e0ea2dd8cb09c6cb62a0f92b34fce97ad394281b35a",
+    "F1": "ae1f74c5ff17cb0266152588b5d53fb824611418712152fbf4d9cc7447e49f67",
+    "F2": "8124d72a7008c9f3a93dbce934142d1593065fba2da61a51838e055aaf201538"
+  },
+  "upstream_fresh_reproduction_status": "fresh_reproduction_verified",
+  "upstream_b0_gate_status": "pass",
+  "source_file_hashes": [
+    {
+      "path": "experiments/native_resolution_patch_training_20261111/config.json",
+      "sha256": "1338099a531c4e97af2305d4895ec7556c018e409c6b84fd50f51f01d8ccab28",
+      "bytes": 4168
+    },
+    {
+      "path": "experiments/native_resolution_patch_training_20261111/analysis/rgb_input_fix_20261114/condition_summary.csv",
+      "sha256": "e6933d073855456fec5fd6df9628fb1f84de672a3e9d6196ee5f6194c4b19bb7",
+      "bytes": 18198016
+    },
+    {
+      "path": "experiments/native_resolution_patch_training_20261111/analysis/corrected_release_20261115/metrics_9_conditions.csv",
+      "sha256": "5d8cea29a7753a2d771822a9b43568468cb63313801f4668ee396208134aa756",
+      "bytes": 2180
+    },
+    {
+      "path": "experiments/multiscale_tile_inference_20261016/image_inventory.csv",
+      "sha256": "59271cd7f39fbd0cf8e5228c222d3825ae2bd11eedec641232072ddce0afa6e5",
+      "bytes": 46460
+    },
+    {
+      "path": "experiments/multiscale_tile_inference_20261016/per_image_metrics.csv",
+      "sha256": "fccc2af96c22fdb793c34f7791067a6e8692311e8e83e9080415f574e2e65d6a",
+      "bytes": 286829
+    },
+    {
+      "path": "experiments/multiscale_tile_inference_20261016/multiscale_metrics.csv",
+      "sha256": "93b82dee5637baac5a57206939c98ab04bbfa640b9a37b4fb7b9cef026516122",
+      "bytes": 3582429
+    },
+    {
+      "path": "experiments/native_resolution_patch_training_20261111/analysis/corrected_release_20261115/key_paired_comparisons.csv",
+      "sha256": "5d7de284e940ac9911cf260f604c731d3663227a480fecd136124499c48c4432",
+      "bytes": 6597
+    },
+    {
+      "path": "experiments/local_huber_20261105/analysis/final_20261107/inputs/final_summary.json",
+      "sha256": "d5e8e7764f01401e66891b1e3341417180cef93f806d1b4d3a527376821be23d",
+      "bytes": 27770
+    },
+    {
+      "path": "experiments/native_resolution_patch_training_20261111/analysis/rgb_input_fix_20261114/per_condition/C0_P0/per_image_absolute_C0_P0.csv",
+      "sha256": "278c8f30aad41ab684522b934321f0b418aba5b669e1a9597d2970ddbcf5c3d9",
+      "bytes": 54737
+    },
+    {
+      "path": "experiments/native_resolution_patch_training_20261111/analysis/rgb_input_fix_20261114/per_condition/C0_P1/per_image_absolute_C0_P1.csv",
+      "sha256": "4c68c418e4cbffd834d1ddb15e53e7a18cfa928c4bd871718e681b3af2ce1af6",
+      "bytes": 58005
+    },
+    {
+      "path": "experiments/native_resolution_patch_training_20261111/analysis/rgb_input_fix_20261114/per_condition/C0_P2/per_image_absolute_C0_P2.csv",
+      "sha256": "26c6f24edffd671d90212efb78756c668698eb16a08b70732846335dbef0889d",
+      "bytes": 57831
+    },
+    {
+      "path": "experiments/native_resolution_patch_training_20261111/analysis/rgb_input_fix_20261114/per_condition/F1_P0/per_image_absolute_F1_P0.csv",
+      "sha256": "2bc263ebe37ee7fb9a8392c516a5b350b06ef1c07ccc404aec79eed430a8edc2",
+      "bytes": 54332
+    },
+    {
+      "path": "experiments/native_resolution_patch_training_20261111/analysis/rgb_input_fix_20261114/per_condition/F1_P1/per_image_absolute_F1_P1.csv",
+      "sha256": "bcce34f81684bbd7c85055c5eea488b9a968959538499213d6967207e84cc729",
+      "bytes": 58289
+    },
+    {
+      "path": "experiments/native_resolution_patch_training_20261111/analysis/rgb_input_fix_20261114/per_condition/F1_P2/per_image_absolute_F1_P2.csv",
+      "sha256": "69f1557b5e63df89ce188b5779e8866f053a2fea016d28710a1f3bb4d2a2cfdd",
+      "bytes": 57827
+    },
+    {
+      "path": "experiments/native_resolution_patch_training_20261111/analysis/rgb_input_fix_20261114/per_condition/F2_P0/per_image_absolute_F2_P0.csv",
+      "sha256": "4d00b2afabf281eddbaa569d4264c2f7061d026711731c2a2c010d07bcc09fe9",
+      "bytes": 54306
+    },
+    {
+      "path": "experiments/native_resolution_patch_training_20261111/analysis/rgb_input_fix_20261114/per_condition/F2_P1/per_image_absolute_F2_P1.csv",
+      "sha256": "46aa32cd0ee0c6ccd7bd13b1fa4af694c630d1055db094f241c1aea7afc10576",
+      "bytes": 58011
+    },
+    {
+      "path": "experiments/native_resolution_patch_training_20261111/analysis/rgb_input_fix_20261114/per_condition/F2_P2/per_image_absolute_F2_P2.csv",
+      "sha256": "568dc7607232551e799ee948da0bf00cd8d64b8d886750388046ff71ed54b45b",
+      "bytes": 57986
+    },
+    {
+      "path": "experiments/native_resolution_patch_training_20261111/analysis/rgb_input_fix_20261114/per_condition/C0_P0/per_image_local_C0_P0.csv",
+      "sha256": "f98c2c8638ae4646cd2fef78cd8a5252d9ec07a2371e5f2e767a93016ea8e4e3",
+      "bytes": 4334464
+    },
+    {
+      "path": "experiments/native_resolution_patch_training_20261111/analysis/rgb_input_fix_20261114/per_condition/C0_P1/per_image_local_C0_P1.csv",
+      "sha256": "863bd3d13587752f1df68983c7526919e71b2f41b14b08131eba27aed84f78f3",
+      "bytes": 4318568
+    },
+    {
+      "path": "experiments/native_resolution_patch_training_20261111/analysis/rgb_input_fix_20261114/per_condition/C0_P2/per_image_local_C0_P2.csv",
+      "sha256": "bb9be1924230d71e26d75a54142a4fce165d3aaab1321f7644ea7b95a6abc40e",
+      "bytes": 4316405
+    },
+    {
+      "path": "experiments/native_resolution_patch_training_20261111/analysis/rgb_input_fix_20261114/per_condition/F1_P0/per_image_local_F1_P0.csv",
+      "sha256": "7399ae461b1b3deb8dcaa443720233cf160b3d49debab778166f36dd422a11de",
+      "bytes": 4329889
+    },
+    {
+      "path": "experiments/native_resolution_patch_training_20261111/analysis/rgb_input_fix_20261114/per_condition/F1_P1/per_image_local_F1_P1.csv",
+      "sha256": "9bb28de68c3c8108a8d5b9ae4f7c2f09d99c91d02aaa66c56dfca5ea22598637",
+      "bytes": 4324776
+    },
+    {
+      "path": "experiments/native_resolution_patch_training_20261111/analysis/rgb_input_fix_20261114/per_condition/F1_P2/per_image_local_F1_P2.csv",
+      "sha256": "debee8b5d91b8afb9ebf86b1716dadbeeb73d28c1dc1049aa7437ac98d2a6b00",
+      "bytes": 4317636
+    },
+    {
+      "path": "experiments/native_resolution_patch_training_20261111/analysis/rgb_input_fix_20261114/per_condition/F2_P0/per_image_local_F2_P0.csv",
+      "sha256": "8dc2bf482262c8f643f89673c31657a8a1d45976519842c0c43049c915407bb7",
+      "bytes": 4331787
+    },
+    {
+      "path": "experiments/native_resolution_patch_training_20261111/analysis/rgb_input_fix_20261114/per_condition/F2_P1/per_image_local_F2_P1.csv",
+      "sha256": "d76fb38e0a15c81b6b8e5528c7244bc27e974fc2d4eb4d50f99a28af9b575c4b",
+      "bytes": 4320180
+    },
+    {
+      "path": "experiments/native_resolution_patch_training_20261111/analysis/rgb_input_fix_20261114/per_condition/F2_P2/per_image_local_F2_P2.csv",
+      "sha256": "977b85b3e03432d581e936b52d08427483b78b427590d956d754b3264932bc89",
+      "bytes": 4313690
+    },
+    {
+      "path": "experiments/local_huber_20261105/analysis/final_20261107/inputs/E0_summary.json",
+      "sha256": "f354afb8dfb4e778dd801219ed927e9a30a8eb44146fbc227abeea7db1f02a3c",
+      "bytes": 2315
+    },
+    {
+      "path": "experiments/local_huber_20261105/analysis/final_20261107/inputs/E1_summary.json",
+      "sha256": "99d7aa1e09cf315fcd805b96f0b1afd3972fb216540b5ff0aa8b4efc1411b070",
+      "bytes": 2311
+    },
+    {
+      "path": "experiments/local_huber_20261105/analysis/final_20261107/inputs/E2_summary.json",
+      "sha256": "4a9ec589718233ddf9a842deca582a1872500f24a52f27334b0e39b4e76b54b3",
+      "bytes": 2305
+    },
+    {
+      "path": "experiments/local_huber_20261105/analysis/final_20261107/inputs/E3_summary.json",
+      "sha256": "073f38bd9b834ca9e2d37e567932a9b4d4e5b5a673582314299c206eb1aed378",
+      "bytes": 2303
+    },
+    {
+      "path": "experiments/error_cause_analysis_20261119/source_evidence/fresh_reproduction_audit.json",
+      "sha256": "cf1a4f51cb019140b94d65a0d04b0834f6cd2db0f1ade0dca9f722f4519686d5",
+      "bytes": 3417
+    },
+    {
+      "path": "experiments/error_cause_analysis_20261119/source_evidence/checkpoint_hash_audit_verified.csv",
+      "sha256": "fa475c2eb57dbd2af51991e742880486d99fd8a909a75e6e1520a63d35313a07",
+      "bytes": 749
+    }
+  ],
+  "checks": [
+    "nine conditions: 128 unique image IDs and identical ordered image_relpath verified",
+    "per-image local sufficient statistics exported: 11520 unique condition/image/distance/group rows",
+    "C0-P0: pooled stats reconcile to corrected release; max_abs_diff=4.44e-16",
+    "C0-P1: pooled stats reconcile to corrected release; max_abs_diff=4.44e-16",
+    "C0-P2: pooled stats reconcile to corrected release; max_abs_diff=5e-15",
+    "F1-P0: pooled stats reconcile to corrected release; max_abs_diff=3.33e-16",
+    "F1-P1: pooled stats reconcile to corrected release; max_abs_diff=9.99e-16",
+    "F1-P2: pooled stats reconcile to corrected release; max_abs_diff=1.89e-15",
+    "F2-P0: pooled stats reconcile to corrected release; max_abs_diff=4.44e-16",
+    "F2-P1: pooled stats reconcile to corrected release; max_abs_diff=1.11e-15",
+    "F2-P2: pooled stats reconcile to corrected release; max_abs_diff=7.77e-16",
+    "local per-image sufficient statistics reconcile to condition_summary for all distances/groups",
+    "paired image bootstrap computed with shared image IDs, 10000 resamples and seed 42",
+    "24 paired bootstrap rows reconcile to corrected release within 1e-8"
+  ],
+  "python": "3.12.14",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "numpy": "2.5.3",
+  "matplotlib": "3.11.2",
+  "analysis_script_sha256": "487682fc58a38aa4bbf37a26ec7e8f4f3a6b024c92ab085201ff200cda90da6b"
+}

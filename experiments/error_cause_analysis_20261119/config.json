@@ -1,0 +1,33 @@
+{
+  "analysis_id": "error_cause_analysis_20261119",
+  "purpose": "Diagnose absolute metric-depth error and local depth-difference underestimation from saved validation sufficient statistics.",
+  "training_performed": false,
+  "model_inference_performed": false,
+  "validation_images": 128,
+  "independent_test319_used": false,
+  "gt_mask": "finite and 0 < camera-coordinate Z-depth <= 65 m",
+  "conditions": ["C0-P0", "C0-P1", "C0-P2", "F1-P0", "F1-P1", "F1-P2", "F2-P0", "F2-P1", "F2-P2"],
+  "source_evaluations": {
+    "corrected_native_resolution": "experiments/native_resolution_patch_training_20261111/analysis/rgb_input_fix_20261114",
+    "corrected_release_metrics": "experiments/native_resolution_patch_training_20261111/analysis/corrected_release_20261115/metrics_9_conditions.csv",
+    "baseline_B_series": "experiments/multiscale_tile_inference_20261016",
+    "loss_E_series": "experiments/local_huber_20261105/analysis/final_20261107/inputs"
+  },
+  "bootstrap": {
+    "unit": "validation image ID; paired resampling shared across compared conditions",
+    "repetitions": 10000,
+    "seed": 42,
+    "estimands": ["pooled sufficient-statistic ratio", "unweighted image mean"]
+  },
+  "analysis_outputs": "analysis/",
+  "representative_visualization": {
+    "file": "figures/fixed_rgb_gt_examples.jpg",
+    "status": "local-only: contains fixed validation RGB source images and GT; not committed to GitHub",
+    "predictions": false
+  },
+  "reproduce": {
+    "python": "Python 3.12.14; NumPy 2.5.3; Matplotlib 3.11.2",
+    "command": "python analyze_error_causes.py --repo-root <canonical-repository-root> --output analysis --bootstrap-reps 10000 --seed 42",
+    "test_command": "python -m unittest discover -s tests -v"
+  }
+}
