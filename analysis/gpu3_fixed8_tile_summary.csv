@@ -1,0 +1,4 @@
+condition,image_count,overlap_neighbor_abs_delta_mean_m,overlap_neighbor_abs_delta_p95_m,pre_fusion_tile_rmse_m,post_fusion_image_rmse_m,tile_gt_slope_median,tile_gt_slope_p05,tile_gt_slope_p95,tile_bias_median_m,tile_bias_p05_m,tile_bias_p95_m,scope
+C0-P2,8,0.365,1.373,5.894,6.001,0.158,-0.157,3.155,-1.629,-18.448,0.896,fixed8_descriptive
+F1-P1,8,0.925,2.879,1.962,2.018,0.707,-0.217,1.393,0.429,-4.859,2.604,fixed8_descriptive
+F2-P2,8,0.911,3.058,2.517,2.940,0.535,-0.432,1.812,0.519,-4.259,3.060,fixed8_descriptive
