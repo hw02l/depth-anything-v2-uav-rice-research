@@ -1,0 +1,9 @@
+image_index,image_relpath,crop,view,selection_source,selection_rule
+7,2025/Day047_Corn/images/576.JPG,corn,nadir,multiscale_tile_inference_20261016/pilot_selection.csv,first row per crop x view in the locked pilot selection order
+20,2025/Day047_Corn/images/385.JPG,corn,oblique,multiscale_tile_inference_20261016/pilot_selection.csv,first row per crop x view in the locked pilot selection order
+34,2025/Day047_Oat/images/32.JPG,oat,nadir,multiscale_tile_inference_20261016/pilot_selection.csv,first row per crop x view in the locked pilot selection order
+48,2025/Day047_Oat/images/110.JPG,oat,oblique,multiscale_tile_inference_20261016/pilot_selection.csv,first row per crop x view in the locked pilot selection order
+71,2025/Day047_Wheat/images/177.JPG,wheat,nadir,multiscale_tile_inference_20261016/pilot_selection.csv,first row per crop x view in the locked pilot selection order
+89,2025/Day047_Wheat/images/993.JPG,wheat,oblique,multiscale_tile_inference_20261016/pilot_selection.csv,first row per crop x view in the locked pilot selection order
+97,2025/Day047_soybean/images/28.JPG,soybean,nadir,multiscale_tile_inference_20261016/pilot_selection.csv,first row per crop x view in the locked pilot selection order
+112,2025/Day047_soybean/images/169.JPG,soybean,oblique,multiscale_tile_inference_20261016/pilot_selection.csv,first row per crop x view in the locked pilot selection order

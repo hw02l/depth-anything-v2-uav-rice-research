@@ -1,0 +1,44 @@
+{
+  "experiment_id": "best_model_inference_combination_20261122",
+  "purpose": "Evaluate C0-B3 and E3-B3 inference combinations against four verified historical Validation128 conditions; inference only.",
+  "split": "Validation128, 2025/Day047",
+  "independent_test319_used": false,
+  "training_or_optimizer_steps": false,
+  "rgb_contract": "uint8 RGB HxWx3, 0..255 at inference entry; frozen preprocessing converts once to float32 0..1 then ImageNet normalization.",
+  "gt_mask": "finite and 0 < Z <= 65m",
+  "fixed_pair_manifest_sha256": "bcb56eab03bec4a44f0626da0f4814876fae67774e536e00cd9f1ad16b1f5728",
+  "base_model": {
+    "id": "Depth Anything V2 Metric Outdoor Small",
+    "epoch": 20,
+    "model_safetensors_sha256": "52769e2e95704d0862e708e8772195b861c647dd4812058eaf698a44305c3bcb",
+    "config_sha256": "3c6ab05881e6a76edbfd33ff393fdfb082582084e9262826bb1ac0fd2b1dac7c"
+  },
+  "checkpoints": {
+    "C0_epoch5_sha256": "2fd190727c7a5124c56c1e0ea2dd8cb09c6cb62a0f92b34fce97ad394281b35a",
+    "E3_epoch5_sha256": "223b75d1f5d81844bc5702565a8291270a8ae951d6e8e7c12be9f1b3ad12e886"
+  },
+  "conditions": {
+    "T1_C0-B3": {"checkpoint": "C0 epoch5", "global": "same-checkpoint whole image short side 518", "tile": "same-checkpoint original-coordinate 2000x2000 tiles, input side 518", "fusion": "locked B3"},
+    "T2_E3-B3": {"checkpoint": "E3 epoch5, selected by the prior formal study", "global": "same-checkpoint whole image short side 518", "tile": "same-checkpoint original-coordinate 2000x2000 tiles, input side 518", "fusion": "locked B3"}
+  },
+  "b3": {
+    "formula": "L(D_global) + D_tile - L(D_tile)",
+    "tile_size_px": 2000,
+    "model_input_px": 518,
+    "nominal_overlap": 0.25,
+    "tile_start_rule": "round(tile_size*(1-overlap)); final tile anchored to far image edge; no padding",
+    "tile_weight": "positive Hann: max(np.hanning(n), 1e-3), outer product; normalized weighted average",
+    "lowpass": "normalized 215x215 box filter, OpenCV BORDER_REFLECT_101, original image coordinate grid",
+    "precision": "FP32; TF32 disabled; no clipping or GT-based affine correction"
+  },
+  "historical_conditions": {
+    "epoch20-B0": "reused from multiscale_tile_inference_20261016/per_image_metrics.csv",
+    "epoch20-B3": "reused from multiscale_tile_inference_20261016/per_image_metrics.csv after one-image B3 code-path reproduction gate",
+    "E3-B0": "reused from local_huber_20261105/analysis/final_20261107/inputs/E3_per_image.csv",
+    "C0-P0": "reused from native_resolution_patch_training_20261111/analysis/rgb_input_fix_20261114/per_condition/C0_P0 per-image CSVs"
+  },
+  "statistics": {"paired_bootstrap_repeats": 10000, "seed": 42, "comparison_unit": "image index", "estimators": ["pooled", "image_mean"]},
+  "comparisons": ["C0-B3 - C0-P0", "E3-B3 - E3-B0", "C0-B3 - epoch20-B3", "E3-B3 - epoch20-B3", "C0-B3 - E3-B3"],
+  "visualization_indices_source": "First row for each crop x view stratum in the previously fixed 16-image B-series pilot_selection.csv; locked before this experiment's results.",
+  "validation_file_sha256": "96c4eab0eb0075ac141ff9b17c22a45734f242f7cc895f8eaf064a4f14cc871e"
+}
