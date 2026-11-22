@@ -61,7 +61,8 @@ def load_new(new_dir: Path, group: str) -> list[dict]:
     absolute = [r for r in read_csv(new_dir / "per_image_absolute_sufficient.csv")
                 if r["model_id"] == f"{group}-B3"]
     local = [r for r in read_csv(new_dir / "per_image_local_sufficient.csv")
-             if int(r["stride_px"]) == 14 and r["group"] == "gt_ge20cm"]
+             if r["model_id"] == f"{group}-B3" and int(r["stride_px"]) == 14
+             and r["group"] == "gt_ge20cm"]
     high_by = {}
     for r in local:
         i = int(r["image_index"])
@@ -225,6 +226,20 @@ def main() -> None:
             exp / "native_resolution_patch_training_20261111" / "analysis" / "rgb_input_fix_20261114" / "per_condition" / "C0_P0" / "per_image_local_C0_P0.csv"),
         "C0-B3": load_new(args.new_dir, "C0"), "E3-B3": load_new(args.new_dir, "E3"),
     }
+    run_complete = json.loads((args.new_dir / "run_complete.json").read_text(encoding="utf-8"))
+    expected_summary = {r["condition"]: r for r in run_complete["summaries"]}
+    for name in ("C0-B3", "E3-B3"):
+        rows = conditions[name]
+        expected = expected_summary[name]
+        checks = {
+            "absolute_rmse": (estimate(rows, "absolute_rmse", "pooled"), expected["rmse_m"]),
+            "full14_mae": (estimate(rows, "full14_mae", "pooled"), expected["full14_local_mae_m"]),
+            "high14_mae": (estimate(rows, "high14_mae", "pooled"), expected["gt_ge20_14_local_mae_m"]),
+        }
+        bad = {metric: pair for metric, pair in checks.items()
+               if not math.isclose(pair[0], pair[1], rel_tol=0, abs_tol=1e-12)}
+        if bad:
+            raise ValueError(f"{name} sufficient-statistic reconciliation failed: {bad}")
     expected_ids = list(range(128))
     for name, rows in conditions.items():
         if [r["image_index"] for r in rows] != expected_ids:
