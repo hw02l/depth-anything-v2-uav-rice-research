@@ -11,9 +11,6 @@ import time
 import subprocess
 
 import cv2
-import matplotlib
-matplotlib.use("Agg")
-import matplotlib.pyplot as plt
 import numpy as np
 import tifffile
 import torch
@@ -86,49 +83,81 @@ def predict_b3_from_global(model, rgb: np.ndarray, global_prediction: np.ndarray
     return fused.astype(np.float32, copy=False), audit
 
 
-def add_depth_panel(axis, image, title, cmap="viridis"):
-    shown = np.ma.masked_invalid(np.ma.asarray(image))
-    return axis.imshow(shown, cmap=cmap, vmin=0.0, vmax=DEPTH_MAX_M, interpolation="nearest")
+PANEL_WIDTH = 640
+PANEL_HEIGHT = 480
+PANEL_HEADER = 48
+
+
+def panel(title: str, image: np.ndarray) -> np.ndarray:
+    header = np.full((PANEL_HEADER, image.shape[1], 3), 38, dtype=np.uint8)
+    cv2.putText(header, title, (12, 32), cv2.FONT_HERSHEY_SIMPLEX, 0.72, (245, 245, 245), 2, cv2.LINE_AA)
+    return np.vstack((header, image))
+
+
+def depth_color_image(values: np.ndarray, valid: np.ndarray, width: int, height: int) -> np.ndarray:
+    small_values = cv2.resize(values.astype(np.float32), (width, height), interpolation=cv2.INTER_NEAREST)
+    small_valid = cv2.resize(valid.astype(np.uint8), (width, height), interpolation=cv2.INTER_NEAREST).astype(bool)
+    scaled = np.rint(np.clip(small_values, 0.0, DEPTH_MAX_M) / DEPTH_MAX_M * 255.0).astype(np.uint8)
+    colored = cv2.applyColorMap(scaled, cv2.COLORMAP_VIRIDIS)
+    colored[~small_valid] = (128, 128, 128)
+    return colored
+
+
+def error_color_image(values: np.ndarray, valid: np.ndarray, width: int, height: int) -> np.ndarray:
+    small_values = cv2.resize(values.astype(np.float32), (width, height), interpolation=cv2.INTER_NEAREST)
+    small_valid = cv2.resize(valid.astype(np.uint8), (width, height), interpolation=cv2.INTER_NEAREST).astype(bool)
+    scaled = np.rint(np.clip(small_values, 0.0, ERROR_MAX_M) / ERROR_MAX_M * 255.0).astype(np.uint8)
+    colored = cv2.applyColorMap(scaled, cv2.COLORMAP_MAGMA)
+    colored[~small_valid] = (128, 128, 128)
+    return colored
+
+
+def common_scale_bar(maximum: float, height: int, label: str, colormap: int) -> np.ndarray:
+    gradient = np.linspace(255, 0, height, dtype=np.uint8).reshape(height, 1)
+    color = cv2.applyColorMap(gradient, colormap)
+    bar = np.full((height, 112, 3), 245, dtype=np.uint8)
+    bar[:, :28] = color
+    cv2.putText(bar, f"{maximum:g} m", (36, 28), cv2.FONT_HERSHEY_SIMPLEX, 0.52, (20, 20, 20), 1, cv2.LINE_AA)
+    cv2.putText(bar, "0 m", (36, height - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.52, (20, 20, 20), 1, cv2.LINE_AA)
+    cv2.putText(bar, label, (34, height // 2), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (20, 20, 20), 1, cv2.LINE_AA)
+    return bar
 
 
 def render_depth_figure(rgb, gt, predictions, valid, image_index: int, crop: str, view: str, output: Path):
-    fig, axes = plt.subplots(2, 4, figsize=(24, 12), constrained_layout=True)
-    axes = axes.ravel()
-    axes[0].imshow(rgb, interpolation="nearest")
-    axes[0].set_title("RGB")
-    gt_shown = np.ma.array(gt, mask=~valid)
-    image_artist = add_depth_panel(axes[1], gt_shown, "GT")
-    axes[1].set_title("GT")
-    for axis, condition in zip(axes[2:], DEPTH_CONDITIONS):
-        shown = np.ma.array(predictions[condition], mask=~valid)
-        image_artist = add_depth_panel(axis, shown, DISPLAY_NAMES[condition])
-        axis.set_title(DISPLAY_NAMES[condition])
-    for axis in axes:
-        axis.set_axis_off()
-    colorbar = fig.colorbar(image_artist, ax=axes[1:], shrink=0.78, pad=0.015)
-    colorbar.set_label("Depth (m); common scale 0–65 m")
-    fig.suptitle(f"Validation image {image_index:03d} — {crop}, {view} — common depth scale", fontsize=16)
-    fig.savefig(output, dpi=110)
-    plt.close(fig)
+    rgb_bgr = cv2.cvtColor(rgb, cv2.COLOR_RGB2BGR)
+    rgb_small = cv2.resize(rgb_bgr, (PANEL_WIDTH, PANEL_HEIGHT), interpolation=cv2.INTER_AREA)
+    cells = [panel("RGB source", rgb_small), panel("GT depth (m)", depth_color_image(gt, valid, PANEL_WIDTH, PANEL_HEIGHT))]
+    for condition in DEPTH_CONDITIONS:
+        cells.append(panel(DISPLAY_NAMES[condition], depth_color_image(predictions[condition], valid, PANEL_WIDTH, PANEL_HEIGHT)))
+    rows = [cv2.hconcat(cells[start:start + 4]) for start in (0, 4)]
+    grid = cv2.vconcat(rows)
+    scale = common_scale_bar(DEPTH_MAX_M, grid.shape[0] - PANEL_HEADER, "depth", cv2.COLORMAP_VIRIDIS)
+    scale = cv2.copyMakeBorder(scale, PANEL_HEADER, 0, 0, 0, cv2.BORDER_CONSTANT, value=(245, 245, 245))
+    footer = np.full((48, grid.shape[1] + scale.shape[1], 3), 32, dtype=np.uint8)
+    cv2.putText(footer, f"Validation {image_index:03d} | {crop}, {view} | common depth range 0–65 m | invalid GT masked",
+                (12, 32), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (245, 245, 245), 2, cv2.LINE_AA)
+    canvas = cv2.vconcat([cv2.hconcat([grid, scale]), footer])
+    if not cv2.imwrite(str(output), canvas, [cv2.IMWRITE_PNG_COMPRESSION, 4]):
+        raise OSError(f"Could not save depth map figure: {output}")
 
 
 def render_error_figure(gt, predictions, valid, image_index: int, crop: str, view: str, output: Path):
-    fig, axes = plt.subplots(2, 3, figsize=(21, 12), constrained_layout=True)
-    axes = axes.ravel()
-    last_artist = None
+    cells = []
     over_range = {}
-    for axis, condition in zip(axes, DEPTH_CONDITIONS):
+    for condition in DEPTH_CONDITIONS:
         errors = np.abs(predictions[condition].astype(np.float32) - gt.astype(np.float32))
         over_range[condition] = int(np.count_nonzero(valid & (errors > ERROR_MAX_M)))
-        shown = np.ma.array(errors, mask=~valid)
-        last_artist = axis.imshow(shown, cmap="magma", vmin=0.0, vmax=ERROR_MAX_M, interpolation="nearest")
-        axis.set_title(DISPLAY_NAMES[condition])
-        axis.set_axis_off()
-    colorbar = fig.colorbar(last_artist, ax=axes.tolist(), shrink=0.78, pad=0.015)
-    colorbar.set_label("Absolute depth error (m); common scale 0–10 m, clipped above 10 m")
-    fig.suptitle(f"Validation image {image_index:03d} — {crop}, {view} — absolute error", fontsize=16)
-    fig.savefig(output, dpi=110)
-    plt.close(fig)
+        cells.append(panel(DISPLAY_NAMES[condition], error_color_image(errors, valid, PANEL_WIDTH, PANEL_HEIGHT)))
+    rows = [cv2.hconcat(cells[start:start + 3]) for start in (0, 3)]
+    grid = cv2.vconcat(rows)
+    scale = common_scale_bar(ERROR_MAX_M, grid.shape[0] - PANEL_HEADER, "absolute error", cv2.COLORMAP_MAGMA)
+    scale = cv2.copyMakeBorder(scale, PANEL_HEADER, 0, 0, 0, cv2.BORDER_CONSTANT, value=(245, 245, 245))
+    footer = np.full((48, grid.shape[1] + scale.shape[1], 3), 32, dtype=np.uint8)
+    cv2.putText(footer, f"Validation {image_index:03d} | {crop}, {view} | common error range 0–10 m; values above 10 m clipped",
+                (12, 32), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (245, 245, 245), 2, cv2.LINE_AA)
+    canvas = cv2.vconcat([cv2.hconcat([grid, scale]), footer])
+    if not cv2.imwrite(str(output), canvas, [cv2.IMWRITE_PNG_COMPRESSION, 4]):
+        raise OSError(f"Could not save error map figure: {output}")
     return over_range
 
 
