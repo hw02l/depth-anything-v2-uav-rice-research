@@ -11,10 +11,45 @@ EXP = HERE.parents[1]
 sys.path.insert(0, str(REPO / "src"))
 sys.path.insert(0, str(EXP))
 from uav_metric_research import multiscale as m
-from run_b3 import dense14_stats, fixed_pair_stats, fuse_depth
+from run_b3 import dense14_stats, fixed_pair_stats, fuse_depth, validate_manifest_rows
 
 
 class B3GeometryTests(unittest.TestCase):
+    def test_validation_manifest_is_paired_to_canonical_inventory(self):
+        rows = []
+        inventory = []
+        for i in range(128):
+            ident = {"day": "2025/Day047", "crop": "corn", "view": "nadir",
+                     "image_relpath": f"2025/Day047_Corn/images/{i}.JPG",
+                     "depth_relpath": f"2025/Day047_Corn_depth/{i}_depth.tif"}
+            rows.append({"split": "validation", **ident})
+            inventory.append({"image_index": str(i), **ident})
+        self.assertEqual(validate_manifest_rows(rows, inventory), rows)
+
+    def test_validation_inventory_mismatch_is_rejected(self):
+        rows = []
+        inventory = []
+        for i in range(128):
+            ident = {"day": "2025/Day047", "crop": "corn", "view": "nadir",
+                     "image_relpath": f"rgb/{i}.JPG", "depth_relpath": f"depth/{i}.tif"}
+            rows.append({"split": "validation", **ident})
+            inventory.append({"image_index": str(i), **ident})
+        inventory[31] = {**inventory[31], "image_relpath": "rgb/wrong.JPG"}
+        with self.assertRaisesRegex(ValueError, "image_relpath at row 31"):
+            validate_manifest_rows(rows, inventory)
+
+    def test_nonvalidation_manifest_is_rejected(self):
+        rows = []
+        inventory = []
+        for i in range(128):
+            ident = {"day": "2025/Day047", "crop": "corn", "view": "nadir",
+                     "image_relpath": f"rgb/{i}.JPG", "depth_relpath": f"depth/{i}.tif"}
+            rows.append({"split": "validation", **ident})
+            inventory.append({"image_index": str(i), **ident})
+        rows[0] = {**rows[0], "split": "test"}
+        with self.assertRaisesRegex(ValueError, "Noncanonical split/day"):
+            validate_manifest_rows(rows, inventory)
+
     def test_constant_maps_cancel_tile_offset(self):
         global_pred = np.full((240, 260), 10.0, np.float32)
         tile_pred = np.full((240, 260), 12.0, np.float32)

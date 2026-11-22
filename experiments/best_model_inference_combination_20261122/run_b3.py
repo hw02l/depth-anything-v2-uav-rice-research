@@ -31,6 +31,12 @@ CHECKPOINT_SHA256 = {
 }
 PAIR_SHA256 = "bcb56eab03bec4a44f0626da0f4814876fae67774e536e00cd9f1ad16b1f5728"
 INPUT_INVENTORY_SHA256 = "59271cd7f39fbd0cf8e5228c222d3825ae2bd11eedec641232072ddce0afa6e5"
+VALIDATION_SHA256 = "96c4eab0eb0075ac141ff9b17c22a45734f242f7cc895f8eaf064a4f14cc871e"
+# The frozen helpers live in this exact experiment snapshot. Configure the
+# imported helper module explicitly because its historical default path uses
+# an obsolete experiment directory name absent from the source snapshot.
+FROZEN_RUN = REPO / "experiments/metric_outdoor_full_20261014_s42_518_cap80_gt65"
+m.RUN = FROZEN_RUN
 TILE_SIZE = 2000
 OVERLAP = 0.25
 INPUT_SIDE = 518
@@ -44,6 +50,35 @@ def sha256(path: Path) -> str:
         for block in iter(lambda: f.read(4 * 1024 * 1024), b""):
             h.update(block)
     return h.hexdigest()
+
+
+def validate_manifest_rows(rows, inventory_rows):
+    """Validate canonical manifest rows against the independently hashed inventory."""
+    if len(rows) != 128 or len(inventory_rows) != 128:
+        raise ValueError("Validation manifest and inventory must each contain 128 rows")
+    required = {"split", "day", "crop", "view", "image_relpath", "depth_relpath"}
+    if not rows or required - set(rows[0]):
+        raise ValueError("Validation manifest is missing required identity columns")
+    inventory_required = {"image_index", "crop", "view", "day", "image_relpath", "depth_relpath"}
+    if not inventory_rows or inventory_required - set(inventory_rows[0]):
+        raise ValueError("Image inventory is missing required identity columns")
+    for index, (row, inv) in enumerate(zip(rows, inventory_rows)):
+        if row["split"] != "validation" or row["day"] != "2025/Day047":
+            raise ValueError(f"Noncanonical split/day in validation manifest at row {index}")
+        if int(inv["image_index"]) != index:
+            raise ValueError(f"Image inventory order is not canonical at row {index}")
+        for key in ("image_relpath", "depth_relpath", "crop", "view", "day"):
+            if row[key] != inv[key]:
+                raise ValueError(f"Validation/inventory mismatch for {key} at row {index}")
+    return rows
+
+
+def read_validation_rows(manifest_path: Path, inventory_rows):
+    if sha256(manifest_path) != VALIDATION_SHA256:
+        raise ValueError("Validation manifest SHA256 mismatch")
+    with manifest_path.open("r", encoding="utf-8-sig", newline="") as stream:
+        rows = list(csv.DictReader(stream))
+    return validate_manifest_rows(rows, inventory_rows)
 
 
 def write_json(path: Path, value) -> None:
@@ -285,15 +320,15 @@ def main():
         raise RuntimeError("This experiment requires the audited CUDA device")
     if args.output.exists():
         raise FileExistsError(f"Refusing to reuse/overwrite output directory: {args.output}")
-    args.output.mkdir(parents=True, exist_ok=False)
     if sha256(args.pair_manifest) != PAIR_SHA256:
         raise ValueError("Fixed pair manifest SHA256 mismatch")
-    rows = m.validation_rows(args.validation_manifest)
     if sha256(args.image_inventory) != INPUT_INVENTORY_SHA256:
         raise ValueError("RGB/GT image inventory SHA256 mismatch")
     inventory_rows = list(csv.DictReader(args.image_inventory.open(encoding="utf-8-sig", newline="")))
-    if len(inventory_rows) != 128 or [int(r["image_index"]) for r in inventory_rows] != list(range(128)):
-        raise ValueError("Image inventory must contain canonical indices 0..127")
+    rows = read_validation_rows(args.validation_manifest, inventory_rows)
+    frozen_files = [FROZEN_RUN / "source_full_v1" / name for name in ("data.py", "metrics.py")]
+    if not all(path.is_file() for path in frozen_files):
+        raise FileNotFoundError(f"Required frozen evaluation source missing: {frozen_files}")
     pair_obj = json.loads(args.pair_manifest.read_text(encoding="utf-8"))
     pair_images = pair_obj["images"]
     if len(pair_images) != 128:
@@ -317,6 +352,8 @@ def main():
     if not args.smoke_only and not (args.output.parent / "smoke_gate.json").exists():
         raise FileNotFoundError("Run and pass smoke gate before full Validation128 inference")
 
+    args.output.mkdir(parents=True, exist_ok=False)
+
     torch.set_num_threads(2)
     torch.backends.cuda.matmul.allow_tf32 = False
     torch.backends.cudnn.allow_tf32 = False
@@ -335,11 +372,13 @@ def main():
             raise RuntimeError("GPU source has no .git metadata; set BEST_COMBO_SOURCE_REVISION to the audited source revision")
         git_status = "unavailable: source snapshot has no .git metadata; source hashes recorded"
         revision_source = "explicit_audited_snapshot_revision"
-    source_hashes = {str(p.relative_to(REPO)): sha256(p) for p in (HERE, REPO / "src/uav_metric_research/multiscale.py")}
+    source_hashes = {str(p.relative_to(REPO)): sha256(p) for p in
+                     (HERE, REPO / "src/uav_metric_research/multiscale.py", *frozen_files)}
     write_json(args.output / "launch.json", {
         "experiment": "best_model_inference_combination_20261122", "utc_start": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         "host": host, "gpu_status_pre_run": gpu, "source_revision": git_head, "source_revision_source": revision_source, "git_status": git_status,
         "source_sha256": source_hashes, "command_line": sys.argv, "device": args.device,
+        "frozen_helper_root": str(FROZEN_RUN),
         "torch": torch.__version__, "cuda": torch.version.cuda, "numpy": np.__version__, "opencv": cv2.__version__,
         "validation_sha256": sha256(args.validation_manifest), "pair_manifest_sha256": sha256(args.pair_manifest),
         "image_inventory_sha256": sha256(args.image_inventory),
