@@ -27,4 +27,4 @@ GitHubの積み重ねPRは [PR #8](https://github.com/hw02l/depth-anything-v2-ua
 - `provenance.json` と `SHA256SUMS`: 実行条件とファイルハッシュ
 - `STATUS_JA.md`: 作業状態と未完了項目
 
-予測マップの全条件比較図は未作成である。新規条件の固定画像予測と既存条件の予測cacheが揃っていないためであり、視覚的な形状に関する主張は行わない。RGB/GTを含む画像、checkpointおよび大容量prediction cacheはGitHubへ含めない。
+予測マップの全条件比較図は未作成である。`make_fixed8_comparison.py`と回帰テストは追加したが、今回の追補では実行できておらず、固定8画像の図表は生成していない。GPU4の端末が利用できなくなり、接続中のGPU3には当該データ・checkpoint・コンテナが存在しないことを確認したためである。したがって視覚的な形状に関する主張は行わない。RGB/GTを含む画像、checkpointおよび大容量prediction cacheはGitHubへ含めない。
