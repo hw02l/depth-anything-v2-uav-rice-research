@@ -1,14 +1,35 @@
-# STATUS
+# 実験状態
 
-- [x] PR #7最新HEADを確認し、同HEADをbaseにした独立worktree/branchを作成した。
-- [x] GPU4へ接続し、GPU機種・利用率・既存compute process・空きストレージを確認した。他ユーザーのprocessには触れていない。
-- [x] C0 epoch5とE3 epoch5の保存先・記録SHA256を特定した。
-- [x] Validation128、固定pair manifest、訂正済みRGB入力仕様、B3定義と既存評価CSVの所在を確認した。
-- [ ] checkpointをGPU4ローカルへ新規コピーし、コピー後SHA256を照合する。
-- [ ] 1画像でRGB・strict load・epoch20-B3再現ゲートを実行する。
-- [ ] C0-B3/E3-B3をValidation128で推論する。
-- [ ] 既存4条件を含む6条件の集計、paired bootstrap、図表を作成する。
-- [ ] 実測報告、provenance、SHA256、NFSバックアップ検証を完成する。
-- [ ] 新規branchをpushし、PR #7をbaseとする新規PRを作成・検証する。
+## 完了
 
-現時点ではGPU推論・学習とも未実施。数値結論は未確定である。
+- PR #7の最新系を基点とする独立ブランチ `research/best-model-inference-combination-20261122` を作成した。現在のローカルHEADは `d99d8ecd4efcfa2863f34eaa130b87033088c96a` で、作業開始時点ではリモートと同期し、未コミット変更はなかった。
+- C0 epoch5とE3 epoch5のcheckpointを確認し、記録済みSHA256と照合した。Strict state load、evalモード、RGB uint8 0–255入力をsmoke runで確認した。
+- epoch20-B3の固定代表画像1枚について、RMSE、全14px局所MAE、大差分14px局所MAEを既存per-image値と照合した。各差は1e-5m未満で再現ゲートを通過した。
+- RTX 1080上でC0-B3とE3-B3を各Validation128画像、新規推論した。新規学習、optimizer更新、Independent test319は実施していない。
+- 4つの既存条件を検証済みper-image統計から再利用し、6条件のpooled/image-mean集計、画像単位paired bootstrap（10,000回、seed 42）、Pareto判定を再計算した。
+- 初回解析出力 `analysis_final_d99d8ec` は旧analyzerの条件間行混入が判明したため無効扱いとし、削除せず監査記録に残した。修正analyzer `d99d8ec` で再集計し、推論時の十分統計との整合確認を通過した。
+- 集計CSV、bootstrap、Pareto表、推論時launch/run-complete記録をローカルへ保全した。NFSバックアップ `/home1/eng-std/s0623003/gpu4_research_backup_best_model_inference_combination_20261122_1420` は39成果ファイル・約1.2MBで、`sha256sum -c SHA256SUMS` の照合が通過した。
+- summary/bootstrap/paretoの3 CSVはNFSのSHA256SUMS記録と実ハッシュが一致した。画像別十分統計は768行で、絶対MAE/RMSE・全14px MAE・高差分14px MAEのpooled再集計値がsummaryと1e-12以内で一致した。
+- 解析・融合コードの回帰テスト15件をGPU4の既存Singularity環境と依存site-packagesで実行し、すべて通過した。図表SVGと十分統計のローカル検査2件も通過した。ローカルWindows PythonにはNumPyとpytestがないため、数値依存テストはGPU環境内で実行した。
+- 公開用worktree内のSHA256SUMSは最終成果物を列挙し、全項目の再照合が通過した。
+- GPU4の最終確認ではRTX 1080使用率0%、他ユーザーPID 3894が約2030MiBを使用していた。自分の推論・解析プロセスは終了しており、他ユーザーのプロセスは操作していない。
+
+## 成果物の正本
+
+- 正式集計：`results/20261122T042859Z-35268/analysis_reconciled_d99d8ec/`
+- 推論時記録：`results/20261122T042859Z-35268/full_eval/`
+- 修正版解析コード：`analyze_results.py`
+- 推論コード：`run_b3.py`
+- 集計図：`figures/metric_tradeoffs.svg`
+- 詳細な方法・結果・限界：`report_ja.md`
+
+## 未完了・制約
+
+- 六条件すべての予測深度マップを並べた定性的比較図は作成していない。新条件の固定8画像予測はGPU4のローカル領域にある一方、既存4条件の対応予測cacheが確認できず、共通条件の画像を再推論していないためである。したがって視覚的な形状解釈は報告書に含めていない。
+- 旧epoch20-B0/B3の符号付きBiasは過去の十分統計に存在しないため、比較表では未提供とした。
+- 全指標を含む元の画像別CSVはNFS保管である。公開worktreeには画像単位の対応付きbootstrapに必要な十分統計を含めた。
+- GitHubへの最終commit/pushおよび新規PR作成は、報告書・テスト・SHA256一覧の最終確認後に実施する。
+
+## 重要な結論
+
+C0-B3はC0-P0に対してpooled高差分14px MAEを2.46%改善したが、全有効14px MAEは7.17%悪化した。RMSE差は−0.000123mでbootstrap 95% CIが0をまたぐ。E3-B3はE3-B0より高差分14px MAEを3.16%改善し、六条件中の点推定最良値0.319867mを示したが、全有効14px MAEは8.74%悪化し、RMSEも点推定でわずかに悪化した。単一の総合最良条件はない。
