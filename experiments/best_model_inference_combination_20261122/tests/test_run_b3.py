@@ -11,10 +11,67 @@ EXP = HERE.parents[1]
 sys.path.insert(0, str(REPO / "src"))
 sys.path.insert(0, str(EXP))
 from uav_metric_research import multiscale as m
-from run_b3 import dense14_stats, fixed_pair_stats, fuse_depth, validate_manifest_rows
+from run_b3 import (
+    audit_checkpoint_identity,
+    dense14_stats,
+    fixed_pair_stats,
+    fuse_depth,
+    validate_manifest_rows,
+)
 
 
 class B3GeometryTests(unittest.TestCase):
+    @staticmethod
+    def checkpoint_signature(payload):
+        return hashlib.sha256(
+            __import__("json").dumps(
+                payload, sort_keys=True, separators=(",", ":"), allow_nan=False
+            ).encode("utf-8")
+        ).hexdigest()
+
+    def test_c0_signature_payload_schema_is_verified(self):
+        signature_payload = {"group": "C0", "seed": 42, "epochs": 5}
+        checkpoint = {
+            "epoch": 5,
+            "global_step": 960,
+            "signature_payload": signature_payload,
+            "checkpoint_signature": self.checkpoint_signature(signature_payload),
+        }
+        audit = audit_checkpoint_identity(checkpoint, "C0")
+        self.assertEqual(audit["group"], "C0")
+        self.assertEqual(audit["epoch"], 5)
+        self.assertEqual(audit["global_step"], 960)
+        self.assertEqual(audit["run_signature_source"], "signature_payload/checkpoint_signature")
+
+    def test_e3_config_signature_schema_is_verified(self):
+        config = {"group": "E3", "seed": 42, "epochs": 5}
+        checkpoint = {
+            "epoch": 5,
+            "global_step": 480,
+            "config": config,
+            "signature": self.checkpoint_signature(config),
+        }
+        audit = audit_checkpoint_identity(checkpoint, "E3")
+        self.assertEqual(audit["group"], "E3")
+        self.assertEqual(audit["epoch"], 5)
+        self.assertEqual(audit["global_step"], 480)
+        self.assertEqual(audit["run_signature_source"], "config/signature")
+
+    def test_checkpoint_signature_mismatch_is_rejected(self):
+        config = {"group": "E3", "seed": 42, "epochs": 5}
+        with self.assertRaisesRegex(ValueError, "internally inconsistent"):
+            audit_checkpoint_identity(
+                {"epoch": 5, "global_step": 480, "config": config, "signature": "0" * 64}, "E3"
+            )
+
+    def test_checkpoint_group_mismatch_is_rejected(self):
+        config = {"group": "E3", "seed": 42, "epochs": 5}
+        with self.assertRaisesRegex(ValueError, "group mismatch"):
+            audit_checkpoint_identity(
+                {"epoch": 5, "global_step": 480, "config": config,
+                 "signature": self.checkpoint_signature(config)}, "C0"
+            )
+
     def test_validation_manifest_is_paired_to_canonical_inventory(self):
         rows = []
         inventory = []

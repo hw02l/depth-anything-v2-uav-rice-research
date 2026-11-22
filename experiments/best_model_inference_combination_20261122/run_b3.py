@@ -52,6 +52,60 @@ def sha256(path: Path) -> str:
     return h.hexdigest()
 
 
+def audit_checkpoint_identity(payload: dict, expected_group: str) -> dict:
+    """Verify the two checkpoint schemas used by the frozen C0 and E3 runs.
+
+    C0 stores its signed run metadata in ``signature_payload`` with a
+    ``checkpoint_signature`` field. E3 stores the equivalent metadata in
+    ``config`` with a ``signature`` field. The model weights are audited
+    separately and loaded with ``strict=True`` below.
+    """
+    if not isinstance(payload, dict):
+        raise ValueError("Checkpoint payload must be a mapping")
+    epoch = int(payload.get("epoch", -1))
+    if epoch != 5:
+        raise ValueError(f"Expected fixed epoch-5 checkpoint, got epoch={epoch}")
+
+    signature_payload = None
+    signature = None
+    signature_source = None
+    for payload_key, signature_key in (
+        ("signature_payload", "checkpoint_signature"),
+        ("config", "signature"),
+    ):
+        candidate = payload.get(payload_key)
+        stored = payload.get(signature_key)
+        if isinstance(candidate, dict) and isinstance(stored, str):
+            signature_payload = candidate
+            signature = stored
+            signature_source = f"{payload_key}/{signature_key}"
+            break
+    if signature_payload is None or signature is None:
+        raise ValueError("Checkpoint has no supported signed run metadata")
+
+    saved_group = signature_payload.get("group")
+    if saved_group != expected_group:
+        raise ValueError(
+            f"Checkpoint signature group mismatch: expected={expected_group!r}, saved={saved_group!r}"
+        )
+    calculated_signature = hashlib.sha256(
+        json.dumps(signature_payload, sort_keys=True, separators=(",", ":"), allow_nan=False).encode("utf-8")
+    ).hexdigest()
+    if signature != calculated_signature:
+        raise ValueError("Checkpoint run signature is internally inconsistent")
+    global_step = int(payload.get("global_step", -1))
+    if global_step <= 0:
+        raise ValueError(f"Checkpoint has invalid global_step={global_step}")
+    return {
+        "epoch": epoch,
+        "group": saved_group,
+        "global_step": global_step,
+        "run_signature": signature_payload,
+        "run_signature_sha256": signature,
+        "run_signature_source": signature_source,
+    }
+
+
 def validate_manifest_rows(rows, inventory_rows):
     """Validate canonical manifest rows against the independently hashed inventory."""
     if len(rows) != 128 or len(inventory_rows) != 128:
@@ -114,10 +168,9 @@ def load_model(group: str, base: Path, checkpoint: Path | None, device: str):
         if checkpoint is None or sha256(checkpoint) != expected:
             raise ValueError(f"{group} checkpoint SHA256 mismatch")
         payload = torch.load(checkpoint, map_location="cpu", weights_only=False)
-        epoch = int(payload.get("epoch", -1))
-        saved_group = payload.get("config", {}).get("group")
-        if epoch != 5 or saved_group != group:
-            raise ValueError(f"Checkpoint signature mismatch: {group=} {epoch=} {saved_group=}")
+        identity = audit_checkpoint_identity(payload, group)
+        epoch = identity["epoch"]
+        saved_group = identity["group"]
         state = payload.get("model")
         if not isinstance(state, dict):
             raise ValueError("Checkpoint has no model state_dict")
@@ -132,10 +185,9 @@ def load_model(group: str, base: Path, checkpoint: Path | None, device: str):
         if any(not torch.equal(value, model.state_dict()[key]) for key, value in state.items()):
             raise ValueError("Loaded checkpoint tensor values differ")
         checkpoint_audit = {
-            "epoch": epoch, "group": saved_group, "global_step": int(payload.get("global_step", -1)),
+            **identity,
             "path": str(checkpoint), "sha256": expected, "state_dict_key_count": len(state),
             "strict_load": True, "loaded_values_exact": True,
-            "run_signature": payload.get("config", {}),
         }
         del payload, state
     model.to(device).eval()
