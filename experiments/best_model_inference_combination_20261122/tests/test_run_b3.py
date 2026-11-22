@@ -56,7 +56,7 @@ class B3GeometryTests(unittest.TestCase):
             else:
                 g0, g1, v = gt[:, :-14], gt[:, 14:], valid[:, :-14] & valid[:, 14:]
                 p0, p1 = pred[:, :-14], pred[:, 14:]
-            err = (p0[v] - p1[v]) - (g0[v] - g1[v])
+            err = (p0[v].astype(np.float64) - p1[v].astype(np.float64)) - (g0[v].astype(np.float64) - g1[v].astype(np.float64))
             expected_count += int(v.sum())
             expected_error_sum += float(np.abs(err).sum(dtype=np.float64))
         self.assertEqual(result["full14_pair_count"], expected_count)
