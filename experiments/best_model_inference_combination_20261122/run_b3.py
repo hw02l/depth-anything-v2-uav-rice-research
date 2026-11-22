@@ -30,6 +30,7 @@ CHECKPOINT_SHA256 = {
     "E3": "223b75d1f5d81844bc5702565a8291270a8ae951d6e8e7c12be9f1b3ad12e886",
 }
 PAIR_SHA256 = "bcb56eab03bec4a44f0626da0f4814876fae67774e536e00cd9f1ad16b1f5728"
+INPUT_INVENTORY_SHA256 = "59271cd7f39fbd0cf8e5228c222d3825ae2bd11eedec641232072ddce0afa6e5"
 TILE_SIZE = 2000
 OVERLAP = 0.25
 INPUT_SIDE = 518
@@ -271,6 +272,7 @@ def main():
     ap.add_argument("--e3-checkpoint", type=Path, required=True)
     ap.add_argument("--validation-manifest", type=Path, required=True)
     ap.add_argument("--pair-manifest", type=Path, required=True)
+    ap.add_argument("--image-inventory", type=Path, required=True)
     ap.add_argument("--rgb-root", type=Path, required=True)
     ap.add_argument("--depth-root", type=Path, required=True)
     ap.add_argument("--output", type=Path, required=True)
@@ -287,6 +289,11 @@ def main():
     if sha256(args.pair_manifest) != PAIR_SHA256:
         raise ValueError("Fixed pair manifest SHA256 mismatch")
     rows = m.validation_rows(args.validation_manifest)
+    if sha256(args.image_inventory) != INPUT_INVENTORY_SHA256:
+        raise ValueError("RGB/GT image inventory SHA256 mismatch")
+    inventory_rows = list(csv.DictReader(args.image_inventory.open(encoding="utf-8-sig", newline="")))
+    if len(inventory_rows) != 128 or [int(r["image_index"]) for r in inventory_rows] != list(range(128)):
+        raise ValueError("Image inventory must contain canonical indices 0..127")
     pair_obj = json.loads(args.pair_manifest.read_text(encoding="utf-8"))
     pair_images = pair_obj["images"]
     if len(pair_images) != 128:
@@ -324,6 +331,7 @@ def main():
         "source_sha256": source_hashes, "command_line": sys.argv, "device": args.device,
         "torch": torch.__version__, "cuda": torch.version.cuda, "numpy": np.__version__, "opencv": cv2.__version__,
         "validation_sha256": sha256(args.validation_manifest), "pair_manifest_sha256": sha256(args.pair_manifest),
+        "image_inventory_sha256": sha256(args.image_inventory),
         "rgb_input_contract": "uint8 RGB HxWx3, 0..255; existing frozen preprocessing divides once by 255 then ImageNet normalizes",
         "gt_mask": "finite and 0 < Z <= 65m", "tile_size_px": TILE_SIZE, "input_side_px": INPUT_SIDE,
         "nominal_overlap": OVERLAP, "lowpass": {"kernel_px": LOWPASS_KERNEL, "border": "BORDER_REFLECT_101", "normalize": True},
@@ -345,6 +353,8 @@ def main():
                 raise FileNotFoundError(rgb_path)
             rgb = cv2.cvtColor(bgr, cv2.COLOR_BGR2RGB)
             gt = np.asarray(tifffile.imread(gt_path), dtype=np.float32)
+            if sha256(rgb_path) != inventory_rows[0]["rgb_sha256"] or sha256(gt_path) != inventory_rows[0]["gt_sha256"]:
+                raise ValueError("Smoke RGB/GT bytes differ from the locked input inventory")
             if rgb.shape[:2] != gt.shape or rgb.dtype != np.uint8 or not np.array_equal(rgb, cv2.cvtColor(bgr, cv2.COLOR_BGR2RGB)):
                 raise ValueError("RGB/GT alignment or RGB round-trip check failed")
             torch.cuda.synchronize()
@@ -387,6 +397,8 @@ def main():
                     raise FileNotFoundError(rgb_path)
                 rgb = cv2.cvtColor(bgr, cv2.COLOR_BGR2RGB)
                 gt = np.asarray(tifffile.imread(gt_path), dtype=np.float32)
+                if sha256(rgb_path) != inventory_rows[i]["rgb_sha256"] or sha256(gt_path) != inventory_rows[i]["gt_sha256"]:
+                    raise ValueError(f"RGB/GT bytes differ from the locked inventory at image {i}")
                 if rgb.shape[:2] != gt.shape:
                     raise ValueError(f"RGB/GT shape mismatch at image {i}")
                 torch.cuda.synchronize()
