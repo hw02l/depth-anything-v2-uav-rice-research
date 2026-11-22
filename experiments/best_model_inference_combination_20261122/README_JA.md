@@ -13,6 +13,8 @@ C0 epoch5、E3 epoch5の同一checkpoint内で全体推論と2000pxタイル推�
 
 詳細な方法、統計比較、再現条件と限界は [report_ja.md](report_ja.md) を参照。
 
+GitHubの積み重ねPRは [PR #8](https://github.com/hw02l/depth-anything-v2-uav-rice-research/pull/8) である。baseはPR #7のブランチである。
+
 ## 成果物
 
 - `results/20261122T042859Z-35268/analysis_reconciled_d99d8ec/condition_summary.csv`: 6条件のpooled・画像平均指標
