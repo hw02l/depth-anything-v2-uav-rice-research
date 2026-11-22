@@ -322,12 +322,23 @@ def main():
     torch.backends.cudnn.allow_tf32 = False
     host = subprocess.run(["hostname", "-f"], capture_output=True, text=True, check=True).stdout.strip()
     gpu = subprocess.run(["nvidia-smi", "--query-gpu=name,utilization.gpu,memory.total,memory.used,memory.free", "--format=csv,noheader"], capture_output=True, text=True, check=True).stdout.strip()
-    git_head = subprocess.run(["git", "rev-parse", "HEAD"], cwd=REPO, capture_output=True, text=True, check=True).stdout.strip()
-    git_status = subprocess.run(["git", "status", "--short"], cwd=REPO, capture_output=True, text=True, check=True).stdout.strip()
+    # A GPU-side source snapshot may intentionally omit .git metadata. In that
+    # case require the caller to pass the audited workstation revision and
+    # record the limitation; source-file hashes below still identify bytes.
+    try:
+        git_head = subprocess.run(["git", "rev-parse", "HEAD"], cwd=REPO, capture_output=True, text=True, check=True).stdout.strip()
+        git_status = subprocess.run(["git", "status", "--short"], cwd=REPO, capture_output=True, text=True, check=True).stdout.strip()
+        revision_source = "gpu_source_git_metadata"
+    except (subprocess.CalledProcessError, FileNotFoundError):
+        git_head = os.environ.get("BEST_COMBO_SOURCE_REVISION")
+        if not git_head:
+            raise RuntimeError("GPU source has no .git metadata; set BEST_COMBO_SOURCE_REVISION to the audited source revision")
+        git_status = "unavailable: source snapshot has no .git metadata; source hashes recorded"
+        revision_source = "explicit_audited_snapshot_revision"
     source_hashes = {str(p.relative_to(REPO)): sha256(p) for p in (HERE, REPO / "src/uav_metric_research/multiscale.py")}
     write_json(args.output / "launch.json", {
         "experiment": "best_model_inference_combination_20261122", "utc_start": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
-        "host": host, "gpu_status_pre_run": gpu, "source_revision": git_head, "git_status": git_status,
+        "host": host, "gpu_status_pre_run": gpu, "source_revision": git_head, "source_revision_source": revision_source, "git_status": git_status,
         "source_sha256": source_hashes, "command_line": sys.argv, "device": args.device,
         "torch": torch.__version__, "cuda": torch.version.cuda, "numpy": np.__version__, "opencv": cv2.__version__,
         "validation_sha256": sha256(args.validation_manifest), "pair_manifest_sha256": sha256(args.pair_manifest),
