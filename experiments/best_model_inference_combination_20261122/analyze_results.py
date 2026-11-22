@@ -29,11 +29,13 @@ def record(index: int, valid: int, abs_sum: float, sq_sum: float,
            rel_sum: float | None = None, bias: float | None = None,
            pearson: float | None = None, pred_sum: float | None = None,
            gt_sum: float | None = None, pred_sq: float | None = None,
-           gt_sq: float | None = None, pred_gt: float | None = None) -> dict:
+           gt_sq: float | None = None, pred_gt: float | None = None,
+           pooled_pearson: float | None = None) -> dict:
     return {"image_index": index, "valid_pixels": valid, "abs_sum": abs_sum,
             "sq_sum": sq_sum, "full_n": full_n, "full_sum": full_sum,
             "high_n": high_n, "high_sum": high_sum,
             "rel_sum": rel_sum, "bias": bias, "pearson": pearson,
+            "pooled_pearson": pooled_pearson,
             "pred_sum": pred_sum, "gt_sum": gt_sum, "pred_sq": pred_sq,
             "gt_sq": gt_sq, "pred_gt": pred_gt,
             "mae": abs_sum / valid if valid else None,
@@ -42,7 +44,7 @@ def record(index: int, valid: int, abs_sum: float, sq_sum: float,
             "high_mean": high_sum / high_n if high_n else None}
 
 
-def load_old_b(rows: list[dict[str, str]], method: str) -> list[dict]:
+def load_old_b(rows: list[dict[str, str]], method: str, pooled_pearson: float | None) -> list[dict]:
     selected = [r for r in rows if int(r["epoch"]) == 20 and r["method"] == method]
     out = []
     for r in selected:
@@ -53,7 +55,8 @@ def load_old_b(rows: list[dict[str, str]], method: str) -> list[dict]:
             num(r, "mae_m") * n, num(r, "rmse_m") ** 2 * n,
             full_n, num(r, "local_depth_delta_mae_m") * full_n,
             high_n, num(r, "large14_mae_m") * high_n,
-            rel_sum=num(r, "abs_rel") * n, pearson=num(r, "pearson_r")))
+            rel_sum=num(r, "abs_rel") * n, pearson=num(r, "pearson_r"),
+            pooled_pearson=pooled_pearson))
     return out
 
 
@@ -133,6 +136,9 @@ def estimate(records: list[dict], metric: str, estimand: str) -> float:
             vals = [r["bias"] for r in records]
             return sum(v * r["valid_pixels"] for r, v in zip(records, vals)) / sum(r["valid_pixels"] for r in records) if all(v is not None for v in vals) else float("nan")
         if metric == "pearson":
+            pooled = [r["pooled_pearson"] for r in records]
+            if all(v is not None for v in pooled) and all(v == pooled[0] for v in pooled):
+                return pooled[0]
             fields = ("pred_sum", "gt_sum", "pred_sq", "gt_sq", "pred_gt")
             if any(any(r[k] is None for k in fields) for r in records):
                 return float("nan")
@@ -217,9 +223,12 @@ def main() -> None:
         raise RuntimeError("New inference run is not complete")
     exp = args.repo / "experiments"
     b_rows = read_csv(exp / "multiscale_tile_inference_20261016" / "per_image_metrics.csv")
+    b_summary_rows = read_csv(exp / "multiscale_tile_inference_20261016" / "method_comparison.csv")
+    b_pearson = {r["method"]: num(r, "pearson_r") for r in b_summary_rows
+                 if int(r["epoch"]) == 20}
     conditions = {
-        "epoch20-B0": load_old_b(b_rows, "B0"),
-        "epoch20-B3": load_old_b(b_rows, "B3"),
+        "epoch20-B0": load_old_b(b_rows, "B0", b_pearson.get("B0")),
+        "epoch20-B3": load_old_b(b_rows, "B3", b_pearson.get("B3")),
         "E3-B0": load_e3(read_csv(exp / "local_huber_20261105" / "analysis" / "final_20261107" / "inputs" / "E3_per_image.csv")),
         "C0-P0": load_c0_p0(
             exp / "native_resolution_patch_training_20261111" / "analysis" / "rgb_input_fix_20261114" / "per_condition" / "C0_P0" / "per_image_absolute_C0_P0.csv",
