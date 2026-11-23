@@ -119,7 +119,7 @@ E3-B3はE3-B0に比べ、高差分14px MAEを3.16%低下させた。全14px MAE�
 
 ### 視覚確認記録
 
-図の目視確認は未完了である。GitHub公開後に全16枚を実際に確認し、結果を追記する。生成数、画像寸法、共有色範囲、SHA256検査は完了している。
+固定8画像の深度図8枚・絶対誤差図8枚をコンタクトシートで確認した。図生成後、OpenCV HersheyフォントがUnicode en dashを描画できず凡例が文字化けしていたため、16枚すべての下部凡例帯48 pxだけをASCIIハイフンで再描画した。画像007の2図は元解像度でも確認した。予測パネル、深度値、画像別指標CSVは変更していない。記録は `results/fixed8_visualization_20261123/verification/visual_review_ja.md` に保存した。
 ## 9. 成果物と再現
 
 - 条件別集計：`results/20261122T042859Z-35268/analysis_reconciled_d99d8ec/condition_summary.csv`
@@ -129,5 +129,6 @@ E3-B3はE3-B0に比べ、高差分14px MAEを3.16%低下させた。全14px MAE�
 - 推論provenance：`results/20261122T042859Z-35268/full_eval/launch.json` と `run_complete.json`
 - 正確なCLI引数、GPU、container、manifest SHA、checkpoint SHA、推論source hashは `launch.json` に記録した。推論source snapshot revisionは `3e78744c24827717e1e746663b260b32f3f2f55e`、実行ファイル `run_b3.py` のSHA256は `6ae45abea44847982bb7eeea3f165153eddfae31c6bb8f6ad3de0598662d9c4b` であり、空白を除いた完全値は `6ae45abea44847982bb7eeea3f165153eddfae31c6bb8f6ad3de0598662d9c4b` である。集計analyzerはcommit `d99d8ec` である。
 - NFS保全先：`/home1/eng-std/s0623003/gpu4_research_backup_best_model_inference_combination_20261122_1420`。39ファイル、約1.2MB。`SHA256SUMS`照合は完了。
+- 図表・視覚確認記録を含む最終追補は `/home1/eng-std/s0623003/gpu4_research_backup_best_model_inference_combination_20261123_fixed8/experiment` に保存した。70ファイルを保全し、SHA256SUMS照合とコピー元・コピー先の一致を確認した。検証記録は `/home1/eng-std/s0623003/gpu4_research_backup_best_model_inference_combination_20261123_fixed8/NFS_BACKUP_VERIFICATION.txt` にある。
 
 新規結果は `analysis_reconciled_d99d8ec/` のCSV、`full_eval/` のprovenance、`SHA256SUMS`を正本とする。推論用コマンド全体は `full_eval/launch.json` の `command_line` と `PLAN_JA.md` を参照する。実行時source snapshotにGit metadataが無かったため、記録済みrevisionと各source hashを併用している。

@@ -13,8 +13,8 @@
 - 解析・融合コードの回帰テスト15件をGPU4の既存Singularity環境と依存site-packagesで実行し、すべて通過した。図表SVGと十分統計のローカル検査2件も通過した。ローカルWindows PythonにはNumPyとpytestがないため、数値依存テストはGPU環境内で実行した。
 - 公開用worktree内のSHA256SUMSは最終成果物を列挙し、全項目の再照合が通過した。
 - GPU4の最終確認ではRTX 1080使用率0%、他ユーザーPID 3894が約2030MiBを使用していた。自分の推論・解析プロセスは終了しており、他ユーザーのプロセスは操作していない。
-- ブランチ `research/best-model-inference-combination-20261122` をcommit `5020da95644b36083d543f3750365aa4e17e5899` までpushした。PR #8はPR #7のheadをbaseとするopen・未mergeのPRであり、直近確認時点でmergeableであった。
-- 固定8画像の図表生成に先立つ回帰テスト3件を含め、GPU4の既存Singularity環境で22件すべて通過した。単一画像smokeでは6条件の予測RMSEが既存画像別統計と一致し、B3局所指標差は許容誤差内であった。
+- ブランチ `research/best-model-inference-combination-20261122` の初回成果commit `03aa5ea3f2dab8c9a0f0d75f87ebc37d892a36ef` はpush済みである。図表修正を含む追補commitを同ブランチへ追加し、PR #8のhead・本文を最終状態へ更新した。PR #8はPR #7のheadをbaseとするopen・未mergeである。
+- 固定8画像の図表生成に先立つ回帰テスト3件を含め、GPU4の既存Singularity環境で22件すべて通過した。図表修正後のpytest再実行は、選択したランタイムにpytestがないため実施できなかった。今回の差分は凡例帯・文書・provenanceの更新であり、予測値・評価CSVは変更していない。単一画像smokeでは6条件の予測RMSEが既存画像別統計と一致し、B3局所指標差は許容誤差内であった。
 - 事前固定8画像について深度図8枚・絶対誤差図8枚を生成し、48行の画像別CSV、provenance、SHA256SUMSを保存した。元の出力と実験ディレクトリ内複製のSHA256を照合済みである。
 - 生成図は共通深度範囲0–65m、共通絶対誤差範囲0–10mで作成し、表示上限超過数をCSVへ記録した。検証対象は8画像に限り、Validation128全体の再推論は行っていない。
 - GPU4ではRTX 1080を使用した。学習・optimizer更新・Independent test319は実施していない。
@@ -30,12 +30,12 @@
 
 ## 残る制約
 
-- 固定8画像の目視確認は未完了である。図は作成済みだが、WindowsからGPU4のプレビューサーバーに接続できなかったため、GitHub公開後に全16枚を確認して記録を更新する。
+- 固定8画像の図表16枚をコンタクトシートで確認し、画像007の2図を元解像度でも確認した。凡例の文字化けを確認後、全画像の下部凡例帯だけをASCIIハイフンで修正した。詳細は `results/fixed8_visualization_20261123/verification/visual_review_ja.md` に記録した。
 
 - 固定8画像は視覚確認用の部分標本であり、図からValidation128全体や別撮影日への一般化を結論できない。独立test319は未使用である。
 - epoch20-B0/B3の一部符号付きBiasは過去の十分統計に存在せず、比較表では未提供とした。
 - 全指標を含む元の画像別CSV完全版は既存の検証済みNFSバックアップに保全した。今回の公開CSVは固定8画像分であり、過去の正式評価表と区別する。
-- NFS追補バックアップ、今回の追加commit・PR本文更新は、完了後の実検証結果を追記する。
+- 最終版の実験ディレクトリ70ファイルをNFS `/home1/eng-std/s0623003/gpu4_research_backup_best_model_inference_combination_20261123_fixed8/experiment` に追補保存した。実験ルートのSHA256SUMS 69件、図表ディレクトリのSHA256SUMS 20件が通過し、コピー元・コピー先の `diff -qr` は一致した。照合記録は `/home1/eng-std/s0623003/gpu4_research_backup_best_model_inference_combination_20261123_fixed8/NFS_BACKUP_VERIFICATION.txt` に保存した。追補commitのpush後にPR #8のheadと本文も更新済みである。
 
 ## 重要な結論
 

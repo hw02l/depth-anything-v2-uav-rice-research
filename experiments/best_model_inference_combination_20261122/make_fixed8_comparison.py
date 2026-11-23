@@ -153,7 +153,7 @@ def render_depth_figure(rgb, gt, predictions, valid, image_index: int, crop: str
     scale = common_scale_bar(DEPTH_MAX_M, grid.shape[0] - PANEL_HEADER, "depth", cv2.COLORMAP_VIRIDIS)
     scale = cv2.copyMakeBorder(scale, PANEL_HEADER, 0, 0, 0, cv2.BORDER_CONSTANT, value=(245, 245, 245))
     footer = np.full((48, grid.shape[1] + scale.shape[1], 3), 32, dtype=np.uint8)
-    cv2.putText(footer, f"Validation {image_index:03d} | {crop}, {view} | common depth range 0–65 m | invalid GT masked",
+    cv2.putText(footer, f"Validation {image_index:03d} | {crop}, {view} | common depth range 0-65 m | invalid GT masked",
                 (12, 32), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (245, 245, 245), 2, cv2.LINE_AA)
     canvas = cv2.vconcat([cv2.hconcat([grid, scale]), footer])
     if not cv2.imwrite(str(output), canvas, [cv2.IMWRITE_PNG_COMPRESSION, 4]):
@@ -172,7 +172,7 @@ def render_error_figure(gt, predictions, valid, image_index: int, crop: str, vie
     scale = common_scale_bar(ERROR_MAX_M, grid.shape[0] - PANEL_HEADER, "absolute error", cv2.COLORMAP_MAGMA)
     scale = cv2.copyMakeBorder(scale, PANEL_HEADER, 0, 0, 0, cv2.BORDER_CONSTANT, value=(245, 245, 245))
     footer = np.full((48, grid.shape[1] + scale.shape[1], 3), 32, dtype=np.uint8)
-    cv2.putText(footer, f"Validation {image_index:03d} | {crop}, {view} | common error range 0–10 m; values above 10 m clipped",
+    cv2.putText(footer, f"Validation {image_index:03d} | {crop}, {view} | common error range 0-10 m; values above 10 m clipped",
                 (12, 32), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (245, 245, 245), 2, cv2.LINE_AA)
     canvas = cv2.vconcat([cv2.hconcat([grid, scale]), footer])
     if not cv2.imwrite(str(output), canvas, [cv2.IMWRITE_PNG_COMPRESSION, 4]):
