@@ -44,7 +44,9 @@ def load_prediction(path: Path, shape: tuple[int, int]) -> np.ndarray:
     with np.load(path, allow_pickle=False) as archive:
         if archive.files != ["prediction_m"]:
             raise ValueError(f"Unexpected prediction archive schema: {path}")
-        prediction = np.asarray(archive["prediction_m"], dtype=np.float32)
+        prediction = np.asarray(archive["prediction_m"])
+    if prediction.dtype != np.float32:
+        raise ValueError(f"Invalid prediction dtype (expected float32): {path}")
     if prediction.shape != shape or not np.isfinite(prediction).all():
         raise ValueError(f"Invalid prediction shape or values: {path}")
     return prediction
@@ -55,6 +57,23 @@ def load_prediction_npy(path: Path, shape: tuple[int, int]) -> np.ndarray:
     if prediction.shape != shape or prediction.dtype != np.float32 or not np.isfinite(prediction).all():
         raise ValueError(f"Invalid generated prediction shape, dtype, or values: {path}")
     return prediction
+
+
+def metric_value(row: dict, *keys: str) -> float | None:
+    for key in keys:
+        value = row.get(key)
+        if value not in (None, ""):
+            return float(value)
+    return None
+
+
+def metric_audit(actual: float | None, reference: float | None, tolerance: float = 1e-5) -> dict:
+    if actual is None or reference is None:
+        passed = actual is None and reference is None
+        return {"actual": actual, "reference": reference, "absolute_difference": None, "tolerance": tolerance, "passed": passed}
+    difference = abs(float(actual) - float(reference))
+    return {"actual": float(actual), "reference": float(reference), "absolute_difference": difference,
+            "tolerance": tolerance, "passed": difference <= tolerance}
 
 
 def predict_b3_from_global(model, rgb: np.ndarray, global_prediction: np.ndarray, runner, device: str):
@@ -175,6 +194,10 @@ def main():
     parser.add_argument("--visual-indices", type=Path, required=True)
     parser.add_argument("--existing-predictions", type=Path, required=True)
     parser.add_argument("--existing-summary", type=Path, required=True)
+    parser.add_argument("--cache-audit-json", type=Path, required=True)
+    parser.add_argument("--epoch20-b0-cache-dir", type=Path, required=True)
+    parser.add_argument("--epoch20-b3-cache-dir", type=Path, required=True)
+    parser.add_argument("--baseline-b0-per-image", type=Path, required=True)
     parser.add_argument("--baseline-b3-per-image", type=Path, required=True)
     parser.add_argument("--output-dir", type=Path, required=True)
     parser.add_argument("--device", default="cuda")
@@ -214,12 +237,29 @@ def main():
             raise FileNotFoundError(path)
     with args.existing_summary.open(encoding="utf-8-sig", newline="") as stream:
         summary_rows = list(csv.DictReader(stream))
-    existing_rows = {(row["model_id"], int(row["image_index"])): row for row in summary_rows}
+    existing_rows = {
+        (row.get("condition") or row.get("model_id"), int(row["image_index"])): row
+        for row in summary_rows
+    }
+    with args.baseline_b0_per_image.open(encoding="utf-8-sig", newline="") as stream:
+        baseline_b0_rows = list(csv.DictReader(stream))
+    baseline_b0_by_index = {int(row["image_index"]): row for row in baseline_b0_rows}
+    if len(baseline_b0_by_index) != 128:
+        raise ValueError("Expected the frozen 128-image epoch20-B0 baseline rows")
     with args.baseline_b3_per_image.open(encoding="utf-8-sig", newline="") as stream:
-        baseline_rows = [row for row in csv.DictReader(stream) if row.get("epoch") == "20" and row.get("method") == "B3"]
+        baseline_rows = list(csv.DictReader(stream))  # This file is scoped to B3_full_ep20; the CSV has no epoch/method columns.
     baseline_by_index = {int(row["image_index"]): row for row in baseline_rows}
-    if len(baseline_by_index) != 128:
+    if set(baseline_by_index) != set(range(128)):
         raise ValueError("Expected the frozen 128-image epoch20-B3 baseline rows")
+    with args.cache_audit_json.open(encoding="utf-8") as stream:
+        cache_audit = json.load(stream)
+    if (not cache_audit.get("passed") or cache_audit.get("cache_maps_checked") != 32
+            or cache_audit.get("fixed_indices") != indices
+            or cache_audit.get("summary_sha256") != sha256(args.existing_summary)
+            or cache_audit.get("validation_sha256") != sha256(args.validation_manifest)
+            or cache_audit.get("inventory_sha256") != sha256(args.image_inventory)
+            or cache_audit.get("pair_manifest_sha256") != sha256(args.pair_manifest)):
+        raise ValueError("CPU cache audit is missing, failed, or does not match this run")
 
     command = list(sys.argv)
     gpu_before = subprocess_check_gpu()
@@ -232,11 +272,23 @@ def main():
     args.output_dir.mkdir(parents=True)
     work = args.output_dir / "temporary_predictions"
     work.mkdir()
+    cache_sources = {
+        "epoch20-B0": args.epoch20_b0_cache_dir.resolve(),
+        "epoch20-B3": args.epoch20_b3_cache_dir.resolve(),
+    }
+    for condition, cache_dir in cache_sources.items():
+        stem = condition.replace("-", "_")
+        for image_index in indices:
+            source = cache_dir / f"prediction_{image_index:03d}.npy"
+            if not source.is_file():
+                raise FileNotFoundError(f"Missing existing {condition} cache: {source}")
+            target = work / f"{stem}_{image_index:03d}.npy"
+            target.symlink_to(source.resolve())
     load_audits = {}
     fusion_audits = {}
     input_records = {}
     try:
-        for group in ("C0", "E3", "E0"):
+        for group in ("C0", "E3"):
             model, load_audit = runner.load_model(
                 group, args.base_model_dir,
                 args.c0_checkpoint if group == "C0" else args.e3_checkpoint if group == "E3" else None,
@@ -262,26 +314,9 @@ def main():
                 if not valid.any():
                     raise ValueError(f"No valid GT pixels at image {image_index}")
                 global_prediction = runner.infer_one(model, rgb, args.device)
-                condition = "C0-P0" if group == "C0" else "E3-B0" if group == "E3" else "epoch20-B0"
+                condition = "C0-P0" if group == "C0" else "E3-B0"
                 out_path = work / f"{condition.replace('-', '_')}_{image_index:03d}.npy"
                 np.save(out_path, global_prediction.astype(np.float32, copy=False), allow_pickle=False)
-                if group == "E0":
-                    fused, audit = predict_b3_from_global(model, rgb, global_prediction, runner, args.device)
-                    fused_path = work / f"epoch20_B3_{image_index:03d}.npy"
-                    np.save(fused_path, fused, allow_pickle=False)
-                    fusion_audits[str(image_index)] = audit
-                    ref = baseline_by_index[image_index]
-                    valid_mae = runner.absolute_stats(fused, gt, valid)
-                    dense = runner.dense14_stats(fused, gt, valid)
-                    local_rows, _ = runner.fixed_pair_stats(fused, gt, valid, image_index, pair_images)
-                    high_rows = [x for x in local_rows if x["stride_px"] == 14 and x["group"] == "gt_ge20cm"]
-                    pair_count = sum(x["pair_count"] for x in high_rows)
-                    high_mae = sum(x["absolute_error_sum_m"] for x in high_rows) / pair_count if pair_count else None
-                    for actual, reference, label in ((valid_mae["rmse_m"], float(ref["rmse_m"]), "RMSE"),
-                                                     (dense["full14_local_mae_m"], float(ref["local_depth_delta_mae_m"]), "full14"),
-                                                     (high_mae, float(ref["large14_mae_m"]), "high14")):
-                        if actual is None or abs(actual - reference) > 1e-5:
-                            raise ValueError(f"epoch20-B3 image {image_index} failed {label} reproduction: {actual} vs {reference}")
                 input_records[str(image_index)] = {
                     "image_relpath": row["image_relpath"], "depth_relpath": row["depth_relpath"],
                     "crop": row["crop"], "view": row["view"],
@@ -310,7 +345,8 @@ def main():
             if row is None:
                 raise ValueError(f"Missing per-image sufficient statistics for {condition} image {first_index}")
             actual = runner.absolute_stats(pred, gt, valid)
-            if abs(actual["rmse_m"] - float(row["rmse_m"])) > 1e-5:
+            reference_rmse = metric_value(row, "rmse_m", "rmse")
+            if reference_rmse is None or abs(actual["rmse_m"] - reference_rmse) > 1e-5:
                 raise ValueError(f"Cached {condition} map does not reproduce its stored per-image RMSE")
         # Load all conditions and render one fixed image only after the smoke gate.
         smoke_predictions = load_all_predictions(first_index, work, args.existing_predictions, gt.shape)
@@ -323,6 +359,7 @@ def main():
 
     import shutil
     per_image_rows = []
+    cache_reproduction = cache_audit["entries"]
     for image_index in indices:
         row = validation_rows[image_index]
         rgb_path = args.rgb_root / row["image_relpath"]
@@ -351,6 +388,7 @@ def main():
                 "full14_pair_count": dense["full14_pair_count"],
                 "full14_local_mae_m": dense["full14_local_mae_m"],
                 "error_pixels_clipped_above_10m": error_over_range[condition],
+                "error_pixels_clipped_above_10m_fraction": error_over_range[condition] / absolute["valid_pixel_count"],
                 "prediction_nonpositive_pixels": int(np.count_nonzero(predictions[condition] <= 0)),
                 "prediction_above_80m_pixels": int(np.count_nonzero(predictions[condition] > 80.001)),
             })
@@ -361,6 +399,9 @@ def main():
         writer.writerows(per_image_rows)
     shutil.rmtree(work)
 
+    if len(list(args.output_dir.glob("depth_maps_*.png"))) != 8 or len(list(args.output_dir.glob("absolute_error_*.png"))) != 8:
+        raise ValueError("Expected exactly eight depth maps and eight absolute-error maps")
+    prediction_cache_hashes = cache_audit["cache_sha256"]
     provenance = {
         "experiment": EXPERIMENT,
         "artifact": "private_fixed8_six_condition_visual_diagnostics",
@@ -369,7 +410,8 @@ def main():
         "source_revision": os.environ.get("BEST_COMBO_SOURCE_REVISION"),
         "source_sha256": {
             str(path.relative_to(repo_root)): sha256(path)
-            for path in (Path(__file__).resolve(), runner_path, repo_root / "src/uav_metric_research/multiscale.py")
+            for path in (Path(__file__).resolve(), runner_path, repo_root / "src/uav_metric_research/multiscale.py",
+                         repo_root / "experiments" / EXPERIMENT / "verify_fixed8_prediction_caches.py")
         },
         "checkpoint_sha256": {
             "epoch20": runner.BASE_MODEL_SHA256,
@@ -383,8 +425,8 @@ def main():
         "rgb_input_contract": "uint8 RGB HxWx3, range 0..255; frozen preprocessing normalizes once",
         "gt_mask": "finite and 0 < Z <= 65m",
         "condition_definitions": {
-            "epoch20-B0": "epoch20 model, short-side 518px global inference",
-            "epoch20-B3": "epoch20 model, B3 global-plus-tile residual fusion",
+            "epoch20-B0": "reused fixed-image maps from the verified B0_ep20 prediction cache",
+            "epoch20-B3": "reused fixed-image maps from the verified B3_full_ep20 prediction cache",
             "C0-P0": "C0 epoch5, short-side 518px global inference",
             "C0-B3": "C0 epoch5, existing B3 full-validation prediction cache",
             "E3-B0": "E3 epoch5, short-side 518px global inference",
@@ -398,12 +440,20 @@ def main():
             "rgb_gt_and_depth_maps_private": True,
         },
         "load_audits": load_audits,
-        "epoch20_b3_fixed_image_reproduction_passed": True,
+        "epoch20_b3_cache_metrics_reproduction_passed": True,
+        "prediction_cache_reproduction": {
+            "tolerance_m": 1e-5, "entries": cache_reproduction,
+            "checked_cached_maps": len(cache_reproduction), "passed": len(cache_reproduction) == 32,
+            "note": "All four cached conditions were compared against reconciled per-image statistics; epoch20 maps were also compared with their historical per-image CSV rows.",
+        },
         "fusion_audits": fusion_audits,
         "inputs": input_records,
-        "existing_prediction_cache_sha256": {
-            f"{group}/{image_index:03d}": sha256(args.existing_predictions / group / f"prediction_{image_index:03d}.npz")
-            for group in ("C0", "E3") for image_index in indices
+        "prediction_cache_sha256": prediction_cache_hashes,
+        "cache_audit_sha256": sha256(args.cache_audit_json),
+        "existing_summary_sha256": sha256(args.existing_summary),
+        "historical_baseline_sha256": {
+            "epoch20-B0": sha256(args.baseline_b0_per_image),
+            "epoch20-B3": sha256(args.baseline_b3_per_image),
         },
         "gpu_before": gpu_before,
         "gpu_after": subprocess_check_gpu(),

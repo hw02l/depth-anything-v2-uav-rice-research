@@ -1,0 +1,27 @@
+test_bootstrap_is_paired_and_deterministic (test_analyze_results.ResultAnalysisTests.test_bootstrap_is_paired_and_deterministic) ... ok
+test_new_conditions_do_not_mix_local_rows_between_groups (test_analyze_results.ResultAnalysisTests.test_new_conditions_do_not_mix_local_rows_between_groups) ... ok
+test_pooled_and_image_mean_are_distinct_estimands (test_analyze_results.ResultAnalysisTests.test_pooled_and_image_mean_are_distinct_estimands) ... ok
+test_undefined_local_image_is_not_zero_filled (test_analyze_results.ResultAnalysisTests.test_undefined_local_image_is_not_zero_filled) ... ok
+test_depth_and_error_figures_use_fixed_shared_ranges (test_fixed8_visualization.Fixed8VisualizationTests.test_depth_and_error_figures_use_fixed_shared_ranges) ... ok
+test_npy_prediction_cache_requires_fixed_shape_dtype_and_finite_values (test_fixed8_visualization.Fixed8VisualizationTests.test_npy_prediction_cache_requires_fixed_shape_dtype_and_finite_values) ... ok
+test_prediction_cache_rejects_nonfinite_and_extra_arrays (test_fixed8_visualization.Fixed8VisualizationTests.test_prediction_cache_rejects_nonfinite_and_extra_arrays) ... ok
+test_prediction_cache_requires_fixed_schema_and_shape (test_fixed8_visualization.Fixed8VisualizationTests.test_prediction_cache_requires_fixed_schema_and_shape) ... ok
+test_anchored_tile_grid_covers_original_coordinate_grid (test_run_b3.B3GeometryTests.test_anchored_tile_grid_covers_original_coordinate_grid) ... ok
+test_c0_signature_payload_schema_is_verified (test_run_b3.B3GeometryTests.test_c0_signature_payload_schema_is_verified) ... ok
+test_checkpoint_group_mismatch_is_rejected (test_run_b3.B3GeometryTests.test_checkpoint_group_mismatch_is_rejected) ... ok
+test_checkpoint_signature_mismatch_is_rejected (test_run_b3.B3GeometryTests.test_checkpoint_signature_mismatch_is_rejected) ... ok
+test_constant_maps_cancel_tile_offset (test_run_b3.B3GeometryTests.test_constant_maps_cancel_tile_offset) ... ok
+test_dense14_statistics_use_both_valid_endpoints (test_run_b3.B3GeometryTests.test_dense14_statistics_use_both_valid_endpoints) ... ok
+test_e3_config_signature_schema_is_verified (test_run_b3.B3GeometryTests.test_e3_config_signature_schema_is_verified) ... ok
+test_fixed_pair_hash_and_large_delta_statistics (test_run_b3.B3GeometryTests.test_fixed_pair_hash_and_large_delta_statistics) ... ok
+test_fusion_preserves_only_tile_high_frequency_residual (test_run_b3.B3GeometryTests.test_fusion_preserves_only_tile_high_frequency_residual) ... ok
+test_nonvalidation_manifest_is_rejected (test_run_b3.B3GeometryTests.test_nonvalidation_manifest_is_rejected) ... ok
+test_validation_inventory_mismatch_is_rejected (test_run_b3.B3GeometryTests.test_validation_inventory_mismatch_is_rejected) ... ok
+test_validation_manifest_is_paired_to_canonical_inventory (test_run_b3.B3GeometryTests.test_validation_manifest_is_paired_to_canonical_inventory) ... ok
+test_per_image_rows_reconcile_to_pooled_summary (test_sufficient_statistics.SufficientStatisticsTests.test_per_image_rows_reconcile_to_pooled_summary) ... ok
+test_svg_is_well_formed_and_includes_all_conditions (test_summary_figure.SummaryFigureTests.test_svg_is_well_formed_and_includes_all_conditions) ... ok
+
+----------------------------------------------------------------------
+Ran 22 tests in 0.332s
+
+OK

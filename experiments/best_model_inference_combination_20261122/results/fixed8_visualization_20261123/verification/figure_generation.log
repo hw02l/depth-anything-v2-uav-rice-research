@@ -1,0 +1,1 @@
+{"status": "complete", "output_dir": "/localdata/s0623003/best_model_inference_combination_20261122/results/fixed8_six_condition_figure_generation_20261123T064355Z", "images": 8, "figures": 16, "gpu_after": {"name": "NVIDIA GeForce GTX 1080", "utilization_percent": 0, "used_mib": 2197, "free_mib": 5916}}

@@ -23,6 +23,10 @@ class Fixed8VisualizationTests(unittest.TestCase):
             expected = np.arange(12, dtype=np.float32).reshape(3, 4)
             np.savez_compressed(path, prediction_m=expected)
             self.assertTrue(np.array_equal(fixed8.load_prediction(path, (3, 4)), expected))
+            wrong_dtype = Path(temp) / "wrong_dtype.npz"
+            np.savez_compressed(wrong_dtype, prediction_m=expected.astype(np.float64))
+            with self.assertRaisesRegex(ValueError, "dtype"):
+                fixed8.load_prediction(wrong_dtype, (3, 4))
             with self.assertRaisesRegex(ValueError, "shape or values"):
                 fixed8.load_prediction(path, (4, 3))
 
@@ -60,6 +64,25 @@ class Fixed8VisualizationTests(unittest.TestCase):
             self.assertEqual(over_range["C0-P0"], 32 * 4)
             self.assertEqual(over_range["C0-B3"], 0)
             self.assertIsNotNone(cv2.imread(str(depth_path)))
+            self.assertIsNotNone(cv2.imread(str(error_path)))
+
+    def test_npy_prediction_cache_requires_fixed_shape_dtype_and_finite_values(self):
+        with tempfile.TemporaryDirectory() as temp:
+            temp = Path(temp)
+            valid = temp / "valid.npy"
+            expected = np.arange(12, dtype=np.float32).reshape(3, 4)
+            np.save(valid, expected, allow_pickle=False)
+            self.assertTrue(np.array_equal(fixed8.load_prediction_npy(valid, (3, 4)), expected))
+            wrong_dtype = temp / "wrong_dtype.npy"
+            np.save(wrong_dtype, expected.astype(np.float64), allow_pickle=False)
+            with self.assertRaisesRegex(ValueError, "shape, dtype, or values"):
+                fixed8.load_prediction_npy(wrong_dtype, (3, 4))
+            nonfinite = temp / "nonfinite.npy"
+            invalid = expected.copy()
+            invalid[0, 0] = np.nan
+            np.save(nonfinite, invalid, allow_pickle=False)
+            with self.assertRaisesRegex(ValueError, "shape, dtype, or values"):
+                fixed8.load_prediction_npy(nonfinite, (3, 4))
 
 
 if __name__ == "__main__":

@@ -1,0 +1,3123 @@
+{
+  "experiment": "best_model_inference_combination_20261122",
+  "artifact": "private_fixed8_six_condition_visual_diagnostics",
+  "utc_finished": "2026-11-23T06:45:23Z",
+  "command_line": [
+    "/localdata/s0623003/best_model_inference_combination_20261122/pr8_worktree_38a1143/experiments/best_model_inference_combination_20261122/make_fixed8_comparison.py",
+    "--repo-root",
+    "/localdata/s0623003/best_model_inference_combination_20261122/pr8_worktree_38a1143",
+    "--base-model-dir",
+    "/localdata/s0623003/best_model_inference_combination_20261122/checkpoints/base_epoch20",
+    "--c0-checkpoint",
+    "/localdata/s0623003/best_model_inference_combination_20261122/checkpoints/C0/epoch_0005.pt",
+    "--e3-checkpoint",
+    "/localdata/s0623003/best_model_inference_combination_20261122/checkpoints/E3/epoch_0005.pt",
+    "--validation-manifest",
+    "/localdata/s0623003/best_model_inference_combination_20261122/pr8_worktree_38a1143/configs/uav3dcrop_verified/validation.csv",
+    "--pair-manifest",
+    "/localdata/s0623003/best_model_inference_combination_20261122/pr8_worktree_38a1143/experiments/multiscale_tile_inference_20261016/pair_manifest.json",
+    "--image-inventory",
+    "/localdata/s0623003/best_model_inference_combination_20261122/pr8_worktree_38a1143/experiments/multiscale_tile_inference_20261016/image_inventory.csv",
+    "--rgb-root",
+    "/localdata/s0623003/depth-anything-v2-uav/migration_work_20261015/data/uav3dcrop_rgb",
+    "--depth-root",
+    "/localdata/s0623003/depth-anything-v2-uav/migration_work_20261015/data/uav3dcrop_depth",
+    "--visual-indices",
+    "/localdata/s0623003/best_model_inference_combination_20261122/pr8_worktree_38a1143/experiments/best_model_inference_combination_20261122/fixed8_visualization_indices.csv",
+    "--existing-predictions",
+    "/localdata/s0623003/best_model_inference_combination_20261122/results/20261122T042859Z-35268/full_eval",
+    "--existing-summary",
+    "/localdata/s0623003/best_model_inference_combination_20261122/results/20261122T042859Z-35268/analysis_reconciled_d99d8ec/condition_per_image.csv",
+    "--cache-audit-json",
+    "/localdata/s0623003/best_model_inference_combination_20261122/pr8_worktree_38a1143/experiments/best_model_inference_combination_20261122/results/fixed8_cache_audit_20261123/cache_audit.json",
+    "--epoch20-b0-cache-dir",
+    "/localdata/s0623003/depth-anything-v2-uav/multiscale_tile_inference_20261016/repository_v1/results/B0_ep20",
+    "--epoch20-b3-cache-dir",
+    "/localdata/s0623003/depth-anything-v2-uav/multiscale_tile_inference_20261016/repository_v1/results/B3_full_ep20",
+    "--baseline-b0-per-image",
+    "/localdata/s0623003/depth-anything-v2-uav/multiscale_tile_inference_20261016/repository_v1/results/B0_ep20/per_image_metrics.csv",
+    "--baseline-b3-per-image",
+    "/localdata/s0623003/depth-anything-v2-uav/multiscale_tile_inference_20261016/repository_v1/results/B3_full_ep20/per_image_metrics.csv",
+    "--output-dir",
+    "/localdata/s0623003/best_model_inference_combination_20261122/results/fixed8_six_condition_figure_generation_20261123T064355Z",
+    "--device",
+    "cuda"
+  ],
+  "source_revision": null,
+  "source_sha256": {
+    "experiments/best_model_inference_combination_20261122/make_fixed8_comparison.py": "a99dceb4599486790bd9df956eaff8e11e2f96df93d053a1dbdad095325c804c",
+    "experiments/best_model_inference_combination_20261122/run_b3.py": "3cab20f83d6122c13aaddb82ba29639aff6bfdfd6429d9e3fc218115628fd0f9",
+    "src/uav_metric_research/multiscale.py": "6a52037bc3be06567663e2e18bf6a5239e0a93be2ef737097f29bd83ecd0ac90",
+    "experiments/best_model_inference_combination_20261122/verify_fixed8_prediction_caches.py": "573c5407158562712ef9bfa0a110bbdabdae4a2567fcdf52435615929be90cbc"
+  },
+  "checkpoint_sha256": {
+    "epoch20": "52769e2e95704d0862e708e8772195b861c647dd4812058eaf698a44305c3bcb",
+    "C0": "2fd190727c7a5124c56c1e0ea2dd8cb09c6cb62a0f92b34fce97ad394281b35a",
+    "E3": "223b75d1f5d81844bc5702565a8291270a8ae951d6e8e7c12be9f1b3ad12e886"
+  },
+  "validation_sha256": "96c4eab0eb0075ac141ff9b17c22a45734f242f7cc895f8eaf064a4f14cc871e",
+  "image_inventory_sha256": "59271cd7f39fbd0cf8e5228c222d3825ae2bd11eedec641232072ddce0afa6e5",
+  "visual_indices_sha256": "d1a516aa657f64c6e2ee60df266839a76203fc0eefa68437500e106c19bf2a40",
+  "visual_indices": [
+    7,
+    20,
+    34,
+    48,
+    71,
+    89,
+    97,
+    112
+  ],
+  "rgb_input_contract": "uint8 RGB HxWx3, range 0..255; frozen preprocessing normalizes once",
+  "gt_mask": "finite and 0 < Z <= 65m",
+  "condition_definitions": {
+    "epoch20-B0": "reused fixed-image maps from the verified B0_ep20 prediction cache",
+    "epoch20-B3": "reused fixed-image maps from the verified B3_full_ep20 prediction cache",
+    "C0-P0": "C0 epoch5, short-side 518px global inference",
+    "C0-B3": "C0 epoch5, existing B3 full-validation prediction cache",
+    "E3-B0": "E3 epoch5, short-side 518px global inference",
+    "E3-B3": "E3 epoch5, existing B3 full-validation prediction cache"
+  },
+  "rendering": {
+    "depth_range_m": [
+      0,
+      65.0
+    ],
+    "absolute_error_range_m": [
+      0,
+      10.0
+    ],
+    "absolute_error_over_range_counts_recorded": true,
+    "invalid_gt_masked_for_all_panels": true,
+    "rgb_gt_and_depth_maps_private": true
+  },
+  "load_audits": {
+    "C0": {
+      "base_state_load_audit": {
+        "mode": "legacy_serialized_attention_to_runtime",
+        "renamed_tensors": 96,
+        "verified_tensors": 287,
+        "strict_load": true,
+        "loaded_values_exact": true,
+        "mapping": [
+          {
+            "stored": "backbone.encoder.layer.0.attention.attention.query.weight",
+            "runtime": "backbone.encoder.layer.0.attention.q_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.0.attention.attention.query.bias",
+            "runtime": "backbone.encoder.layer.0.attention.q_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.0.attention.attention.key.weight",
+            "runtime": "backbone.encoder.layer.0.attention.k_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.0.attention.attention.key.bias",
+            "runtime": "backbone.encoder.layer.0.attention.k_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.0.attention.attention.value.weight",
+            "runtime": "backbone.encoder.layer.0.attention.v_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.0.attention.attention.value.bias",
+            "runtime": "backbone.encoder.layer.0.attention.v_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.0.attention.output.dense.weight",
+            "runtime": "backbone.encoder.layer.0.attention.o_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.0.attention.output.dense.bias",
+            "runtime": "backbone.encoder.layer.0.attention.o_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.1.attention.attention.query.weight",
+            "runtime": "backbone.encoder.layer.1.attention.q_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.1.attention.attention.query.bias",
+            "runtime": "backbone.encoder.layer.1.attention.q_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.1.attention.attention.key.weight",
+            "runtime": "backbone.encoder.layer.1.attention.k_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.1.attention.attention.key.bias",
+            "runtime": "backbone.encoder.layer.1.attention.k_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.1.attention.attention.value.weight",
+            "runtime": "backbone.encoder.layer.1.attention.v_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.1.attention.attention.value.bias",
+            "runtime": "backbone.encoder.layer.1.attention.v_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.1.attention.output.dense.weight",
+            "runtime": "backbone.encoder.layer.1.attention.o_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.1.attention.output.dense.bias",
+            "runtime": "backbone.encoder.layer.1.attention.o_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.2.attention.attention.query.weight",
+            "runtime": "backbone.encoder.layer.2.attention.q_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.2.attention.attention.query.bias",
+            "runtime": "backbone.encoder.layer.2.attention.q_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.2.attention.attention.key.weight",
+            "runtime": "backbone.encoder.layer.2.attention.k_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.2.attention.attention.key.bias",
+            "runtime": "backbone.encoder.layer.2.attention.k_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.2.attention.attention.value.weight",
+            "runtime": "backbone.encoder.layer.2.attention.v_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.2.attention.attention.value.bias",
+            "runtime": "backbone.encoder.layer.2.attention.v_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.2.attention.output.dense.weight",
+            "runtime": "backbone.encoder.layer.2.attention.o_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.2.attention.output.dense.bias",
+            "runtime": "backbone.encoder.layer.2.attention.o_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.3.attention.attention.query.weight",
+            "runtime": "backbone.encoder.layer.3.attention.q_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.3.attention.attention.query.bias",
+            "runtime": "backbone.encoder.layer.3.attention.q_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.3.attention.attention.key.weight",
+            "runtime": "backbone.encoder.layer.3.attention.k_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.3.attention.attention.key.bias",
+            "runtime": "backbone.encoder.layer.3.attention.k_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.3.attention.attention.value.weight",
+            "runtime": "backbone.encoder.layer.3.attention.v_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.3.attention.attention.value.bias",
+            "runtime": "backbone.encoder.layer.3.attention.v_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.3.attention.output.dense.weight",
+            "runtime": "backbone.encoder.layer.3.attention.o_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.3.attention.output.dense.bias",
+            "runtime": "backbone.encoder.layer.3.attention.o_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.4.attention.attention.query.weight",
+            "runtime": "backbone.encoder.layer.4.attention.q_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.4.attention.attention.query.bias",
+            "runtime": "backbone.encoder.layer.4.attention.q_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.4.attention.attention.key.weight",
+            "runtime": "backbone.encoder.layer.4.attention.k_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.4.attention.attention.key.bias",
+            "runtime": "backbone.encoder.layer.4.attention.k_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.4.attention.attention.value.weight",
+            "runtime": "backbone.encoder.layer.4.attention.v_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.4.attention.attention.value.bias",
+            "runtime": "backbone.encoder.layer.4.attention.v_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.4.attention.output.dense.weight",
+            "runtime": "backbone.encoder.layer.4.attention.o_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.4.attention.output.dense.bias",
+            "runtime": "backbone.encoder.layer.4.attention.o_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.5.attention.attention.query.weight",
+            "runtime": "backbone.encoder.layer.5.attention.q_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.5.attention.attention.query.bias",
+            "runtime": "backbone.encoder.layer.5.attention.q_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.5.attention.attention.key.weight",
+            "runtime": "backbone.encoder.layer.5.attention.k_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.5.attention.attention.key.bias",
+            "runtime": "backbone.encoder.layer.5.attention.k_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.5.attention.attention.value.weight",
+            "runtime": "backbone.encoder.layer.5.attention.v_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.5.attention.attention.value.bias",
+            "runtime": "backbone.encoder.layer.5.attention.v_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.5.attention.output.dense.weight",
+            "runtime": "backbone.encoder.layer.5.attention.o_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.5.attention.output.dense.bias",
+            "runtime": "backbone.encoder.layer.5.attention.o_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.6.attention.attention.query.weight",
+            "runtime": "backbone.encoder.layer.6.attention.q_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.6.attention.attention.query.bias",
+            "runtime": "backbone.encoder.layer.6.attention.q_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.6.attention.attention.key.weight",
+            "runtime": "backbone.encoder.layer.6.attention.k_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.6.attention.attention.key.bias",
+            "runtime": "backbone.encoder.layer.6.attention.k_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.6.attention.attention.value.weight",
+            "runtime": "backbone.encoder.layer.6.attention.v_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.6.attention.attention.value.bias",
+            "runtime": "backbone.encoder.layer.6.attention.v_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.6.attention.output.dense.weight",
+            "runtime": "backbone.encoder.layer.6.attention.o_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.6.attention.output.dense.bias",
+            "runtime": "backbone.encoder.layer.6.attention.o_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.7.attention.attention.query.weight",
+            "runtime": "backbone.encoder.layer.7.attention.q_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.7.attention.attention.query.bias",
+            "runtime": "backbone.encoder.layer.7.attention.q_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.7.attention.attention.key.weight",
+            "runtime": "backbone.encoder.layer.7.attention.k_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.7.attention.attention.key.bias",
+            "runtime": "backbone.encoder.layer.7.attention.k_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.7.attention.attention.value.weight",
+            "runtime": "backbone.encoder.layer.7.attention.v_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.7.attention.attention.value.bias",
+            "runtime": "backbone.encoder.layer.7.attention.v_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.7.attention.output.dense.weight",
+            "runtime": "backbone.encoder.layer.7.attention.o_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.7.attention.output.dense.bias",
+            "runtime": "backbone.encoder.layer.7.attention.o_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.8.attention.attention.query.weight",
+            "runtime": "backbone.encoder.layer.8.attention.q_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.8.attention.attention.query.bias",
+            "runtime": "backbone.encoder.layer.8.attention.q_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.8.attention.attention.key.weight",
+            "runtime": "backbone.encoder.layer.8.attention.k_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.8.attention.attention.key.bias",
+            "runtime": "backbone.encoder.layer.8.attention.k_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.8.attention.attention.value.weight",
+            "runtime": "backbone.encoder.layer.8.attention.v_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.8.attention.attention.value.bias",
+            "runtime": "backbone.encoder.layer.8.attention.v_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.8.attention.output.dense.weight",
+            "runtime": "backbone.encoder.layer.8.attention.o_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.8.attention.output.dense.bias",
+            "runtime": "backbone.encoder.layer.8.attention.o_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.9.attention.attention.query.weight",
+            "runtime": "backbone.encoder.layer.9.attention.q_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.9.attention.attention.query.bias",
+            "runtime": "backbone.encoder.layer.9.attention.q_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.9.attention.attention.key.weight",
+            "runtime": "backbone.encoder.layer.9.attention.k_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.9.attention.attention.key.bias",
+            "runtime": "backbone.encoder.layer.9.attention.k_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.9.attention.attention.value.weight",
+            "runtime": "backbone.encoder.layer.9.attention.v_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.9.attention.attention.value.bias",
+            "runtime": "backbone.encoder.layer.9.attention.v_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.9.attention.output.dense.weight",
+            "runtime": "backbone.encoder.layer.9.attention.o_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.9.attention.output.dense.bias",
+            "runtime": "backbone.encoder.layer.9.attention.o_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.10.attention.attention.query.weight",
+            "runtime": "backbone.encoder.layer.10.attention.q_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.10.attention.attention.query.bias",
+            "runtime": "backbone.encoder.layer.10.attention.q_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.10.attention.attention.key.weight",
+            "runtime": "backbone.encoder.layer.10.attention.k_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.10.attention.attention.key.bias",
+            "runtime": "backbone.encoder.layer.10.attention.k_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.10.attention.attention.value.weight",
+            "runtime": "backbone.encoder.layer.10.attention.v_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.10.attention.attention.value.bias",
+            "runtime": "backbone.encoder.layer.10.attention.v_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.10.attention.output.dense.weight",
+            "runtime": "backbone.encoder.layer.10.attention.o_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.10.attention.output.dense.bias",
+            "runtime": "backbone.encoder.layer.10.attention.o_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.11.attention.attention.query.weight",
+            "runtime": "backbone.encoder.layer.11.attention.q_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.11.attention.attention.query.bias",
+            "runtime": "backbone.encoder.layer.11.attention.q_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.11.attention.attention.key.weight",
+            "runtime": "backbone.encoder.layer.11.attention.k_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.11.attention.attention.key.bias",
+            "runtime": "backbone.encoder.layer.11.attention.k_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.11.attention.attention.value.weight",
+            "runtime": "backbone.encoder.layer.11.attention.v_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.11.attention.attention.value.bias",
+            "runtime": "backbone.encoder.layer.11.attention.v_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.11.attention.output.dense.weight",
+            "runtime": "backbone.encoder.layer.11.attention.o_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.11.attention.output.dense.bias",
+            "runtime": "backbone.encoder.layer.11.attention.o_proj.bias"
+          }
+        ]
+      },
+      "checkpoint_state_load_audit": {
+        "epoch": 5,
+        "group": "C0",
+        "global_step": 960,
+        "run_signature": {
+          "experiment_id": "native_resolution_patch_training_20261111",
+          "group": "C0",
+          "config_sha256": "1338099a531c4e97af2305d4895ec7556c018e409c6b84fd50f51f01d8ccab28",
+          "train_manifest_sha256": "13ee3432515250eff50eeb5238dfc178c8853239074eb8cbbea2b510272b0602",
+          "validation_manifest_sha256": "96c4eab0eb0075ac141ff9b17c22a45734f242f7cc895f8eaf064a4f14cc871e",
+          "pair_manifest_sha256": "bcb56eab03bec4a44f0626da0f4814876fae67774e536e00cd9f1ad16b1f5728",
+          "initial_checkpoint_hashes": {
+            "model.safetensors": "52769e2e95704d0862e708e8772195b861c647dd4812058eaf698a44305c3bcb",
+            "config.json": "3c6ab05881e6a76edbfd33ff393fdfb082582084e9262826bb1ac0fd2b1dac7c"
+          },
+          "code_sha256": {
+            "analyze_results.py": "cd1a5ed488e27dabc52751cb6e13696877e99cc97c67e2d306c84b85c9a06638",
+            "audit_dataset_shapes.py": "e9cdeab9b74829a858120e15f1ac7e59927b88dbea7a0c70851dc0203ec00a00",
+            "cpu_smoke.py": "0220650042261142aeed8fe3b5b537d4c32c48428b7a76cfc8d78612be3e4bce",
+            "data_patch.py": "c15b591dcfce03743cf464d810c36167f7da1bc6a48e19880d2505e2cf581c11",
+            "evaluate_all.py": "a34d7e38912314e377527ba27a5d3d7c2bfe73dd4e7a615b2ed7145b4ebbe816",
+            "evaluate_patch.py": "7a9656b6b07c0f113c5ada4d654eb96c7cf1f576348cd807da7eef75fbd7bd30",
+            "gpu_preflight.py": "c11c2df3566db60dc8e1dc1ffbb4234ef7e7cc3fe0e9e49e4ec8f5ceaf32874f",
+            "inference.py": "1d2df4a2b477b4d46103f01c6e33a7872f1e8f33ed2e0486d731fc35400a8668",
+            "patch_engine.py": "b0e84d73bb8f3ec824acc535b308b7188c93d40c6931da02587221d7c5d43946",
+            "prepare_crop_sampling_manifest.py": "710ef8aee77ae24220a7d8015495ddd3bb317f5ccd804deaa3706abc3ee00878",
+            "prepare_pilot_and_coverage.py": "156d05694d7620e01faf30fefa73466250ce392f5661dfc1a871c40ed9057b0e",
+            "profile_pilot_inference.py": "d8a91293cbaa3afce7781a78d36f006deb984f5c080d66abc512e83ad8ca25b2",
+            "train_patch.py": "41e53943366cae897dee4349aa3e4b75de2bf8ec0b98e24c73e39c588842e6c4"
+          },
+          "group_mode": "C0",
+          "seed": 42,
+          "loss": "SiLog only",
+          "training": {
+            "epochs": 5,
+            "crops_per_image_per_epoch": 2,
+            "gradient_accumulation": 4,
+            "updates_per_epoch": 192,
+            "total_optimizer_updates": 960,
+            "crops_per_group": 3840
+          },
+          "python": "3.12.3 (main, Mar  3 2026, 12:15:18) [GCC 13.3.0]",
+          "torch": "2.11.0+cu126",
+          "validation_rows": 128,
+          "device": "NVIDIA GeForce GTX 1080",
+          "mode": "formal",
+          "epochs": 5,
+          "repeats": 2,
+          "accumulation": 4,
+          "updates_per_epoch": 192,
+          "amp": true,
+          "load_audit": {
+            "mode": "legacy_serialized_attention_to_runtime",
+            "renamed_tensors": 96,
+            "verified_tensors": 287,
+            "strict_load": true,
+            "loaded_values_exact": true,
+            "mapping": [
+              {
+                "stored": "backbone.encoder.layer.0.attention.attention.query.weight",
+                "runtime": "backbone.encoder.layer.0.attention.q_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.0.attention.attention.query.bias",
+                "runtime": "backbone.encoder.layer.0.attention.q_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.0.attention.attention.key.weight",
+                "runtime": "backbone.encoder.layer.0.attention.k_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.0.attention.attention.key.bias",
+                "runtime": "backbone.encoder.layer.0.attention.k_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.0.attention.attention.value.weight",
+                "runtime": "backbone.encoder.layer.0.attention.v_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.0.attention.attention.value.bias",
+                "runtime": "backbone.encoder.layer.0.attention.v_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.0.attention.output.dense.weight",
+                "runtime": "backbone.encoder.layer.0.attention.o_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.0.attention.output.dense.bias",
+                "runtime": "backbone.encoder.layer.0.attention.o_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.1.attention.attention.query.weight",
+                "runtime": "backbone.encoder.layer.1.attention.q_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.1.attention.attention.query.bias",
+                "runtime": "backbone.encoder.layer.1.attention.q_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.1.attention.attention.key.weight",
+                "runtime": "backbone.encoder.layer.1.attention.k_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.1.attention.attention.key.bias",
+                "runtime": "backbone.encoder.layer.1.attention.k_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.1.attention.attention.value.weight",
+                "runtime": "backbone.encoder.layer.1.attention.v_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.1.attention.attention.value.bias",
+                "runtime": "backbone.encoder.layer.1.attention.v_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.1.attention.output.dense.weight",
+                "runtime": "backbone.encoder.layer.1.attention.o_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.1.attention.output.dense.bias",
+                "runtime": "backbone.encoder.layer.1.attention.o_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.2.attention.attention.query.weight",
+                "runtime": "backbone.encoder.layer.2.attention.q_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.2.attention.attention.query.bias",
+                "runtime": "backbone.encoder.layer.2.attention.q_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.2.attention.attention.key.weight",
+                "runtime": "backbone.encoder.layer.2.attention.k_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.2.attention.attention.key.bias",
+                "runtime": "backbone.encoder.layer.2.attention.k_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.2.attention.attention.value.weight",
+                "runtime": "backbone.encoder.layer.2.attention.v_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.2.attention.attention.value.bias",
+                "runtime": "backbone.encoder.layer.2.attention.v_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.2.attention.output.dense.weight",
+                "runtime": "backbone.encoder.layer.2.attention.o_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.2.attention.output.dense.bias",
+                "runtime": "backbone.encoder.layer.2.attention.o_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.3.attention.attention.query.weight",
+                "runtime": "backbone.encoder.layer.3.attention.q_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.3.attention.attention.query.bias",
+                "runtime": "backbone.encoder.layer.3.attention.q_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.3.attention.attention.key.weight",
+                "runtime": "backbone.encoder.layer.3.attention.k_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.3.attention.attention.key.bias",
+                "runtime": "backbone.encoder.layer.3.attention.k_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.3.attention.attention.value.weight",
+                "runtime": "backbone.encoder.layer.3.attention.v_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.3.attention.attention.value.bias",
+                "runtime": "backbone.encoder.layer.3.attention.v_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.3.attention.output.dense.weight",
+                "runtime": "backbone.encoder.layer.3.attention.o_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.3.attention.output.dense.bias",
+                "runtime": "backbone.encoder.layer.3.attention.o_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.4.attention.attention.query.weight",
+                "runtime": "backbone.encoder.layer.4.attention.q_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.4.attention.attention.query.bias",
+                "runtime": "backbone.encoder.layer.4.attention.q_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.4.attention.attention.key.weight",
+                "runtime": "backbone.encoder.layer.4.attention.k_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.4.attention.attention.key.bias",
+                "runtime": "backbone.encoder.layer.4.attention.k_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.4.attention.attention.value.weight",
+                "runtime": "backbone.encoder.layer.4.attention.v_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.4.attention.attention.value.bias",
+                "runtime": "backbone.encoder.layer.4.attention.v_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.4.attention.output.dense.weight",
+                "runtime": "backbone.encoder.layer.4.attention.o_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.4.attention.output.dense.bias",
+                "runtime": "backbone.encoder.layer.4.attention.o_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.5.attention.attention.query.weight",
+                "runtime": "backbone.encoder.layer.5.attention.q_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.5.attention.attention.query.bias",
+                "runtime": "backbone.encoder.layer.5.attention.q_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.5.attention.attention.key.weight",
+                "runtime": "backbone.encoder.layer.5.attention.k_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.5.attention.attention.key.bias",
+                "runtime": "backbone.encoder.layer.5.attention.k_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.5.attention.attention.value.weight",
+                "runtime": "backbone.encoder.layer.5.attention.v_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.5.attention.attention.value.bias",
+                "runtime": "backbone.encoder.layer.5.attention.v_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.5.attention.output.dense.weight",
+                "runtime": "backbone.encoder.layer.5.attention.o_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.5.attention.output.dense.bias",
+                "runtime": "backbone.encoder.layer.5.attention.o_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.6.attention.attention.query.weight",
+                "runtime": "backbone.encoder.layer.6.attention.q_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.6.attention.attention.query.bias",
+                "runtime": "backbone.encoder.layer.6.attention.q_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.6.attention.attention.key.weight",
+                "runtime": "backbone.encoder.layer.6.attention.k_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.6.attention.attention.key.bias",
+                "runtime": "backbone.encoder.layer.6.attention.k_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.6.attention.attention.value.weight",
+                "runtime": "backbone.encoder.layer.6.attention.v_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.6.attention.attention.value.bias",
+                "runtime": "backbone.encoder.layer.6.attention.v_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.6.attention.output.dense.weight",
+                "runtime": "backbone.encoder.layer.6.attention.o_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.6.attention.output.dense.bias",
+                "runtime": "backbone.encoder.layer.6.attention.o_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.7.attention.attention.query.weight",
+                "runtime": "backbone.encoder.layer.7.attention.q_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.7.attention.attention.query.bias",
+                "runtime": "backbone.encoder.layer.7.attention.q_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.7.attention.attention.key.weight",
+                "runtime": "backbone.encoder.layer.7.attention.k_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.7.attention.attention.key.bias",
+                "runtime": "backbone.encoder.layer.7.attention.k_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.7.attention.attention.value.weight",
+                "runtime": "backbone.encoder.layer.7.attention.v_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.7.attention.attention.value.bias",
+                "runtime": "backbone.encoder.layer.7.attention.v_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.7.attention.output.dense.weight",
+                "runtime": "backbone.encoder.layer.7.attention.o_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.7.attention.output.dense.bias",
+                "runtime": "backbone.encoder.layer.7.attention.o_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.8.attention.attention.query.weight",
+                "runtime": "backbone.encoder.layer.8.attention.q_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.8.attention.attention.query.bias",
+                "runtime": "backbone.encoder.layer.8.attention.q_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.8.attention.attention.key.weight",
+                "runtime": "backbone.encoder.layer.8.attention.k_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.8.attention.attention.key.bias",
+                "runtime": "backbone.encoder.layer.8.attention.k_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.8.attention.attention.value.weight",
+                "runtime": "backbone.encoder.layer.8.attention.v_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.8.attention.attention.value.bias",
+                "runtime": "backbone.encoder.layer.8.attention.v_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.8.attention.output.dense.weight",
+                "runtime": "backbone.encoder.layer.8.attention.o_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.8.attention.output.dense.bias",
+                "runtime": "backbone.encoder.layer.8.attention.o_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.9.attention.attention.query.weight",
+                "runtime": "backbone.encoder.layer.9.attention.q_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.9.attention.attention.query.bias",
+                "runtime": "backbone.encoder.layer.9.attention.q_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.9.attention.attention.key.weight",
+                "runtime": "backbone.encoder.layer.9.attention.k_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.9.attention.attention.key.bias",
+                "runtime": "backbone.encoder.layer.9.attention.k_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.9.attention.attention.value.weight",
+                "runtime": "backbone.encoder.layer.9.attention.v_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.9.attention.attention.value.bias",
+                "runtime": "backbone.encoder.layer.9.attention.v_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.9.attention.output.dense.weight",
+                "runtime": "backbone.encoder.layer.9.attention.o_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.9.attention.output.dense.bias",
+                "runtime": "backbone.encoder.layer.9.attention.o_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.10.attention.attention.query.weight",
+                "runtime": "backbone.encoder.layer.10.attention.q_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.10.attention.attention.query.bias",
+                "runtime": "backbone.encoder.layer.10.attention.q_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.10.attention.attention.key.weight",
+                "runtime": "backbone.encoder.layer.10.attention.k_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.10.attention.attention.key.bias",
+                "runtime": "backbone.encoder.layer.10.attention.k_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.10.attention.attention.value.weight",
+                "runtime": "backbone.encoder.layer.10.attention.v_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.10.attention.attention.value.bias",
+                "runtime": "backbone.encoder.layer.10.attention.v_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.10.attention.output.dense.weight",
+                "runtime": "backbone.encoder.layer.10.attention.o_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.10.attention.output.dense.bias",
+                "runtime": "backbone.encoder.layer.10.attention.o_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.11.attention.attention.query.weight",
+                "runtime": "backbone.encoder.layer.11.attention.q_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.11.attention.attention.query.bias",
+                "runtime": "backbone.encoder.layer.11.attention.q_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.11.attention.attention.key.weight",
+                "runtime": "backbone.encoder.layer.11.attention.k_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.11.attention.attention.key.bias",
+                "runtime": "backbone.encoder.layer.11.attention.k_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.11.attention.attention.value.weight",
+                "runtime": "backbone.encoder.layer.11.attention.v_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.11.attention.attention.value.bias",
+                "runtime": "backbone.encoder.layer.11.attention.v_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.11.attention.output.dense.weight",
+                "runtime": "backbone.encoder.layer.11.attention.o_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.11.attention.output.dense.bias",
+                "runtime": "backbone.encoder.layer.11.attention.o_proj.bias"
+              }
+            ]
+          },
+          "gpu_receipt_sha256": "18170eaa751f2b650b6c6cd0a4993abaf50e2b90c771c89891979825b30367e8"
+        },
+        "run_signature_sha256": "10d5da25210e0a0993a6c72268a7822c14db27dc5620c11a2baf770c03dea28b",
+        "run_signature_source": "signature_payload/checkpoint_signature",
+        "path": "/localdata/s0623003/best_model_inference_combination_20261122/checkpoints/C0/epoch_0005.pt",
+        "sha256": "2fd190727c7a5124c56c1e0ea2dd8cb09c6cb62a0f92b34fce97ad394281b35a",
+        "state_dict_key_count": 287,
+        "strict_load": true,
+        "loaded_values_exact": true
+      }
+    },
+    "E3": {
+      "base_state_load_audit": {
+        "mode": "legacy_serialized_attention_to_runtime",
+        "renamed_tensors": 96,
+        "verified_tensors": 287,
+        "strict_load": true,
+        "loaded_values_exact": true,
+        "mapping": [
+          {
+            "stored": "backbone.encoder.layer.0.attention.attention.query.weight",
+            "runtime": "backbone.encoder.layer.0.attention.q_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.0.attention.attention.query.bias",
+            "runtime": "backbone.encoder.layer.0.attention.q_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.0.attention.attention.key.weight",
+            "runtime": "backbone.encoder.layer.0.attention.k_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.0.attention.attention.key.bias",
+            "runtime": "backbone.encoder.layer.0.attention.k_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.0.attention.attention.value.weight",
+            "runtime": "backbone.encoder.layer.0.attention.v_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.0.attention.attention.value.bias",
+            "runtime": "backbone.encoder.layer.0.attention.v_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.0.attention.output.dense.weight",
+            "runtime": "backbone.encoder.layer.0.attention.o_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.0.attention.output.dense.bias",
+            "runtime": "backbone.encoder.layer.0.attention.o_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.1.attention.attention.query.weight",
+            "runtime": "backbone.encoder.layer.1.attention.q_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.1.attention.attention.query.bias",
+            "runtime": "backbone.encoder.layer.1.attention.q_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.1.attention.attention.key.weight",
+            "runtime": "backbone.encoder.layer.1.attention.k_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.1.attention.attention.key.bias",
+            "runtime": "backbone.encoder.layer.1.attention.k_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.1.attention.attention.value.weight",
+            "runtime": "backbone.encoder.layer.1.attention.v_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.1.attention.attention.value.bias",
+            "runtime": "backbone.encoder.layer.1.attention.v_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.1.attention.output.dense.weight",
+            "runtime": "backbone.encoder.layer.1.attention.o_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.1.attention.output.dense.bias",
+            "runtime": "backbone.encoder.layer.1.attention.o_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.2.attention.attention.query.weight",
+            "runtime": "backbone.encoder.layer.2.attention.q_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.2.attention.attention.query.bias",
+            "runtime": "backbone.encoder.layer.2.attention.q_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.2.attention.attention.key.weight",
+            "runtime": "backbone.encoder.layer.2.attention.k_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.2.attention.attention.key.bias",
+            "runtime": "backbone.encoder.layer.2.attention.k_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.2.attention.attention.value.weight",
+            "runtime": "backbone.encoder.layer.2.attention.v_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.2.attention.attention.value.bias",
+            "runtime": "backbone.encoder.layer.2.attention.v_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.2.attention.output.dense.weight",
+            "runtime": "backbone.encoder.layer.2.attention.o_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.2.attention.output.dense.bias",
+            "runtime": "backbone.encoder.layer.2.attention.o_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.3.attention.attention.query.weight",
+            "runtime": "backbone.encoder.layer.3.attention.q_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.3.attention.attention.query.bias",
+            "runtime": "backbone.encoder.layer.3.attention.q_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.3.attention.attention.key.weight",
+            "runtime": "backbone.encoder.layer.3.attention.k_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.3.attention.attention.key.bias",
+            "runtime": "backbone.encoder.layer.3.attention.k_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.3.attention.attention.value.weight",
+            "runtime": "backbone.encoder.layer.3.attention.v_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.3.attention.attention.value.bias",
+            "runtime": "backbone.encoder.layer.3.attention.v_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.3.attention.output.dense.weight",
+            "runtime": "backbone.encoder.layer.3.attention.o_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.3.attention.output.dense.bias",
+            "runtime": "backbone.encoder.layer.3.attention.o_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.4.attention.attention.query.weight",
+            "runtime": "backbone.encoder.layer.4.attention.q_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.4.attention.attention.query.bias",
+            "runtime": "backbone.encoder.layer.4.attention.q_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.4.attention.attention.key.weight",
+            "runtime": "backbone.encoder.layer.4.attention.k_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.4.attention.attention.key.bias",
+            "runtime": "backbone.encoder.layer.4.attention.k_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.4.attention.attention.value.weight",
+            "runtime": "backbone.encoder.layer.4.attention.v_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.4.attention.attention.value.bias",
+            "runtime": "backbone.encoder.layer.4.attention.v_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.4.attention.output.dense.weight",
+            "runtime": "backbone.encoder.layer.4.attention.o_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.4.attention.output.dense.bias",
+            "runtime": "backbone.encoder.layer.4.attention.o_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.5.attention.attention.query.weight",
+            "runtime": "backbone.encoder.layer.5.attention.q_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.5.attention.attention.query.bias",
+            "runtime": "backbone.encoder.layer.5.attention.q_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.5.attention.attention.key.weight",
+            "runtime": "backbone.encoder.layer.5.attention.k_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.5.attention.attention.key.bias",
+            "runtime": "backbone.encoder.layer.5.attention.k_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.5.attention.attention.value.weight",
+            "runtime": "backbone.encoder.layer.5.attention.v_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.5.attention.attention.value.bias",
+            "runtime": "backbone.encoder.layer.5.attention.v_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.5.attention.output.dense.weight",
+            "runtime": "backbone.encoder.layer.5.attention.o_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.5.attention.output.dense.bias",
+            "runtime": "backbone.encoder.layer.5.attention.o_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.6.attention.attention.query.weight",
+            "runtime": "backbone.encoder.layer.6.attention.q_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.6.attention.attention.query.bias",
+            "runtime": "backbone.encoder.layer.6.attention.q_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.6.attention.attention.key.weight",
+            "runtime": "backbone.encoder.layer.6.attention.k_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.6.attention.attention.key.bias",
+            "runtime": "backbone.encoder.layer.6.attention.k_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.6.attention.attention.value.weight",
+            "runtime": "backbone.encoder.layer.6.attention.v_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.6.attention.attention.value.bias",
+            "runtime": "backbone.encoder.layer.6.attention.v_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.6.attention.output.dense.weight",
+            "runtime": "backbone.encoder.layer.6.attention.o_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.6.attention.output.dense.bias",
+            "runtime": "backbone.encoder.layer.6.attention.o_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.7.attention.attention.query.weight",
+            "runtime": "backbone.encoder.layer.7.attention.q_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.7.attention.attention.query.bias",
+            "runtime": "backbone.encoder.layer.7.attention.q_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.7.attention.attention.key.weight",
+            "runtime": "backbone.encoder.layer.7.attention.k_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.7.attention.attention.key.bias",
+            "runtime": "backbone.encoder.layer.7.attention.k_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.7.attention.attention.value.weight",
+            "runtime": "backbone.encoder.layer.7.attention.v_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.7.attention.attention.value.bias",
+            "runtime": "backbone.encoder.layer.7.attention.v_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.7.attention.output.dense.weight",
+            "runtime": "backbone.encoder.layer.7.attention.o_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.7.attention.output.dense.bias",
+            "runtime": "backbone.encoder.layer.7.attention.o_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.8.attention.attention.query.weight",
+            "runtime": "backbone.encoder.layer.8.attention.q_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.8.attention.attention.query.bias",
+            "runtime": "backbone.encoder.layer.8.attention.q_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.8.attention.attention.key.weight",
+            "runtime": "backbone.encoder.layer.8.attention.k_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.8.attention.attention.key.bias",
+            "runtime": "backbone.encoder.layer.8.attention.k_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.8.attention.attention.value.weight",
+            "runtime": "backbone.encoder.layer.8.attention.v_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.8.attention.attention.value.bias",
+            "runtime": "backbone.encoder.layer.8.attention.v_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.8.attention.output.dense.weight",
+            "runtime": "backbone.encoder.layer.8.attention.o_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.8.attention.output.dense.bias",
+            "runtime": "backbone.encoder.layer.8.attention.o_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.9.attention.attention.query.weight",
+            "runtime": "backbone.encoder.layer.9.attention.q_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.9.attention.attention.query.bias",
+            "runtime": "backbone.encoder.layer.9.attention.q_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.9.attention.attention.key.weight",
+            "runtime": "backbone.encoder.layer.9.attention.k_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.9.attention.attention.key.bias",
+            "runtime": "backbone.encoder.layer.9.attention.k_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.9.attention.attention.value.weight",
+            "runtime": "backbone.encoder.layer.9.attention.v_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.9.attention.attention.value.bias",
+            "runtime": "backbone.encoder.layer.9.attention.v_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.9.attention.output.dense.weight",
+            "runtime": "backbone.encoder.layer.9.attention.o_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.9.attention.output.dense.bias",
+            "runtime": "backbone.encoder.layer.9.attention.o_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.10.attention.attention.query.weight",
+            "runtime": "backbone.encoder.layer.10.attention.q_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.10.attention.attention.query.bias",
+            "runtime": "backbone.encoder.layer.10.attention.q_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.10.attention.attention.key.weight",
+            "runtime": "backbone.encoder.layer.10.attention.k_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.10.attention.attention.key.bias",
+            "runtime": "backbone.encoder.layer.10.attention.k_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.10.attention.attention.value.weight",
+            "runtime": "backbone.encoder.layer.10.attention.v_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.10.attention.attention.value.bias",
+            "runtime": "backbone.encoder.layer.10.attention.v_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.10.attention.output.dense.weight",
+            "runtime": "backbone.encoder.layer.10.attention.o_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.10.attention.output.dense.bias",
+            "runtime": "backbone.encoder.layer.10.attention.o_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.11.attention.attention.query.weight",
+            "runtime": "backbone.encoder.layer.11.attention.q_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.11.attention.attention.query.bias",
+            "runtime": "backbone.encoder.layer.11.attention.q_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.11.attention.attention.key.weight",
+            "runtime": "backbone.encoder.layer.11.attention.k_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.11.attention.attention.key.bias",
+            "runtime": "backbone.encoder.layer.11.attention.k_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.11.attention.attention.value.weight",
+            "runtime": "backbone.encoder.layer.11.attention.v_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.11.attention.attention.value.bias",
+            "runtime": "backbone.encoder.layer.11.attention.v_proj.bias"
+          },
+          {
+            "stored": "backbone.encoder.layer.11.attention.output.dense.weight",
+            "runtime": "backbone.encoder.layer.11.attention.o_proj.weight"
+          },
+          {
+            "stored": "backbone.encoder.layer.11.attention.output.dense.bias",
+            "runtime": "backbone.encoder.layer.11.attention.o_proj.bias"
+          }
+        ]
+      },
+      "checkpoint_state_load_audit": {
+        "epoch": 5,
+        "group": "E3",
+        "global_step": 480,
+        "run_signature": {
+          "group": "E3",
+          "seed": 42,
+          "epochs": 5,
+          "accumulation": 4,
+          "lambda": 0.2,
+          "amp": true,
+          "config_sha256": "1692ebf048a99b5624c69330b23ad67954aac7ab047e024c83da54a72b308127",
+          "train_sha256": "13ee3432515250eff50eeb5238dfc178c8853239074eb8cbbea2b510272b0602",
+          "val_sha256": "96c4eab0eb0075ac141ff9b17c22a45734f242f7cc895f8eaf064a4f14cc871e",
+          "pair_sha256": "bcb56eab03bec4a44f0626da0f4814876fae67774e536e00cd9f1ad16b1f5728",
+          "initial_sha256": "52769e2e95704d0862e708e8772195b861c647dd4812058eaf698a44305c3bcb",
+          "baseline_proof_sha256": "bbbec0eaa99ffdf93d11453cf208ceb35be484c527fadfe994f09d4ad42a5a4c",
+          "code_sha256": {
+            "data_local.py": "42bd8e2f3fd68f21964263cb47f78b65aa2171152f0a571d42441029f72c60ca",
+            "epoch_engine.py": "c185d40d5745c1623c63ecb516841b334c2487edd55148e93591e2bb5841ef3d",
+            "evaluation_b0.py": "5fa6b17eacdcffa978e3cf76bec417e47da092394ae4d12fd9f15120d7abec3b",
+            "initialization.py": "f9b4418ed9821f548f0a62a41b660887250dbf5fec9be9da83b3de7dc533dcfa",
+            "local_loss.py": "d0644da8e23be29d0a055ab6e6021a71195740883aa953fd9452b3972f8abe7b",
+            "objective.py": "e8fa8f1ca59c61c169bb9e4e345fb661951df0671d8561e8fffed43f8798674d",
+            "run_local_huber.py": "ca268bccbec60418da0256836b065706328a68a90845576d2ccc7bb91ce90bff",
+            "sampling.py": "f9c224e05394a16ba1612a6415e8a9a756f2eeaef33129aa4abc7181717878b2",
+            "train_step.py": "044bd417a66bf57f95a16097137baf94816322c3017aea7c624b7869e08cab0a"
+          },
+          "torch_version": "2.11.0+cu126",
+          "device": "cuda",
+          "rgb_root": "/work/depth-anything-v2-uav/migration_work_20261015/data/uav3dcrop_rgb",
+          "depth_root": "/work/depth-anything-v2-uav/migration_work_20261015/data/uav3dcrop_depth",
+          "load_audit": {
+            "mode": "legacy_serialized_attention_to_runtime",
+            "renamed_tensors": 96,
+            "verified_tensors": 287,
+            "strict_load": true,
+            "loaded_values_exact": true,
+            "mapping": [
+              {
+                "stored": "backbone.encoder.layer.0.attention.attention.query.weight",
+                "runtime": "backbone.encoder.layer.0.attention.q_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.0.attention.attention.query.bias",
+                "runtime": "backbone.encoder.layer.0.attention.q_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.0.attention.attention.key.weight",
+                "runtime": "backbone.encoder.layer.0.attention.k_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.0.attention.attention.key.bias",
+                "runtime": "backbone.encoder.layer.0.attention.k_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.0.attention.attention.value.weight",
+                "runtime": "backbone.encoder.layer.0.attention.v_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.0.attention.attention.value.bias",
+                "runtime": "backbone.encoder.layer.0.attention.v_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.0.attention.output.dense.weight",
+                "runtime": "backbone.encoder.layer.0.attention.o_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.0.attention.output.dense.bias",
+                "runtime": "backbone.encoder.layer.0.attention.o_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.1.attention.attention.query.weight",
+                "runtime": "backbone.encoder.layer.1.attention.q_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.1.attention.attention.query.bias",
+                "runtime": "backbone.encoder.layer.1.attention.q_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.1.attention.attention.key.weight",
+                "runtime": "backbone.encoder.layer.1.attention.k_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.1.attention.attention.key.bias",
+                "runtime": "backbone.encoder.layer.1.attention.k_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.1.attention.attention.value.weight",
+                "runtime": "backbone.encoder.layer.1.attention.v_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.1.attention.attention.value.bias",
+                "runtime": "backbone.encoder.layer.1.attention.v_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.1.attention.output.dense.weight",
+                "runtime": "backbone.encoder.layer.1.attention.o_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.1.attention.output.dense.bias",
+                "runtime": "backbone.encoder.layer.1.attention.o_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.2.attention.attention.query.weight",
+                "runtime": "backbone.encoder.layer.2.attention.q_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.2.attention.attention.query.bias",
+                "runtime": "backbone.encoder.layer.2.attention.q_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.2.attention.attention.key.weight",
+                "runtime": "backbone.encoder.layer.2.attention.k_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.2.attention.attention.key.bias",
+                "runtime": "backbone.encoder.layer.2.attention.k_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.2.attention.attention.value.weight",
+                "runtime": "backbone.encoder.layer.2.attention.v_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.2.attention.attention.value.bias",
+                "runtime": "backbone.encoder.layer.2.attention.v_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.2.attention.output.dense.weight",
+                "runtime": "backbone.encoder.layer.2.attention.o_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.2.attention.output.dense.bias",
+                "runtime": "backbone.encoder.layer.2.attention.o_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.3.attention.attention.query.weight",
+                "runtime": "backbone.encoder.layer.3.attention.q_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.3.attention.attention.query.bias",
+                "runtime": "backbone.encoder.layer.3.attention.q_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.3.attention.attention.key.weight",
+                "runtime": "backbone.encoder.layer.3.attention.k_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.3.attention.attention.key.bias",
+                "runtime": "backbone.encoder.layer.3.attention.k_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.3.attention.attention.value.weight",
+                "runtime": "backbone.encoder.layer.3.attention.v_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.3.attention.attention.value.bias",
+                "runtime": "backbone.encoder.layer.3.attention.v_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.3.attention.output.dense.weight",
+                "runtime": "backbone.encoder.layer.3.attention.o_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.3.attention.output.dense.bias",
+                "runtime": "backbone.encoder.layer.3.attention.o_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.4.attention.attention.query.weight",
+                "runtime": "backbone.encoder.layer.4.attention.q_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.4.attention.attention.query.bias",
+                "runtime": "backbone.encoder.layer.4.attention.q_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.4.attention.attention.key.weight",
+                "runtime": "backbone.encoder.layer.4.attention.k_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.4.attention.attention.key.bias",
+                "runtime": "backbone.encoder.layer.4.attention.k_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.4.attention.attention.value.weight",
+                "runtime": "backbone.encoder.layer.4.attention.v_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.4.attention.attention.value.bias",
+                "runtime": "backbone.encoder.layer.4.attention.v_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.4.attention.output.dense.weight",
+                "runtime": "backbone.encoder.layer.4.attention.o_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.4.attention.output.dense.bias",
+                "runtime": "backbone.encoder.layer.4.attention.o_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.5.attention.attention.query.weight",
+                "runtime": "backbone.encoder.layer.5.attention.q_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.5.attention.attention.query.bias",
+                "runtime": "backbone.encoder.layer.5.attention.q_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.5.attention.attention.key.weight",
+                "runtime": "backbone.encoder.layer.5.attention.k_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.5.attention.attention.key.bias",
+                "runtime": "backbone.encoder.layer.5.attention.k_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.5.attention.attention.value.weight",
+                "runtime": "backbone.encoder.layer.5.attention.v_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.5.attention.attention.value.bias",
+                "runtime": "backbone.encoder.layer.5.attention.v_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.5.attention.output.dense.weight",
+                "runtime": "backbone.encoder.layer.5.attention.o_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.5.attention.output.dense.bias",
+                "runtime": "backbone.encoder.layer.5.attention.o_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.6.attention.attention.query.weight",
+                "runtime": "backbone.encoder.layer.6.attention.q_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.6.attention.attention.query.bias",
+                "runtime": "backbone.encoder.layer.6.attention.q_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.6.attention.attention.key.weight",
+                "runtime": "backbone.encoder.layer.6.attention.k_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.6.attention.attention.key.bias",
+                "runtime": "backbone.encoder.layer.6.attention.k_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.6.attention.attention.value.weight",
+                "runtime": "backbone.encoder.layer.6.attention.v_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.6.attention.attention.value.bias",
+                "runtime": "backbone.encoder.layer.6.attention.v_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.6.attention.output.dense.weight",
+                "runtime": "backbone.encoder.layer.6.attention.o_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.6.attention.output.dense.bias",
+                "runtime": "backbone.encoder.layer.6.attention.o_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.7.attention.attention.query.weight",
+                "runtime": "backbone.encoder.layer.7.attention.q_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.7.attention.attention.query.bias",
+                "runtime": "backbone.encoder.layer.7.attention.q_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.7.attention.attention.key.weight",
+                "runtime": "backbone.encoder.layer.7.attention.k_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.7.attention.attention.key.bias",
+                "runtime": "backbone.encoder.layer.7.attention.k_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.7.attention.attention.value.weight",
+                "runtime": "backbone.encoder.layer.7.attention.v_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.7.attention.attention.value.bias",
+                "runtime": "backbone.encoder.layer.7.attention.v_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.7.attention.output.dense.weight",
+                "runtime": "backbone.encoder.layer.7.attention.o_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.7.attention.output.dense.bias",
+                "runtime": "backbone.encoder.layer.7.attention.o_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.8.attention.attention.query.weight",
+                "runtime": "backbone.encoder.layer.8.attention.q_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.8.attention.attention.query.bias",
+                "runtime": "backbone.encoder.layer.8.attention.q_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.8.attention.attention.key.weight",
+                "runtime": "backbone.encoder.layer.8.attention.k_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.8.attention.attention.key.bias",
+                "runtime": "backbone.encoder.layer.8.attention.k_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.8.attention.attention.value.weight",
+                "runtime": "backbone.encoder.layer.8.attention.v_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.8.attention.attention.value.bias",
+                "runtime": "backbone.encoder.layer.8.attention.v_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.8.attention.output.dense.weight",
+                "runtime": "backbone.encoder.layer.8.attention.o_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.8.attention.output.dense.bias",
+                "runtime": "backbone.encoder.layer.8.attention.o_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.9.attention.attention.query.weight",
+                "runtime": "backbone.encoder.layer.9.attention.q_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.9.attention.attention.query.bias",
+                "runtime": "backbone.encoder.layer.9.attention.q_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.9.attention.attention.key.weight",
+                "runtime": "backbone.encoder.layer.9.attention.k_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.9.attention.attention.key.bias",
+                "runtime": "backbone.encoder.layer.9.attention.k_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.9.attention.attention.value.weight",
+                "runtime": "backbone.encoder.layer.9.attention.v_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.9.attention.attention.value.bias",
+                "runtime": "backbone.encoder.layer.9.attention.v_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.9.attention.output.dense.weight",
+                "runtime": "backbone.encoder.layer.9.attention.o_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.9.attention.output.dense.bias",
+                "runtime": "backbone.encoder.layer.9.attention.o_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.10.attention.attention.query.weight",
+                "runtime": "backbone.encoder.layer.10.attention.q_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.10.attention.attention.query.bias",
+                "runtime": "backbone.encoder.layer.10.attention.q_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.10.attention.attention.key.weight",
+                "runtime": "backbone.encoder.layer.10.attention.k_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.10.attention.attention.key.bias",
+                "runtime": "backbone.encoder.layer.10.attention.k_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.10.attention.attention.value.weight",
+                "runtime": "backbone.encoder.layer.10.attention.v_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.10.attention.attention.value.bias",
+                "runtime": "backbone.encoder.layer.10.attention.v_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.10.attention.output.dense.weight",
+                "runtime": "backbone.encoder.layer.10.attention.o_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.10.attention.output.dense.bias",
+                "runtime": "backbone.encoder.layer.10.attention.o_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.11.attention.attention.query.weight",
+                "runtime": "backbone.encoder.layer.11.attention.q_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.11.attention.attention.query.bias",
+                "runtime": "backbone.encoder.layer.11.attention.q_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.11.attention.attention.key.weight",
+                "runtime": "backbone.encoder.layer.11.attention.k_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.11.attention.attention.key.bias",
+                "runtime": "backbone.encoder.layer.11.attention.k_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.11.attention.attention.value.weight",
+                "runtime": "backbone.encoder.layer.11.attention.v_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.11.attention.attention.value.bias",
+                "runtime": "backbone.encoder.layer.11.attention.v_proj.bias"
+              },
+              {
+                "stored": "backbone.encoder.layer.11.attention.output.dense.weight",
+                "runtime": "backbone.encoder.layer.11.attention.o_proj.weight"
+              },
+              {
+                "stored": "backbone.encoder.layer.11.attention.output.dense.bias",
+                "runtime": "backbone.encoder.layer.11.attention.o_proj.bias"
+              }
+            ]
+          }
+        },
+        "run_signature_sha256": "18322fee7ddec974599c4a651d2a9b5fce3599a55702e05a20a8efe3c3c09d9e",
+        "run_signature_source": "config/signature",
+        "path": "/localdata/s0623003/best_model_inference_combination_20261122/checkpoints/E3/epoch_0005.pt",
+        "sha256": "223b75d1f5d81844bc5702565a8291270a8ae951d6e8e7c12be9f1b3ad12e886",
+        "state_dict_key_count": 287,
+        "strict_load": true,
+        "loaded_values_exact": true
+      }
+    }
+  },
+  "epoch20_b3_cache_metrics_reproduction_passed": true,
+  "prediction_cache_reproduction": {
+    "tolerance_m": 1e-05,
+    "entries": [
+      {
+        "condition": "epoch20-B0",
+        "image_index": 7,
+        "valid_pixels": 20887680,
+        "full14_pair_count": 41646056,
+        "high14_pair_count": 9276,
+        "checks": {
+          "reconciled_rmse": {
+            "actual": 0.6708555360638234,
+            "reference": 0.6708555360638234,
+            "difference": 0.0,
+            "passed": true
+          },
+          "reconciled_full14_mae": {
+            "actual": 0.0469135068626302,
+            "reference": 0.046913501545020254,
+            "difference": 5.31760994265662e-09,
+            "passed": true
+          },
+          "reconciled_high14_mae": {
+            "actual": 0.42953401446702305,
+            "reference": 0.42953401446702305,
+            "difference": 0.0,
+            "passed": true
+          },
+          "historical_rmse": {
+            "actual": 0.6708555360638234,
+            "reference": 0.6708555360638234,
+            "difference": 0.0,
+            "passed": true
+          },
+          "historical_full14_mae": {
+            "actual": 0.0469135068626302,
+            "reference": 0.046913501545020254,
+            "difference": 5.31760994265662e-09,
+            "passed": true
+          }
+        }
+      },
+      {
+        "condition": "epoch20-B3",
+        "image_index": 7,
+        "valid_pixels": 20887680,
+        "full14_pair_count": 41646056,
+        "high14_pair_count": 9276,
+        "checks": {
+          "reconciled_rmse": {
+            "actual": 0.6682662035521436,
+            "reference": 0.6682662035521436,
+            "difference": 0.0,
+            "passed": true
+          },
+          "reconciled_full14_mae": {
+            "actual": 0.05161697800697336,
+            "reference": 0.05161699765759332,
+            "difference": 1.965061995762296e-08,
+            "passed": true
+          },
+          "reconciled_high14_mae": {
+            "actual": 0.4165590603118212,
+            "reference": 0.4165590603118212,
+            "difference": 0.0,
+            "passed": true
+          },
+          "historical_rmse": {
+            "actual": 0.6682662035521436,
+            "reference": 0.6682662035521436,
+            "difference": 0.0,
+            "passed": true
+          },
+          "historical_full14_mae": {
+            "actual": 0.05161697800697336,
+            "reference": 0.05161699765759332,
+            "difference": 1.965061995762296e-08,
+            "passed": true
+          }
+        }
+      },
+      {
+        "condition": "C0-B3",
+        "image_index": 7,
+        "valid_pixels": 20887680,
+        "full14_pair_count": 41646056,
+        "high14_pair_count": 9276,
+        "checks": {
+          "reconciled_rmse": {
+            "actual": 0.6001422149879095,
+            "reference": 0.6001422149879095,
+            "difference": 0.0,
+            "passed": true
+          },
+          "reconciled_full14_mae": {
+            "actual": 0.05094228799554604,
+            "reference": 0.05094228799554604,
+            "difference": 0.0,
+            "passed": true
+          },
+          "reconciled_high14_mae": {
+            "actual": 0.41652353964472905,
+            "reference": 0.41652353964472905,
+            "difference": 0.0,
+            "passed": true
+          }
+        }
+      },
+      {
+        "condition": "E3-B3",
+        "image_index": 7,
+        "valid_pixels": 20887680,
+        "full14_pair_count": 41646056,
+        "high14_pair_count": 9276,
+        "checks": {
+          "reconciled_rmse": {
+            "actual": 0.42279205382612034,
+            "reference": 0.42279205382612034,
+            "difference": 0.0,
+            "passed": true
+          },
+          "reconciled_full14_mae": {
+            "actual": 0.05171163074018208,
+            "reference": 0.05171163074018208,
+            "difference": 0.0,
+            "passed": true
+          },
+          "reconciled_high14_mae": {
+            "actual": 0.413091623562068,
+            "reference": 0.413091623562068,
+            "difference": 0.0,
+            "passed": true
+          }
+        }
+      },
+      {
+        "condition": "epoch20-B0",
+        "image_index": 20,
+        "valid_pixels": 20887680,
+        "full14_pair_count": 41646056,
+        "high14_pair_count": 43825,
+        "checks": {
+          "reconciled_rmse": {
+            "actual": 1.4098925662699793,
+            "reference": 1.4098925662699793,
+            "difference": 0.0,
+            "passed": true
+          },
+          "reconciled_full14_mae": {
+            "actual": 0.149452423938095,
+            "reference": 0.14945223144299666,
+            "difference": 1.9249509833341172e-07,
+            "passed": true
+          },
+          "reconciled_high14_mae": {
+            "actual": 0.4474840899052378,
+            "reference": 0.4474840899052378,
+            "difference": 0.0,
+            "passed": true
+          },
+          "historical_rmse": {
+            "actual": 1.4098925662699793,
+            "reference": 1.4098925662699793,
+            "difference": 0.0,
+            "passed": true
+          },
+          "historical_full14_mae": {
+            "actual": 0.149452423938095,
+            "reference": 0.14945223144299666,
+            "difference": 1.9249509833341172e-07,
+            "passed": true
+          }
+        }
+      },
+      {
+        "condition": "epoch20-B3",
+        "image_index": 20,
+        "valid_pixels": 20887680,
+        "full14_pair_count": 41646056,
+        "high14_pair_count": 43825,
+        "checks": {
+          "reconciled_rmse": {
+            "actual": 1.3959276774694993,
+            "reference": 1.3959276774694993,
+            "difference": 0.0,
+            "passed": true
+          },
+          "reconciled_full14_mae": {
+            "actual": 0.1510732297152251,
+            "reference": 0.15107308720902646,
+            "difference": 1.4250619864708547e-07,
+            "passed": true
+          },
+          "reconciled_high14_mae": {
+            "actual": 0.42947345407228094,
+            "reference": 0.42947345407228094,
+            "difference": 0.0,
+            "passed": true
+          },
+          "historical_rmse": {
+            "actual": 1.3959276774694993,
+            "reference": 1.3959276774694993,
+            "difference": 0.0,
+            "passed": true
+          },
+          "historical_full14_mae": {
+            "actual": 0.1510732297152251,
+            "reference": 0.15107308720902646,
+            "difference": 1.4250619864708547e-07,
+            "passed": true
+          }
+        }
+      },
+      {
+        "condition": "C0-B3",
+        "image_index": 20,
+        "valid_pixels": 20887680,
+        "full14_pair_count": 41646056,
+        "high14_pair_count": 43825,
+        "checks": {
+          "reconciled_rmse": {
+            "actual": 1.3571048336482427,
+            "reference": 1.3571048336482427,
+            "difference": 0.0,
+            "passed": true
+          },
+          "reconciled_full14_mae": {
+            "actual": 0.15099238080285787,
+            "reference": 0.15099238080285787,
+            "difference": 0.0,
+            "passed": true
+          },
+          "reconciled_high14_mae": {
+            "actual": 0.42778843300314,
+            "reference": 0.42778843300314,
+            "difference": 0.0,
+            "passed": true
+          }
+        }
+      },
+      {
+        "condition": "E3-B3",
+        "image_index": 20,
+        "valid_pixels": 20887680,
+        "full14_pair_count": 41646056,
+        "high14_pair_count": 43825,
+        "checks": {
+          "reconciled_rmse": {
+            "actual": 1.2822851277675749,
+            "reference": 1.2822851277675749,
+            "difference": 0.0,
+            "passed": true
+          },
+          "reconciled_full14_mae": {
+            "actual": 0.1490579369931065,
+            "reference": 0.1490579369931065,
+            "difference": 0.0,
+            "passed": true
+          },
+          "reconciled_high14_mae": {
+            "actual": 0.4172237987703279,
+            "reference": 0.4172237987703279,
+            "difference": 0.0,
+            "passed": true
+          }
+        }
+      },
+      {
+        "condition": "epoch20-B0",
+        "image_index": 34,
+        "valid_pixels": 20887680,
+        "full14_pair_count": 41646056,
+        "high14_pair_count": 6824,
+        "checks": {
+          "reconciled_rmse": {
+            "actual": 0.44833785056329417,
+            "reference": 0.44833785056329417,
+            "difference": 0.0,
+            "passed": true
+          },
+          "reconciled_full14_mae": {
+            "actual": 0.03566784338881966,
+            "reference": 0.0356677967896888,
+            "difference": 4.659913085958145e-08,
+            "passed": true
+          },
+          "reconciled_high14_mae": {
+            "actual": 0.3440516650467098,
+            "reference": 0.3440516650467098,
+            "difference": 0.0,
+            "passed": true
+          },
+          "historical_rmse": {
+            "actual": 0.44833785056329417,
+            "reference": 0.44833785056329417,
+            "difference": 0.0,
+            "passed": true
+          },
+          "historical_full14_mae": {
+            "actual": 0.03566784338881966,
+            "reference": 0.0356677967896888,
+            "difference": 4.659913085958145e-08,
+            "passed": true
+          }
+        }
+      },
+      {
+        "condition": "epoch20-B3",
+        "image_index": 34,
+        "valid_pixels": 20887680,
+        "full14_pair_count": 41646056,
+        "high14_pair_count": 6824,
+        "checks": {
+          "reconciled_rmse": {
+            "actual": 0.4479936978436523,
+            "reference": 0.4479936978436523,
+            "difference": 0.0,
+            "passed": true
+          },
+          "reconciled_full14_mae": {
+            "actual": 0.04148308747288597,
+            "reference": 0.0414831013649888,
+            "difference": 1.3892102829204944e-08,
+            "passed": true
+          },
+          "reconciled_high14_mae": {
+            "actual": 0.33481672304875687,
+            "reference": 0.33481672304875687,
+            "difference": 0.0,
+            "passed": true
+          },
+          "historical_rmse": {
+            "actual": 0.4479936978436523,
+            "reference": 0.4479936978436523,
+            "difference": 0.0,
+            "passed": true
+          },
+          "historical_full14_mae": {
+            "actual": 0.04148308747288597,
+            "reference": 0.0414831013649888,
+            "difference": 1.3892102829204944e-08,
+            "passed": true
+          }
+        }
+      },
+      {
+        "condition": "C0-B3",
+        "image_index": 34,
+        "valid_pixels": 20887680,
+        "full14_pair_count": 41646056,
+        "high14_pair_count": 6824,
+        "checks": {
+          "reconciled_rmse": {
+            "actual": 0.4392696088730978,
+            "reference": 0.4392696088730978,
+            "difference": 0.0,
+            "passed": true
+          },
+          "reconciled_full14_mae": {
+            "actual": 0.04083768232410065,
+            "reference": 0.04083768232410065,
+            "difference": 0.0,
+            "passed": true
+          },
+          "reconciled_high14_mae": {
+            "actual": 0.3337173269054954,
+            "reference": 0.3337173269054954,
+            "difference": 0.0,
+            "passed": true
+          }
+        }
+      },
+      {
+        "condition": "E3-B3",
+        "image_index": 34,
+        "valid_pixels": 20887680,
+        "full14_pair_count": 41646056,
+        "high14_pair_count": 6824,
+        "checks": {
+          "reconciled_rmse": {
+            "actual": 0.46346003396595453,
+            "reference": 0.46346003396595453,
+            "difference": 0.0,
+            "passed": true
+          },
+          "reconciled_full14_mae": {
+            "actual": 0.042172884530522,
+            "reference": 0.042172884530522,
+            "difference": 0.0,
+            "passed": true
+          },
+          "reconciled_high14_mae": {
+            "actual": 0.32986691157395787,
+            "reference": 0.32986691157395787,
+            "difference": 0.0,
+            "passed": true
+          }
+        }
+      },
+      {
+        "condition": "epoch20-B0",
+        "image_index": 48,
+        "valid_pixels": 20887671,
+        "full14_pair_count": 41646038,
+        "high14_pair_count": 17464,
+        "checks": {
+          "reconciled_rmse": {
+            "actual": 1.2190272255803642,
+            "reference": 1.2190272255803642,
+            "difference": 0.0,
+            "passed": true
+          },
+          "reconciled_full14_mae": {
+            "actual": 0.08057971502717963,
+            "reference": 0.08057971504996465,
+            "difference": 2.278502386765524e-11,
+            "passed": true
+          },
+          "reconciled_high14_mae": {
+            "actual": 0.40021850644477286,
+            "reference": 0.40021850644477286,
+            "difference": 0.0,
+            "passed": true
+          },
+          "historical_rmse": {
+            "actual": 1.2190272255803642,
+            "reference": 1.2190272255803642,
+            "difference": 0.0,
+            "passed": true
+          },
+          "historical_full14_mae": {
+            "actual": 0.08057971502717963,
+            "reference": 0.08057971504996465,
+            "difference": 2.278502386765524e-11,
+            "passed": true
+          }
+        }
+      },
+      {
+        "condition": "epoch20-B3",
+        "image_index": 48,
+        "valid_pixels": 20887671,
+        "full14_pair_count": 41646038,
+        "high14_pair_count": 17464,
+        "checks": {
+          "reconciled_rmse": {
+            "actual": 1.2171400290412315,
+            "reference": 1.2171400290412315,
+            "difference": 0.0,
+            "passed": true
+          },
+          "reconciled_full14_mae": {
+            "actual": 0.08430513438749003,
+            "reference": 0.08430516547576507,
+            "difference": 3.108827503761624e-08,
+            "passed": true
+          },
+          "reconciled_high14_mae": {
+            "actual": 0.38859838217264786,
+            "reference": 0.38859838217264786,
+            "difference": 0.0,
+            "passed": true
+          },
+          "historical_rmse": {
+            "actual": 1.2171400290412315,
+            "reference": 1.2171400290412315,
+            "difference": 0.0,
+            "passed": true
+          },
+          "historical_full14_mae": {
+            "actual": 0.08430513438749003,
+            "reference": 0.08430516547576507,
+            "difference": 3.108827503761624e-08,
+            "passed": true
+          }
+        }
+      },
+      {
+        "condition": "C0-B3",
+        "image_index": 48,
+        "valid_pixels": 20887671,
+        "full14_pair_count": 41646038,
+        "high14_pair_count": 17464,
+        "checks": {
+          "reconciled_rmse": {
+            "actual": 1.2615886946634127,
+            "reference": 1.2615886946634127,
+            "difference": 0.0,
+            "passed": true
+          },
+          "reconciled_full14_mae": {
+            "actual": 0.08365735376390027,
+            "reference": 0.08365735376390027,
+            "difference": 0.0,
+            "passed": true
+          },
+          "reconciled_high14_mae": {
+            "actual": 0.3888604338432309,
+            "reference": 0.3888604338432309,
+            "difference": 0.0,
+            "passed": true
+          }
+        }
+      },
+      {
+        "condition": "E3-B3",
+        "image_index": 48,
+        "valid_pixels": 20887671,
+        "full14_pair_count": 41646038,
+        "high14_pair_count": 17464,
+        "checks": {
+          "reconciled_rmse": {
+            "actual": 1.0634620622218394,
+            "reference": 1.0634620622218394,
+            "difference": 0.0,
+            "passed": true
+          },
+          "reconciled_full14_mae": {
+            "actual": 0.08224893315251224,
+            "reference": 0.08224893315251224,
+            "difference": 0.0,
+            "passed": true
+          },
+          "reconciled_high14_mae": {
+            "actual": 0.38177267865090536,
+            "reference": 0.38177267865090536,
+            "difference": 0.0,
+            "passed": true
+          }
+        }
+      },
+      {
+        "condition": "epoch20-B0",
+        "image_index": 71,
+        "valid_pixels": 20887680,
+        "full14_pair_count": 41646056,
+        "high14_pair_count": 1630,
+        "checks": {
+          "reconciled_rmse": {
+            "actual": 0.12211386876460155,
+            "reference": 0.12211386876460155,
+            "difference": 0.0,
+            "passed": true
+          },
+          "reconciled_full14_mae": {
+            "actual": 0.022796429068517903,
+            "reference": 0.02279641513352429,
+            "difference": 1.3934993613878843e-08,
+            "passed": true
+          },
+          "reconciled_high14_mae": {
+            "actual": 0.35199533123180177,
+            "reference": 0.35199533123180177,
+            "difference": 0.0,
+            "passed": true
+          },
+          "historical_rmse": {
+            "actual": 0.12211386876460155,
+            "reference": 0.12211386876460155,
+            "difference": 0.0,
+            "passed": true
+          },
+          "historical_full14_mae": {
+            "actual": 0.022796429068517903,
+            "reference": 0.02279641513352429,
+            "difference": 1.3934993613878843e-08,
+            "passed": true
+          }
+        }
+      },
+      {
+        "condition": "epoch20-B3",
+        "image_index": 71,
+        "valid_pixels": 20887680,
+        "full14_pair_count": 41646056,
+        "high14_pair_count": 1630,
+        "checks": {
+          "reconciled_rmse": {
+            "actual": 0.12323196813302623,
+            "reference": 0.12323196813302623,
+            "difference": 0.0,
+            "passed": true
+          },
+          "reconciled_full14_mae": {
+            "actual": 0.028022978464202035,
+            "reference": 0.02802297023036227,
+            "difference": 8.233839766252915e-09,
+            "passed": true
+          },
+          "reconciled_high14_mae": {
+            "actual": 0.343022180334922,
+            "reference": 0.343022180334922,
+            "difference": 0.0,
+            "passed": true
+          },
+          "historical_rmse": {
+            "actual": 0.12323196813302623,
+            "reference": 0.12323196813302623,
+            "difference": 0.0,
+            "passed": true
+          },
+          "historical_full14_mae": {
+            "actual": 0.028022978464202035,
+            "reference": 0.02802297023036227,
+            "difference": 8.233839766252915e-09,
+            "passed": true
+          }
+        }
+      },
+      {
+        "condition": "C0-B3",
+        "image_index": 71,
+        "valid_pixels": 20887680,
+        "full14_pair_count": 41646056,
+        "high14_pair_count": 1630,
+        "checks": {
+          "reconciled_rmse": {
+            "actual": 0.1226223247808925,
+            "reference": 0.1226223247808925,
+            "difference": 0.0,
+            "passed": true
+          },
+          "reconciled_full14_mae": {
+            "actual": 0.027466756177660628,
+            "reference": 0.027466756177660628,
+            "difference": 0.0,
+            "passed": true
+          },
+          "reconciled_high14_mae": {
+            "actual": 0.3423181422648986,
+            "reference": 0.3423181422648986,
+            "difference": 0.0,
+            "passed": true
+          }
+        }
+      },
+      {
+        "condition": "E3-B3",
+        "image_index": 71,
+        "valid_pixels": 20887680,
+        "full14_pair_count": 41646056,
+        "high14_pair_count": 1630,
+        "checks": {
+          "reconciled_rmse": {
+            "actual": 0.1301424857915842,
+            "reference": 0.1301424857915842,
+            "difference": 0.0,
+            "passed": true
+          },
+          "reconciled_full14_mae": {
+            "actual": 0.028856336389353483,
+            "reference": 0.028856336389353483,
+            "difference": 0.0,
+            "passed": true
+          },
+          "reconciled_high14_mae": {
+            "actual": 0.3400747141223744,
+            "reference": 0.3400747141223744,
+            "difference": 0.0,
+            "passed": true
+          }
+        }
+      },
+      {
+        "condition": "epoch20-B0",
+        "image_index": 89,
+        "valid_pixels": 20798509,
+        "full14_pair_count": 41467531,
+        "high14_pair_count": 17267,
+        "checks": {
+          "reconciled_rmse": {
+            "actual": 1.1981255934037105,
+            "reference": 1.1981255934037105,
+            "difference": 0.0,
+            "passed": true
+          },
+          "reconciled_full14_mae": {
+            "actual": 0.05347232844090467,
+            "reference": 0.053472313374529096,
+            "difference": 1.5066375577688085e-08,
+            "passed": true
+          },
+          "reconciled_high14_mae": {
+            "actual": 0.21750480097114933,
+            "reference": 0.21750480097114933,
+            "difference": 0.0,
+            "passed": true
+          },
+          "historical_rmse": {
+            "actual": 1.1981255934037105,
+            "reference": 1.1981255934037105,
+            "difference": 0.0,
+            "passed": true
+          },
+          "historical_full14_mae": {
+            "actual": 0.05347232844090467,
+            "reference": 0.053472313374529096,
+            "difference": 1.5066375577688085e-08,
+            "passed": true
+          }
+        }
+      },
+      {
+        "condition": "epoch20-B3",
+        "image_index": 89,
+        "valid_pixels": 20798509,
+        "full14_pair_count": 41467531,
+        "high14_pair_count": 17267,
+        "checks": {
+          "reconciled_rmse": {
+            "actual": 1.1992955558603062,
+            "reference": 1.1992955558603062,
+            "difference": 0.0,
+            "passed": true
+          },
+          "reconciled_full14_mae": {
+            "actual": 0.05639885569164217,
+            "reference": 0.05639885305686514,
+            "difference": 2.6347770284984584e-09,
+            "passed": true
+          },
+          "reconciled_high14_mae": {
+            "actual": 0.2184175767598655,
+            "reference": 0.2184175767598655,
+            "difference": 0.0,
+            "passed": true
+          },
+          "historical_rmse": {
+            "actual": 1.1992955558603062,
+            "reference": 1.1992955558603062,
+            "difference": 0.0,
+            "passed": true
+          },
+          "historical_full14_mae": {
+            "actual": 0.05639885569164217,
+            "reference": 0.05639885305686514,
+            "difference": 2.6347770284984584e-09,
+            "passed": true
+          }
+        }
+      },
+      {
+        "condition": "C0-B3",
+        "image_index": 89,
+        "valid_pixels": 20798509,
+        "full14_pair_count": 41467531,
+        "high14_pair_count": 17267,
+        "checks": {
+          "reconciled_rmse": {
+            "actual": 1.1410465125212688,
+            "reference": 1.1410465125212688,
+            "difference": 0.0,
+            "passed": true
+          },
+          "reconciled_full14_mae": {
+            "actual": 0.055334511298839935,
+            "reference": 0.055334511298839935,
+            "difference": 0.0,
+            "passed": true
+          },
+          "reconciled_high14_mae": {
+            "actual": 0.21389469216982396,
+            "reference": 0.21389469216982396,
+            "difference": 0.0,
+            "passed": true
+          }
+        }
+      },
+      {
+        "condition": "E3-B3",
+        "image_index": 89,
+        "valid_pixels": 20798509,
+        "full14_pair_count": 41467531,
+        "high14_pair_count": 17267,
+        "checks": {
+          "reconciled_rmse": {
+            "actual": 1.313767764336541,
+            "reference": 1.313767764336541,
+            "difference": 0.0,
+            "passed": true
+          },
+          "reconciled_full14_mae": {
+            "actual": 0.05523050348955376,
+            "reference": 0.05523050348955376,
+            "difference": 0.0,
+            "passed": true
+          },
+          "reconciled_high14_mae": {
+            "actual": 0.20616395111578856,
+            "reference": 0.20616395111578856,
+            "difference": 0.0,
+            "passed": true
+          }
+        }
+      },
+      {
+        "condition": "epoch20-B0",
+        "image_index": 97,
+        "valid_pixels": 20887680,
+        "full14_pair_count": 41646056,
+        "high14_pair_count": 3874,
+        "checks": {
+          "reconciled_rmse": {
+            "actual": 1.041096129140154,
+            "reference": 1.041096129140154,
+            "difference": 0.0,
+            "passed": true
+          },
+          "reconciled_full14_mae": {
+            "actual": 0.031154904201740264,
+            "reference": 0.031154927972050942,
+            "difference": 2.3770310678128403e-08,
+            "passed": true
+          },
+          "reconciled_high14_mae": {
+            "actual": 0.3271984224413004,
+            "reference": 0.3271984224413004,
+            "difference": 0.0,
+            "passed": true
+          },
+          "historical_rmse": {
+            "actual": 1.041096129140154,
+            "reference": 1.041096129140154,
+            "difference": 0.0,
+            "passed": true
+          },
+          "historical_full14_mae": {
+            "actual": 0.031154904201740264,
+            "reference": 0.031154927972050942,
+            "difference": 2.3770310678128403e-08,
+            "passed": true
+          }
+        }
+      },
+      {
+        "condition": "epoch20-B3",
+        "image_index": 97,
+        "valid_pixels": 20887680,
+        "full14_pair_count": 41646056,
+        "high14_pair_count": 3874,
+        "checks": {
+          "reconciled_rmse": {
+            "actual": 1.041735469873852,
+            "reference": 1.041735469873852,
+            "difference": 0.0,
+            "passed": true
+          },
+          "reconciled_full14_mae": {
+            "actual": 0.038218023083012274,
+            "reference": 0.0382180442849138,
+            "difference": 2.120190152610224e-08,
+            "passed": true
+          },
+          "reconciled_high14_mae": {
+            "actual": 0.32023626956732915,
+            "reference": 0.32023626956732915,
+            "difference": 0.0,
+            "passed": true
+          },
+          "historical_rmse": {
+            "actual": 1.041735469873852,
+            "reference": 1.041735469873852,
+            "difference": 0.0,
+            "passed": true
+          },
+          "historical_full14_mae": {
+            "actual": 0.038218023083012274,
+            "reference": 0.0382180442849138,
+            "difference": 2.120190152610224e-08,
+            "passed": true
+          }
+        }
+      },
+      {
+        "condition": "C0-B3",
+        "image_index": 97,
+        "valid_pixels": 20887680,
+        "full14_pair_count": 41646056,
+        "high14_pair_count": 3874,
+        "checks": {
+          "reconciled_rmse": {
+            "actual": 0.8315506447759788,
+            "reference": 0.8315506447759788,
+            "difference": 0.0,
+            "passed": true
+          },
+          "reconciled_full14_mae": {
+            "actual": 0.037640786214019714,
+            "reference": 0.037640786214019714,
+            "difference": 0.0,
+            "passed": true
+          },
+          "reconciled_high14_mae": {
+            "actual": 0.3192991814049606,
+            "reference": 0.3192991814049606,
+            "difference": 0.0,
+            "passed": true
+          }
+        }
+      },
+      {
+        "condition": "E3-B3",
+        "image_index": 97,
+        "valid_pixels": 20887680,
+        "full14_pair_count": 41646056,
+        "high14_pair_count": 3874,
+        "checks": {
+          "reconciled_rmse": {
+            "actual": 0.8848666254508972,
+            "reference": 0.8848666254508972,
+            "difference": 0.0,
+            "passed": true
+          },
+          "reconciled_full14_mae": {
+            "actual": 0.0386878340669762,
+            "reference": 0.0386878340669762,
+            "difference": 0.0,
+            "passed": true
+          },
+          "reconciled_high14_mae": {
+            "actual": 0.31604662960684665,
+            "reference": 0.31604662960684665,
+            "difference": 0.0,
+            "passed": true
+          }
+        }
+      },
+      {
+        "condition": "epoch20-B0",
+        "image_index": 112,
+        "valid_pixels": 20887680,
+        "full14_pair_count": 41646056,
+        "high14_pair_count": 18208,
+        "checks": {
+          "reconciled_rmse": {
+            "actual": 1.6441557241893237,
+            "reference": 1.6441557241893237,
+            "difference": 0.0,
+            "passed": true
+          },
+          "reconciled_full14_mae": {
+            "actual": 0.0650014135020925,
+            "reference": 0.06500141634060137,
+            "difference": 2.8385088723936747e-09,
+            "passed": true
+          },
+          "reconciled_high14_mae": {
+            "actual": 0.26811411013083636,
+            "reference": 0.26811411013083636,
+            "difference": 0.0,
+            "passed": true
+          },
+          "historical_rmse": {
+            "actual": 1.6441557241893237,
+            "reference": 1.6441557241893237,
+            "difference": 0.0,
+            "passed": true
+          },
+          "historical_full14_mae": {
+            "actual": 0.0650014135020925,
+            "reference": 0.06500141634060137,
+            "difference": 2.8385088723936747e-09,
+            "passed": true
+          }
+        }
+      },
+      {
+        "condition": "epoch20-B3",
+        "image_index": 112,
+        "valid_pixels": 20887680,
+        "full14_pair_count": 41646056,
+        "high14_pair_count": 18208,
+        "checks": {
+          "reconciled_rmse": {
+            "actual": 1.6387392390907585,
+            "reference": 1.6387392390907585,
+            "difference": 0.0,
+            "passed": true
+          },
+          "reconciled_full14_mae": {
+            "actual": 0.06574363549126488,
+            "reference": 0.06574365949563148,
+            "difference": 2.4004366591667825e-08,
+            "passed": true
+          },
+          "reconciled_high14_mae": {
+            "actual": 0.264593968753865,
+            "reference": 0.264593968753865,
+            "difference": 0.0,
+            "passed": true
+          },
+          "historical_rmse": {
+            "actual": 1.6387392390907585,
+            "reference": 1.6387392390907585,
+            "difference": 0.0,
+            "passed": true
+          },
+          "historical_full14_mae": {
+            "actual": 0.06574363549126488,
+            "reference": 0.06574365949563148,
+            "difference": 2.4004366591667825e-08,
+            "passed": true
+          }
+        }
+      },
+      {
+        "condition": "C0-B3",
+        "image_index": 112,
+        "valid_pixels": 20887680,
+        "full14_pair_count": 41646056,
+        "high14_pair_count": 18208,
+        "checks": {
+          "reconciled_rmse": {
+            "actual": 1.6052812780466774,
+            "reference": 1.6052812780466774,
+            "difference": 0.0,
+            "passed": true
+          },
+          "reconciled_full14_mae": {
+            "actual": 0.06528916497182026,
+            "reference": 0.06528916497182026,
+            "difference": 0.0,
+            "passed": true
+          },
+          "reconciled_high14_mae": {
+            "actual": 0.2631052647617454,
+            "reference": 0.2631052647617454,
+            "difference": 0.0,
+            "passed": true
+          }
+        }
+      },
+      {
+        "condition": "E3-B3",
+        "image_index": 112,
+        "valid_pixels": 20887680,
+        "full14_pair_count": 41646056,
+        "high14_pair_count": 18208,
+        "checks": {
+          "reconciled_rmse": {
+            "actual": 1.5406404996250571,
+            "reference": 1.5406404996250571,
+            "difference": 0.0,
+            "passed": true
+          },
+          "reconciled_full14_mae": {
+            "actual": 0.06356016525907875,
+            "reference": 0.06356016525907875,
+            "difference": 0.0,
+            "passed": true
+          },
+          "reconciled_high14_mae": {
+            "actual": 0.25161952765000517,
+            "reference": 0.25161952765000517,
+            "difference": 0.0,
+            "passed": true
+          }
+        }
+      }
+    ],
+    "checked_cached_maps": 32,
+    "passed": true,
+    "note": "All four cached conditions were compared against reconciled per-image statistics; epoch20 maps were also compared with their historical per-image CSV rows."
+  },
+  "fusion_audits": {},
+  "inputs": {
+    "7": {
+      "image_relpath": "2025/Day047_Corn/images/576.JPG",
+      "depth_relpath": "2025/Day047_Corn_depth/576_depth.tif",
+      "crop": "corn",
+      "view": "nadir",
+      "rgb_sha256": "c1c32018ceb1aa6a04fed810f85d111d640a77fc763d645785111196ea63d08a",
+      "gt_sha256": "9c406c332752c44f3036544aeba085bf5b4ac47f5ed34cf547c37f1149281611",
+      "rgb_dtype": "uint8",
+      "rgb_range": [
+        0,
+        255
+      ],
+      "shape_hw": [
+        3956,
+        5280
+      ],
+      "valid_gt_pixels": 20887680
+    },
+    "20": {
+      "image_relpath": "2025/Day047_Corn/images/385.JPG",
+      "depth_relpath": "2025/Day047_Corn_depth/385_depth.tif",
+      "crop": "corn",
+      "view": "oblique",
+      "rgb_sha256": "b9479b97b60c00b488e79d74137e6b5d605188c12a9d2a5cb839eed8eb51378e",
+      "gt_sha256": "39d3f412c1f694d528a9e22bb187a34d061c828c597f70a29a57832702a439f2",
+      "rgb_dtype": "uint8",
+      "rgb_range": [
+        0,
+        255
+      ],
+      "shape_hw": [
+        3956,
+        5280
+      ],
+      "valid_gt_pixels": 20887680
+    },
+    "34": {
+      "image_relpath": "2025/Day047_Oat/images/32.JPG",
+      "depth_relpath": "2025/Day047_Oat_depth/32_depth.tif",
+      "crop": "oat",
+      "view": "nadir",
+      "rgb_sha256": "c10b83127adc17f1f854fceb8c3fab77edc82cee94196e24d3a3f82ec6fbf350",
+      "gt_sha256": "f62bcd3b82ae6c9608cee9ec302f8ba9172c8cb945dd1ba721e974f5d440c7ec",
+      "rgb_dtype": "uint8",
+      "rgb_range": [
+        0,
+        255
+      ],
+      "shape_hw": [
+        3956,
+        5280
+      ],
+      "valid_gt_pixels": 20887680
+    },
+    "48": {
+      "image_relpath": "2025/Day047_Oat/images/110.JPG",
+      "depth_relpath": "2025/Day047_Oat_depth/110_depth.tif",
+      "crop": "oat",
+      "view": "oblique",
+      "rgb_sha256": "343b83cec347959b8330dd41addbd9218b260bdc57e06245006a7670821b1747",
+      "gt_sha256": "592d8209e4ed35adf2c783d8df86fe62e9fd0cabb3b0081922709cef75e0a0b5",
+      "rgb_dtype": "uint8",
+      "rgb_range": [
+        0,
+        255
+      ],
+      "shape_hw": [
+        3956,
+        5280
+      ],
+      "valid_gt_pixels": 20887671
+    },
+    "71": {
+      "image_relpath": "2025/Day047_Wheat/images/177.JPG",
+      "depth_relpath": "2025/Day047_Wheat_depth/177_depth.tif",
+      "crop": "wheat",
+      "view": "nadir",
+      "rgb_sha256": "7f04a329c987c007e69196087f1b936139dfead41e09115eac2bcd18d5d5418a",
+      "gt_sha256": "53828648b2b7fc88eba7e438b2573477786bb5c072bb24bd96fc16edb87081b3",
+      "rgb_dtype": "uint8",
+      "rgb_range": [
+        0,
+        255
+      ],
+      "shape_hw": [
+        3956,
+        5280
+      ],
+      "valid_gt_pixels": 20887680
+    },
+    "89": {
+      "image_relpath": "2025/Day047_Wheat/images/993.JPG",
+      "depth_relpath": "2025/Day047_Wheat_depth/993_depth.tif",
+      "crop": "wheat",
+      "view": "oblique",
+      "rgb_sha256": "fe16e183dc9326b15d0c9d8a76abd765cb33f356eaf6f34da7e88f0fb61b8e97",
+      "gt_sha256": "5429b0dd03355adabfa385d64d6029a9e7a77b15e7e9a8ddedc528b8332ce3f9",
+      "rgb_dtype": "uint8",
+      "rgb_range": [
+        0,
+        255
+      ],
+      "shape_hw": [
+        3956,
+        5280
+      ],
+      "valid_gt_pixels": 20798509
+    },
+    "97": {
+      "image_relpath": "2025/Day047_soybean/images/28.JPG",
+      "depth_relpath": "2025/Day047_soybean_depth/28_depth.tif",
+      "crop": "soybean",
+      "view": "nadir",
+      "rgb_sha256": "d9e01770ab2ed3636063a47ad438ae2ff8f36f92a7fe067d0f6be746e85ec877",
+      "gt_sha256": "02d6e703b582aa8d3c4da397b6e2be8106ab5fa426988d83c338af52b8ae4058",
+      "rgb_dtype": "uint8",
+      "rgb_range": [
+        0,
+        255
+      ],
+      "shape_hw": [
+        3956,
+        5280
+      ],
+      "valid_gt_pixels": 20887680
+    },
+    "112": {
+      "image_relpath": "2025/Day047_soybean/images/169.JPG",
+      "depth_relpath": "2025/Day047_soybean_depth/169_depth.tif",
+      "crop": "soybean",
+      "view": "oblique",
+      "rgb_sha256": "4b1f1eb3e8eb85f0b677d790690c544c0456e2c05108dc39f69f9b41a139d1fb",
+      "gt_sha256": "fdde5a8af0edec2d9980682c5b82890e9b0ef4eafc2335024c8899bbe3cdbc19",
+      "rgb_dtype": "uint8",
+      "rgb_range": [
+        0,
+        255
+      ],
+      "shape_hw": [
+        3956,
+        5280
+      ],
+      "valid_gt_pixels": 20887680
+    }
+  },
+  "prediction_cache_sha256": {
+    "epoch20-B0/007": "372d6c3c7243334ab64e988a7585983353865508de8f8b777b19511d56e8dbc2",
+    "epoch20-B3/007": "f0339cdc998f13c78dc7c7d43f038c32b4921809c9f36bddbab2e96bf1410b48",
+    "C0-B3/007": "be83be21849decc9830c978d7aa010a3c3d2a9a2c62da66b987e9f54670d71e6",
+    "E3-B3/007": "c7fd48905638751bb2bd870567c7a7251bf44c9aed97c0aa85f8f0cc5d1af2ca",
+    "epoch20-B0/020": "92b4a761237d7df1866c41774db7504e791ae036524fea5cddc10fca76398faa",
+    "epoch20-B3/020": "05d0aa3c8bb849c7ab8821a718b470535c96584b0ea257aa53bd3742e96facc5",
+    "C0-B3/020": "51f7df744f655c75e1e66c4a57077084d74788a7b3cb025635ba6c10bd710fef",
+    "E3-B3/020": "266a5885d18679897327e848d263b92b366d266d542ada7345aa6c44cedba76c",
+    "epoch20-B0/034": "5d2cca31f4f391bf1ce7ed26ffcf229cf3ace90e50b00f3d03faeced0235db51",
+    "epoch20-B3/034": "b969e046a71fac7520e2023cc4e410a6c37840be24aa8ae1cd110fd06c4eaee6",
+    "C0-B3/034": "ad7066497baacdc0e74731ec8115f91aac8c9a6e26eaeb0d618d0247fed2c937",
+    "E3-B3/034": "3dbe7ccca531e8a99952928a4b96b46ffb9c2266d6e1e9adc7e15bdd6903438d",
+    "epoch20-B0/048": "5e9da8d2951bccb54113dbe9cbd492545063d8c3660c409303998ef6ecb8e654",
+    "epoch20-B3/048": "2a3417ea06b64b5bb30e5892e3af318710831f21d77fbda43b1a172694a26909",
+    "C0-B3/048": "e8b437e76d0519260d36686c4d7ccb864f17d1cbf8bf62e801e12ee010000a39",
+    "E3-B3/048": "721ba8e2e9f2db8f3e99c380e6ce9d9db2b74de3d3a641ad62f57e3682c06742",
+    "epoch20-B0/071": "9876cd1693bebb2ed41910741bbec0c208921b4d5b66176c2df3f914573aeb12",
+    "epoch20-B3/071": "854b39dbaf921c72bf1987abce33d759b2e22656c7d4ae4e391b8f4d02478e5f",
+    "C0-B3/071": "44cb2616df6f3b888ee794ef0a7b8b6ca6ef05497033ad823021060f01d1560d",
+    "E3-B3/071": "72a953dbe0ed7d1cc8a80407b561faeb54e5e2b6bac1fab4c87a792e012329b8",
+    "epoch20-B0/089": "a2ba17a5b840561f5b845a1e424f1f1e8366d3d96076f54294408e6f3e47f66c",
+    "epoch20-B3/089": "24ad6f966832cf8aedc9e021e26712cc7ad14a97afac1be217a4e8b925fc41fc",
+    "C0-B3/089": "f3078f4affac3004940074177ca33242c71c986aebd5947dd01cfce114b9098b",
+    "E3-B3/089": "116063ef6392a6ab885511ab627e8fc4cb5efdff12cac86dda86806b87f66575",
+    "epoch20-B0/097": "9f59bd259a48a909e00bd61957902f0a03fbc7e4a81aef54245d55d8ca60ebfd",
+    "epoch20-B3/097": "9c6bd8994041630ad957b25d73318795d433e82e6a989853c4872a8231cdaf2b",
+    "C0-B3/097": "d5fb2650166d9aa775a8b10e6446f433aba3202bc381d873516387970e7d7e4b",
+    "E3-B3/097": "6526d8b7fd4e0cd941eddd8fee06fda5e78950926617c4044cb3bf8bc55d4134",
+    "epoch20-B0/112": "95492e2a5d26a642213a80278674929c54f3578a7c56525a7441ee715e63e25b",
+    "epoch20-B3/112": "32478132e42584d639894acacafb6860427f4fac7f53bd16158574063236ab1e",
+    "C0-B3/112": "fac9b68bf7d48fc7adfd7e476c2ab6a055e89932d9b99ebf99043065647ecb12",
+    "E3-B3/112": "0b545baf055350dac46052fc205b8e4230a6ff763e8a66e3ab6ebdd000596465"
+  },
+  "cache_audit_sha256": "a7bd230855d24101bb160114a8846d549a10279a3357597be3941058abea9fa0",
+  "existing_summary_sha256": "7427dc1cbc8d8d32bd32a0a81b37ab1c96e3560706d82fe241991e212662ae45",
+  "historical_baseline_sha256": {
+    "epoch20-B0": "76f6136e6c3da4a9e270190699be2807734f73664d7f3987016ed5ce2bb394b4",
+    "epoch20-B3": "6159af2f891317a89e3b2e08eef0a17e430cb45a6fdcaabf3c3340028f836bf7"
+  },
+  "gpu_before": {
+    "name": "NVIDIA GeForce GTX 1080",
+    "utilization_percent": 0,
+    "used_mib": 2047,
+    "free_mib": 6066
+  },
+  "gpu_after": {
+    "name": "NVIDIA GeForce GTX 1080",
+    "utilization_percent": 0,
+    "used_mib": 2197,
+    "free_mib": 5916
+  },
+  "training": false,
+  "independent_test319": false,
+  "figures": [
+    {
+      "path": "absolute_error_007.png",
+      "sha256": "c58b5c28a43ed0999df7af7fc470a01f531d878b3f958acb9a1a0c2f30d4422c",
+      "bytes": 1273673
+    },
+    {
+      "path": "absolute_error_020.png",
+      "sha256": "35f5eb1d08f790f7a923846e8ca2657e66e0fea45309349845f226ae17a4476f",
+      "bytes": 2041101
+    },
+    {
+      "path": "absolute_error_034.png",
+      "sha256": "c4e9cd9aeef103157cff5d8c29044df695f046eefacf583f98ad3635ab375ffa",
+      "bytes": 1109146
+    },
+    {
+      "path": "absolute_error_048.png",
+      "sha256": "d00a09a76dcb71acb2587e821ce8edc42fef5fb811c7240e700c3ddbc47df229",
+      "bytes": 1693168
+    },
+    {
+      "path": "absolute_error_071.png",
+      "sha256": "80aaa00dc030be56691be631031067e924f603b642029f97ca3d05fc9e4c094d",
+      "bytes": 905419
+    },
+    {
+      "path": "absolute_error_089.png",
+      "sha256": "05cab44716ced81cd3b231b653d3f4f9e5cc09be348c8c33bd0734640488f46b",
+      "bytes": 1476151
+    },
+    {
+      "path": "absolute_error_097.png",
+      "sha256": "a0cd07fe11f00fe8d5edf4cdb926698e50b3546d2a9c0521e544c4f568879665",
+      "bytes": 1154870
+    },
+    {
+      "path": "absolute_error_112.png",
+      "sha256": "b100d451ad4b68bc05fdead3f5aa79c3d3f2f0aeeb094d8485515103b608643d",
+      "bytes": 1614755
+    },
+    {
+      "path": "depth_maps_007.png",
+      "sha256": "8471510717b0f9ae9773c2d4b5e6dee7a6cad15bae209f0ae3ed378879058d89",
+      "bytes": 1068772
+    },
+    {
+      "path": "depth_maps_020.png",
+      "sha256": "6565a498dd8bd60561af6e97e2bdace0e745cf45725971f9ece754434dffc4e5",
+      "bytes": 1420899
+    },
+    {
+      "path": "depth_maps_034.png",
+      "sha256": "163a189ecc964fc8c52668ff7d514a3665e89692508599f57678b26174027c33",
+      "bytes": 1056620
+    },
+    {
+      "path": "depth_maps_048.png",
+      "sha256": "b446f2003137441071d3f43fcfaa8aad99411f6e91d396fe116e1e8e87605cdf",
+      "bytes": 1223314
+    },
+    {
+      "path": "depth_maps_071.png",
+      "sha256": "39771667648ce98d055a5cc9ba90fa624b0e1ae352c9d96db91db11decee9af1",
+      "bytes": 1051314
+    },
+    {
+      "path": "depth_maps_089.png",
+      "sha256": "5c8391bf4414e43168fcc089179aaf0c687bce8f76278d287a7d039e135385e3",
+      "bytes": 1215861
+    },
+    {
+      "path": "depth_maps_097.png",
+      "sha256": "ebf1845023b0697830945360373d9d9691495a600337c02113d434ee646b5f5a",
+      "bytes": 1189776
+    },
+    {
+      "path": "depth_maps_112.png",
+      "sha256": "1c7114388e2605ac664bab09eda236ad220269d48b83658f1a7b38572a3c6d37",
+      "bytes": 1375712
+    }
+  ],
+  "metrics_sha256": "0e3772592a4f1dde716637783eabf21cc9182d949af874fcd2d214b5d76468ca"
+}

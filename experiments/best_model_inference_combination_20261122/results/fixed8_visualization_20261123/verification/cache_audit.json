@@ -1,0 +1,1119 @@
+{
+  "artifact": "fixed8_prediction_cache_audit",
+  "utc_finished": "2026-11-23T06:04:51Z",
+  "cache_maps_checked": 32,
+  "fixed_indices": [
+    7,
+    20,
+    34,
+    48,
+    71,
+    89,
+    97,
+    112
+  ],
+  "tolerance_m": 1e-05,
+  "metrics_reference": "reconciled per-image statistics, plus historical B0/B3 per-image CSVs for epoch20",
+  "gt_mask": "finite and 0 < depth <= 65m",
+  "rgb_input_contract": "uint8 RGB 0..255 (verified source bytes and inventory hashes)",
+  "pair_manifest_sha256": "bcb56eab03bec4a44f0626da0f4814876fae67774e536e00cd9f1ad16b1f5728",
+  "validation_sha256": "96c4eab0eb0075ac141ff9b17c22a45734f242f7cc895f8eaf064a4f14cc871e",
+  "inventory_sha256": "59271cd7f39fbd0cf8e5228c222d3825ae2bd11eedec641232072ddce0afa6e5",
+  "summary_sha256": "7427dc1cbc8d8d32bd32a0a81b37ab1c96e3560706d82fe241991e212662ae45",
+  "cache_sha256": {
+    "epoch20-B0/007": "372d6c3c7243334ab64e988a7585983353865508de8f8b777b19511d56e8dbc2",
+    "epoch20-B3/007": "f0339cdc998f13c78dc7c7d43f038c32b4921809c9f36bddbab2e96bf1410b48",
+    "C0-B3/007": "be83be21849decc9830c978d7aa010a3c3d2a9a2c62da66b987e9f54670d71e6",
+    "E3-B3/007": "c7fd48905638751bb2bd870567c7a7251bf44c9aed97c0aa85f8f0cc5d1af2ca",
+    "epoch20-B0/020": "92b4a761237d7df1866c41774db7504e791ae036524fea5cddc10fca76398faa",
+    "epoch20-B3/020": "05d0aa3c8bb849c7ab8821a718b470535c96584b0ea257aa53bd3742e96facc5",
+    "C0-B3/020": "51f7df744f655c75e1e66c4a57077084d74788a7b3cb025635ba6c10bd710fef",
+    "E3-B3/020": "266a5885d18679897327e848d263b92b366d266d542ada7345aa6c44cedba76c",
+    "epoch20-B0/034": "5d2cca31f4f391bf1ce7ed26ffcf229cf3ace90e50b00f3d03faeced0235db51",
+    "epoch20-B3/034": "b969e046a71fac7520e2023cc4e410a6c37840be24aa8ae1cd110fd06c4eaee6",
+    "C0-B3/034": "ad7066497baacdc0e74731ec8115f91aac8c9a6e26eaeb0d618d0247fed2c937",
+    "E3-B3/034": "3dbe7ccca531e8a99952928a4b96b46ffb9c2266d6e1e9adc7e15bdd6903438d",
+    "epoch20-B0/048": "5e9da8d2951bccb54113dbe9cbd492545063d8c3660c409303998ef6ecb8e654",
+    "epoch20-B3/048": "2a3417ea06b64b5bb30e5892e3af318710831f21d77fbda43b1a172694a26909",
+    "C0-B3/048": "e8b437e76d0519260d36686c4d7ccb864f17d1cbf8bf62e801e12ee010000a39",
+    "E3-B3/048": "721ba8e2e9f2db8f3e99c380e6ce9d9db2b74de3d3a641ad62f57e3682c06742",
+    "epoch20-B0/071": "9876cd1693bebb2ed41910741bbec0c208921b4d5b66176c2df3f914573aeb12",
+    "epoch20-B3/071": "854b39dbaf921c72bf1987abce33d759b2e22656c7d4ae4e391b8f4d02478e5f",
+    "C0-B3/071": "44cb2616df6f3b888ee794ef0a7b8b6ca6ef05497033ad823021060f01d1560d",
+    "E3-B3/071": "72a953dbe0ed7d1cc8a80407b561faeb54e5e2b6bac1fab4c87a792e012329b8",
+    "epoch20-B0/089": "a2ba17a5b840561f5b845a1e424f1f1e8366d3d96076f54294408e6f3e47f66c",
+    "epoch20-B3/089": "24ad6f966832cf8aedc9e021e26712cc7ad14a97afac1be217a4e8b925fc41fc",
+    "C0-B3/089": "f3078f4affac3004940074177ca33242c71c986aebd5947dd01cfce114b9098b",
+    "E3-B3/089": "116063ef6392a6ab885511ab627e8fc4cb5efdff12cac86dda86806b87f66575",
+    "epoch20-B0/097": "9f59bd259a48a909e00bd61957902f0a03fbc7e4a81aef54245d55d8ca60ebfd",
+    "epoch20-B3/097": "9c6bd8994041630ad957b25d73318795d433e82e6a989853c4872a8231cdaf2b",
+    "C0-B3/097": "d5fb2650166d9aa775a8b10e6446f433aba3202bc381d873516387970e7d7e4b",
+    "E3-B3/097": "6526d8b7fd4e0cd941eddd8fee06fda5e78950926617c4044cb3bf8bc55d4134",
+    "epoch20-B0/112": "95492e2a5d26a642213a80278674929c54f3578a7c56525a7441ee715e63e25b",
+    "epoch20-B3/112": "32478132e42584d639894acacafb6860427f4fac7f53bd16158574063236ab1e",
+    "C0-B3/112": "fac9b68bf7d48fc7adfd7e476c2ab6a055e89932d9b99ebf99043065647ecb12",
+    "E3-B3/112": "0b545baf055350dac46052fc205b8e4230a6ff763e8a66e3ab6ebdd000596465"
+  },
+  "entries": [
+    {
+      "condition": "epoch20-B0",
+      "image_index": 7,
+      "valid_pixels": 20887680,
+      "full14_pair_count": 41646056,
+      "high14_pair_count": 9276,
+      "checks": {
+        "reconciled_rmse": {
+          "actual": 0.6708555360638234,
+          "reference": 0.6708555360638234,
+          "difference": 0.0,
+          "passed": true
+        },
+        "reconciled_full14_mae": {
+          "actual": 0.0469135068626302,
+          "reference": 0.046913501545020254,
+          "difference": 5.31760994265662e-09,
+          "passed": true
+        },
+        "reconciled_high14_mae": {
+          "actual": 0.42953401446702305,
+          "reference": 0.42953401446702305,
+          "difference": 0.0,
+          "passed": true
+        },
+        "historical_rmse": {
+          "actual": 0.6708555360638234,
+          "reference": 0.6708555360638234,
+          "difference": 0.0,
+          "passed": true
+        },
+        "historical_full14_mae": {
+          "actual": 0.0469135068626302,
+          "reference": 0.046913501545020254,
+          "difference": 5.31760994265662e-09,
+          "passed": true
+        }
+      }
+    },
+    {
+      "condition": "epoch20-B3",
+      "image_index": 7,
+      "valid_pixels": 20887680,
+      "full14_pair_count": 41646056,
+      "high14_pair_count": 9276,
+      "checks": {
+        "reconciled_rmse": {
+          "actual": 0.6682662035521436,
+          "reference": 0.6682662035521436,
+          "difference": 0.0,
+          "passed": true
+        },
+        "reconciled_full14_mae": {
+          "actual": 0.05161697800697336,
+          "reference": 0.05161699765759332,
+          "difference": 1.965061995762296e-08,
+          "passed": true
+        },
+        "reconciled_high14_mae": {
+          "actual": 0.4165590603118212,
+          "reference": 0.4165590603118212,
+          "difference": 0.0,
+          "passed": true
+        },
+        "historical_rmse": {
+          "actual": 0.6682662035521436,
+          "reference": 0.6682662035521436,
+          "difference": 0.0,
+          "passed": true
+        },
+        "historical_full14_mae": {
+          "actual": 0.05161697800697336,
+          "reference": 0.05161699765759332,
+          "difference": 1.965061995762296e-08,
+          "passed": true
+        }
+      }
+    },
+    {
+      "condition": "C0-B3",
+      "image_index": 7,
+      "valid_pixels": 20887680,
+      "full14_pair_count": 41646056,
+      "high14_pair_count": 9276,
+      "checks": {
+        "reconciled_rmse": {
+          "actual": 0.6001422149879095,
+          "reference": 0.6001422149879095,
+          "difference": 0.0,
+          "passed": true
+        },
+        "reconciled_full14_mae": {
+          "actual": 0.05094228799554604,
+          "reference": 0.05094228799554604,
+          "difference": 0.0,
+          "passed": true
+        },
+        "reconciled_high14_mae": {
+          "actual": 0.41652353964472905,
+          "reference": 0.41652353964472905,
+          "difference": 0.0,
+          "passed": true
+        }
+      }
+    },
+    {
+      "condition": "E3-B3",
+      "image_index": 7,
+      "valid_pixels": 20887680,
+      "full14_pair_count": 41646056,
+      "high14_pair_count": 9276,
+      "checks": {
+        "reconciled_rmse": {
+          "actual": 0.42279205382612034,
+          "reference": 0.42279205382612034,
+          "difference": 0.0,
+          "passed": true
+        },
+        "reconciled_full14_mae": {
+          "actual": 0.05171163074018208,
+          "reference": 0.05171163074018208,
+          "difference": 0.0,
+          "passed": true
+        },
+        "reconciled_high14_mae": {
+          "actual": 0.413091623562068,
+          "reference": 0.413091623562068,
+          "difference": 0.0,
+          "passed": true
+        }
+      }
+    },
+    {
+      "condition": "epoch20-B0",
+      "image_index": 20,
+      "valid_pixels": 20887680,
+      "full14_pair_count": 41646056,
+      "high14_pair_count": 43825,
+      "checks": {
+        "reconciled_rmse": {
+          "actual": 1.4098925662699793,
+          "reference": 1.4098925662699793,
+          "difference": 0.0,
+          "passed": true
+        },
+        "reconciled_full14_mae": {
+          "actual": 0.149452423938095,
+          "reference": 0.14945223144299666,
+          "difference": 1.9249509833341172e-07,
+          "passed": true
+        },
+        "reconciled_high14_mae": {
+          "actual": 0.4474840899052378,
+          "reference": 0.4474840899052378,
+          "difference": 0.0,
+          "passed": true
+        },
+        "historical_rmse": {
+          "actual": 1.4098925662699793,
+          "reference": 1.4098925662699793,
+          "difference": 0.0,
+          "passed": true
+        },
+        "historical_full14_mae": {
+          "actual": 0.149452423938095,
+          "reference": 0.14945223144299666,
+          "difference": 1.9249509833341172e-07,
+          "passed": true
+        }
+      }
+    },
+    {
+      "condition": "epoch20-B3",
+      "image_index": 20,
+      "valid_pixels": 20887680,
+      "full14_pair_count": 41646056,
+      "high14_pair_count": 43825,
+      "checks": {
+        "reconciled_rmse": {
+          "actual": 1.3959276774694993,
+          "reference": 1.3959276774694993,
+          "difference": 0.0,
+          "passed": true
+        },
+        "reconciled_full14_mae": {
+          "actual": 0.1510732297152251,
+          "reference": 0.15107308720902646,
+          "difference": 1.4250619864708547e-07,
+          "passed": true
+        },
+        "reconciled_high14_mae": {
+          "actual": 0.42947345407228094,
+          "reference": 0.42947345407228094,
+          "difference": 0.0,
+          "passed": true
+        },
+        "historical_rmse": {
+          "actual": 1.3959276774694993,
+          "reference": 1.3959276774694993,
+          "difference": 0.0,
+          "passed": true
+        },
+        "historical_full14_mae": {
+          "actual": 0.1510732297152251,
+          "reference": 0.15107308720902646,
+          "difference": 1.4250619864708547e-07,
+          "passed": true
+        }
+      }
+    },
+    {
+      "condition": "C0-B3",
+      "image_index": 20,
+      "valid_pixels": 20887680,
+      "full14_pair_count": 41646056,
+      "high14_pair_count": 43825,
+      "checks": {
+        "reconciled_rmse": {
+          "actual": 1.3571048336482427,
+          "reference": 1.3571048336482427,
+          "difference": 0.0,
+          "passed": true
+        },
+        "reconciled_full14_mae": {
+          "actual": 0.15099238080285787,
+          "reference": 0.15099238080285787,
+          "difference": 0.0,
+          "passed": true
+        },
+        "reconciled_high14_mae": {
+          "actual": 0.42778843300314,
+          "reference": 0.42778843300314,
+          "difference": 0.0,
+          "passed": true
+        }
+      }
+    },
+    {
+      "condition": "E3-B3",
+      "image_index": 20,
+      "valid_pixels": 20887680,
+      "full14_pair_count": 41646056,
+      "high14_pair_count": 43825,
+      "checks": {
+        "reconciled_rmse": {
+          "actual": 1.2822851277675749,
+          "reference": 1.2822851277675749,
+          "difference": 0.0,
+          "passed": true
+        },
+        "reconciled_full14_mae": {
+          "actual": 0.1490579369931065,
+          "reference": 0.1490579369931065,
+          "difference": 0.0,
+          "passed": true
+        },
+        "reconciled_high14_mae": {
+          "actual": 0.4172237987703279,
+          "reference": 0.4172237987703279,
+          "difference": 0.0,
+          "passed": true
+        }
+      }
+    },
+    {
+      "condition": "epoch20-B0",
+      "image_index": 34,
+      "valid_pixels": 20887680,
+      "full14_pair_count": 41646056,
+      "high14_pair_count": 6824,
+      "checks": {
+        "reconciled_rmse": {
+          "actual": 0.44833785056329417,
+          "reference": 0.44833785056329417,
+          "difference": 0.0,
+          "passed": true
+        },
+        "reconciled_full14_mae": {
+          "actual": 0.03566784338881966,
+          "reference": 0.0356677967896888,
+          "difference": 4.659913085958145e-08,
+          "passed": true
+        },
+        "reconciled_high14_mae": {
+          "actual": 0.3440516650467098,
+          "reference": 0.3440516650467098,
+          "difference": 0.0,
+          "passed": true
+        },
+        "historical_rmse": {
+          "actual": 0.44833785056329417,
+          "reference": 0.44833785056329417,
+          "difference": 0.0,
+          "passed": true
+        },
+        "historical_full14_mae": {
+          "actual": 0.03566784338881966,
+          "reference": 0.0356677967896888,
+          "difference": 4.659913085958145e-08,
+          "passed": true
+        }
+      }
+    },
+    {
+      "condition": "epoch20-B3",
+      "image_index": 34,
+      "valid_pixels": 20887680,
+      "full14_pair_count": 41646056,
+      "high14_pair_count": 6824,
+      "checks": {
+        "reconciled_rmse": {
+          "actual": 0.4479936978436523,
+          "reference": 0.4479936978436523,
+          "difference": 0.0,
+          "passed": true
+        },
+        "reconciled_full14_mae": {
+          "actual": 0.04148308747288597,
+          "reference": 0.0414831013649888,
+          "difference": 1.3892102829204944e-08,
+          "passed": true
+        },
+        "reconciled_high14_mae": {
+          "actual": 0.33481672304875687,
+          "reference": 0.33481672304875687,
+          "difference": 0.0,
+          "passed": true
+        },
+        "historical_rmse": {
+          "actual": 0.4479936978436523,
+          "reference": 0.4479936978436523,
+          "difference": 0.0,
+          "passed": true
+        },
+        "historical_full14_mae": {
+          "actual": 0.04148308747288597,
+          "reference": 0.0414831013649888,
+          "difference": 1.3892102829204944e-08,
+          "passed": true
+        }
+      }
+    },
+    {
+      "condition": "C0-B3",
+      "image_index": 34,
+      "valid_pixels": 20887680,
+      "full14_pair_count": 41646056,
+      "high14_pair_count": 6824,
+      "checks": {
+        "reconciled_rmse": {
+          "actual": 0.4392696088730978,
+          "reference": 0.4392696088730978,
+          "difference": 0.0,
+          "passed": true
+        },
+        "reconciled_full14_mae": {
+          "actual": 0.04083768232410065,
+          "reference": 0.04083768232410065,
+          "difference": 0.0,
+          "passed": true
+        },
+        "reconciled_high14_mae": {
+          "actual": 0.3337173269054954,
+          "reference": 0.3337173269054954,
+          "difference": 0.0,
+          "passed": true
+        }
+      }
+    },
+    {
+      "condition": "E3-B3",
+      "image_index": 34,
+      "valid_pixels": 20887680,
+      "full14_pair_count": 41646056,
+      "high14_pair_count": 6824,
+      "checks": {
+        "reconciled_rmse": {
+          "actual": 0.46346003396595453,
+          "reference": 0.46346003396595453,
+          "difference": 0.0,
+          "passed": true
+        },
+        "reconciled_full14_mae": {
+          "actual": 0.042172884530522,
+          "reference": 0.042172884530522,
+          "difference": 0.0,
+          "passed": true
+        },
+        "reconciled_high14_mae": {
+          "actual": 0.32986691157395787,
+          "reference": 0.32986691157395787,
+          "difference": 0.0,
+          "passed": true
+        }
+      }
+    },
+    {
+      "condition": "epoch20-B0",
+      "image_index": 48,
+      "valid_pixels": 20887671,
+      "full14_pair_count": 41646038,
+      "high14_pair_count": 17464,
+      "checks": {
+        "reconciled_rmse": {
+          "actual": 1.2190272255803642,
+          "reference": 1.2190272255803642,
+          "difference": 0.0,
+          "passed": true
+        },
+        "reconciled_full14_mae": {
+          "actual": 0.08057971502717963,
+          "reference": 0.08057971504996465,
+          "difference": 2.278502386765524e-11,
+          "passed": true
+        },
+        "reconciled_high14_mae": {
+          "actual": 0.40021850644477286,
+          "reference": 0.40021850644477286,
+          "difference": 0.0,
+          "passed": true
+        },
+        "historical_rmse": {
+          "actual": 1.2190272255803642,
+          "reference": 1.2190272255803642,
+          "difference": 0.0,
+          "passed": true
+        },
+        "historical_full14_mae": {
+          "actual": 0.08057971502717963,
+          "reference": 0.08057971504996465,
+          "difference": 2.278502386765524e-11,
+          "passed": true
+        }
+      }
+    },
+    {
+      "condition": "epoch20-B3",
+      "image_index": 48,
+      "valid_pixels": 20887671,
+      "full14_pair_count": 41646038,
+      "high14_pair_count": 17464,
+      "checks": {
+        "reconciled_rmse": {
+          "actual": 1.2171400290412315,
+          "reference": 1.2171400290412315,
+          "difference": 0.0,
+          "passed": true
+        },
+        "reconciled_full14_mae": {
+          "actual": 0.08430513438749003,
+          "reference": 0.08430516547576507,
+          "difference": 3.108827503761624e-08,
+          "passed": true
+        },
+        "reconciled_high14_mae": {
+          "actual": 0.38859838217264786,
+          "reference": 0.38859838217264786,
+          "difference": 0.0,
+          "passed": true
+        },
+        "historical_rmse": {
+          "actual": 1.2171400290412315,
+          "reference": 1.2171400290412315,
+          "difference": 0.0,
+          "passed": true
+        },
+        "historical_full14_mae": {
+          "actual": 0.08430513438749003,
+          "reference": 0.08430516547576507,
+          "difference": 3.108827503761624e-08,
+          "passed": true
+        }
+      }
+    },
+    {
+      "condition": "C0-B3",
+      "image_index": 48,
+      "valid_pixels": 20887671,
+      "full14_pair_count": 41646038,
+      "high14_pair_count": 17464,
+      "checks": {
+        "reconciled_rmse": {
+          "actual": 1.2615886946634127,
+          "reference": 1.2615886946634127,
+          "difference": 0.0,
+          "passed": true
+        },
+        "reconciled_full14_mae": {
+          "actual": 0.08365735376390027,
+          "reference": 0.08365735376390027,
+          "difference": 0.0,
+          "passed": true
+        },
+        "reconciled_high14_mae": {
+          "actual": 0.3888604338432309,
+          "reference": 0.3888604338432309,
+          "difference": 0.0,
+          "passed": true
+        }
+      }
+    },
+    {
+      "condition": "E3-B3",
+      "image_index": 48,
+      "valid_pixels": 20887671,
+      "full14_pair_count": 41646038,
+      "high14_pair_count": 17464,
+      "checks": {
+        "reconciled_rmse": {
+          "actual": 1.0634620622218394,
+          "reference": 1.0634620622218394,
+          "difference": 0.0,
+          "passed": true
+        },
+        "reconciled_full14_mae": {
+          "actual": 0.08224893315251224,
+          "reference": 0.08224893315251224,
+          "difference": 0.0,
+          "passed": true
+        },
+        "reconciled_high14_mae": {
+          "actual": 0.38177267865090536,
+          "reference": 0.38177267865090536,
+          "difference": 0.0,
+          "passed": true
+        }
+      }
+    },
+    {
+      "condition": "epoch20-B0",
+      "image_index": 71,
+      "valid_pixels": 20887680,
+      "full14_pair_count": 41646056,
+      "high14_pair_count": 1630,
+      "checks": {
+        "reconciled_rmse": {
+          "actual": 0.12211386876460155,
+          "reference": 0.12211386876460155,
+          "difference": 0.0,
+          "passed": true
+        },
+        "reconciled_full14_mae": {
+          "actual": 0.022796429068517903,
+          "reference": 0.02279641513352429,
+          "difference": 1.3934993613878843e-08,
+          "passed": true
+        },
+        "reconciled_high14_mae": {
+          "actual": 0.35199533123180177,
+          "reference": 0.35199533123180177,
+          "difference": 0.0,
+          "passed": true
+        },
+        "historical_rmse": {
+          "actual": 0.12211386876460155,
+          "reference": 0.12211386876460155,
+          "difference": 0.0,
+          "passed": true
+        },
+        "historical_full14_mae": {
+          "actual": 0.022796429068517903,
+          "reference": 0.02279641513352429,
+          "difference": 1.3934993613878843e-08,
+          "passed": true
+        }
+      }
+    },
+    {
+      "condition": "epoch20-B3",
+      "image_index": 71,
+      "valid_pixels": 20887680,
+      "full14_pair_count": 41646056,
+      "high14_pair_count": 1630,
+      "checks": {
+        "reconciled_rmse": {
+          "actual": 0.12323196813302623,
+          "reference": 0.12323196813302623,
+          "difference": 0.0,
+          "passed": true
+        },
+        "reconciled_full14_mae": {
+          "actual": 0.028022978464202035,
+          "reference": 0.02802297023036227,
+          "difference": 8.233839766252915e-09,
+          "passed": true
+        },
+        "reconciled_high14_mae": {
+          "actual": 0.343022180334922,
+          "reference": 0.343022180334922,
+          "difference": 0.0,
+          "passed": true
+        },
+        "historical_rmse": {
+          "actual": 0.12323196813302623,
+          "reference": 0.12323196813302623,
+          "difference": 0.0,
+          "passed": true
+        },
+        "historical_full14_mae": {
+          "actual": 0.028022978464202035,
+          "reference": 0.02802297023036227,
+          "difference": 8.233839766252915e-09,
+          "passed": true
+        }
+      }
+    },
+    {
+      "condition": "C0-B3",
+      "image_index": 71,
+      "valid_pixels": 20887680,
+      "full14_pair_count": 41646056,
+      "high14_pair_count": 1630,
+      "checks": {
+        "reconciled_rmse": {
+          "actual": 0.1226223247808925,
+          "reference": 0.1226223247808925,
+          "difference": 0.0,
+          "passed": true
+        },
+        "reconciled_full14_mae": {
+          "actual": 0.027466756177660628,
+          "reference": 0.027466756177660628,
+          "difference": 0.0,
+          "passed": true
+        },
+        "reconciled_high14_mae": {
+          "actual": 0.3423181422648986,
+          "reference": 0.3423181422648986,
+          "difference": 0.0,
+          "passed": true
+        }
+      }
+    },
+    {
+      "condition": "E3-B3",
+      "image_index": 71,
+      "valid_pixels": 20887680,
+      "full14_pair_count": 41646056,
+      "high14_pair_count": 1630,
+      "checks": {
+        "reconciled_rmse": {
+          "actual": 0.1301424857915842,
+          "reference": 0.1301424857915842,
+          "difference": 0.0,
+          "passed": true
+        },
+        "reconciled_full14_mae": {
+          "actual": 0.028856336389353483,
+          "reference": 0.028856336389353483,
+          "difference": 0.0,
+          "passed": true
+        },
+        "reconciled_high14_mae": {
+          "actual": 0.3400747141223744,
+          "reference": 0.3400747141223744,
+          "difference": 0.0,
+          "passed": true
+        }
+      }
+    },
+    {
+      "condition": "epoch20-B0",
+      "image_index": 89,
+      "valid_pixels": 20798509,
+      "full14_pair_count": 41467531,
+      "high14_pair_count": 17267,
+      "checks": {
+        "reconciled_rmse": {
+          "actual": 1.1981255934037105,
+          "reference": 1.1981255934037105,
+          "difference": 0.0,
+          "passed": true
+        },
+        "reconciled_full14_mae": {
+          "actual": 0.05347232844090467,
+          "reference": 0.053472313374529096,
+          "difference": 1.5066375577688085e-08,
+          "passed": true
+        },
+        "reconciled_high14_mae": {
+          "actual": 0.21750480097114933,
+          "reference": 0.21750480097114933,
+          "difference": 0.0,
+          "passed": true
+        },
+        "historical_rmse": {
+          "actual": 1.1981255934037105,
+          "reference": 1.1981255934037105,
+          "difference": 0.0,
+          "passed": true
+        },
+        "historical_full14_mae": {
+          "actual": 0.05347232844090467,
+          "reference": 0.053472313374529096,
+          "difference": 1.5066375577688085e-08,
+          "passed": true
+        }
+      }
+    },
+    {
+      "condition": "epoch20-B3",
+      "image_index": 89,
+      "valid_pixels": 20798509,
+      "full14_pair_count": 41467531,
+      "high14_pair_count": 17267,
+      "checks": {
+        "reconciled_rmse": {
+          "actual": 1.1992955558603062,
+          "reference": 1.1992955558603062,
+          "difference": 0.0,
+          "passed": true
+        },
+        "reconciled_full14_mae": {
+          "actual": 0.05639885569164217,
+          "reference": 0.05639885305686514,
+          "difference": 2.6347770284984584e-09,
+          "passed": true
+        },
+        "reconciled_high14_mae": {
+          "actual": 0.2184175767598655,
+          "reference": 0.2184175767598655,
+          "difference": 0.0,
+          "passed": true
+        },
+        "historical_rmse": {
+          "actual": 1.1992955558603062,
+          "reference": 1.1992955558603062,
+          "difference": 0.0,
+          "passed": true
+        },
+        "historical_full14_mae": {
+          "actual": 0.05639885569164217,
+          "reference": 0.05639885305686514,
+          "difference": 2.6347770284984584e-09,
+          "passed": true
+        }
+      }
+    },
+    {
+      "condition": "C0-B3",
+      "image_index": 89,
+      "valid_pixels": 20798509,
+      "full14_pair_count": 41467531,
+      "high14_pair_count": 17267,
+      "checks": {
+        "reconciled_rmse": {
+          "actual": 1.1410465125212688,
+          "reference": 1.1410465125212688,
+          "difference": 0.0,
+          "passed": true
+        },
+        "reconciled_full14_mae": {
+          "actual": 0.055334511298839935,
+          "reference": 0.055334511298839935,
+          "difference": 0.0,
+          "passed": true
+        },
+        "reconciled_high14_mae": {
+          "actual": 0.21389469216982396,
+          "reference": 0.21389469216982396,
+          "difference": 0.0,
+          "passed": true
+        }
+      }
+    },
+    {
+      "condition": "E3-B3",
+      "image_index": 89,
+      "valid_pixels": 20798509,
+      "full14_pair_count": 41467531,
+      "high14_pair_count": 17267,
+      "checks": {
+        "reconciled_rmse": {
+          "actual": 1.313767764336541,
+          "reference": 1.313767764336541,
+          "difference": 0.0,
+          "passed": true
+        },
+        "reconciled_full14_mae": {
+          "actual": 0.05523050348955376,
+          "reference": 0.05523050348955376,
+          "difference": 0.0,
+          "passed": true
+        },
+        "reconciled_high14_mae": {
+          "actual": 0.20616395111578856,
+          "reference": 0.20616395111578856,
+          "difference": 0.0,
+          "passed": true
+        }
+      }
+    },
+    {
+      "condition": "epoch20-B0",
+      "image_index": 97,
+      "valid_pixels": 20887680,
+      "full14_pair_count": 41646056,
+      "high14_pair_count": 3874,
+      "checks": {
+        "reconciled_rmse": {
+          "actual": 1.041096129140154,
+          "reference": 1.041096129140154,
+          "difference": 0.0,
+          "passed": true
+        },
+        "reconciled_full14_mae": {
+          "actual": 0.031154904201740264,
+          "reference": 0.031154927972050942,
+          "difference": 2.3770310678128403e-08,
+          "passed": true
+        },
+        "reconciled_high14_mae": {
+          "actual": 0.3271984224413004,
+          "reference": 0.3271984224413004,
+          "difference": 0.0,
+          "passed": true
+        },
+        "historical_rmse": {
+          "actual": 1.041096129140154,
+          "reference": 1.041096129140154,
+          "difference": 0.0,
+          "passed": true
+        },
+        "historical_full14_mae": {
+          "actual": 0.031154904201740264,
+          "reference": 0.031154927972050942,
+          "difference": 2.3770310678128403e-08,
+          "passed": true
+        }
+      }
+    },
+    {
+      "condition": "epoch20-B3",
+      "image_index": 97,
+      "valid_pixels": 20887680,
+      "full14_pair_count": 41646056,
+      "high14_pair_count": 3874,
+      "checks": {
+        "reconciled_rmse": {
+          "actual": 1.041735469873852,
+          "reference": 1.041735469873852,
+          "difference": 0.0,
+          "passed": true
+        },
+        "reconciled_full14_mae": {
+          "actual": 0.038218023083012274,
+          "reference": 0.0382180442849138,
+          "difference": 2.120190152610224e-08,
+          "passed": true
+        },
+        "reconciled_high14_mae": {
+          "actual": 0.32023626956732915,
+          "reference": 0.32023626956732915,
+          "difference": 0.0,
+          "passed": true
+        },
+        "historical_rmse": {
+          "actual": 1.041735469873852,
+          "reference": 1.041735469873852,
+          "difference": 0.0,
+          "passed": true
+        },
+        "historical_full14_mae": {
+          "actual": 0.038218023083012274,
+          "reference": 0.0382180442849138,
+          "difference": 2.120190152610224e-08,
+          "passed": true
+        }
+      }
+    },
+    {
+      "condition": "C0-B3",
+      "image_index": 97,
+      "valid_pixels": 20887680,
+      "full14_pair_count": 41646056,
+      "high14_pair_count": 3874,
+      "checks": {
+        "reconciled_rmse": {
+          "actual": 0.8315506447759788,
+          "reference": 0.8315506447759788,
+          "difference": 0.0,
+          "passed": true
+        },
+        "reconciled_full14_mae": {
+          "actual": 0.037640786214019714,
+          "reference": 0.037640786214019714,
+          "difference": 0.0,
+          "passed": true
+        },
+        "reconciled_high14_mae": {
+          "actual": 0.3192991814049606,
+          "reference": 0.3192991814049606,
+          "difference": 0.0,
+          "passed": true
+        }
+      }
+    },
+    {
+      "condition": "E3-B3",
+      "image_index": 97,
+      "valid_pixels": 20887680,
+      "full14_pair_count": 41646056,
+      "high14_pair_count": 3874,
+      "checks": {
+        "reconciled_rmse": {
+          "actual": 0.8848666254508972,
+          "reference": 0.8848666254508972,
+          "difference": 0.0,
+          "passed": true
+        },
+        "reconciled_full14_mae": {
+          "actual": 0.0386878340669762,
+          "reference": 0.0386878340669762,
+          "difference": 0.0,
+          "passed": true
+        },
+        "reconciled_high14_mae": {
+          "actual": 0.31604662960684665,
+          "reference": 0.31604662960684665,
+          "difference": 0.0,
+          "passed": true
+        }
+      }
+    },
+    {
+      "condition": "epoch20-B0",
+      "image_index": 112,
+      "valid_pixels": 20887680,
+      "full14_pair_count": 41646056,
+      "high14_pair_count": 18208,
+      "checks": {
+        "reconciled_rmse": {
+          "actual": 1.6441557241893237,
+          "reference": 1.6441557241893237,
+          "difference": 0.0,
+          "passed": true
+        },
+        "reconciled_full14_mae": {
+          "actual": 0.0650014135020925,
+          "reference": 0.06500141634060137,
+          "difference": 2.8385088723936747e-09,
+          "passed": true
+        },
+        "reconciled_high14_mae": {
+          "actual": 0.26811411013083636,
+          "reference": 0.26811411013083636,
+          "difference": 0.0,
+          "passed": true
+        },
+        "historical_rmse": {
+          "actual": 1.6441557241893237,
+          "reference": 1.6441557241893237,
+          "difference": 0.0,
+          "passed": true
+        },
+        "historical_full14_mae": {
+          "actual": 0.0650014135020925,
+          "reference": 0.06500141634060137,
+          "difference": 2.8385088723936747e-09,
+          "passed": true
+        }
+      }
+    },
+    {
+      "condition": "epoch20-B3",
+      "image_index": 112,
+      "valid_pixels": 20887680,
+      "full14_pair_count": 41646056,
+      "high14_pair_count": 18208,
+      "checks": {
+        "reconciled_rmse": {
+          "actual": 1.6387392390907585,
+          "reference": 1.6387392390907585,
+          "difference": 0.0,
+          "passed": true
+        },
+        "reconciled_full14_mae": {
+          "actual": 0.06574363549126488,
+          "reference": 0.06574365949563148,
+          "difference": 2.4004366591667825e-08,
+          "passed": true
+        },
+        "reconciled_high14_mae": {
+          "actual": 0.264593968753865,
+          "reference": 0.264593968753865,
+          "difference": 0.0,
+          "passed": true
+        },
+        "historical_rmse": {
+          "actual": 1.6387392390907585,
+          "reference": 1.6387392390907585,
+          "difference": 0.0,
+          "passed": true
+        },
+        "historical_full14_mae": {
+          "actual": 0.06574363549126488,
+          "reference": 0.06574365949563148,
+          "difference": 2.4004366591667825e-08,
+          "passed": true
+        }
+      }
+    },
+    {
+      "condition": "C0-B3",
+      "image_index": 112,
+      "valid_pixels": 20887680,
+      "full14_pair_count": 41646056,
+      "high14_pair_count": 18208,
+      "checks": {
+        "reconciled_rmse": {
+          "actual": 1.6052812780466774,
+          "reference": 1.6052812780466774,
+          "difference": 0.0,
+          "passed": true
+        },
+        "reconciled_full14_mae": {
+          "actual": 0.06528916497182026,
+          "reference": 0.06528916497182026,
+          "difference": 0.0,
+          "passed": true
+        },
+        "reconciled_high14_mae": {
+          "actual": 0.2631052647617454,
+          "reference": 0.2631052647617454,
+          "difference": 0.0,
+          "passed": true
+        }
+      }
+    },
+    {
+      "condition": "E3-B3",
+      "image_index": 112,
+      "valid_pixels": 20887680,
+      "full14_pair_count": 41646056,
+      "high14_pair_count": 18208,
+      "checks": {
+        "reconciled_rmse": {
+          "actual": 1.5406404996250571,
+          "reference": 1.5406404996250571,
+          "difference": 0.0,
+          "passed": true
+        },
+        "reconciled_full14_mae": {
+          "actual": 0.06356016525907875,
+          "reference": 0.06356016525907875,
+          "difference": 0.0,
+          "passed": true
+        },
+        "reconciled_high14_mae": {
+          "actual": 0.25161952765000517,
+          "reference": 0.25161952765000517,
+          "difference": 0.0,
+          "passed": true
+        }
+      }
+    }
+  ],
+  "passed": true,
+  "gpu_used": false,
+  "training": false,
+  "independent_test319": false
+}

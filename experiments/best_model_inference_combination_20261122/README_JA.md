@@ -27,4 +27,10 @@ GitHubの積み重ねPRは [PR #8](https://github.com/hw02l/depth-anything-v2-ua
 - `provenance.json` と `SHA256SUMS`: 実行条件とファイルハッシュ
 - `STATUS_JA.md`: 作業状態と未完了項目
 
-予測マップの全条件比較図は未作成である。`make_fixed8_comparison.py`と回帰テストは追加したが、今回の追補では実行できておらず、固定8画像の図表は生成していない。GPU4の端末が利用できなくなり、接続中のGPU3には当該データ・checkpoint・コンテナが存在しないことを確認したためである。したがって視覚的な形状に関する主張は行わない。RGB/GTを含む画像、checkpointおよび大容量prediction cacheはGitHubへ含めない。
+## 固定8画像の視覚比較
+
+事前固定したimage index 7、20、34、48、71、89、97、112の各画像について、6条件の予測深度図8枚と絶対誤差図8枚を作成した。深度図は共通0–65m、絶対誤差図は共通0–10mで表示し、10m超は図示時のみクリップした。超過件数・割合を含む48行の画像別CSV、生成provenance、SHA256SUMSも同じディレクトリに置いた。
+
+図ファイルは [depth_maps_007.png](figures/fixed8_visualizations_20261123/depth_maps_007.png)、[depth_maps_020.png](figures/fixed8_visualizations_20261123/depth_maps_020.png)、[depth_maps_034.png](figures/fixed8_visualizations_20261123/depth_maps_034.png)、[depth_maps_048.png](figures/fixed8_visualizations_20261123/depth_maps_048.png)、[depth_maps_071.png](figures/fixed8_visualizations_20261123/depth_maps_071.png)、[depth_maps_089.png](figures/fixed8_visualizations_20261123/depth_maps_089.png)、[depth_maps_097.png](figures/fixed8_visualizations_20261123/depth_maps_097.png)、[depth_maps_112.png](figures/fixed8_visualizations_20261123/depth_maps_112.png)と、[absolute_error_007.png](figures/fixed8_visualizations_20261123/absolute_error_007.png)、[absolute_error_020.png](figures/fixed8_visualizations_20261123/absolute_error_020.png)、[absolute_error_034.png](figures/fixed8_visualizations_20261123/absolute_error_034.png)、[absolute_error_048.png](figures/fixed8_visualizations_20261123/absolute_error_048.png)、[absolute_error_071.png](figures/fixed8_visualizations_20261123/absolute_error_071.png)、[absolute_error_089.png](figures/fixed8_visualizations_20261123/absolute_error_089.png)、[absolute_error_097.png](figures/fixed8_visualizations_20261123/absolute_error_097.png)、[absolute_error_112.png](figures/fixed8_visualizations_20261123/absolute_error_112.png)である。
+
+複合図にRGB・GT表示を含むことについて、ユーザーから明示的に掲載許可を得た。生のRGB/GT、checkpoint、prediction cacheは掲載しない。固定8画像は記述的な視覚診断であり、Validation128の数値評価を置き換えず、全標本への因果的結論を支えない。詳細は [report_ja.md](report_ja.md) と [STATUS_JA.md](STATUS_JA.md) を参照。

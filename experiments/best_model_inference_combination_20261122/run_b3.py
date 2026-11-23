@@ -386,10 +386,18 @@ def main():
     if len(pair_images) != 128:
         raise ValueError("Pair manifest must contain the fixed 128 validation images")
     if args.baseline_b3_per_image and args.baseline_b3_per_image.exists():
-        legacy = list(csv.DictReader(args.baseline_b3_per_image.open(encoding="utf-8-sig", newline="")))
-        legacy = [r for r in legacy if r.get("epoch") == "20" and r.get("method") == "B3"]
-        if len(legacy) != 128:
-            raise ValueError("Expected 128 saved epoch20 B3 image rows")
+        raw_reference = list(csv.DictReader(args.baseline_b3_per_image.open(encoding="utf-8-sig", newline="")))
+        columns = set(raw_reference[0]) if raw_reference else set()
+        if {"epoch", "method"} <= columns:
+            reference_rows = [r for r in raw_reference if r.get("epoch") == "20" and r.get("method") == "B3"]
+        elif {"condition", "image_index"} <= columns:
+            reference_rows = [r for r in raw_reference if r.get("condition") == "epoch20-B3"]
+        else:
+            reference_rows = raw_reference
+        reference_indices = [int(r["image_index"]) for r in reference_rows]
+        if len(reference_rows) != 128 or sorted(reference_indices) != list(range(128)):
+            raise ValueError("Expected exactly one saved epoch20 B3 reference row for every Validation128 image")
+        legacy = {int(r["image_index"]): r for r in reference_rows}
     else:
         legacy = []
     if args.visual_indices:
@@ -474,10 +482,17 @@ def main():
                 high = [x for x in local if x["stride_px"] == 14 and x["group"] == "gt_ge20cm"]
                 count = sum(x["pair_count"] for x in high)
                 err = sum(x["absolute_error_sum_m"] for x in high)
+                def reference_value(*names):
+                    for name in names:
+                        value = ref.get(name)
+                        if value is not None and str(value).strip() != "":
+                            return float(value)
+                    raise ValueError(f"B3 reference row lacks any of: {names}")
+
                 gate_checks = {
-                    "rmse_m": {"actual": actual_abs["rmse_m"], "reference": float(ref["rmse_m"]), "tolerance": 1e-5},
-                    "full14_local_mae_m": {"actual": dense["full14_local_mae_m"], "reference": float(ref["local_depth_delta_mae_m"]), "tolerance": 1e-5},
-                    "gt_ge20_14_local_mae_m": {"actual": err / count, "reference": float(ref["large14_mae_m"]), "tolerance": 1e-5},
+                    "rmse_m": {"actual": actual_abs["rmse_m"], "reference": reference_value("rmse_m", "rmse"), "tolerance": 1e-5},
+                    "full14_local_mae_m": {"actual": dense["full14_local_mae_m"], "reference": reference_value("local_depth_delta_mae_m", "full_mean"), "tolerance": 1e-5},
+                    "gt_ge20_14_local_mae_m": {"actual": err / count, "reference": reference_value("large14_mae_m", "high_mean"), "tolerance": 1e-5},
                 }
                 for value in gate_checks.values():
                     value["passed"] = abs(value["actual"] - value["reference"]) <= value["tolerance"]
