@@ -1,0 +1,45 @@
+{
+  "status": "complete",
+  "groups": [
+    "C0",
+    "E3"
+  ],
+  "images_per_group": 128,
+  "new_inference_performed": true,
+  "summaries": [
+    {
+      "condition": "C0-B3",
+      "images": 128,
+      "valid_pixel_count": 2668757375,
+      "mae_m": 0.5315559463746374,
+      "rmse_m": 0.7439453347873896,
+      "full14_pair_count": 5320891492,
+      "full14_local_mae_m": 0.06332302244174204,
+      "gt_ge20_14_pair_count": 1911836,
+      "gt_ge20_14_local_mae_m": 0.32668720360691994,
+      "gt_ge20_14_local_rmse_m": 0.5519304587600945,
+      "gt_ge20_14_amplitude_ratio": 0.40356002282350273,
+      "gt_ge20_14_sign_match_rate": 0.8482286137513887
+    },
+    {
+      "condition": "E3-B3",
+      "images": 128,
+      "valid_pixel_count": 2668757375,
+      "mae_m": 0.5525494189949013,
+      "rmse_m": 0.7685330142059592,
+      "full14_pair_count": 5320891492,
+      "full14_local_mae_m": 0.06372087080858468,
+      "gt_ge20_14_pair_count": 1911836,
+      "gt_ge20_14_local_mae_m": 0.31986699382175354,
+      "gt_ge20_14_local_rmse_m": 0.5477209512745103,
+      "gt_ge20_14_amplitude_ratio": 0.41019001087498436,
+      "gt_ge20_14_sign_match_rate": 0.8539341240566659
+    }
+  ],
+  "checkpoint_sha256": {
+    "C0": "2fd190727c7a5124c56c1e0ea2dd8cb09c6cb62a0f92b34fce97ad394281b35a",
+    "E3": "223b75d1f5d81844bc5702565a8291270a8ae951d6e8e7c12be9f1b3ad12e886"
+  },
+  "pair_manifest_sha256": "bcb56eab03bec4a44f0626da0f4814876fae67774e536e00cd9f1ad16b1f5728",
+  "out_of_range_values_scored_unmodified": true
+}
