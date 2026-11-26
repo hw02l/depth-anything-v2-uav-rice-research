@@ -1,0 +1,89 @@
+{
+  "experiment_id": "c0_extended_training_20261126",
+  "status": "locked",
+  "repository_root": "2026-09-20/depth-anything-v2-python-uav-rgb",
+  "branch": "research/c0-extended-training-epoch20-20261126",
+  "base_pr": 8,
+  "base_commit": "4e87f047ddf9bd43144fdc9d9754e3abbf28b716",
+  "seed": 42,
+  "group": "C0",
+  "initial_checkpoint": {
+    "path": "~/gpu_work/native_resolution_patch_training_20261111/runs/formal/C0/epoch_0005.pt",
+    "sha256": "2fd190727c7a5124c56c1e0ea2dd8cb09c6cb62a0f92b34fce97ad394281b35a",
+    "epoch": 5,
+    "global_step": 960,
+    "model_key_count": 287,
+    "required_state": ["model", "optimizer", "scaler", "rng", "scheduler", "history", "signature_payload"]
+  },
+  "continuation": {
+    "start_epoch": 6,
+    "end_epoch": 20,
+    "additional_epochs": 15,
+    "scheduler_reset": true,
+    "optimizer_state": "restore AdamW moments from epoch5; reset LR only",
+    "scaler_state": "restore epoch5 GradScaler",
+    "rng_state": "restore epoch5 RNG before epoch6",
+    "optimizer": "AdamW",
+    "encoder_lr": 0.000001,
+    "neck_head_lr": 0.00001,
+    "weight_decay": 0.01,
+    "scheduler": "PolynomialLR",
+    "scheduler_power": 0.9,
+    "scheduler_total_successful_updates": 2880,
+    "gradient_accumulation": 4,
+    "crops_per_image_per_epoch": 2,
+    "expected_samples_per_epoch": 768,
+    "expected_optimizer_updates_per_epoch": 192,
+    "expected_additional_crops": 11520,
+    "expected_update_opportunities": 2880,
+    "amp": "FP16 GradScaler; skipped updates do not advance scheduler"
+  },
+  "data": {
+    "train_manifest": "configs/uav3dcrop_verified/train.csv",
+    "train_images": 384,
+    "validation_manifest": "configs/uav3dcrop_verified/validation.csv",
+    "validation_images": 128,
+    "rgb_resize": "OpenCV bicubic",
+    "depth_resize": "nearest",
+    "crop": "C0: resize whole source to short side 518 then take aligned 518x518 crop",
+    "train_gt_range_m": [0.001, 65.0],
+    "prediction_cap_m": 80.0,
+    "evaluation_mask": "finite and 0 < depth <= 65m",
+    "fixed_pair_manifest": "experiments/native_resolution_patch_training_20261111/manifests/fixed_validation_pairs.json",
+    "independent_test319_used": false
+  },
+  "evaluation": {
+    "each_epoch": "Validation128, P0",
+    "primary_checkpoint": "epoch 20 fixed before training",
+    "final_cross_inference": ["epoch5-P0", "epoch5-B3", "epoch20-P0", "epoch20-B3", "E3-epoch5-B3"],
+    "b3": {
+      "global_short_side_px": 518,
+      "tile_original_px": 2000,
+      "tile_input_px": 518,
+      "nominal_overlap": 0.25,
+      "blend": "positive Hann weighted average",
+      "box_filter_px": 215,
+      "formula": "L(D_global) + D_tile - L(D_tile)"
+    },
+    "bootstrap": {"unit": "image", "paired": true, "repeats": 10000, "seed": 42}
+  },
+  "baseline_epoch5_p0": {
+    "absolute_rmse_m": 0.744069,
+    "all14_local_mae_m": 0.059084,
+    "gt_delta_ge_0_2m_14_local_mae_m": 0.334913
+  },
+  "baseline_epoch5_b3": {
+    "absolute_rmse_m": 0.743945,
+    "all14_local_mae_m": 0.063323,
+    "gt_delta_ge_0_2m_14_local_mae_m": 0.326687
+  },
+  "resource_policy": {
+    "gpu_priority": "GPGPU4",
+    "compute_root": "~/gpu_work",
+    "concurrent_use": "allowed only with current user's explicit report of permission from the active GPU user; at most one pre-existing compute process, utilization <=5%, and >=5GiB free VRAM at preflight",
+    "minimum_free_vram_bytes": 5368709120,
+    "local_data_quota_gib": 50,
+    "no_other_user_process_may_be_stopped": true,
+    "no_training_when_preflight_is_blocked": true
+  }
+}
