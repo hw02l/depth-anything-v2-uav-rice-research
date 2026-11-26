@@ -56,6 +56,29 @@ def atomic_json(path: Path, value: dict[str, Any]) -> None:
     os.replace(tmp, path)
 
 
+def record_training_progress(
+    output: Path, *, epoch: int, samples_done: int, samples_total: int,
+    successful_updates: int, amp_skips: int, elapsed_seconds: float,
+    global_step_before_epoch: int,
+) -> dict[str, Any]:
+    """Atomically publish intra-epoch progress for external monitoring."""
+    payload = {
+        "status": "training",
+        "epoch": epoch,
+        "target_epoch": EPOCH_END,
+        "global_step": global_step_before_epoch + successful_updates,
+        "epoch_samples_done": samples_done,
+        "epoch_samples_total": samples_total,
+        "epoch_fraction": samples_done / samples_total if samples_total else None,
+        "successful_updates_in_epoch": successful_updates,
+        "amp_skips_in_epoch": amp_skips,
+        "training_elapsed_seconds": elapsed_seconds,
+        "updated_unix_time": time.time(),
+    }
+    atomic_json(output / "progress.json", payload)
+    return payload
+
+
 def code_hashes() -> dict[str, str]:
     paths = [
         HERE / "continue_c0.py",
@@ -564,12 +587,29 @@ def run(args) -> dict[str, Any]:
     expected_other_memory = receipt_audit["other_compute_memory_mib_at_preflight"]
     for epoch in range(start_epoch, EPOCH_END + 1):
         assert_no_new_gpu_compute_processes(expected_other_pids, expected_other_memory)
+        samples_total = len(dataset)
+        atomic_json(args.output / "progress.json", {
+            "status": "training", "epoch": epoch, "target_epoch": EPOCH_END,
+            "global_step": global_step, "epoch_samples_done": 0,
+            "epoch_samples_total": samples_total, "epoch_fraction": 0.0,
+            "successful_updates_in_epoch": 0, "amp_skips_in_epoch": 0,
+            "training_elapsed_seconds": 0.0, "updated_unix_time": time.time(),
+        })
+
+        def publish_progress(epoch_number, samples_done, updates, amp_skips, elapsed):
+            assert_no_new_gpu_compute_processes(expected_other_pids, expected_other_memory)
+            record_training_progress(
+                args.output, epoch=epoch_number, samples_done=samples_done,
+                samples_total=samples_total, successful_updates=updates,
+                amp_skips=amp_skips, elapsed_seconds=elapsed,
+                global_step_before_epoch=global_step,
+            )
+
         result = native._train_epoch(
             model, dataset, optimizer, scheduler, scaler, silog_loss,
             epoch=epoch, seed=int(config["seed"]), device=args.device,
             amp=True, accumulation=4,
-            progress_callback=lambda *_: assert_no_new_gpu_compute_processes(
-                expected_other_pids, expected_other_memory),
+            progress_callback=publish_progress,
         )
         global_step += int(result["optimizer_updates"])
         atomic_json(args.output / "progress.json", {

@@ -36,6 +36,23 @@ def update(first, second, optimizer, scheduler):
 
 
 class ContinuationSchedulerTests(unittest.TestCase):
+    def test_intra_epoch_progress_is_atomic_and_contains_counts(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            output = Path(temp_dir)
+            progress = continuation.record_training_progress(
+                output, epoch=9, samples_done=320, samples_total=768,
+                successful_updates=80, amp_skips=2, elapsed_seconds=123.5,
+                global_step_before_epoch=1536,
+            )
+            self.assertEqual(progress["status"], "training")
+            self.assertEqual(progress["epoch_fraction"], 320 / 768)
+            self.assertEqual(progress["global_step"], 1616)
+            self.assertEqual(progress["amp_skips_in_epoch"], 2)
+            self.assertEqual(continuation.json.loads(
+                (output / "progress.json").read_text(encoding="utf-8")
+            ), progress)
+            self.assertEqual(list(output.iterdir()), [output / "progress.json"])
+
     def test_zero_gpu_utilization_is_not_treated_as_missing(self):
         self.assertEqual(
             continuation._shared_preflight_utilization_percent(

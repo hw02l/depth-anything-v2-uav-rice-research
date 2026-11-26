@@ -9,7 +9,7 @@ C0の既存epoch5モデルからepoch6〜20を追加し、学習期間延長の�
 
 C0 epoch5 checkpointのSHA256はconfig.json記載値と照合し、modelをstrict loadする。AdamW moment、GradScaler、RNGを復元し、既存5 epoch schedulerは継続せず、追加15 epoch専用PolynomialLRを指定LRで設定する。学習率はValidation結果を見て変更しない。
 
-Validation128のみを使用し、Independent test319は使わない。初期checkpointおよび既存研究出力を上書きしない。
+Validation128のみを使用し、Independent test319は使わない。初期checkpointおよび既存研究出力を上書きしない。学習中は約8回のsuccessful optimizer updateごとに、epoch内サンプル数、更新数、AMP skip数、経過時間、累積global stepを`progress.json`へ原子的に記録する。epoch終了時はValidation中・checkpoint保存済みの状態も記録する。
 
 ## checkpoint整理
 
@@ -17,4 +17,4 @@ Validation128のみを使用し、Independent test319は使わない。初期che
 
 ## 検証状態
 
-継続学習・GPU smoke test・最終B3評価スクリプトと単体テストを追加した。Python構文検査は通過済みで、PyTorch依存テスト、実モデルstrict load、GPU smoke testはこれから実施する。GPGPU4のユーザー領域はcheckpoint整理後に45GiB、`/localdata`全体の空きは107GiBである。GPU利用者から共有利用の許可を得たため、開始直前のpreflightで空きVRAM5GiB以上、使用率5%以下、既存compute PID不変、実験領域50GiB未満の見込みを確認し、まず1バッチのsmoke testを実行する。実行中も他ユーザーのPID集合とVRAM使用量を監視し、許可済みPIDの使用量が基準+256MiBを超える、またはGPU空きVRAMが1GiBを下回れば自分の処理を停止する。別ユーザーのプロセスには触れない。
+継続学習・GPU smoke test・最終B3評価スクリプトと単体テストを追加した。単体テスト、厳密な実モデル読み込み、GPU上の一更新smoke testは成功済みである。C0 epoch5 checkpointのSHA256は実行前後で一致した。固定pair manifestは`experiments/multiscale_tile_inference_20261016/pair_manifest.json`を使用する。GPGPU4のユーザー領域はcheckpoint整理後に約45GiB、`/localdata`全体の空きは約107GiBである。共有利用許可を得ているが、正式学習開始直前のfresh preflightで使用率5%以下、空きVRAM5GiB以上、既存compute PID不変、追加checkpointを含む実験領域50GiB以内を再確認する。実行中は他ユーザーのPID集合とVRAM使用量を監視し、許可済みPIDの使用量が基準+256MiBを超える、またはGPU空きVRAMが1GiBを下回れば自分の処理を停止する。別ユーザーのプロセスには触れない。正式学習の初回起動試行は固定manifestのパス誤りで入力検証前に終了しており、GPU学習は始まっていない。パスを修正し、正本manifestのSHA256と128画像数を確認した。progress.jsonは学習中に約8回のsuccessful updateごとに更新される。
