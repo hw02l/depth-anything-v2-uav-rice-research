@@ -113,6 +113,11 @@ def _gpu_compute_pids() -> set[int]:
     return set(_gpu_compute_processes())
 
 
+def _shared_preflight_utilization_percent(receipt: dict[str, Any]) -> int:
+    raw = receipt.get("gpu_utilization_percent")
+    return 100 if raw is None else int(raw)
+
+
 def check_gpu_receipt(path: Path, permission_path: Path,
                        gpu_work_root: Path, epoch5_checkpoint: Path,
                        *, reserved_checkpoint_copies: int = 16,
@@ -142,7 +147,7 @@ def check_gpu_receipt(path: Path, permission_path: Path,
         raise RuntimeError("Shared GPU receipt lists more than one other compute process")
     free_vram = int(receipt.get("gpu_free_bytes", 0))
     if processes:
-        if int(receipt.get("gpu_utilization_percent") or 100) > 5:
+        if _shared_preflight_utilization_percent(receipt) > 5:
             raise RuntimeError("GPU utilization exceeds the shared-use idle threshold")
         if free_vram < MIN_SHARED_FREE_VRAM_BYTES:
             raise RuntimeError("Shared-use preflight requires at least 5GiB free VRAM")

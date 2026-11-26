@@ -36,6 +36,28 @@ def update(first, second, optimizer, scheduler):
 
 
 class ContinuationSchedulerTests(unittest.TestCase):
+    def test_zero_gpu_utilization_is_not_treated_as_missing(self):
+        self.assertEqual(
+            continuation._shared_preflight_utilization_percent(
+                {"gpu_utilization_percent": 0}
+            ),
+            0,
+        )
+
+    def test_missing_gpu_utilization_fails_closed(self):
+        self.assertEqual(
+            continuation._shared_preflight_utilization_percent({}),
+            100,
+        )
+
+    def test_nonzero_gpu_utilization_is_preserved(self):
+        self.assertEqual(
+            continuation._shared_preflight_utilization_percent(
+                {"gpu_utilization_percent": 6}
+            ),
+            6,
+        )
+
     def test_initial_learning_rates_and_decay(self):
         first = torch.nn.Parameter(torch.tensor([1.0]))
         second = torch.nn.Parameter(torch.tensor([-1.0]))
