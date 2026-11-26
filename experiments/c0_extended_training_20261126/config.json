@@ -80,7 +80,7 @@
   "resource_policy": {
     "gpu_priority": "GPGPU4",
     "compute_root": "~/gpu_work",
-    "concurrent_use": "allowed only with current user's explicit report of permission from the active GPU user; at most one pre-existing compute process, utilization <=5%, and >=5GiB free VRAM at preflight",
+    "concurrent_use": "allowed only with current user's explicit report of permission from the active GPU user; at most one pre-existing compute process, utilization <=5%, and >=5GiB free VRAM at preflight; during work keep PID set unchanged, other process GPU memory within baseline +256MiB, and >=1GiB free VRAM",
     "minimum_free_vram_bytes": 5368709120,
     "local_data_quota_gib": 50,
     "no_other_user_process_may_be_stopped": true,

@@ -153,8 +153,9 @@ def run(args) -> dict:
 
     absolute_rows, local_rows, runtime_rows = [], [], []
     expected_other_pids = set(receipt_audit["other_compute_pids_authorized"])
+    expected_other_memory = receipt_audit["other_compute_memory_mib_at_preflight"]
     for index, row in enumerate(rows):
-        assert_no_new_gpu_compute_processes(expected_other_pids)
+        assert_no_new_gpu_compute_processes(expected_other_pids, expected_other_memory)
         rgb, gt = native.load_pair(row, args.rgb_root, args.depth_root)
         rgb_u8 = rgb_unit_float_to_uint8(rgb)
         if rgb_u8.dtype != np.uint8 or rgb_u8.ndim != 3 or rgb_u8.shape[2] != 3:
@@ -203,7 +204,7 @@ def run(args) -> dict:
                               "elapsed_seconds": elapsed,
                               "rmse_image_m": absolute["rmse_m"]}), flush=True)
             torch.cuda.empty_cache()
-            assert_no_new_gpu_compute_processes(expected_other_pids)
+            assert_no_new_gpu_compute_processes(expected_other_pids, expected_other_memory)
         del prediction, rgb, rgb_u8, gt
 
     summary = b3.pooled_metrics(absolute_rows, local_rows)

@@ -56,16 +56,18 @@ def run(args) -> dict:
         repeats=2, seed=42, training=True,
     )
     own_processes = set(receipt["other_compute_pids_authorized"])
+    other_memory = receipt["other_compute_memory_mib_at_preflight"]
     started = time.monotonic()
     result = native._train_epoch(
         model, dataset, optimizer, scheduler, scaler,
         native.m.frozen("losses").silog_loss,
         epoch=6, seed=42, device="cuda", amp=True, accumulation=4,
         max_updates=1,
-        progress_callback=lambda *_: continuation.assert_no_new_gpu_compute_processes(own_processes),
+        progress_callback=lambda *_: continuation.assert_no_new_gpu_compute_processes(
+            own_processes, other_memory),
     )
     torch.cuda.synchronize()
-    continuation.assert_no_new_gpu_compute_processes(own_processes)
+    continuation.assert_no_new_gpu_compute_processes(own_processes, other_memory)
     if result["optimizer_updates"] != 1 or result["amp_skips"] != 0:
         raise RuntimeError(f"Expected one successful transient update, got {result}")
     if file_sha256(args.initial_checkpoint) != checkpoint_sha:

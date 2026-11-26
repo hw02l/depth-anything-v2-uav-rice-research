@@ -4,7 +4,9 @@ import hashlib
 import sys
 import tempfile
 import unittest
+from types import SimpleNamespace
 from pathlib import Path
+from unittest.mock import patch
 
 import torch
 
@@ -109,6 +111,29 @@ class ContinuationSchedulerTests(unittest.TestCase):
             self.assertEqual(hashlib.sha256(path.read_bytes()).hexdigest(), digest)
             self.assertEqual(torch.load(path, map_location="cpu", weights_only=False)["epoch"], 6)
             self.assertEqual(list(root.glob("*.tmp")), [])
+
+    @patch("continue_c0.subprocess.run", return_value=SimpleNamespace(stdout="6000\n"))
+    @patch("continue_c0._gpu_compute_processes", return_value={3894: 2030})
+    def test_shared_gpu_monitor_accepts_unchanged_authorized_process(self, _processes, _run):
+        continuation.assert_no_new_gpu_compute_processes({3894}, {3894: 2030})
+
+    @patch("continue_c0.subprocess.run", return_value=SimpleNamespace(stdout="6000\n"))
+    @patch("continue_c0._gpu_compute_processes", return_value={3894: 2300})
+    def test_shared_gpu_monitor_stops_when_other_memory_grows(self, _processes, _run):
+        with self.assertRaisesRegex(RuntimeError, "memory changed"):
+            continuation.assert_no_new_gpu_compute_processes({3894}, {3894: 2030})
+
+    @patch("continue_c0.subprocess.run", return_value=SimpleNamespace(stdout="6000\n"))
+    @patch("continue_c0._gpu_compute_processes", return_value={3894: 2030, 4000: 512})
+    def test_shared_gpu_monitor_stops_when_new_compute_process_appears(self, _processes, _run):
+        with self.assertRaisesRegex(RuntimeError, "process set changed"):
+            continuation.assert_no_new_gpu_compute_processes({3894}, {3894: 2030})
+
+    @patch("continue_c0.subprocess.run", return_value=SimpleNamespace(stdout="800\n"))
+    @patch("continue_c0._gpu_compute_processes", return_value={3894: 2030})
+    def test_shared_gpu_monitor_stops_below_emergency_free_vram(self, _processes, _run):
+        with self.assertRaisesRegex(RuntimeError, "1GiB emergency"):
+            continuation.assert_no_new_gpu_compute_processes({3894}, {3894: 2030})
 
 
 if __name__ == "__main__":

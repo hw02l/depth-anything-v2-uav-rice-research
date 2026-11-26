@@ -12,7 +12,7 @@
 - GPUローカルから旧checkpoint 28件と、best-model実験フォルダーにあるC0/E3 epoch5の完全重複2件を削除した。削除対象のパス・SHA256・サイズ、NFS側の照合ログを`~/gpu_work/c0_extended_training_20261126/audit/`へ記録した。
 - 保持した学習checkpointはC0 epoch5（継続開始用）とE3 epoch5（比較用）である。B系列、元Metric Outdoorモデル、NFSバックアップ、評価結果、学習ログには触れていない。
 - 削除後に`du -sh /localdata/s0623003`で再計測した使用量は45GiBである。削除前の約53GiBから約8GiB減少した。`df -h /localdata`ではパーティション全体の空きが107GiBである。`~/gpu_work`はローカル領域へのシンボリックリンクであるため、容量はリンク先`/localdata/s0623003`で確認した。
-- ユーザーからGPU利用者の共有利用許可取得済みとの連絡を受けた。21:42 JSTのGPGPU4確認では別ユーザーのPython process（PID 3894、約2,030MiB）、GPU使用率0%、空きVRAM6,066MiBであった。processには触れず、開始直前のfresh preflightでPID集合不変・空きVRAM5GiB以上・使用率5%以下を再確認し、1バッチsmoke test後に正式学習へ進む。
+- ユーザーからGPU利用者の共有利用許可取得済みとの連絡を受けた。21:42 JSTのGPGPU4確認では別ユーザーのPython process（PID 3894、約2,030MiB）、GPU使用率0%、空きVRAM6,066MiBであった。processには触れず、開始直前のfresh preflightでPID集合不変・空きVRAM5GiB以上・使用率5%以下を再確認する。実行中はPID集合維持、許可済みprocessのメモリ増加+256MiB以内、空きVRAM1GiB以上を監視し、条件外なら自分の処理を停止する。1バッチsmoke test後に正式学習へ進む。
 
 ## 進捗
 

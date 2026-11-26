@@ -41,6 +41,8 @@ EPOCH_END = 20
 GROUP_LRS = (1e-6, 1e-5)
 TOTAL_SCHEDULER_UPDATES = 2880
 MIN_SHARED_FREE_VRAM_BYTES = 5 * 1024**3
+EMERGENCY_FREE_VRAM_BYTES = 1 * 1024**3
+OTHER_PROCESS_MEMORY_TOLERANCE_MIB = 256
 LOCAL_QUOTA_BYTES = 50 * 1024**3
 
 
@@ -94,17 +96,21 @@ def assert_finite_tree(value: Any, name: str) -> None:
             assert_finite_tree(item, f"{name}[{index}]")
 
 
-def _gpu_compute_pids() -> set[int]:
+def _gpu_compute_processes() -> dict[int, int | None]:
     result = subprocess.run(
-        ["nvidia-smi", "--query-compute-apps=pid", "--format=csv,noheader,nounits"],
+        ["nvidia-smi", "--query-compute-apps=pid,used_gpu_memory", "--format=csv,noheader,nounits"],
         check=True, capture_output=True, text=True, timeout=20,
     )
-    pids = set()
+    processes = {}
     for line in result.stdout.splitlines():
-        token = line.strip().split(",", 1)[0].strip()
-        if token.isdigit():
-            pids.add(int(token))
-    return pids
+        fields = [field.strip() for field in line.split(",")]
+        if len(fields) >= 2 and fields[0].isdigit():
+            processes[int(fields[0])] = int(fields[1]) if fields[1].isdigit() else None
+    return processes
+
+
+def _gpu_compute_pids() -> set[int]:
+    return set(_gpu_compute_processes())
 
 
 def check_gpu_receipt(path: Path, permission_path: Path,
@@ -144,6 +150,11 @@ def check_gpu_receipt(path: Path, permission_path: Path,
     expected_pids = {int(line.strip().split(",", 1)[0].strip())
                      for line in processes
                      if line.strip().split(",", 1)[0].strip().isdigit()}
+    other_memory = {}
+    for line in processes:
+        fields = [field.strip() for field in line.split(",")]
+        if len(fields) >= 3 and fields[0].isdigit():
+            other_memory[int(fields[0])] = int(fields[2]) if fields[2].isdigit() else None
     current_pids = _gpu_compute_pids()
     if current_pids != expected_pids:
         raise RuntimeError("GPU compute process set changed since preflight; refresh the receipt")
@@ -172,6 +183,7 @@ def check_gpu_receipt(path: Path, permission_path: Path,
         "age_seconds": age,
         "gpu": receipt["gpu_name"],
         "other_compute_pids_authorized": sorted(expected_pids),
+        "other_compute_memory_mib_at_preflight": other_memory,
         "free_vram_bytes_at_preflight": free_vram,
         "local_work_bytes": used_bytes,
         "projected_work_bytes": projected_bytes,
@@ -180,15 +192,35 @@ def check_gpu_receipt(path: Path, permission_path: Path,
     }
 
 
-def assert_no_new_gpu_compute_processes(expected_other_pids: set[int]) -> None:
-    current = _gpu_compute_pids()
+def assert_no_new_gpu_compute_processes(
+    expected_other_pids: set[int],
+    expected_other_memory_mib: dict[int, int | None] | None = None,
+) -> None:
+    current_processes = _gpu_compute_processes()
+    current = set(current_processes)
     own_pid = os.getpid()
     current.discard(own_pid)
+    current_processes.pop(own_pid, None)
     if current != expected_other_pids:
         raise RuntimeError(
             f"GPU compute process set changed during run; expected other={sorted(expected_other_pids)}, "
             f"current other={sorted(current)}. Stop and resume from the last epoch checkpoint."
         )
+    if expected_other_memory_mib is not None:
+        for pid in expected_other_pids:
+            baseline = expected_other_memory_mib.get(pid)
+            observed = current_processes.get(pid)
+            if baseline is None or observed is None or observed > baseline + OTHER_PROCESS_MEMORY_TOLERANCE_MIB:
+                raise RuntimeError(
+                    f"Authorized GPU process {pid} memory changed beyond the 256MiB tolerance "
+                    f"(baseline={baseline}, current={observed}); stopping this run."
+                )
+    free = subprocess.run(
+        ["nvidia-smi", "--query-gpu=memory.free", "--format=csv,noheader,nounits"],
+        check=True, capture_output=True, text=True, timeout=20,
+    ).stdout.strip().splitlines()
+    if len(free) != 1 or not free[0].strip().isdigit() or int(free[0]) * 1024**2 < EMERGENCY_FREE_VRAM_BYTES:
+        raise RuntimeError("GPU free VRAM dropped below the 1GiB emergency threshold; stopping this run.")
 
 
 def audit_epoch5(state: dict[str, Any]) -> dict[str, Any]:
@@ -522,13 +554,15 @@ def run(args) -> dict[str, Any]:
     silog_loss = native.m.frozen("losses").silog_loss
     epoch_rows: list[dict[str, Any]] = []
     expected_other_pids = set(receipt_audit["other_compute_pids_authorized"])
+    expected_other_memory = receipt_audit["other_compute_memory_mib_at_preflight"]
     for epoch in range(start_epoch, EPOCH_END + 1):
-        assert_no_new_gpu_compute_processes(expected_other_pids)
+        assert_no_new_gpu_compute_processes(expected_other_pids, expected_other_memory)
         result = native._train_epoch(
             model, dataset, optimizer, scheduler, scaler, silog_loss,
             epoch=epoch, seed=int(config["seed"]), device=args.device,
             amp=True, accumulation=4,
-            progress_callback=lambda *_: assert_no_new_gpu_compute_processes(expected_other_pids),
+            progress_callback=lambda *_: assert_no_new_gpu_compute_processes(
+                expected_other_pids, expected_other_memory),
         )
         global_step += int(result["optimizer_updates"])
         atomic_json(args.output / "progress.json", {
@@ -538,7 +572,7 @@ def run(args) -> dict[str, Any]:
             "training_seconds": result["training_seconds"],
         })
         model.eval()
-        assert_no_new_gpu_compute_processes(expected_other_pids)
+        assert_no_new_gpu_compute_processes(expected_other_pids, expected_other_memory)
         val_dir = args.output / "validation" / f"epoch_{epoch:04d}_attempt_{time.time_ns()}"
         validation = native.evaluate_combo(
             model, val_rows, args.rgb_root, args.depth_root, args.device, "P0",

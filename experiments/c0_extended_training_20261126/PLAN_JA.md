@@ -29,7 +29,7 @@ C0の既存方式を維持する。Train384、1画像2crop/epoch、入力518x518
 
 GPGPU4を第一候補にする。学習開始直前にwho、w、nvidia-smi、df、gpu_work実体と使用量、Singularity版を確認する。GPU利用者との共有利用許可をユーザーから得たため、別ユーザーのcompute processが最大1件、GPU使用率5%以下、空きVRAM5GiB以上の場合に限り、許可記録と直前preflightを保存してsmoke testを行う。process集合が実行中に変わった場合は停止する。別ユーザーのprocessを停止・変更しない。GPGPU3へ独断で切り替えない。
 
-2026-11-26 21:42 JSTの確認では、GPGPU4に別ユーザーのPID 3894（`/mnt/.venv/bin/python`、約2,030MiB）が存在し、GPU使用率0%、空きVRAM6,066MiBであった。ユーザーから当該GPU利用者の許可取得済みとの連絡があり、共有利用条件を満たす場合に限って開始する。
+2026-11-26 21:42 JSTの確認では、GPGPU4に別ユーザーのPID 3894（`/mnt/.venv/bin/python`、約2,030MiB）が存在し、GPU使用率0%、空きVRAM6,066MiBであった。ユーザーから当該GPU利用者の許可取得済みとの連絡があり、共有利用条件を満たす場合に限って開始する。実行中は許可済みPID集合の不変、当該processのVRAM増加が基準+256MiB以内、全GPU空きVRAM1GiB以上を定期確認し、外れれば自分の処理を停止する。
 
 ### checkpoint保管方針
 

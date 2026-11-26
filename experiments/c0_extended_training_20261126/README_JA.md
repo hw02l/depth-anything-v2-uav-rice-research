@@ -17,4 +17,4 @@ Validation128のみを使用し、Independent test319は使わない。初期che
 
 ## 検証状態
 
-継続学習・GPU smoke test・最終B3評価スクリプトと単体テストを追加した。Python構文検査は通過済みで、PyTorch依存テスト、実モデルstrict load、GPU smoke testはこれから実施する。GPGPU4のユーザー領域はcheckpoint整理後に45GiB、`/localdata`全体の空きは107GiBである。GPU利用者から共有利用の許可を得たため、開始直前のpreflightで空きVRAM5GiB以上、使用率5%以下、既存compute PID不変、実験領域50GiB未満の見込みを確認し、まず1バッチのsmoke testを実行する。別ユーザーのプロセスには触れない。
+継続学習・GPU smoke test・最終B3評価スクリプトと単体テストを追加した。Python構文検査は通過済みで、PyTorch依存テスト、実モデルstrict load、GPU smoke testはこれから実施する。GPGPU4のユーザー領域はcheckpoint整理後に45GiB、`/localdata`全体の空きは107GiBである。GPU利用者から共有利用の許可を得たため、開始直前のpreflightで空きVRAM5GiB以上、使用率5%以下、既存compute PID不変、実験領域50GiB未満の見込みを確認し、まず1バッチのsmoke testを実行する。実行中も他ユーザーのPID集合とVRAM使用量を監視し、許可済みPIDの使用量が基準+256MiBを超える、またはGPU空きVRAMが1GiBを下回れば自分の処理を停止する。別ユーザーのプロセスには触れない。
