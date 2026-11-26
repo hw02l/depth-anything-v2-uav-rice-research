@@ -64,6 +64,8 @@ def code_hashes() -> dict[str, str]:
         NATIVE / "data_patch.py",
         NATIVE / "evaluate_patch.py",
         ROOT / "src" / "uav_metric_research" / "multiscale.py",
+        ROOT / "experiments" / "metric_outdoor_full_20261014_s42_518_cap80_gt65"
+        / "source_full_v1" / "losses.py",
     ]
     return {str(path.relative_to(ROOT)): file_sha256(path) for path in paths}
 

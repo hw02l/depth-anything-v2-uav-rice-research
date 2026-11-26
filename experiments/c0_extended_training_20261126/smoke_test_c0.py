@@ -90,7 +90,9 @@ def run(args) -> dict:
             str(path.relative_to(ROOT)): file_sha256(path)
             for path in (HERE / "smoke_test_c0.py", HERE / "continue_c0.py",
                          NATIVE / "train_patch.py", NATIVE / "patch_engine.py",
-                         NATIVE / "data_patch.py")
+                         NATIVE / "data_patch.py",
+                         ROOT / "experiments" / "metric_outdoor_full_20261014_s42_518_cap80_gt65"
+                         / "source_full_v1" / "losses.py")
         },
     }
 

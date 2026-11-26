@@ -21,7 +21,7 @@
 - [x] C0 epoch5 SHA256と内部状態を確認
 - [x] 旧checkpointのNFS・ローカルSHA256照合とGPUローカル整理
 - [x] 継続学習スクリプトと単体テストの追加、構文検査
-- [x] 継続学習ロジックの単体テスト8件（すべて成功）
+- [x] 継続学習ロジックの単体テスト11件（すべて成功）
 - [ ] PyTorch strict model load・resumeテスト・GPU smoke test
 - [ ] 開始直前preflightとユーザー領域50GiB予算の確認
 - [ ] epoch6〜20学習と各epoch Validation
@@ -32,3 +32,5 @@
 共有利用許可は記録済みであるが、smoke testと正式学習はまだ開始していない。実行していない検証・結果は完了扱いにしない。NFS退避先は変更しておらず、新規実験の成果バックアップは未実施である。epoch5 checkpointの実測サイズ約284MiBを基準に、epoch5保護コピーとepoch6〜20の計16個は約4.4GiB、評価統計等の予備を加えてユーザー領域50GiB以内に収める計画である。直前の容量計測で上限を超える予測になれば開始しない。
 
 単体テスト後の最初のGPU smoke testは、計算開始前のGPU安全ガードで停止した。preflightの使用率0%をPythonのtruthinessで欠損値と誤判定し、100%として扱う不具合である。GPU forwardやoptimizer更新は開始されておらず、他ユーザーの処理・元checkpointに変更はない。判定ロジックと回帰テストを追加した後、fresh preflightで再試行する。
+
+GPU安全ガードの修正後、次のsmoke testは既存SiLog実装のimport時に停止した。GPU用sparse cloneが固定ソースの`source_full_v1/losses.py`を含んでいなかったためである。GPU演算に入る前のimport失敗であり、共有GPUやcheckpointへの影響はない。必要な固定ソースをsnapshotへ含め、依存コードのSHA256もprovenance対象に加えて再試行する。
