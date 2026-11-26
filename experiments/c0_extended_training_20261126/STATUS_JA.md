@@ -22,15 +22,20 @@
 - [x] 旧checkpointのNFS・ローカルSHA256照合とGPUローカル整理
 - [x] 継続学習スクリプトと単体テストの追加、構文検査
 - [x] 継続学習ロジックの単体テスト11件（すべて成功）
-- [ ] PyTorch strict model load・resumeテスト・GPU smoke test
+- [x] epoch5 checkpoint strict load・GPU 1更新smoke test
+- [x] optimizer状態を含む中断・再開一致テスト（小型単体ケース）
 - [ ] 開始直前preflightとユーザー領域50GiB予算の確認
 - [ ] epoch6〜20学習と各epoch Validation
 - [ ] epoch20 B3、bootstrap、図表
 - [ ] NFS退避とハッシュ照合
 - [ ] PR作成・公開
 
-共有利用許可は記録済みであるが、smoke testと正式学習はまだ開始していない。実行していない検証・結果は完了扱いにしない。NFS退避先は変更しておらず、新規実験の成果バックアップは未実施である。epoch5 checkpointの実測サイズ約284MiBを基準に、epoch5保護コピーとepoch6〜20の計16個は約4.4GiB、評価統計等の予備を加えてユーザー領域50GiB以内に収める計画である。直前の容量計測で上限を超える予測になれば開始しない。
+共有利用許可はユーザーの報告に基づき記録済みである。正式学習はまだ開始していない。実行していない検証・結果は完了扱いにしない。NFS退避先は変更しておらず、新規実験の成果バックアップは未実施である。epoch5 checkpointの実測サイズ約284MiBを基準に、epoch5保護コピーとepoch6〜20の計16個は約4.4GiB、評価統計等の予備を加えてユーザー領域50GiB以内に収める計画である。直前の容量計測で上限を超える予測になれば開始しない。
 
 単体テスト後の最初のGPU smoke testは、計算開始前のGPU安全ガードで停止した。preflightの使用率0%をPythonのtruthinessで欠損値と誤判定し、100%として扱う不具合である。GPU forwardやoptimizer更新は開始されておらず、他ユーザーの処理・元checkpointに変更はない。判定ロジックと回帰テストを追加した後、fresh preflightで再試行する。
 
-GPU安全ガードの修正後、次のsmoke testは既存SiLog実装のimport時に停止した。GPU用sparse cloneが固定ソースの`source_full_v1/losses.py`を含んでいなかったためである。GPU演算に入る前のimport失敗であり、共有GPUやcheckpointへの影響はない。必要な固定ソースをsnapshotへ含め、依存コードのSHA256もprovenance対象に加えて再試行する。
+GPU安全ガードの修正後、次のsmoke testは既存SiLog実装のimport時に停止した。GPU用sparse cloneが固定ソースの`source_full_v1/losses.py`を含んでいなかったためである。GPU演算に入る前のimport失敗であり、共有GPUやcheckpointへの影響はない。必要な固定ソースをsparse checkoutへ追加し、依存コードのSHA256もprovenance対象に加えた。
+
+`--containall`付きコンテナではPID namespaceが分離され、コンテナ内の`os.getpid()`と`nvidia-smi`が表示するホストPIDが一致しないことを確認した。そこで正式実行とsmoke testには`--contain --cleanenv`を用いる。PID namespaceなしでも`/localdata`だけをbindし、コンテナ内外のPID一致を実測した。共有GPU監視は自分のGPU processを除外し、既存利用者PIDを追跡できる。
+
+最終smoke test（2026-11-26 22:13 JST）は成功した。epoch5 checkpoint（SHA256 `2fd190727c7a5124c56c1e0ea2dd8cb09c6cb62a0f92b34fce97ad394281b35a`）をstrict loadし、model 287 keys、missing/unexpected/shape mismatch各0を確認した。epoch/global stepは5/960、optimizer state・GradScaler・RNGが有効であることを監査した。Train384から4 cropを処理し、FP16 optimizer updateを1回成功、AMP skip 0、有限なSiLog損失を確認した。これは一時モデル上のsmoke updateであり、重みを保存していない。元checkpointのSHA256は実行後も一致し、GPUは使用率0%、空きVRAM6,066MiB、既存PID 3894の約2,030MiBへ戻った。ピークGPU割当量は981,260,288 bytes、実行時間は約11.7秒である。監査JSONとlogはGPUローカルの`audit/smoke_test_20261126T2213.{json,log}`に保存済みである。
