@@ -30,6 +30,8 @@
 - [ ] NFS退避とハッシュ照合
 - [ ] PR作成・公開
 
+正式学習の最初の起動試行（2026-11-26 22:17 JST）は、設定に記載した固定ペアmanifestのパスが誤っていたため、初期入力検証で終了した。GPU forward・学習更新・Validation・checkpoint保存はいずれも始まっていない。出力runディレクトリは作成されず、epoch5 checkpointと他ユーザーのGPU processにも変更はない。固定manifestの正しい正本は`experiments/multiscale_tile_inference_20261016/pair_manifest.json`であり、SHA256は`bcb56eab03bec4a44f0626da0f4814876fae67774e536e00cd9f1ad16b1f5728`、画像数は128である。設定をこのパスへ訂正し、GPU側ではGit追跡ファイルから同一内容を小容量の入力領域へ取り出してハッシュ一致を確認してから、fresh preflightで再起動する。
+
 共有利用許可はユーザーの報告に基づき記録済みである。正式学習はまだ開始していない。実行していない検証・結果は完了扱いにしない。NFS退避先は変更しておらず、新規実験の成果バックアップは未実施である。epoch5 checkpointの実測サイズ約284MiBを基準に、epoch5保護コピーとepoch6〜20の計16個は約4.4GiB、評価統計等の予備を加えてユーザー領域50GiB以内に収める計画である。直前の容量計測で上限を超える予測になれば開始しない。
 
 単体テスト後の最初のGPU smoke testは、計算開始前のGPU安全ガードで停止した。preflightの使用率0%をPythonのtruthinessで欠損値と誤判定し、100%として扱う不具合である。GPU forwardやoptimizer更新は開始されておらず、他ユーザーの処理・元checkpointに変更はない。判定ロジックと回帰テストを追加した後、fresh preflightで再試行する。

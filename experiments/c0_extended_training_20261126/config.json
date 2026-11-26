@@ -49,7 +49,7 @@
     "train_gt_range_m": [0.001, 65.0],
     "prediction_cap_m": 80.0,
     "evaluation_mask": "finite and 0 < depth <= 65m",
-    "fixed_pair_manifest": "experiments/native_resolution_patch_training_20261111/manifests/fixed_validation_pairs.json",
+    "fixed_pair_manifest": "experiments/multiscale_tile_inference_20261016/pair_manifest.json",
     "independent_test319_used": false
   },
   "evaluation": {
