@@ -1,0 +1,44 @@
+test_bootstrap_is_reproducible_for_paired_images (test_analyze_extended_results.ExtendedAnalysisTests.test_bootstrap_is_reproducible_for_paired_images) ... ok
+test_bootstrap_requires_same_ordered_image_ids (test_analyze_extended_results.ExtendedAnalysisTests.test_bootstrap_requires_same_ordered_image_ids) ... ok
+test_empty_high_delta_images_are_undefined_in_image_mean (test_analyze_extended_results.ExtendedAnalysisTests.test_empty_high_delta_images_are_undefined_in_image_mean) ... ok
+test_validation_ids_must_cover_the_fixed_order (test_analyze_extended_results.ExtendedAnalysisTests.test_validation_ids_must_cover_the_fixed_order) ... ok
+test_checkpoint_write_is_atomic_and_discoverable (test_continue_c0.ContinuationSchedulerTests.test_checkpoint_write_is_atomic_and_discoverable) ... ok
+test_initial_learning_rates_and_decay (test_continue_c0.ContinuationSchedulerTests.test_initial_learning_rates_and_decay) ... ok
+test_interrupted_resume_matches_continuous_updates (test_continue_c0.ContinuationSchedulerTests.test_interrupted_resume_matches_continuous_updates) ... ok
+test_intra_epoch_progress_is_atomic_and_contains_counts (test_continue_c0.ContinuationSchedulerTests.test_intra_epoch_progress_is_atomic_and_contains_counts) ... ok
+test_missing_gpu_utilization_fails_closed (test_continue_c0.ContinuationSchedulerTests.test_missing_gpu_utilization_fails_closed) ... ok
+test_nonzero_gpu_utilization_is_preserved (test_continue_c0.ContinuationSchedulerTests.test_nonzero_gpu_utilization_is_preserved) ... ok
+test_resetting_lr_preserves_adamw_moments (test_continue_c0.ContinuationSchedulerTests.test_resetting_lr_preserves_adamw_moments) ... ok
+test_shared_gpu_monitor_accepts_unchanged_authorized_process (test_continue_c0.ContinuationSchedulerTests.test_shared_gpu_monitor_accepts_unchanged_authorized_process) ... ok
+test_shared_gpu_monitor_stops_below_emergency_free_vram (test_continue_c0.ContinuationSchedulerTests.test_shared_gpu_monitor_stops_below_emergency_free_vram) ... ok
+test_shared_gpu_monitor_stops_when_new_compute_process_appears (test_continue_c0.ContinuationSchedulerTests.test_shared_gpu_monitor_stops_when_new_compute_process_appears) ... ok
+test_shared_gpu_monitor_stops_when_other_memory_grows (test_continue_c0.ContinuationSchedulerTests.test_shared_gpu_monitor_stops_when_other_memory_grows) ... ok
+test_zero_gpu_utilization_is_not_treated_as_missing (test_continue_c0.ContinuationSchedulerTests.test_zero_gpu_utilization_is_not_treated_as_missing) ... ok
+
+----------------------------------------------------------------------
+Ran 16 tests in 1.264s
+
+OK
+test_anchored_tile_grid_covers_original_coordinate_grid (test_run_b3.B3GeometryTests.test_anchored_tile_grid_covers_original_coordinate_grid) ... ok
+test_c0_signature_payload_schema_is_verified (test_run_b3.B3GeometryTests.test_c0_signature_payload_schema_is_verified) ... ok
+test_checkpoint_group_mismatch_is_rejected (test_run_b3.B3GeometryTests.test_checkpoint_group_mismatch_is_rejected) ... ok
+test_checkpoint_signature_mismatch_is_rejected (test_run_b3.B3GeometryTests.test_checkpoint_signature_mismatch_is_rejected) ... ok
+test_constant_maps_cancel_tile_offset (test_run_b3.B3GeometryTests.test_constant_maps_cancel_tile_offset) ... ok
+test_dense14_statistics_use_both_valid_endpoints (test_run_b3.B3GeometryTests.test_dense14_statistics_use_both_valid_endpoints) ... ok
+test_e3_config_signature_schema_is_verified (test_run_b3.B3GeometryTests.test_e3_config_signature_schema_is_verified) ... ok
+test_fixed_pair_hash_and_large_delta_statistics (test_run_b3.B3GeometryTests.test_fixed_pair_hash_and_large_delta_statistics) ... ok
+test_fusion_preserves_only_tile_high_frequency_residual (test_run_b3.B3GeometryTests.test_fusion_preserves_only_tile_high_frequency_residual) ... ok
+test_nonvalidation_manifest_is_rejected (test_run_b3.B3GeometryTests.test_nonvalidation_manifest_is_rejected) ... ok
+test_validation_inventory_mismatch_is_rejected (test_run_b3.B3GeometryTests.test_validation_inventory_mismatch_is_rejected) ... ok
+test_validation_manifest_is_paired_to_canonical_inventory (test_run_b3.B3GeometryTests.test_validation_manifest_is_paired_to_canonical_inventory) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.134s
+
+OK
+test_per_image_rows_reconcile_to_pooled_summary (test_sufficient_statistics.SufficientStatisticsTests.test_per_image_rows_reconcile_to_pooled_summary) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.003s
+
+OK

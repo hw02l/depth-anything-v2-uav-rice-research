@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="570" viewBox="0 0 1500 570">
+<rect width="100%" height="100%" fill="white"/>
+<g font-family="Arial, sans-serif" fill="#202124">
+<text x="750" y="38" text-anchor="middle" font-size="22" font-weight="bold">Validation128 pooled metrics</text>
+<text x="750" y="64" text-anchor="middle" font-size="14">Fixed six-condition comparison; common sample and mask</text>
+<text x="280.0" y="88" text-anchor="middle" font-size="17" font-weight="bold">Absolute depth RMSE</text>
+<line x1="108" y1="390.0" x2="496" y2="390.0" stroke="#e2e5e9"/>
+<text x="100" y="394.0" text-anchor="end" font-size="11">0.7081</text>
+<line x1="108" y1="316.3" x2="496" y2="316.3" stroke="#e2e5e9"/>
+<text x="100" y="320.3" text-anchor="end" font-size="11">0.7334</text>
+<line x1="108" y1="242.5" x2="496" y2="242.5" stroke="#e2e5e9"/>
+<text x="100" y="246.5" text-anchor="end" font-size="11">0.7588</text>
+<line x1="108" y1="168.7" x2="496" y2="168.7" stroke="#e2e5e9"/>
+<text x="100" y="172.7" text-anchor="end" font-size="11">0.7842</text>
+<line x1="108" y1="95.0" x2="496" y2="95.0" stroke="#e2e5e9"/>
+<text x="100" y="99.0" text-anchor="end" font-size="11">0.8096</text>
+<line x1="108" y1="95" x2="108" y2="390" stroke="#555"/>
+<line x1="108" y1="390" x2="496" y2="390" stroke="#555"/>
+<circle cx="140.3" cy="285.3" r="6" fill="#377eb8" stroke="white" stroke-width="1.5"/>
+<text x="140.3" y="274.3" text-anchor="middle" font-size="11">0.744069</text>
+<text x="140.3" y="408" text-anchor="end" font-size="10" transform="rotate(-42 140.3 408)">C0-epoch5-P0</text>
+<circle cx="205.0" cy="285.7" r="6" fill="#4daf4a" stroke="white" stroke-width="1.5"/>
+<text x="205.0" y="274.7" text-anchor="middle" font-size="11">0.743945</text>
+<text x="205.0" y="408" text-anchor="end" font-size="10" transform="rotate(-42 205.0 408)">C0-epoch5-B3</text>
+<circle cx="269.7" cy="344.9" r="6" fill="#984ea3" stroke="white" stroke-width="1.5"/>
+<text x="269.7" y="333.9" text-anchor="middle" font-size="11">0.723565</text>
+<text x="269.7" y="408" text-anchor="end" font-size="10" transform="rotate(-42 269.7 408)">C0-epoch20-P0</text>
+<circle cx="334.3" cy="343.4" r="6" fill="#ff7f00" stroke="white" stroke-width="1.5"/>
+<text x="334.3" y="332.4" text-anchor="middle" font-size="11">0.724078</text>
+<text x="334.3" y="408" text-anchor="end" font-size="10" transform="rotate(-42 334.3 408)">C0-epoch20-B3</text>
+<circle cx="399.0" cy="140.1" r="6" fill="#a65628" stroke="white" stroke-width="1.5"/>
+<text x="399.0" y="129.1" text-anchor="middle" font-size="11">0.794046</text>
+<text x="399.0" y="408" text-anchor="end" font-size="10" transform="rotate(-42 399.0 408)">initial-model-epoch20-B3</text>
+<circle cx="463.7" cy="214.2" r="6" fill="#e41a1c" stroke="white" stroke-width="1.5"/>
+<text x="463.7" y="203.2" text-anchor="middle" font-size="11">0.768533</text>
+<text x="463.7" y="408" text-anchor="end" font-size="10" transform="rotate(-42 463.7 408)">E3-epoch5-B3</text>
+<text x="280.0" y="552" text-anchor="middle" font-size="12">Pooled error (m; lower is better)</text>
+<text x="775.0" y="88" text-anchor="middle" font-size="17" font-weight="bold">All valid 14 px pair MAE</text>
+<line x1="603" y1="390.0" x2="991" y2="390.0" stroke="#e2e5e9"/>
+<text x="595" y="394.0" text-anchor="end" font-size="11">0.0573</text>
+<line x1="603" y1="316.3" x2="991" y2="316.3" stroke="#e2e5e9"/>
+<text x="595" y="320.3" text-anchor="end" font-size="11">0.0593</text>
+<line x1="603" y1="242.5" x2="991" y2="242.5" stroke="#e2e5e9"/>
+<text x="595" y="246.5" text-anchor="end" font-size="11">0.0613</text>
+<line x1="603" y1="168.7" x2="991" y2="168.7" stroke="#e2e5e9"/>
+<text x="595" y="172.7" text-anchor="end" font-size="11">0.0633</text>
+<line x1="603" y1="95.0" x2="991" y2="95.0" stroke="#e2e5e9"/>
+<text x="595" y="99.0" text-anchor="end" font-size="11">0.0653</text>
+<line x1="603" y1="95" x2="603" y2="390" stroke="#555"/>
+<line x1="603" y1="390" x2="991" y2="390" stroke="#555"/>
+<circle cx="635.3" cy="324.3" r="6" fill="#377eb8" stroke="white" stroke-width="1.5"/>
+<text x="635.3" y="313.3" text-anchor="middle" font-size="11">0.059084</text>
+<text x="635.3" y="408" text-anchor="end" font-size="10" transform="rotate(-42 635.3 408)">C0-epoch5-P0</text>
+<circle cx="700.0" cy="167.3" r="6" fill="#4daf4a" stroke="white" stroke-width="1.5"/>
+<text x="700.0" y="156.3" text-anchor="middle" font-size="11">0.063323</text>
+<text x="700.0" y="408" text-anchor="end" font-size="10" transform="rotate(-42 700.0 408)">C0-epoch5-B3</text>
+<circle cx="764.7" cy="344.9" r="6" fill="#984ea3" stroke="white" stroke-width="1.5"/>
+<text x="764.7" y="333.9" text-anchor="middle" font-size="11">0.058528</text>
+<text x="764.7" y="408" text-anchor="end" font-size="10" transform="rotate(-42 764.7 408)">C0-epoch20-P0</text>
+<circle cx="829.3" cy="191.0" r="6" fill="#ff7f00" stroke="white" stroke-width="1.5"/>
+<text x="829.3" y="180.0" text-anchor="middle" font-size="11">0.062684</text>
+<text x="829.3" y="408" text-anchor="end" font-size="10" transform="rotate(-42 829.3 408)">C0-epoch20-B3</text>
+<circle cx="894.0" cy="140.1" r="6" fill="#a65628" stroke="white" stroke-width="1.5"/>
+<text x="894.0" y="129.1" text-anchor="middle" font-size="11">0.064059</text>
+<text x="894.0" y="408" text-anchor="end" font-size="10" transform="rotate(-42 894.0 408)">initial-model-epoch20-B3</text>
+<circle cx="958.7" cy="152.6" r="6" fill="#e41a1c" stroke="white" stroke-width="1.5"/>
+<text x="958.7" y="141.6" text-anchor="middle" font-size="11">0.063721</text>
+<text x="958.7" y="408" text-anchor="end" font-size="10" transform="rotate(-42 958.7 408)">E3-epoch5-B3</text>
+<text x="775.0" y="552" text-anchor="middle" font-size="12">Pooled error (m; lower is better)</text>
+<text x="1270.0" y="88" text-anchor="middle" font-size="17" font-weight="bold">GT |ΔZ| ≥ 0.20 m, 14 px pair MAE</text>
+<line x1="1098" y1="390.0" x2="1486" y2="390.0" stroke="#e2e5e9"/>
+<text x="1090" y="394.0" text-anchor="end" font-size="11">0.3166</text>
+<line x1="1098" y1="316.3" x2="1486" y2="316.3" stroke="#e2e5e9"/>
+<text x="1090" y="320.3" text-anchor="end" font-size="11">0.3220</text>
+<line x1="1098" y1="242.5" x2="1486" y2="242.5" stroke="#e2e5e9"/>
+<text x="1090" y="246.5" text-anchor="end" font-size="11">0.3274</text>
+<line x1="1098" y1="168.7" x2="1486" y2="168.7" stroke="#e2e5e9"/>
+<text x="1090" y="172.7" text-anchor="end" font-size="11">0.3328</text>
+<line x1="1098" y1="95.0" x2="1486" y2="95.0" stroke="#e2e5e9"/>
+<text x="1090" y="99.0" text-anchor="end" font-size="11">0.3382</text>
+<line x1="1098" y1="95" x2="1098" y2="390" stroke="#555"/>
+<line x1="1098" y1="390" x2="1486" y2="390" stroke="#555"/>
+<circle cx="1130.3" cy="140.1" r="6" fill="#377eb8" stroke="white" stroke-width="1.5"/>
+<text x="1130.3" y="129.1" text-anchor="middle" font-size="11">0.334913</text>
+<text x="1130.3" y="408" text-anchor="end" font-size="10" transform="rotate(-42 1130.3 408)">C0-epoch5-P0</text>
+<circle cx="1195.0" cy="252.1" r="6" fill="#4daf4a" stroke="white" stroke-width="1.5"/>
+<text x="1195.0" y="241.1" text-anchor="middle" font-size="11">0.326687</text>
+<text x="1195.0" y="408" text-anchor="end" font-size="10" transform="rotate(-42 1195.0 408)">C0-epoch5-B3</text>
+<circle cx="1259.7" cy="174.0" r="6" fill="#984ea3" stroke="white" stroke-width="1.5"/>
+<text x="1259.7" y="163.0" text-anchor="middle" font-size="11">0.332422</text>
+<text x="1259.7" y="408" text-anchor="end" font-size="10" transform="rotate(-42 1259.7 408)">C0-epoch20-P0</text>
+<circle cx="1324.3" cy="293.9" r="6" fill="#ff7f00" stroke="white" stroke-width="1.5"/>
+<text x="1324.3" y="282.9" text-anchor="middle" font-size="11">0.323614</text>
+<text x="1324.3" y="408" text-anchor="end" font-size="10" transform="rotate(-42 1324.3 408)">C0-epoch20-B3</text>
+<circle cx="1389.0" cy="234.0" r="6" fill="#a65628" stroke="white" stroke-width="1.5"/>
+<text x="1389.0" y="223.0" text-anchor="middle" font-size="11">0.328014</text>
+<text x="1389.0" y="408" text-anchor="end" font-size="10" transform="rotate(-42 1389.0 408)">initial-model-epoch20-B3</text>
+<circle cx="1453.7" cy="344.9" r="6" fill="#e41a1c" stroke="white" stroke-width="1.5"/>
+<text x="1453.7" y="333.9" text-anchor="middle" font-size="11">0.319867</text>
+<text x="1453.7" y="408" text-anchor="end" font-size="10" transform="rotate(-42 1453.7 408)">E3-epoch5-B3</text>
+<text x="1270.0" y="552" text-anchor="middle" font-size="12">Pooled error (m; lower is better)</text>
+</g>
+</svg>

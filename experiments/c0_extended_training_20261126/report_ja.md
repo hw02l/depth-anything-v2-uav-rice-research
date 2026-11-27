@@ -1,42 +1,96 @@
-# C0追加15 epoch実験報告（進行中）
+# C0追加15 epoch学習の結果報告
 
-## 実験状態
+## 1. 目的と事前固定条件
 
-本報告書は09-20正本リポジトリ内の継続実験を記録する。新規モデル学習ではなく、C0 epoch5 checkpointから15 epoch（epoch6〜20）を追加する実験である。主評価checkpointは事前固定したepoch20であり、中間epochの数値から最終結論を決めない。2026-11-27 04:56 JST時点でepoch6〜16の学習・Validation128・checkpoint保存が確認でき、epoch17の開始記録もある。その後SSH接続がリセットされ、epoch17以降の状態とcheckpoint実体のSHA256照合は未確認である。FortiClientのVPNは未接続で、再接続後に必要なMicrosoft SAML認証画面が表示されており、ユーザーのサインイン待ちである。以下は検証済みepochの中間値であり、最終的な統計比較・B3評価を含まない。
+C0のepoch5 checkpointからepoch6〜20の15 epochを追加し、学習を継続した場合の絶対深度誤差と局所深度差誤差の変化をValidation128で調べた。新規モデルをゼロから学習した実験ではない。学習群はC0のみであり、F1、F2、E3の再学習は行っていない。主評価checkpointは開始前にepoch20へ固定した。
 
-## 学習前に確認した事実
+追加フェーズではepoch5のmodel、AdamW moment、GradScaler、RNG状態を復元した。既存5 epoch schedulerは終端であったため、AdamW状態を保ったまま、encoder LRを1e-6、neck/head LRを1e-5に再設定し、2,880 successful updateを対象にPolynomialLRを新規設定した。このため本実験は、同一schedulerの20 epochを連続実行した条件とは異なる。
 
-GPGPU4のC0 epoch5 checkpointはSHA256
-2fd190727c7a5124c56c1e0ea2dd8cb09c6cb62a0f92b34fce97ad394281b35a
-と一致した。checkpointにはepoch 5、global_step 960、model state 287 keysとoptimizer、scheduler、scaler、RNG、history、signatureが含まれ、model tensorはfiniteであった。保存LRはscheduler終端で0であり、そのままの再開では学習が進まないため、optimizer moment等を保持しつつ、追加フェーズ用LRとPolynomialLRを設定する。
+## 2. データと評価方法
 
-checkpoint整理後、`du -sh /localdata/s0623003`でユーザー領域全体を再計測した結果は45GiBである。削除前の約53GiBから約8GiB減少した。`df -h /localdata`ではパーティション全体に107GiBの空きがある。2026-11-26 21:42 JSTのGPU4確認では使用率0%、空きVRAM6,066MiBであり、別ユーザーのPython process（PID 3894）が約2,030MiBを保持していた。ユーザーからGPU利用者の共有利用許可取得済みとの連絡を受けたため、直前preflightでPID集合不変・空きVRAM5GiB以上・使用率5%以下を満たす場合に限り、1バッチsmoke test後に学習を始める。別ユーザーのプロセスは停止・変更しない。追加checkpointはepoch5保護コピーを含め16個で約4.4GiBと見積もり、評価統計等を含めユーザー領域50GiB以内に収まることを開始前に確認する。
+Train384を用い、各画像からepochあたり2 crop、合計768 cropを生成した。C0の元画像短辺518pxへのbicubic縮小、518×518 crop、GT nearest resize、SiLog損失、batch 1、gradient accumulation 4、seed 42、FP16 GradScalerを維持した。GT学習範囲は0.001〜65m、予測上限は80mである。
 
-## 評価基準
+各epochでValidation128をP0方式で評価した。評価maskはfiniteかつ0 < depth <= 65mであり、元画像座標の固定14px pair manifestを用いた。独立test319は使用していない。epoch20では同じcheckpointで既存B3融合を別途評価した。B3は短辺518px全体推論と2000px原画像タイル推論（モデル入力518px、公称重複率25%、正Hann融合）を行い、215px box filterを用いて L(D_global) + D_tile - L(D_tile) とした。
 
-既存C0 epoch5-P0基準は絶対RMSE 0.744069m、全14px局所MAE 0.059084m、高差分14px局所MAE 0.334913mである。epoch5-B3基準はそれぞれ0.743945m、0.063323m、0.326687mである。epoch20を主checkpointとしてValidation128で評価し、学習曲線中の中間値から最良条件を選び直さない。
+## 3. 学習完了とチェックポイント
 
-## 中間結果
+epoch6〜20の15 epochが完了した。各epochで768 crop、192 successful optimizer updateを行い、AMP skipは全epochで0回であった。累積global_stepは960から3,840へ進んだ。初期epoch5 checkpointのSHA256は2fd190727c7a5124c56c1e0a2dd8cb09c6cb62a0f92b34fce97ad394281b35aであり、epoch20 checkpointはce7068a619c41775f0d42553510954fc15eb1be15a5cc269f5a485303b2e5fa4である。epoch5〜20の16 checkpointは実体ハッシュを計算し、run記録と照合した。元epoch5 checkpointは上書きしていない。過去の草稿にあった別のepoch20 hashは転記誤りであり、根拠と訂正履歴は[provenance照合記録](results/final_20261127/provenance_reconciliation_ja.md)に残した。
 
-GPGPU4上で2026-11-26 22:28 JSTに正式実行を開始した。epoch6〜16は各768 crop、successful optimizer update 192回、AMP skip 0回で完了し、各epochのValidation128 P0評価とcheckpoint保存が行われた。epoch16の学習時間は1715.10秒（約28分35秒）である。学習とValidation・checkpoint処理を合わせた所要時間は、先行epochの実測から約32分/epochである。他ユーザーのプロセスには触れていない。epoch16完了後のSSH接続リセットとVPN再認証により、epoch17以降の実行状態は確認待ちである。
+## 4. 最終評価
 
-| Epoch | Validation RMSE (m) | 全14px局所MAE (m) | GT差20cm以上・14px局所MAE (m) | 状態 |
-|---:|---:|---:|---:|---|
-| 6 | 0.807531 | 0.059194 | 0.334683 | 完了 |
-| 7 | 0.856295 | 0.058810 | 0.335134 | 完了 |
-| 8 | 0.761091 | 0.058860 | 0.334211 | 完了 |
-| 9 | 0.735352 | 0.058825 | 0.334096 | 完了 |
-| 10 | 0.762720 | 0.059195 | 0.332658 | 完了 |
-| 11 | 0.773296 | 0.058918 | 0.332759 | 完了 |
-| 12 | 0.743721 | 0.058404 | 0.333518 | 完了 |
-| 13 | 0.729365 | 0.058695 | 0.333306 | 完了 |
-| 14 | 0.726086 | 0.058755 | 0.333166 | 完了 |
-| 15 | 0.747917 | 0.058687 | 0.332473 | 完了 |
-| 16 | 0.725687 | 0.058521 | 0.332685 | 完了 |
-| 17〜20 | 未測定 | 未測定 | 未測定 | 未確認・未完了 |
+以下は同じValidation128とmaskで得たpooled指標である。高差分14pxは、固定14pxペアのうち|ΔGT| >= 0.2mに限定したMAEである。
 
-epoch6〜16では、RMSEは単調に改善せず、局所指標も指標間で異なる動きを示している。epoch16はRMSE 0.725687 m、全14px MAE 0.058521 m、高差分14px MAE 0.332685 mである。epoch5-P0基準より3指標とも小さいが、高差分局所MAEの差は約0.00223 mにとどまり、最終結論ではない。epoch20のP0およびB3評価、epoch5とのpaired bootstrapを完了してから仮説を判定する。各epochのcheckpoint SHA256、更新回数、AMP skip、詳細指標は[STATUS_JA.md](STATUS_JA.md)とGPU上の実行provenanceで追跡している。
+| 条件 | 絶対RMSE (m) | 全14px局所MAE (m) | 高差分14px局所MAE (m) |
+|---|---:|---:|---:|
+| C0 epoch5-P0 | 0.744069 | 0.059084 | 0.334913 |
+| C0 epoch5-B3 | 0.743945 | 0.063323 | 0.326687 |
+| C0 epoch20-P0 | **0.723565** | **0.058528** | 0.332422 |
+| C0 epoch20-B3 | 0.724078 | 0.062684 | 0.323614 |
+| 初期モデル epoch20-B3 | 0.794046 | 0.064059 | 0.328014 |
+| E3 epoch5-B3 | 0.768533 | 0.063721 | **0.319867** |
 
-## 最終結果
+![Validation128の6条件におけるpooled RMSEと14px局所MAE](results/final_20261127/figures/condition_summary.svg)
 
-未確定。epoch20のP0評価と固定条件B3評価、画像単位paired bootstrap（10,000回、seed 42）、図表、バックアップのSHA256照合が完了した後に確定する。Independent test319は使用しない。
+学習継続後のC0 epoch20-P0はepoch5-P0より、RMSEが0.020503m（2.76%）、全14px局所MAEが0.000556m（0.94%）、高差分14px局所MAEが0.002491m（0.74%）低下した。対応付きbootstrapでpooled差の95%区間はいずれも0をまたがず、画像平均推定でも同方向であった。改善の大きさは指標間で異なり、局所MAEの差は小さい。
+
+epoch20-B3は同じepochのP0より高差分14px局所MAEを0.008808m（2.65%）低下させたが、全14px局所MAEは0.004156m（7.10%）増加した。RMSE差は+0.000512m（約0.07%）で、paired bootstrapの95%区間は0を含んだ。従ってB3は高差分局所構造に有利だが、全局所ペアでは不利であり、絶対RMSEの差も明確ではない。
+
+epoch20-B3は従来の初期モデルepoch20-B3よりRMSE・全14px・高差分14pxのいずれも低かった。一方、高差分14px MAEはE3 epoch5-B3の0.319867mに及ばず、最良値を更新していない。RMSEと局所差分を一つの総合点へまとめず、用途に応じて条件を区別する。
+
+## 5. epoch推移
+
+epoch6〜20のRMSEは単調減少ではなく、validation上の揺れがあった。最終epoch20はRMSE 0.723565m、全14px局所MAE 0.058528m、高差分局所MAE 0.332422mであり、RMSEの最小値は中間epoch17の0.712205mであった。事前固定したepoch20を主結果として報告し、中間の最小値を主checkpointに置き換えていない。
+
+epoch20のTrain SiLogは0.008283である。訓練損失は継続して低下したが、Validation RMSEは上下したため、単純な「学習を続けるほど改善する」とは言えない。複数の指標が異なる動きを示し、明確な単調改善も一様な過学習も確認できない。epoch1〜5の保存済み記録にはValidation指標がなく、Validation曲線はepoch6〜20を示す。Train SiLog曲線はepoch1〜20を含む。元データは[learning_curve_data.csv](results/final_20261127/learning_curves/learning_curve_data.csv)、学習曲線8図は[learning_curves](results/final_20261127/learning_curves/)に保存した。Validation RMSE、高差分局所MAE、Train SiLogの曲線を以下に示す。
+
+![Validation128 RMSEの推移](results/final_20261127/learning_curves/validation_rmse_m.svg)
+
+![高差分14px局所MAEの推移](results/final_20261127/learning_curves/high_delta14_mae_m.svg)
+
+![Train SiLogの推移](results/final_20261127/learning_curves/train_silog_m.svg)
+
+6条件比較図は[condition_summary.svg](results/final_20261127/figures/condition_summary.svg)である。
+
+## 6. 統計解析
+
+画像ID単位の対応付きbootstrapを10,000回、seed 42で実施した。RMSE、全14px局所MAE、高差分14px局所MAEについてpooled集計と画像平均集計を別々に算出した。高差分ペアがない画像の値は0に置かず未定義として処理した。比較差は「左条件−右条件」と定義した。pooled推定量の差と95%区間を示す。完全な24行（pooled・image meanを含む）は[paired_bootstrap.csv](results/final_20261127/analysis/paired_bootstrap.csv)に保存した。
+
+| 比較（左−右） | 指標 | 差 | 95% bootstrap CI |
+|---|---|---:|---:|
+| C0 epoch20-P0 − epoch5-P0 | RMSE (m) | -0.020503 | [-0.038382, -0.001837] |
+|  | 全14px MAE (m) | -0.000556 | [-0.000601, -0.000512] |
+|  | 高差分14px MAE (m) | -0.002491 | [-0.002773, -0.002195] |
+| C0 epoch20-B3 − epoch5-B3 | RMSE (m) | -0.019868 | [-0.037741, -0.001141] |
+|  | 全14px MAE (m) | -0.000639 | [-0.000725, -0.000550] |
+|  | 高差分14px MAE (m) | -0.003073 | [-0.003490, -0.002658] |
+| C0 epoch20-B3 − epoch20-P0 | RMSE (m) | +0.000512 | [-0.000638, +0.001743] |
+|  | 全14px MAE (m) | +0.004156 | [+0.003700, +0.004626] |
+|  | 高差分14px MAE (m) | -0.008808 | [-0.010232, -0.007423] |
+| C0 epoch20-B3 − E3 epoch5-B3 | RMSE (m) | -0.044455 | [-0.061221, -0.028079] |
+|  | 全14px MAE (m) | -0.001037 | [-0.001227, -0.000844] |
+|  | 高差分14px MAE (m) | +0.003747 | [+0.003239, +0.004272] |
+
+pooled結果では、epoch5とepoch20の比較は両推論方式とも3指標で改善方向の区間であった。epoch20のB3とP0のRMSE差は区間が0を含み、全14px MAEはB3で悪化、高差分14px MAEは改善した。epoch20-B3とE3 epoch5-B3ではRMSE・全14px MAEはepoch20-B3が低く、高差分MAEはE3が低い。image mean推定量もCSVに別記し、pooled値と混同しない。
+
+事前固定比較は、C0 epoch20-P0対epoch5-P0、C0 epoch20-B3対epoch5-B3、C0 epoch20-B3対epoch20-P0、C0 epoch20-B3対E3 epoch5-B3である。bootstrap区間はvalidation画像単位の不確実性を示すもので、seed間のばらつきや独立データへの汎化を保証しない。複数のvalidation比較による探索バイアスも残る。
+
+## 7. 実行環境と検証
+
+GPGPU4のGeForce GTX 1080 8GBで実施した。正式runは2026-11-26 22:28 JSTに開始し、GPU上のローカル領域/localdata/s0623003/c0_extended_training_20261126/へ保存した。推論はeval/inference modeで行い、学習終了後の最終評価・解析過程に学習更新はない。B3 Validation128の総推論時間は153.52秒であった。GPU使用率は終了時0%であり、当実験の学習・評価プロセス終了を確認した。他ユーザーの既存プロセスは停止・変更していない。
+
+epoch5〜20のcheckpoint、epoch別validation、run metadata、画像別十分統計、bootstrap、学習曲線データ、B3出力、テストログをNFSの新規バックアップへ保存し、SHA256 manifestで照合した。NFSバックアップは110ファイルを保持し、106ファイルのコピー検証が成功した。bootstrap、解析provenance、学習曲線CSV・SVG 8図、初回テストログなどローカルへ転送した12ファイルは、NFSのSHA256SUMS.sourceとすべて一致した。ファイル別のローカルハッシュ一覧は[SHA256SUMS.local.txt](results/final_20261127/SHA256SUMS.local.txt)、NFS検証記録は[SHA256SUMS.verify.final.log](results/final_20261127/SHA256SUMS.verify.final.log)に保存した。GPU環境での直接再実行では16件・12件・1件の各テスト群がすべて成功し、総合終了コード0を確認した。再実行ログは[unittest_direct_rerun_20261127.log](results/final_20261127/logs/unittest_direct_rerun_20261127.log)に保存した。初回ログには各群のOK表示に続き、終了コードを集約するshell wrapperのエラーがあったため、個別suiteを直接再実行して終了コードまで確認した。ローカルGit成果物にはcheckpoint本体、原画像、GT、予測cacheを含めない。
+
+P0評価のprovenanceには制約が残る。元の`evaluation_C0_P0.json`にはcheckpoint path/hashがなく、解析時の`analysis_provenance.json`でも`epoch20_p0_checkpoint_sha256`はnullである。P0評価のgroup・epoch・method、run metadata、NFS上のepoch20 checkpoint hash一覧およびmanifestは照合できたが、評価JSON単体から実チェックポイントを暗号学的に確定できる状態ではない。元ファイルへの後付け記入は行わず、この制約を[provenance照合記録](results/final_20261127/provenance_reconciliation_ja.md)にも残した。
+
+- GPU run: /localdata/s0623003/c0_extended_training_20261126/run_epoch6_20_20261126T222819/
+- NFS backup: /home1/eng-std/s0623003/gpu4_research_backup_c0_extended_epoch20_20261127/
+- ローカル成果: results/final_20261127/
+- 実行時学習コードrevision: e33ec02f772f4bb584403c7dbc4d736c9e2fd66a
+- 初期チェックポイントSHA256: 2fd190727c7a5124c56c1e0a2dd8cb09c6cb62a0f92b34fce97ad394281b35a
+- epoch20チェックポイントSHA256: ce7068a619c41775f0d42553510954fc15eb1be15a5cc269f5a485303b2e5fa4
+
+## 8. 結論と限界
+
+C0 epoch5から15 epoch継続したepoch20-P0では、Validation128上の絶対RMSEと局所MAEがepoch5-P0より小さくなった。ただし局所差分の改善は0.74〜0.94%で小さい。epoch20-B3は高差分局所MAEをさらに下げる一方で全14px局所MAEを上げ、P0との明確な総合優位は示さなかった。E3 epoch5-B3は高差分14px局所MAEの最小値を維持している。
+
+この結果は単一seedで、同じValidation128をepochごと・既存実験でも繰り返し使用した探索的評価である。epoch6に学習率スケジュールを再設定している。独立test319による汎化確認は行っておらず、別seed・別撮影日・独立圃場への性能は未確定である。結論はValidation128内の比較に限る。

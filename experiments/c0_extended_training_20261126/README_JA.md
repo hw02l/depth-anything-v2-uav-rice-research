@@ -1,26 +1,38 @@
-# C0追加15 epoch（09-20研究の継続）
+# C0追加15 epoch実験
 
-C0の既存epoch5モデルからepoch6〜20を追加し、学習期間延長の影響を検証する実験である。新規Codexプロジェクトではなく、09-20正本リポジトリ内の一実験として管理する。
+C0のepoch5 checkpointからepoch6〜20を追加学習し、学習期間の延長をValidation128で評価した実験である。C0以外は再学習せず、Independent test319も使用していない。
 
-- 計画：PLAN_JA.md
-- 固定条件：config.json
-- 現在の進捗：STATUS_JA.md
-- 結果と限界：report_ja.md
-- epoch 1〜20の学習曲線表・図の生成：plot_learning_curves.py
-- epoch5/20のP0/B3条件間bootstrap集計：analyze_extended_results.py
+## 主な結果
 
-C0 epoch5 checkpointのSHA256はconfig.json記載値と照合し、modelをstrict loadする。AdamW moment、GradScaler、RNGを復元し、既存5 epoch schedulerは継続せず、追加15 epoch専用PolynomialLRを指定LRで設定する。学習率はValidation結果を見て変更しない。
+- C0 epoch20-P0: pooled RMSE 0.723565m、全14px局所MAE 0.058528m、高差分14px局所MAE 0.332422m。
+- C0 epoch20-B3: pooled RMSE 0.724078m、全14px局所MAE 0.062684m、高差分14px局所MAE 0.323614m。
+- epoch5-P0からepoch20-P0では3指標とも小幅に低下した。画像単位bootstrapでも改善方向の95%区間であった。
+- B3は高差分局所MAEを下げる一方、全14px局所MAEを上げた。E3 epoch5-B3は高差分局所MAE 0.319867mで引き続き最良である。
 
-Validation128のみを使用し、Independent test319は使わない。初期checkpointおよび既存研究出力を上書きしない。学習中は約8回のsuccessful optimizer updateごとに、epoch内サンプル数、更新数、AMP skip数、経過時間、累積global stepを`progress.json`へ原子的に記録する。epoch終了時はValidation中・checkpoint保存済みの状態も記録する。
+## 成果物
 
-## checkpoint整理
+- 実験計画: [PLAN_JA.md](PLAN_JA.md)
+- 進捗・保全状況: [STATUS_JA.md](STATUS_JA.md)
+- 詳細報告: [report_ja.md](report_ja.md)
+- 固定設定: [config.json](config.json)
+- pooled / image mean集計: [condition_summary.csv](results/final_20261127/condition_summary.csv)
+- 6条件比較図: [condition_summary.svg](results/final_20261127/figures/condition_summary.svg)
+- 対応付きbootstrap 24行（4比較×3指標×2推定量）: [paired_bootstrap.csv](results/final_20261127/analysis/paired_bootstrap.csv)
+- bootstrap・解析provenance: [analysis_provenance.json](results/final_20261127/analysis/analysis_provenance.json)
+- epoch別曲線の元データ: [learning_curve_data.csv](results/final_20261127/learning_curves/learning_curve_data.csv)
+- 学習曲線8図: [learning_curves/](results/final_20261127/learning_curves/)
+- GPU環境での直接再実行ログ（16+12+1件、exit 0）: [unittest_direct_rerun_20261127.log](results/final_20261127/logs/unittest_direct_rerun_20261127.log)
+- 初回テスト実行記録: [unittest_final_20261127.log](results/final_20261127/logs/unittest_final_20261127.log)
+- NFSバックアップの検証記録: [SHA256SUMS.verify.final.log](results/final_20261127/SHA256SUMS.verify.final.log)
+- ローカル成果物ハッシュ: [SHA256SUMS.local.txt](results/final_20261127/SHA256SUMS.local.txt)
+- provenance・ハッシュ照合に関する補足: [provenance_reconciliation_ja.md](results/final_20261127/provenance_reconciliation_ja.md)
 
-容量確保のため、既存NFSバックアップのmanifestと実ファイルが一致することを確認した旧C0/F1/F2・E1/E2/E3のepoch checkpoint 28件と、C0/E3 epoch5の完全重複コピー2件をGPUローカルから整理した。C0 epoch5とE3 epoch5の正本は残している。B系列checkpoint、Metric Outdoor初期モデル、NFSバックアップ、既存評価結果は変更していない。GPU上の監査表は`~/gpu_work/c0_extended_training_20261126/audit/checkpoint_cleanup_manifest.tsv`、削除記録は同階層の`checkpoint_cleanup_receipt.txt`にある。
+NFSバックアップは110ファイルを保持し、うち106ファイルをSHA256SUMSで照合した。NFSからローカルへコピーした統計・provenance・学習曲線・テストログの12ファイルも、NFSのSHA256SUMS.sourceとの照合にすべて成功した。学習曲線8図と対応CSVはローカルにも保存している。
 
-## 検証状態
+GitHubとこの成果物ディレクトリにはcheckpoint本体、生RGB/GT画像、予測cacheを含めない。epoch別checkpoint、詳細な画像別十分統計、予測出力はGPGPU4の実行領域およびNFSバックアップに保管した。
 
-継続学習、GPU smoke test、最終B3評価、統計解析、作図スクリプトと単体テストを追加した。継続学習の12件の単体テスト、厳密なepoch5重み・optimizer/scaler/RNG復元、GPU上の一更新smoke testは成功済みである。追加した解析回帰テスト4件はWindows隔離venv（numpy 2.4.6）で全件成功し、関連スクリプトの構文検査と差分空白検査も成功した。解析テストのSingularity内実行は未確認である。C0 epoch5 checkpointのSHA256は正式学習開始前後で一致し、固定pair manifestは`experiments/multiscale_tile_inference_20261016/pair_manifest.json`である。GPGPU4ユーザー領域は整理後約45GiB、`/localdata`全体の空きは約107GiBであった。他ユーザーのプロセスには触れていない。初回起動試行は固定manifestのパス誤りで入力検証前に終了したが、修正後に正式runを2026-11-26 22:28 JSTに開始した。epoch6〜16は各768 crop、192 successful update、AMP skip 0で完了し、epoch16 P0のRMSEは0.725687m、全14px局所MAEは0.058521m、高差分14px局所MAEは0.332685mである。epoch17の開始を確認した後にSSH接続がリセットした。FortiClientはMicrosoft SAML認証待ちで、現在VPN未接続のため、epoch17以降の進捗とepoch16 checkpointの実SHA256は未確認である。
+## 再現
 
-`plot_learning_curves.py`は保存済みのepoch5 P0評価、C0 epoch1〜5の学習履歴、継続runのepoch JSONを結合し、CSVとSVGの曲線を出力する。保存されていないepoch1〜4のValidation指標は補間せず欠損のまま扱う。epoch6で学習率スケジュールを再設定した境界を図に表示する。合成epochデータによる動作確認で20行のCSVと8図の生成を確認し、SVGをXMLとして読み取れることも確認した。実測結果の図表生成はepoch20までの成果をローカルへ保全した後に実施する。
+継続学習コードは[continue_c0.py](continue_c0.py)である。epoch20のB3評価と解析には[evaluate_final_b3.py](evaluate_final_b3.py)、[analyze_extended_results.py](analyze_extended_results.py)、[plot_learning_curves.py](plot_learning_curves.py)を用いた。設定、入力、checkpoint、スクリプトの識別情報とハッシュはconfig.json、results/final_20261127/analysis/analysis_provenance.json、NFS側の実行記録で照合した。ただしepoch20-P0評価JSONにはcheckpoint hashがなく、analysis provenanceの同項目もnullであるため、P0評価とcheckpointの直接の暗号学的結び付けは残る制約である。後から原JSONへ値を追記していない。
 
-`analyze_extended_results.py`はepoch20-P0、epoch20-B3を、固定されたepoch5-P0、epoch5-B3、epoch20-B3（初期Metric Outdoor）、E3-epoch5-B3と画像IDで対応付ける。絶対RMSE、全14px局所MAE、高差分14px局所MAEについてpooledと画像平均を分け、画像単位bootstrapを10,000回、seed 42で計算する。評価JSON/run_complete.jsonと十分統計から再計算した値の一致を検査する。
+この結果は単一seed・Validation128での探索的比較であり、独立test319への汎化を示すものではない。学習率はepoch6で追加フェーズ用に再設定しているため、同一の学習率スケジュールを20 epoch連続適用した結果ではない。

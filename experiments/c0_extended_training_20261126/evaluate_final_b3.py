@@ -24,6 +24,8 @@ import run_b3 as b3  # noqa: E402
 from continue_c0 import (  # noqa: E402
     assert_no_new_gpu_compute_processes,
     check_gpu_receipt,
+    check_paths_inside_gpu_work,
+    git_revision,
 )
 from data_patch import rgb_unit_float_to_uint8  # noqa: E402
 from patch_engine import canonical_signature, file_sha256  # noqa: E402
@@ -60,10 +62,28 @@ def load_epoch20_model(base_dir: Path, checkpoint: Path, device: str):
     if payload.get("checkpoint_signature") != canonical_signature(signature_payload):
         raise ValueError("Checkpoint signature verification failed")
     progress_path = checkpoint.parent / "progress.json"
+    completion_path = checkpoint.parent / "run_complete.json"
+    if not completion_path.is_file():
+        raise ValueError("Completed-run record is missing")
+    completion = json.loads(completion_path.read_text(encoding="utf-8"))
+    if (
+        completion.get("status") != "complete"
+        or int(completion.get("epoch", -1)) != 20
+        or int(completion.get("global_step", -1)) != int(payload["global_step"])
+        or completion.get("checkpoint_sha256") != actual_sha
+    ):
+        raise ValueError("Completed-run record does not match the epoch20 checkpoint")
     if progress_path.exists():
         progress = json.loads(progress_path.read_text(encoding="utf-8"))
-        if progress.get("status") == "complete" and progress.get("checkpoint_sha256") != actual_sha:
-            raise ValueError("Completed-run progress hash differs from epoch20 checkpoint")
+        if (
+            progress.get("status") != "complete"
+            or int(progress.get("epoch", -1)) != 20
+            or int(progress.get("global_step", -1)) != int(payload["global_step"])
+        ):
+            raise ValueError("Completed-run progress state does not match the epoch20 checkpoint")
+        progress_sha = progress.get("checkpoint_sha256")
+        if progress_sha is not None and progress_sha != actual_sha:
+            raise ValueError("Optional progress checkpoint hash differs from epoch20 checkpoint")
 
     model, base_audit = native.load_model(base_dir, device)
     state = payload.get("model")
@@ -81,6 +101,7 @@ def load_epoch20_model(base_dir: Path, checkpoint: Path, device: str):
     model.eval()
     audit = {
         "checkpoint_sha256": actual_sha,
+        "completion_record_sha256": file_sha256(completion_path),
         "epoch": 20,
         "global_step": int(payload["global_step"]),
         "model_key_count": len(state),
@@ -102,13 +123,13 @@ def run(args) -> dict:
         args.gpu_work_root, args.checkpoint,
         reserved_checkpoint_copies=0, output_reserve_bytes=64 * 1024**2,
     )
-    native.check_paths_inside_gpu_work([
+    check_paths_inside_gpu_work([
         ("checkpoint", args.checkpoint), ("base model", args.base_model_dir),
         ("validation manifest", args.validation_manifest), ("pair manifest", args.pair_manifest),
         ("RGB root", args.rgb_root), ("depth root", args.depth_root),
         ("preflight receipt", args.preflight_receipt),
         ("GPU permission record", args.gpu_permission_record), ("output", args.output),
-    ], Path.home() / "gpu_work")
+    ], args.gpu_work_root)
     if args.output.exists():
         raise FileExistsError(f"Existing output is preserved: {args.output}")
     args.output.mkdir(parents=True, exist_ok=False)
@@ -131,7 +152,7 @@ def run(args) -> dict:
         "command": sys.argv,
         "checkpoint": str(args.checkpoint.resolve()),
         "checkpoint_state_load_audit": load_audit,
-        "git": native.git_revision(),
+        "git": git_revision(),
         "code_sha256": {
             str(path.relative_to(ROOT)): file_sha256(path)
             for path in (HERE / "evaluate_final_b3.py", BEST / "run_b3.py",

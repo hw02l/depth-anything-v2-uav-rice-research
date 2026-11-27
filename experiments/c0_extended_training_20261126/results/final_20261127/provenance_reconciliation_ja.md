@@ -1,0 +1,30 @@
+# provenance・SHA256照合記録
+
+## epoch20 checkpointのhash訂正
+
+報告書草稿に記載したepoch20 checkpoint SHA256は転記誤りであった。確認済みの実値は次のとおりである。
+
+`ce7068a619c41775f0d42553510954fc15eb1be15a5cc269f5a485303b2e5fa4`
+
+この値はNFSバックアップのrun_epoch6_20/checkpoint_sha256_actual.txtにあるepoch_0020.ptの行と一致し、SHA256SUMS.sourceのrun_epoch6_20/epoch_0020.ptエントリとも一致する。NFS最終検証ログでは同checkpointが完了・照合済みと記録されている。analysis/analysis_provenance.jsonのepoch20_b3_checkpoint_sha256も同値である。既存epoch20 checkpointやNFSバックアップは変更していない。report_ja.mdとSTATUS_JA.mdの誤記だけを修正した。
+
+## P0評価JSONのcheckpoint provenance
+
+NFS上のP0評価出力evaluation_C0_P0.jsonはgroup=C0、epoch=20、method=P0を記録する一方、トップレベルにcheckpoint path・checkpoint hashの項目を持たない。解析用analysis/analysis_provenance.jsonでもepoch20_p0_checkpoint_sha256はnullである。この欠落を後からJSONへ追記して、過去の実行時に記録されていたように扱ってはいない。
+
+epoch20の実チェックポイントSHA256は上記の実行時hash一覧とNFS manifestから確定でき、B3側のprovenanceにも同値が記録されている。config.jsonと評価出力のepoch/group/methodはP0評価をC0 epoch20-P0として位置付ける。ただし、P0評価JSON自体にhashがなく、評価時のcheckpointをJSON単体で暗号学的に結び付けられない点は残るprovenance上の制約である。元のanalysis_provenance.jsonはバックアップ由来の原記録としてそのまま保持し、この制約を本文で明示した。
+
+## 転送・テスト検証
+
+- NFSバックアップ: gpu4_research_backup_c0_extended_epoch20_20261127
+- NFSバックアップ内のファイル数: 110
+- SHA256SUMS.sourceによるコピー検証済みファイル数: 106
+- NFSからローカルへ転送した解析データ12件: 全12件がSHA256SUMS.sourceと一致
+- 転送対象: paired bootstrap、解析provenance、learning curve CSV、SVG 8図、GPU上のunittestログ
+- GPU環境の直接テスト再実行: 16件、12件、1件の3 suiteがすべてOK、総合終了コード0
+- 初回テストログ: 各suiteにOK表示はあったが、末尾のshell wrapperが空の終了コードを比較しエラーを出力した。テストが個別に成功していることとwrapper異常を分けて記録し、直接再実行で終了コード0を確認した
+- 初回ログ: logs/unittest_final_20261127.log
+- 直接再実行ログ: logs/unittest_direct_rerun_20261127.log
+- 元のNFS SHA256SUMS.sourceおよび最終検証ログを同じresultsディレクトリへ保存した
+
+ローカル成果物の再計算可能なSHA256一覧はSHA256SUMS.local.txtにある。checkpoint本体、生RGB/GT画像、prediction cacheはローカル公開物に含めていない。
