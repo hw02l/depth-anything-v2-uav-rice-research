@@ -94,3 +94,7 @@ P0評価のprovenanceには制約が残る。元の`evaluation_C0_P0.json`には
 C0 epoch5から15 epoch継続したepoch20-P0では、Validation128上の絶対RMSEと局所MAEがepoch5-P0より小さくなった。ただし局所差分の改善は0.74〜0.94%で小さい。epoch20-B3は高差分局所MAEをさらに下げる一方で全14px局所MAEを上げ、P0との明確な総合優位は示さなかった。E3 epoch5-B3は高差分14px局所MAEの最小値を維持している。
 
 この結果は単一seedで、同じValidation128をepochごと・既存実験でも繰り返し使用した探索的評価である。epoch6に学習率スケジュールを再設定している。独立test319による汎化確認は行っておらず、別seed・別撮影日・独立圃場への性能は未確定である。結論はValidation128内の比較に限る。
+
+## 9. 公開状況
+
+実験コード、設定、報告書、集計CSV、bootstrap、SVG図表、provenance、SHA256台帳、テストログをGitHubの[PR #9](https://github.com/hw02l/depth-anything-v2-uav-rice-research/pull/9)へ公開した。PRは`research/best-model-inference-combination-20261122`をbaseとし、確認時点でopen・未mergeである。checkpoint本体、生RGB/GT画像、prediction cacheは公開対象から除外した。

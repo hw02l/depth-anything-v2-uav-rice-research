@@ -1,5 +1,7 @@
 # C0追加15 epoch実験
 
+GitHubでの成果公開: [PR #9](https://github.com/hw02l/depth-anything-v2-uav-rice-research/pull/9)（open・未merge）。
+
 C0のepoch5 checkpointからepoch6〜20を追加学習し、学習期間の延長をValidation128で評価した実験である。C0以外は再学習せず、Independent test319も使用していない。
 
 ## 主な結果

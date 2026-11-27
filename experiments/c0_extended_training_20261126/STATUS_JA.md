@@ -1,6 +1,6 @@
 # 状態
 
-**実験・保全完了、GitHub公開作業中**：C0 epoch5からepoch6〜20の追加学習、Validation128評価、epoch20 P0/B3比較、paired bootstrap、回帰テスト、NFSバックアップ、ローカル保存を完了した。Independent test319は使用していない。C0以外のモデルは再学習していない。
+**実験・保全・公開完了**：C0 epoch5からepoch6〜20の追加学習、Validation128評価、epoch20 P0/B3比較、paired bootstrap、回帰テスト、NFSバックアップ、ローカル保存、GitHub PR作成を完了した。Independent test319は使用していない。C0以外のモデルは再学習していない。
 
 ## 完了項目
 
@@ -14,7 +14,7 @@
 - [x] GPGPU4の実行成果をNFSの新規バックアップへ保存し、106ファイルのSHA256照合に成功した。
 - [x] paired bootstrap、provenance、epoch別曲線データ、SVG 8図、テストログをNFSからWindows正本へコピーし、12ファイルすべてSHA256SUMS.sourceと一致することを確認した。
 - [x] 6条件比較CSV・SVG、ローカル成果物SHA256一覧、provenance照合メモを作成した。
-- [ ] 最終差分・公開対象を確認し、既存の実験ブランチへcommit・pushして、PR #8をbaseとする新規PRを作成する。
+- [x] 最終差分・公開対象を確認し、既存の実験ブランチへcommit・pushして、PR #8をbaseとする新規PRを作成した。
 
 ## 正式runと主要成果物
 
@@ -29,7 +29,7 @@
 - NFSバックアップ：110ファイル、SHA256照合済み106ファイル
 - ローカル転送ファイル：12件すべてNFS SHA256 manifestと一致
 - ブランチ：research/c0-extended-training-epoch20-20261126
-- 現在のHEAD：cffb44eb8d935376df8a9d09d0cecd4881e7694a
+- Pull request：[PR #9](https://github.com/hw02l/depth-anything-v2-uav-rice-research/pull/9)（open・未merge、baseはPR #8のhead）
 
 ## 結果の要点
 
