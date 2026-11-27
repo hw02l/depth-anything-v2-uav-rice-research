@@ -1,0 +1,7 @@
+{
+  "status": "granted",
+  "scope": "GPGPU4 concurrent use for the C0 epoch5-to-epoch20 continuation and its validation",
+  "source": "The user states that they obtained permission from the active GPU user and explicitly authorizes starting now.",
+  "recorded_date": "2026-11-26",
+  "credentials_or_other_user_identity_recorded": false
+}
